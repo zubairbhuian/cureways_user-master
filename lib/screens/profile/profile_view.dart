@@ -1,3 +1,4 @@
+import 'package:cureways_user/data/network/controllers/profile_controller.dart';
 import 'package:cureways_user/screens/welcome_screen.dart';
 import 'package:cureways_user/utils/Int_extensions.dart';
 import 'package:cureways_user/utils/const_color.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
-class ProfileView extends StatelessWidget {
+class ProfileView extends GetView<ProfileController> {
   const ProfileView({super.key});
 
   @override
@@ -31,8 +32,9 @@ class ProfileView extends StatelessWidget {
                   color: kTextColor, fontSize: 20, fontWeight: FontWeight.w600),
             ),
             10.height,
-            const CustomTextField2(
+             CustomTextField2(
               label: Text("Full Name"),
+              controller:controller.fullNameController,
             ),
             Container(
               decoration: BoxDecoration(
@@ -44,8 +46,9 @@ class ProfileView extends StatelessWidget {
                   onInputChanged: (value) {}),
             ),
             24.height,
-            const CustomTextField2(
+            CustomTextField2(
               label: Text("Email"),
+              controller:controller.emailController,
             ),
             CustomDropdownTextFiel(
                 data: const ["Male", "Female", "Others"],
