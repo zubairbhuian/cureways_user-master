@@ -8,6 +8,7 @@ import 'package:cureways_user/data/service/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:logger/logger.dart';
 
 class AddHealthProfileController extends GetxController {
   UserService userService = UserService();
@@ -76,32 +77,36 @@ class AddHealthProfileController extends GetxController {
       'user_id': '${_myBox.get('userId')}',
     };
     String jsonBody = json.encode(body);
+    print(jsonBody);
+    Logger log = Logger();
+    var res =await server.postRequestWithToken(
+      endPoint: Endpoints.healthProfile, body: jsonBody,
 
-    server
-        .postRequestWithToken(endPoint: Endpoints.healthProfile, body: jsonBody)
-        .then((response) {
-      print(json.decode(response.body));
-      if (response != null && response.statusCode == 200) {
-        final jsonResponse = json.decode(response.body);
-        print(jsonResponse);
-        var addHealthProfileData =
-            AddHealthProfileResponseModel.fromJson(jsonResponse);
-        healthProfileId = addHealthProfileData.data!.id;
-        _myBox.put('healthProfileId', addHealthProfileData.data!.id.toString());
-        loader = false;
-        Future.delayed(const Duration(milliseconds: 10), () {
-          update();
-        });
-        Get.rawSnackbar(message: 'Updated!', backgroundColor: Colors.green);
-      } else {
-        loader = false;
-        Future.delayed(const Duration(milliseconds: 10), () {
-          update();
-        });
-        Get.rawSnackbar(
-            message: 'Please enter valid input', backgroundColor: Colors.red);
-      }
-    });
+      //     .then((response) {
+      //   print(json.decode(response.body));
+      //   if (response != null && response.statusCode == 200) {
+      //     final jsonResponse = json.decode(response.body);
+      //     print(jsonResponse);
+      //     var addHealthProfileData =
+      //         AddHealthProfileResponseModel.fromJson(jsonResponse);
+      //     healthProfileId = addHealthProfileData.data!.id;
+      //     _myBox.put('healthProfileId', addHealthProfileData.data!.id.toString());
+      //     loader = false;
+      //     Future.delayed(const Duration(milliseconds: 10), () {
+      //       update();
+      //     });
+      //     Get.rawSnackbar(message: 'Updated!', backgroundColor: Colors.green);
+      //   } else {
+      //     loader = false;
+      //     Future.delayed(const Duration(milliseconds: 10), () {
+      //       update();
+      //     });
+      //     Get.rawSnackbar(
+      //         message: 'Please enter valid input', backgroundColor: Colors.red);
+      //   }
+      // }
+    );
+    log.e(res);
   }
 
   showHealthProfile() async {

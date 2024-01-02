@@ -10,8 +10,8 @@ import 'package:cureways_user/screens/user_screens/virtual_lab/virtual_lab_scree
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../utilis/const_color.dart';
-import '../utilis/mixins.dart';
+import '../utils/const_color.dart';
+import '../utils/mixins.dart';
 import 'ask_doctor/ask_doctor_main_screen.dart';
 import 'health_ tracker/health_tracker_screen.dart';
 import 'health_profile/health_profile_screen.dart';
@@ -45,27 +45,29 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Hi,$userName!",
-                      textAlign: TextAlign.start,
-                      style: const TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xff0F4B97)),
-                    ),
-                    const Text(
-                      "Welcome back",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xff0F4B97)),
-                    )
-                  ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Hi,$userName!",
+                        textAlign: TextAlign.start,
+                        style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xff0F4B97)),
+                      ),
+                      const Text(
+                        "Welcome back",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xff0F4B97)),
+                      )
+                    ],
+                  ),
                 ),
                 SvgPicture.asset(
                   "assets/home_screen/bell.svg",

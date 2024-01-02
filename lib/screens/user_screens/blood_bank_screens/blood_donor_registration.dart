@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive/hive.dart';
 
 import '../../../data/network/apis/api_client.dart';
-import '../../../utilis/const_color.dart';
+import '../../../utils/const_color.dart';
 import '../../../widgets/appbar.dart';
 import 'package:http/http.dart' as http;
 

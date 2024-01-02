@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../../../utilis/const_color.dart';
-import '../../../utilis/mixins.dart';
+import '../../../utils/const_color.dart';
+import '../../../utils/mixins.dart';
 import '../../../widgets/appbar.dart';
 
 class DoctorAppoinmentConfirmScreen extends StatefulWidget {

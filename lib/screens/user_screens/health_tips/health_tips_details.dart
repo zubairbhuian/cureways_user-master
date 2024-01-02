@@ -2,11 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../utilis/const_color.dart';
+import '../../../utils/const_color.dart';
 
 class HealthTipsDetailsScreen extends StatefulWidget {
-  String name,type,details,path;
-  HealthTipsDetailsScreen({Key? key,
+  String name, type, details, path;
+  HealthTipsDetailsScreen({
+    Key? key,
     required this.name,
     required this.path,
     required this.details,
@@ -66,7 +67,7 @@ class _HealthTipsDetailsScreenState extends State<HealthTipsDetailsScreen> {
                 height: 16,
               ),
               SizedBox(
-                width: 124,
+                width: 140,
                 height: 48,
                 child: OutlinedButton(
                   onPressed: () {
@@ -99,100 +100,110 @@ class _HealthTipsDetailsScreenState extends State<HealthTipsDetailsScreen> {
           ),
         ),
       ),
-      body:  Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 12,right: 12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 8,),
-                Container(
-                  height: 228,
-                  width: double.maxFinite,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-                  child: CachedNetworkImage(
-                    imageUrl: widget.path,
-                    placeholder: (context, url) =>
-                    const Center(
-                        child:
-                        CircularProgressIndicator()),
-                    errorWidget:
-                        (context, url, error) =>
-                    const Icon(
-                      Icons.error,
-                      color: ConstantsColor.primaryColor,
-                    ),
-                    fit:BoxFit.fill ,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 12, right: 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 8,
                   ),
-                ),
-                const SizedBox(height: 16,),
-                Row(
-                  children: [
-                    const Text("Title: ",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: ConstantsColor.primaryColor
+                  Container(
+                    height: 228,
+                    width: double.maxFinite,
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(8)),
+                    child: CachedNetworkImage(
+                      imageUrl: widget.path,
+                      placeholder: (context, url) =>
+                          const Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) => const Icon(
+                        Icons.error,
+                        color: ConstantsColor.primaryColor,
                       ),
+                      fit: BoxFit.fill,
                     ),
-                    Text(widget.name,
-                      style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: ConstantsColor.primaryColor
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Title: ",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: ConstantsColor.primaryColor),
                       ),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 16,),
-             Row(
-               children: [
-
-                 const Text("Details:",
-                   style: TextStyle(
-                       fontSize: 18,
-                       fontWeight: FontWeight.w700,
-                       color: ConstantsColor.primaryColor
-                   ),
-                 ),
-                 Text(widget.details,
-                      style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: ConstantsColor.greyColor
+                      Expanded(
+                        child: Text(
+                          widget.name,
+                          style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: ConstantsColor.primaryColor),
+                        ),
                       ),
-                    ),
-               ],
-             ),
-
-                const SizedBox(height: 16,),
-
-                Row(
-                  children: [
-                    const Text("Created At: ",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: ConstantsColor.primaryColor
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Details: ",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: ConstantsColor.primaryColor),
                       ),
-                    ),
-                    Text(widget.type,
-                      style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: ConstantsColor.primaryColor
+                      Expanded(
+                        child: Text(
+                          widget.details,
+                          style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: ConstantsColor.greyColor),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 32,),
-
-              ],
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    children: [
+                      const Text(
+                        "Created At: ",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: ConstantsColor.primaryColor),
+                      ),
+                      Text(
+                        widget.type,
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: ConstantsColor.primaryColor),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

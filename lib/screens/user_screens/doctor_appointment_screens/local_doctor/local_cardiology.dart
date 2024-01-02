@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../../utilis/const_color.dart';
+import '../../../../utils/const_color.dart';
 
 class LocalCardiology extends StatefulWidget {
   String userName;

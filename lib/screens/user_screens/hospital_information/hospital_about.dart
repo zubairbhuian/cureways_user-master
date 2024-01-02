@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utilis/const_color.dart';
+import '../../../utils/const_color.dart';
 class HospitalAbout extends StatefulWidget {
   const HospitalAbout({Key? key}) : super(key: key);
 

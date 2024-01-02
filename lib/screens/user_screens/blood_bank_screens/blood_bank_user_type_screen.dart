@@ -2,7 +2,7 @@ import 'package:cureways_user/screens/user_screens/blood_bank_screens/blood_bank
 import 'package:cureways_user/screens/user_screens/blood_bank_screens/blood_donor_registration.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utilis/const_color.dart';
+import '../../../utils/const_color.dart';
 import '../../../widgets/appbar.dart';
 
 class BloodBankUserTypeScreen extends StatefulWidget {

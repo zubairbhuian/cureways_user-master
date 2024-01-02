@@ -10,7 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../social_sig_in/google_sig_in.dart';
-import '../utilis/const_color.dart';
+import '../utils/const_color.dart';
 
 class WelcomescreenCheck extends StatefulWidget {
   const WelcomescreenCheck({Key? key}) : super(key: key);

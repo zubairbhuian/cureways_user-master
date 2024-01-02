@@ -1,6 +1,6 @@
 import 'package:cureways_user/data/network/controllers/add_health_profile_controller.dart';
 import 'package:cureways_user/screens/health_profile/update_health_profile_screen.dart';
-import 'package:cureways_user/utilis/const_color.dart';
+import 'package:cureways_user/utils/const_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -42,27 +42,29 @@ class _GetHealthProfileScreenState extends State<GetHealthProfileScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Hi,${_myBox.get('userName')}",
-                      textAlign: TextAlign.start,
-                      style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white),
-                    ),
-                    const Text(
-                      "Welcome back",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white),
-                    )
-                  ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Hi,${_myBox.get('userName')}",
+                        textAlign: TextAlign.start,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
+                      ),
+                      const Text(
+                        "Welcome back",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white),
+                      )
+                    ],
+                  ),
                 ),
                 // IconButton(
                 //   onPressed: () {

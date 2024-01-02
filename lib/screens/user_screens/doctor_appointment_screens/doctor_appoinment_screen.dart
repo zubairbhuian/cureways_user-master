@@ -4,8 +4,8 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../utilis/const_color.dart';
-import '../../../utilis/mixins.dart';
+import '../../../utils/const_color.dart';
+import '../../../utils/mixins.dart';
 import '../../../widgets/appbar.dart';
 
 class DoctorAppointmentScreen extends StatefulWidget {

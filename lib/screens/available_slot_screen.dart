@@ -1,6 +1,6 @@
 import 'package:cureways_user/data/network/models/find_slot_model.dart';
 import 'package:cureways_user/screens/user_screens/doctor_appointment_screens/doctor_appoinment_screen.dart';
-import 'package:cureways_user/utilis/const_color.dart';
+import 'package:cureways_user/utils/const_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -34,27 +34,29 @@ class _AvailableSlotScreenState extends State<AvailableSlotScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Hi,",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white),
-                    ),
-                    Text(
-                      "Welcome back",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white),
-                    )
-                  ],
+                const Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Hi,",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
+                      ),
+                      Text(
+                        "Welcome back",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white),
+                      )
+                    ],
+                  ),
                 ),
                 SvgPicture.asset(
                   "assets/home_screen/bell.svg",

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../utilis/const_color.dart';
+import '../../utils/const_color.dart';
 class PribacyPolicyScreen extends StatefulWidget {
   const PribacyPolicyScreen({Key? key}) : super(key: key);
 

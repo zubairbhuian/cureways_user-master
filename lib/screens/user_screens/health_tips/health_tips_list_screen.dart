@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../data/network/apis/api_client.dart';
-import '../../../utilis/const_color.dart';
-import '../../../utilis/mixins.dart';
+import '../../../utils/const_color.dart';
+import '../../../utils/mixins.dart';
 
 class HealthtipsListScreen extends StatefulWidget {
   const HealthtipsListScreen({Key? key}) : super(key: key);
@@ -61,11 +61,15 @@ class _HealthtipsListScreenState extends State<HealthtipsListScreen> {
                             DateFormat("MM-dd-yy").format(parsedDate);
                         String formattedTime =
                             DateFormat("HH:mm").format(parsedDate);
+                            
+                            
+                        // zb => Health tips card
 
                         return Padding(
                             padding: const EdgeInsets.only(left: 8.0, right: 8),
                             child: GestureDetector(
                               onTap: () {
+                                // navigation 
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) =>
                                         HealthTipsDetailsScreen(
@@ -80,10 +84,12 @@ class _HealthtipsListScreenState extends State<HealthtipsListScreen> {
                                               "$formattedDate, Time: $formattedTime",
                                         )));
                               },
+                              // card start here
                               child: Card(
                                   child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
                                       height: 76,
@@ -106,51 +112,53 @@ class _HealthtipsListScreenState extends State<HealthtipsListScreen> {
                                         fit: BoxFit.fill,
                                       ),
                                     ),
-                                    const VerticalDivider(),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "${vaccineData[index]["title"]}",
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 14,
-                                              color:
-                                                  ConstantsColor.primaryColor),
-                                        ),
-                                        const SizedBox(
-                                          height: 4,
-                                        ),
-                                        Text(
-                                          "${vaccineData[index]["description"]}",
-                                          textAlign: TextAlign.start,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 12,
-                                              color:
-                                                  ConstantsColor.primaryColor),
-                                        ),
-                                        const SizedBox(
-                                          height: 16,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "Date: $formattedDate, Time: $formattedTime",
-                                              style: const TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 12,
-                                                  color:
-                                                      ConstantsColor.greyColor),
-                                            ),
-                                          ],
-                                        )
-                                      ],
+                                    const SizedBox(width: 14,),
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "${vaccineData[index]["title"]}",
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 14,
+                                                color:
+                                                    ConstantsColor.primaryColor),
+                                          ),
+                                          const SizedBox(
+                                            height: 4,
+                                          ),
+                                          Text(
+                                            "${vaccineData[index]["description"]}",
+                                            textAlign: TextAlign.start,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 12,
+                                                color:
+                                                    ConstantsColor.primaryColor),
+                                          ),
+                                          const SizedBox(
+                                            height: 16,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Date: $formattedDate, Time: $formattedTime",
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 12,
+                                                    color:
+                                                        ConstantsColor.greyColor),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),

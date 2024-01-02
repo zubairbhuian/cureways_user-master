@@ -2,8 +2,8 @@ import 'package:cureways_user/screens/user_screens/ambulance_screens/ambulance_d
 import 'package:flutter/material.dart';
 
 
-import '../../../utilis/const_color.dart';
-import '../../../utilis/mixins.dart';
+import '../../../utils/const_color.dart';
+import '../../../utils/mixins.dart';
 import '../../../widgets/appbar.dart';
 
 class AmbulanceList extends StatefulWidget {

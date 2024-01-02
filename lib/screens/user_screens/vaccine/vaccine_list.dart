@@ -4,7 +4,7 @@ import 'package:cureways_user/screens/user_screens/vaccine/vaccine_order_screen.
 import 'package:flutter/material.dart';
 
 import '../../../data/network/apis/api_client.dart';
-import '../../../utilis/const_color.dart';
+import '../../../utils/const_color.dart';
 import '../../../widgets/appbar.dart';
 
 class VaccineList extends StatefulWidget {

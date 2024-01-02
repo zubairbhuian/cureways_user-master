@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../utilis/const_color.dart';
+import '../../utils/const_color.dart';
 import 'body_tmp_screen.dart';
 import 'bp_list_screen.dart';
 import 'diet_list_screen.dart';

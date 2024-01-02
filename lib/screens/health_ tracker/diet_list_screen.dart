@@ -1,5 +1,5 @@
 import 'package:cureways_user/data/network/controllers/get_diet_list_controller.dart';
-import 'package:cureways_user/utilis/const_color.dart';
+import 'package:cureways_user/utils/const_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

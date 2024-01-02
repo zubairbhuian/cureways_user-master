@@ -2,7 +2,7 @@ import 'package:cureways_user/screens/sign_up/sign_up_screen.dart';
 import 'package:cureways_user/screens/user_screens/main_board_check.dart';
 import 'package:flutter/material.dart';
 
-import '../utilis/const_color.dart';
+import '../utils/const_color.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);

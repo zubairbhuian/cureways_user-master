@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utilis/const_color.dart';
+import '../../../utils/const_color.dart';
 import '../../../widgets/appbar.dart';
 class HospitalDetailsScreen extends StatefulWidget {
   String hospitalName,hospitalAddress,hopitalDetails,imagePath,userName,number,email;

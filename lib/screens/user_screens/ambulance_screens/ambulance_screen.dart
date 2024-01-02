@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:http/http.dart' as http;
-import '../../../utilis/const_color.dart';
+import '../../../utils/const_color.dart';
 import '../../../widgets/appbar.dart';
 
 class AmbulanceScreen extends StatefulWidget {

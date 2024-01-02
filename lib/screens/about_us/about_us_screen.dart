@@ -1,7 +1,7 @@
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 
-import '../../utilis/const_color.dart';
+import '../../utils/const_color.dart';
 class AboutusScreen extends StatefulWidget {
   String userName;
  AboutusScreen({Key? key,required this.userName}) : super(key: key);

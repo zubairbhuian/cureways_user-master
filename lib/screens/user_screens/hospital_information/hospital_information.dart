@@ -3,7 +3,7 @@ import 'package:cureways_user/screens/user_screens/hospital_information/hospital
 import 'package:cureways_user/screens/user_screens/hospital_information/hospital_location.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utilis/const_color.dart';
+import '../../../utils/const_color.dart';
 import '../../../widgets/appbar.dart';
 
 class HospitalInformation extends StatefulWidget {

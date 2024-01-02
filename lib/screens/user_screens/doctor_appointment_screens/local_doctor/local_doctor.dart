@@ -2,7 +2,7 @@ import 'package:cureways_user/screens/user_screens/doctor_appointment_screens/lo
 import 'package:flutter/material.dart';
 
 
-import '../../../../utilis/const_color.dart';
+import '../../../../utils/const_color.dart';
 class LocalDoctor extends StatefulWidget {
   String userName;
   LocalDoctor({Key? key,required this.userName}) : super(key: key);

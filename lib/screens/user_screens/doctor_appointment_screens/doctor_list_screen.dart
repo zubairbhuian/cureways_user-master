@@ -3,7 +3,7 @@ import 'package:cureways_user/screens/user_screens/doctor_appointment_screens/lo
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../utilis/const_color.dart';
+import '../../../utils/const_color.dart';
 import 'local_doctor/local_cardiology.dart';
 
 class DoctorListScreen extends StatefulWidget {
@@ -61,27 +61,29 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Hi, $userName!",
-                        textAlign: TextAlign.start,
-                        style: const TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xff0F4B97)),
-                      ),
-                      const Text(
-                        "Welcome back",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xff0F4B97)),
-                      )
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Hi, $userName!",
+                          textAlign: TextAlign.start,
+                          style: const TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xff0F4B97)),
+                        ),
+                        const Text(
+                          "Welcome back",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xff0F4B97)),
+                        )
+                      ],
+                    ),
                   ),
                   SvgPicture.asset(
                     "assets/home_screen/bell.svg",

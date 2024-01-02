@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../utilis/const_color.dart';
+import '../../utils/const_color.dart';
 
 
 class MainBoardScreen extends StatefulWidget {

@@ -1,5 +1,5 @@
 
-import 'package:cureways_user/utilis/const_color.dart';
+import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 class OverseasTreatmentWorksScreen extends StatefulWidget {

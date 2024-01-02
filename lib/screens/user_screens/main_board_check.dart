@@ -1,15 +1,15 @@
 import 'package:cureways_user/data/service/user_service.dart';
 import 'package:cureways_user/screens/about_us/about_us_screen.dart';
+import 'package:cureways_user/screens/profile/profile_view.dart';
 import 'package:cureways_user/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
-import '../../utilis/const_color.dart';
+import '../../utils/const_color.dart';
 import '../home_screen.dart';
 
 class MainBoardCheck extends StatefulWidget {
-  MainBoardCheck({Key? key}) : super(key: key);
-
+  const MainBoardCheck({Key? key}) : super(key: key);
   @override
   State<MainBoardCheck> createState() => _MainBoardCheckState();
 }
@@ -40,7 +40,7 @@ class _MainBoardCheckState extends State<MainBoardCheck> {
         userName: userName,
       ),
       AboutusScreen(userName: userName),
-      const Page3(),
+      const ProfileView(),
     ];
     return Scaffold(
       body: IndexedStack(

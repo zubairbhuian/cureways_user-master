@@ -2,7 +2,7 @@ import 'package:cureways_user/screens/sign_in_screen.dart';
 import 'package:cureways_user/screens/sign_up/sign_up_otp.dart';
 import 'package:flutter/material.dart';
 
-import '../../utilis/const_color.dart';
+import '../../utils/const_color.dart';
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 

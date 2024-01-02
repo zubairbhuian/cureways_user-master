@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../utilis/const_color.dart';
+import '../../utils/const_color.dart';
 import '../user_screens/main_board_check.dart';
 
 class SignUpOtp extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:cureways_user/screens/user_screens/doctor_appointment_screens/doctor_appoinment_confirm_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utilis/const_color.dart';
+import '../../../utils/const_color.dart';
 import '../../../widgets/appbar.dart';
 
 class DoctorAppoinmentOtpScreen extends StatefulWidget {
