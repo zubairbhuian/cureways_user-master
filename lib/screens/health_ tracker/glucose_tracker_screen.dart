@@ -47,7 +47,7 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8),
+                    padding: const EdgeInsets.only(left: 8.0, right: 8,top: 12),
                     child: Column(
                       children: [
                         Form(
