@@ -12,7 +12,6 @@ class ProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ProfileController()).onInit();
     return Scaffold(
       backgroundColor: kWhite,
       body: SingleChildScrollView(
@@ -22,7 +21,7 @@ class ProfileView extends GetView<ProfileController> {
           children: [
             // profile
             30.height,
-            const ProfilePicCard(),
+            // const ProfilePicCard(),
 
             // user info
             40.height,

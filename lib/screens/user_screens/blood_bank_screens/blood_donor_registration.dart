@@ -138,7 +138,7 @@ class _BloodDonorRegistrationScreenState
                               child: Column(
                                 children: [
                                   10.height,
-                                  const ProfilePicCard(),
+                                  // const ProfilePicCard(),
                                    20.height,
                                   DropdownButtonFormField2(
                                     decoration: InputDecoration(

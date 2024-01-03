@@ -10,6 +10,7 @@ import 'data/network/apis/bindings/base_binding.dart';
 import 'data/network/controllers/base/api_service.dart';
 import 'data/network/controllers/base/dio_interceptor.dart';
 import 'data/network/controllers/global_controller.dart';
+import 'data/network/controllers/profile_controller.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +29,7 @@ Future<void> main() async {
   /// Add the dio instance to the api service
   final apiService = ApiService(dio: dio);
   Get.put(GlobalController());
+  
   runApp(MyApp(
     apiService: apiService,
   ));

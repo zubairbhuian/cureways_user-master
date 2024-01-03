@@ -1,8 +1,10 @@
+import 'package:cureways_user/data/network/controllers/profile_controller.dart';
 import 'package:cureways_user/data/service/user_service.dart';
 import 'package:cureways_user/screens/about_us/about_us_screen.dart';
 import 'package:cureways_user/screens/profile/profile_view.dart';
 import 'package:cureways_user/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
 import '../../utils/const_color.dart';
@@ -25,8 +27,10 @@ class _MainBoardCheckState extends State<MainBoardCheck> {
     const Page2(),
     const Page3(),
   ];*/
+
   @override
   void initState() {
+    Get.put(ProfileController());
     userName = _myBox.get('userName');
     print("The Name of user ===>> $userName");
     // TODO: implement initState
