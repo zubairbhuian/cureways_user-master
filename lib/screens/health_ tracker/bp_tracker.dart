@@ -3,6 +3,7 @@ import 'package:cureways_user/screens/health_%20tracker/health_tracker_screen.da
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 
 import '../../utils/const_color.dart';
 import '../../widgets/appbar.dart';
@@ -68,7 +69,23 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                                     labelStyle: TextStyle(
                                         color: Colors.grey,
                                         fontStyle: FontStyle.normal),
-                                  ),
+                                     suffixIcon: Icon(Icons.calendar_month),
+                                    ),
+                                    onTap: () async {
+                                      DateTime? pickedDate =
+                                          await showDatePicker(
+                                              context: context,
+                                              initialDate: DateTime(2010),
+                                              firstDate: DateTime(2000),
+                                              lastDate: DateTime(2101));
+                                      if (pickedDate != null) {
+                                        storeBp.dateController.text =
+                                            DateFormat(DateFormat.YEAR_NUM_MONTH_DAY
+                                            )
+                                                .format(pickedDate);
+                                        storeBp.update();
+                                      }
+                                    }
                                 ),
                                 const SizedBox(
                                   height: 8,

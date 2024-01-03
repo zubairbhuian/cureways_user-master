@@ -3,6 +3,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 
 import '../../utils/const_color.dart';
 import '../../utils/mixins.dart';
@@ -70,7 +71,23 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                                     labelStyle: TextStyle(
                                         color: Colors.grey,
                                         fontStyle: FontStyle.normal),
-                                  ),
+                                    suffixIcon: Icon(Icons.calendar_month),
+                                    ),
+                                    onTap: () async {
+                                      DateTime? pickedDate =
+                                          await showDatePicker(
+                                              context: context,
+                                              initialDate: DateTime(2010),
+                                              firstDate: DateTime(2000),
+                                              lastDate: DateTime(2101));
+                                      if (pickedDate != null) {
+                                        storeGlucose.dateController.text =
+                                            DateFormat(DateFormat.YEAR_NUM_MONTH_DAY
+                                            )
+                                                .format(pickedDate);
+                                        storeGlucose.update();
+                                      }
+                                    }
                                 ),
                                 const SizedBox(
                                   height: 8,

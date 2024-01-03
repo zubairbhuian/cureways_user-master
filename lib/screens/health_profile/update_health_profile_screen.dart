@@ -116,7 +116,7 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                         children: [
                           TextFormField(
                             controller: addHealthProfile.ageController
-                              ..text = addHealthProfile.age
+                              ..text = addHealthProfile.age.toString()
                               ..selection = TextSelection.collapsed(
                                   offset: addHealthProfile
                                       .ageController.text.length),
@@ -165,7 +165,7 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                           ),
                           TextFormField(
                             controller: addHealthProfile.heightController
-                              ..text = addHealthProfile.height
+                              ..text = addHealthProfile.height.toString()
                               ..selection = TextSelection.collapsed(
                                   offset: addHealthProfile
                                       .heightController.text.length),
@@ -190,7 +190,7 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                           ),
                           TextFormField(
                             controller: addHealthProfile.weightController
-                              ..text = addHealthProfile.weight
+                              ..text = addHealthProfile.weight.toString()
                               ..selection = TextSelection.collapsed(
                                   offset: addHealthProfile
                                       .weightController.text.length),
@@ -244,7 +244,7 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                             child: TextFormField(
                               controller:
                                   addHealthProfile.chiefComplainController
-                                    ..text = addHealthProfile.chiefComplain
+                                    ..text = addHealthProfile.chiefComplain.toString()
                                     ..selection = TextSelection.collapsed(
                                         offset: addHealthProfile
                                             .chiefComplainController
@@ -274,7 +274,7 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                           ),
                           TextFormField(
                             controller: addHealthProfile.prevDiseaseController
-                              ..text = addHealthProfile.prevDisease
+                              ..text = addHealthProfile.prevDisease.toString()
                               ..selection = TextSelection.collapsed(
                                   offset: addHealthProfile
                                       .prevDiseaseController.text.length),
@@ -299,7 +299,7 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                           ),
                           TextFormField(
                             controller: addHealthProfile.prevOtHistoryController
-                              ..text = addHealthProfile.otHistory
+                              ..text = addHealthProfile.otHistory.toString()
                               ..selection = TextSelection.collapsed(
                                   offset: addHealthProfile
                                       .prevOtHistoryController.text.length),
@@ -324,7 +324,7 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                           ),
                           TextFormField(
                             controller: addHealthProfile.medicationController
-                              ..text = addHealthProfile.medication
+                              ..text = addHealthProfile.medication.toString()
                               ..selection = TextSelection.collapsed(
                                   offset: addHealthProfile
                                       .medicationController.text.length),
@@ -350,7 +350,7 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                           TextFormField(
                             controller:
                                 addHealthProfile.physicalDisabilitiesController
-                                  ..text = addHealthProfile.disabilities
+                                  ..text = addHealthProfile.disabilities.toString()
                                   ..selection = TextSelection.collapsed(
                                       offset: addHealthProfile
                                           .physicalDisabilitiesController
@@ -378,7 +378,7 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                           TextFormField(
                             controller:
                                 addHealthProfile.prevTestResultController
-                                  ..text = addHealthProfile.testResult
+                                  ..text = addHealthProfile.testResult.toString()
                                   ..selection = TextSelection.collapsed(
                                       offset: addHealthProfile
                                           .prevTestResultController

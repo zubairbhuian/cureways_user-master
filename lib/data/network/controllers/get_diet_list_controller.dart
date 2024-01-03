@@ -33,8 +33,6 @@ class GetDietListController extends GetxController {
             .toList();
 
         update();
-
-        update();
       }
 
       update();

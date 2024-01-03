@@ -89,6 +89,7 @@ class _HealthProfileScreenState extends State<HealthProfileScreen> {
       ),
       body: Container(
         height: 120,
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         alignment: Alignment.topCenter,
         child: GridView.builder(
             padding: const EdgeInsets.symmetric(vertical: 10),

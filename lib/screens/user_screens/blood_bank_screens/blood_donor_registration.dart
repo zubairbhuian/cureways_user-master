@@ -1,3 +1,5 @@
+import 'package:cureways_user/utils/int_extensions.dart';
+import 'package:cureways_user/widgets/profile_pic_card.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -106,6 +108,10 @@ class _BloodDonorRegistrationScreenState
               color: ConstantsColor.backgroundColor,
               child: Column(
                 children: [
+
+
+
+
                   Padding(
                     padding: const EdgeInsets.only(left: 8, right: 8),
                     child: SingleChildScrollView(
@@ -131,6 +137,9 @@ class _BloodDonorRegistrationScreenState
                               key: _formKey,
                               child: Column(
                                 children: [
+                                  10.height,
+                                  const ProfilePicCard(),
+                                   20.height,
                                   DropdownButtonFormField2(
                                     decoration: InputDecoration(
                                       isDense: true,

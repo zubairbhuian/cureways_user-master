@@ -2,6 +2,7 @@ import 'package:cureways_user/data/network/controllers/store_body_tmp_controller
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 
 import '../../utils/const_color.dart';
 import '../../widgets/appbar.dart';
@@ -41,7 +42,7 @@ class _BodyTemparatureScreenState extends State<BodyTemparatureScreen> {
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8),
+                  padding: const EdgeInsets.only(left: 8.0, right: 8,top: 12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -65,7 +66,23 @@ class _BodyTemparatureScreenState extends State<BodyTemparatureScreen> {
                                   labelStyle: TextStyle(
                                       color: Colors.grey,
                                       fontStyle: FontStyle.normal),
-                                ),
+                                 suffixIcon: Icon(Icons.calendar_month),
+                                    ),
+                                    onTap: () async {
+                                      DateTime? pickedDate =
+                                          await showDatePicker(
+                                              context: context,
+                                              initialDate: DateTime(2010),
+                                              firstDate: DateTime(2000),
+                                              lastDate: DateTime(2101));
+                                      if (pickedDate != null) {
+                                        storeBodyTmp.dateController.text =
+                                            DateFormat(DateFormat.YEAR_NUM_MONTH_DAY
+                                            )
+                                                .format(pickedDate);
+                                        storeBodyTmp.update();
+                                      }
+                                    }
                               ),
                               const SizedBox(
                                 height: 8,

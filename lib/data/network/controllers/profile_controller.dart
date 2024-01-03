@@ -33,7 +33,7 @@ class ProfileController extends GetxController {
     update();
   }
 
-  // ******* pick and crop img
+  // ******* Get user info
   getUserInfo() {
     var myBox = Hive.box('userBox');
     // name
@@ -47,7 +47,7 @@ class ProfileController extends GetxController {
     emailController = TextEditingController(text: email);
     update();
   }
-
+  // ******* Log Out
   onLogOut() async {
     // clean SharedPreferences data
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -63,7 +63,6 @@ class ProfileController extends GetxController {
   @override
   void onInit() {
     getUserInfo();
-    // TODO: implement onInit
     super.onInit();
   }
 }

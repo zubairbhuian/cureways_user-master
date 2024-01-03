@@ -1,7 +1,9 @@
 import 'package:cureways_user/data/network/controllers/store_diet_controller.dart';
+import 'package:cureways_user/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 
 import '../../utils/const_color.dart';
 import '../../widgets/appbar.dart';
@@ -42,7 +44,8 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8,top: 12),
+                    padding:
+                        const EdgeInsets.only(left: 8.0, right: 8, top: 12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -51,23 +54,39 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
                             child: Column(
                               children: [
                                 TextFormField(
-                                  controller: storeDiet.dateController,
-                                  keyboardType: TextInputType.text,
-                                  textAlign: TextAlign.center,
-                                  decoration: const InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.symmetric(vertical: 20),
-                                    labelText: '    mm-dd-yyyy',
-                                    hintText: '  mm-dd-yyyy',
-                                    border: OutlineInputBorder(),
-                                    hintStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                    labelStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                  ),
-                                ),
+                                    controller: storeDiet.dateController,
+                                    keyboardType: TextInputType.text,
+                                    textAlign: TextAlign.center,
+                                    decoration: const InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 20, horizontal: 14),
+                                      labelText: 'mm-dd-yyyy',
+                                      hintText: 'mm-dd-yyyy',
+                                      border: OutlineInputBorder(),
+                                      hintStyle: TextStyle(
+                                          color: Colors.grey,
+                                          fontStyle: FontStyle.normal),
+                                      labelStyle: TextStyle(
+                                          color: Colors.grey,
+                                          fontStyle: FontStyle.normal),
+                                      suffixIcon: Icon(Icons.calendar_month),
+                                    ),
+                                    onTap: () async {
+                                      DateTime? pickedDate =
+                                          await showDatePicker(
+                                              context: context,
+                                              initialDate: DateTime(2010),
+                                              firstDate: DateTime(2000),
+                                              lastDate: DateTime(2101));
+                                      if (pickedDate != null) {
+                                        kLogger.e(pickedDate);
+                                        storeDiet.dateController.text =
+                                            DateFormat(DateFormat.YEAR_NUM_MONTH_DAY
+                                            )
+                                                .format(pickedDate);
+                                        storeDiet.update();
+                                      }
+                                    }),
                                 const SizedBox(
                                   height: 8,
                                 ),
