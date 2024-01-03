@@ -16,7 +16,7 @@ class SocialLoginController extends GetxController {
   Server server = Server();
   final _myBox = Hive.box('userBox');
 
-  loginOnTap(BuildContext context, String? name, String? email) async {
+  loginOnTap(BuildContext context, String? name, String? email,String? photoUrl) async {
     Future.delayed(const Duration(milliseconds: 10), () {
       update();
     });
@@ -27,6 +27,7 @@ class SocialLoginController extends GetxController {
     server
         .postRequest(endPoint: Endpoints.socialLogin, body: jsonBody)
         .then((response) {
+
       print(json.decode(response.body));
       if (response != null && response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);
@@ -44,7 +45,9 @@ class SocialLoginController extends GetxController {
         _myBox.put('userId', loginData.data!.id.toString());
         _myBox.put('userName', loginData.data!.name.toString());
         _myBox.put('email', loginData.data!.email.toString());
+        _myBox.put('userPhoto', photoUrl);
         print('User Id:   ${_myBox.get('userId')}');
+        print('User Id:   ${_myBox.get('userPhoto')}');
         Server.initClass(token: bearerToken);
         Get.put(GlobalController()).initController();
 

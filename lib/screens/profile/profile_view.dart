@@ -13,6 +13,7 @@ class ProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(ProfileController()).onInit();
     return Scaffold(
       backgroundColor: kWhite,
       body: SingleChildScrollView(
@@ -32,32 +33,32 @@ class ProfileView extends GetView<ProfileController> {
                   color: kTextColor, fontSize: 20, fontWeight: FontWeight.w600),
             ),
             10.height,
-             CustomTextField2(
-              label: Text("Full Name"),
-              controller:controller.fullNameController,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: kDisabledTextColor)),
-              child: InternationalPhoneNumberInput(
-                  inputDecoration:
-                      const InputDecoration(border: InputBorder.none),
-                  onInputChanged: (value) {}),
-            ),
-            24.height,
             CustomTextField2(
-              label: Text("Email"),
-              controller:controller.emailController,
+              label: const Text("Full Name"),
+              controller: controller.fullNameController,
             ),
-            CustomDropdownTextFiel(
-                data: const ["Male", "Female", "Others"],
-                onChanged: (value) {}),
+            // ! phone Number
+            // Container(
+            //   decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(8),
+            //       border: Border.all(color: kDisabledTextColor)),
+            //   child: InternationalPhoneNumberInput(
+            //       inputDecoration:
+            //           const InputDecoration(border: InputBorder.none),
+            //       onInputChanged: (value) {}),
+            // ),
+            CustomTextField2(
+              label: const Text("Email"),
+              controller: controller.emailController,
+            ),
+            // CustomDropdownTextFiel(
+            //     data: const ["Male", "Female", "Others"],
+            //     onChanged: (value) {}),
             // Logout Btn
-            30.height,
+            10.height,
             GestureDetector(
               onTap: () {
-                Get.offAll(const WelcomescreenCheck());
+                controller.onLogOut();
               },
               child: Container(
                 padding:

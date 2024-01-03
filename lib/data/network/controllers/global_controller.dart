@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GlobalController extends GetxController {
+  static GlobalController get to => Get.find();
   Server server = Server();
 
   UserService userService = UserService();
@@ -32,7 +33,7 @@ class GlobalController extends GetxController {
     print(validUser);
     isUser = validUser;
     print('global isUser: $isUser');
-    Future.delayed(Duration(milliseconds: 10), () {
+    Future.delayed(const Duration(milliseconds: 10), () {
       update();
     });
     if (isUser) {
@@ -40,7 +41,7 @@ class GlobalController extends GetxController {
       final myId = await userService.getUserId();
       bearerToken = token;
       userId = myId;
-      Future.delayed(Duration(milliseconds: 10), () {
+      Future.delayed(const Duration(milliseconds: 10), () {
         update();
       });
       Server.initClass(token: bearerToken);
@@ -50,6 +51,7 @@ class GlobalController extends GetxController {
   @override
   void onInit() {
     initController();
+    getValue();
     super.onInit();
   }
 
@@ -57,7 +59,6 @@ class GlobalController extends GetxController {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
     String? stringValue = prefs.getString('token');
-
     return stringValue;
   }
 }

@@ -25,8 +25,8 @@ class ProfilePicCard extends GetView<ProfileController> {
                     backgroundColor: const Color(0xffECEDF2),
                     radius: 60,
                     child: imgFile == null
-                        ? const NetworkImg(
-                            "url",
+                        ?  NetworkImg(
+                            controller.userPhoto,
                             errUrl: 'assets/images/default_user.png',
                           )
                         : Image(
@@ -44,13 +44,13 @@ class ProfilePicCard extends GetView<ProfileController> {
                       onTap: () {
                         controller.onPickProfileImage();
                       },
-                      child: CircleAvatar(
+                      child: const CircleAvatar(
                         radius: 22,
                         backgroundColor: Colors.white,
                         child: CircleAvatar(
                           radius: 20,
                           backgroundColor: Colors.black,
-                          child: const Icon(
+                          child: Icon(
                             Icons.camera_enhance,
                             color: Colors.white,
                             size: 16,

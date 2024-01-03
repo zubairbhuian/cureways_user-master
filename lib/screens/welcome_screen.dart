@@ -5,6 +5,7 @@ import 'package:cureways_user/screens/sign_in_screen.dart';
 import 'package:cureways_user/screens/sign_up/sign_up_screen.dart';
 import 'package:cureways_user/screens/terms_condition/terms_and_condition_screen.dart';
 import 'package:cureways_user/screens/user_screens/main_board_check.dart';
+import 'package:cureways_user/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -312,8 +313,9 @@ class _WelcomescreenCheckState extends State<WelcomescreenCheck> {
                                       content: Text("Sign In failed"),
                                     )));
                                   } else {
+
                                     auth.loginOnTap(
-                                        context, user.displayName, user.email);
+                                        context, user.displayName, user.email,user.photoUrl);
                                   }
                                 },
                                 style: OutlinedButton.styleFrom(

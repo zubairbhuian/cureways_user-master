@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:cureways_user/utils/style.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'endpoints.dart';
 
@@ -14,9 +16,18 @@ class Server {
     try {
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
-      return await http.get(Uri.parse(Endpoints.server! + endPoint!),
+
+      var res = await http.get(Uri.parse(Endpoints.server! + endPoint!),
           headers: _getHttpHeaders());
+
+      if (kDebugMode) {
+        kLogger.d("URL => ${Endpoints.server! + endPoint}");
+        kLogger.d("HEADER => $_getHttpHeaders()");
+        kLogger.i("RESPONSE => $res");
+      }
+      return res;
     } catch (error) {
+      kLogger.e(error);
       return null;
     } finally {
       client.close();
@@ -28,9 +39,16 @@ class Server {
     try {
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
-      return await http.get(Uri.parse(Endpoints.server! + endPoint!),
+      var res = await http.get(Uri.parse(Endpoints.server! + endPoint!),
           headers: getAuthHeaders());
+
+      if (kDebugMode) {
+        kLogger.d("URL => ${Endpoints.server! + endPoint}");
+        kLogger.i("RESPONSE => $res");
+      }
+      return res;
     } catch (error) {
+      kLogger.e(error);
       return null;
     } finally {
       client.close();
@@ -103,7 +121,7 @@ class Server {
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
       return await http.get(
-          Uri.parse(Endpoints.server! + "category/$categoryId/show"),
+          Uri.parse("${Endpoints.server!}category/$categoryId/show"),
           headers: _getHttpHeaders());
     } catch (error) {
       return null;
@@ -118,7 +136,7 @@ class Server {
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
       return await http.get(
-          Uri.parse(Endpoints.server! + "cuisine/$cuisineId/show"),
+          Uri.parse("${Endpoints.server!}cuisine/$cuisineId/show"),
           headers: _getHttpHeaders());
     } catch (error) {
       return null;
@@ -133,7 +151,7 @@ class Server {
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
       return await http.get(
-          Uri.parse(Endpoints.server! + "orders/$orderId/show"),
+          Uri.parse("${Endpoints.server!}orders/$orderId/show"),
           headers: _getHttpHeaders());
     } catch (error) {
       return null;
@@ -195,9 +213,18 @@ class Server {
     try {
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
-      return await http.post(Uri.parse(Endpoints.server! + endPoint!),
+
+      var res = await http.post(Uri.parse(Endpoints.server! + endPoint!),
           headers: _getHttpHeaders(), body: body);
+      if (kDebugMode) {
+        kLogger.d("URL => ${Endpoints.server! + endPoint}");
+        kLogger.d("BODY => $body");
+        kLogger.d(_getHttpHeaders());
+        kLogger.i(res);
+      }
+      return res;
     } catch (error) {
+      kLogger.e(error);
       return null;
     } finally {
       client.close();
@@ -225,7 +252,7 @@ class Server {
     };
     HttpClient client = HttpClient();
     try {
-      var request;
+      http.MultipartRequest request;
       if (type) {
         request = http.MultipartRequest(
             'POST', Uri.parse(Endpoints.server! + endPoint!))
@@ -287,14 +314,14 @@ class Server {
   }
 
   static Map<String, String> _getHttpHeaders() {
-    Map<String, String> headers = new Map<String, String>();
+    Map<String, String> headers = <String, String>{};
     headers['Authorization'] = bearerToken!;
     headers['content-type'] = 'application/json';
     return headers;
   }
 
   static Map<String, String> getAuthHeaders() {
-    Map<String, String> headers = new Map<String, String>();
+    Map<String, String> headers = <String, String>{};
     headers['content-type'] = 'application/json';
     return headers;
   }
