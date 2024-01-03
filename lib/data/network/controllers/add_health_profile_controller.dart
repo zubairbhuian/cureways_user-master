@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:cureways_user/data/network/constants/endpoints.dart';
 import 'package:cureways_user/data/network/constants/server.dart';
 import 'package:cureways_user/data/network/controllers/base/base_controller.dart';
-import 'package:cureways_user/data/network/models/add_health_profile_response_model.dart';
 import 'package:cureways_user/data/network/models/base/base_model.dart';
 import 'package:cureways_user/data/network/models/get_health_profile_model.dart';
 import 'package:cureways_user/data/service/user_service.dart';
@@ -82,7 +81,7 @@ class AddHealthProfileController extends GetxController {
     loader = false;
     update();
     if (res.statusCode == 200) {
-      PopupDialog.showSuccessDialog("BP Tracker Added");
+      PopupDialog.showSuccessDialog("Health profile Process Success");
     } else if (res.statusCode == 422) {
       PopupDialog.showErrorMessage("All field is required");
     }

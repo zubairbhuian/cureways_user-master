@@ -40,11 +40,21 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
               labelStyle:
                   const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               tabs: const [
-                Tab(
-                  text: "Local",
+                SizedBox(
+                  width: double.infinity,
+                  child: Center(
+                    child: Tab(
+                      text: "Local",
+                    ),
+                  ),
                 ),
-                Tab(
-                  text: "Foreign",
+                SizedBox(
+                  width: double.infinity,
+                  child: Center(
+                    child: Tab(
+                      text: "Foreign",
+                    ),
+                  ),
                 )
               ]),
           toolbarHeight: 90,
@@ -75,7 +85,7 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
                               color: Color(0xff0F4B97)),
                         ),
                         const Text(
-                          "Welcome back",
+                          "Welcome back.",
                           textAlign: TextAlign.start,
                           style: TextStyle(
                               fontSize: 18,

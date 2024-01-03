@@ -44,7 +44,7 @@ class _BloodBankUserTypeScreenState extends State<BloodBankUserTypeScreen> {
                       children: [
                         Center(
                           child: SizedBox(
-                            width: double.maxFinite,
+                            width: double.infinity,
                             height: 52,
                             child: OutlinedButton(
                               onPressed: () {
@@ -61,11 +61,13 @@ class _BloodBankUserTypeScreenState extends State<BloodBankUserTypeScreen> {
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                               ),
-                              child: const Text(
-                                'BLOOD DONOR REGISTRATION',
-                                style: TextStyle(
-                                    color: ConstantsColor.greyColor,
-                                    fontSize: 20),
+                              child: const FittedBox(
+                                child: Text(
+                                  'BLOOD DONOR REGISTRATION',
+                                  style: TextStyle(
+                                      color: ConstantsColor.greyColor,
+                                      fontSize: 20),
+                                ),
                               ),
                             ),
                           ),

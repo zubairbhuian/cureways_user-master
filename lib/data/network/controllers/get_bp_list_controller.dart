@@ -20,7 +20,6 @@ class GetBpListController extends GetxController {
     Future.delayed(const Duration(milliseconds: 10), () {
       update();
     });
-
     Map body = {'user_id': _myBox.get('userId')};
     String jsonBody = json.encode(body);
 

@@ -6,7 +6,9 @@ import 'package:cureways_user/screens/sign_up/sign_up_screen.dart';
 import 'package:cureways_user/screens/terms_condition/terms_and_condition_screen.dart';
 import 'package:cureways_user/screens/user_screens/main_board_check.dart';
 import 'package:cureways_user/utils/style.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -313,9 +315,8 @@ class _WelcomescreenCheckState extends State<WelcomescreenCheck> {
                                       content: Text("Sign In failed"),
                                     )));
                                   } else {
-
-                                    auth.loginOnTap(
-                                        context, user.displayName, user.email,user.photoUrl);
+                                    auth.loginOnTap(context, user.displayName,
+                                        user.email, user.photoUrl);
                                   }
                                 },
                                 style: OutlinedButton.styleFrom(
@@ -432,77 +433,126 @@ class _WelcomescreenCheckState extends State<WelcomescreenCheck> {
               ),
               Positioned(
                 top: height * .80,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                const TermsAndConditionScreen()));
-                      },
-                      child: const Text(
-                        "Terms & Condition",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            height: -1,
-                            fontSize: 14,
-                            color: ConstantsColor.primaryColor),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    const Text(
-                      "And",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          height: -1, fontSize: 14, color: Colors.black),
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const PribacyPolicyScreen()));
-                      },
-                      child: const Text(
-                        "Privacy Policy",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            height: -1,
-                            fontSize: 14,
-                            color: ConstantsColor.primaryColor),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    const Text(
-                      "And",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          height: -1, fontSize: 14, color: Colors.black),
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const DisclaimerScreen()));
-                      },
-                      child: const Text(
-                        "Disclaimer",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            height: -1,
-                            fontSize: 14,
-                            color: ConstantsColor.primaryColor),
-                      ),
-                    ),
-                  ],
+                left: 14,
+                child: SizedBox(
+                  width: 360.w,
+                  child: RichText(
+                      text: TextSpan(
+                          text: "Terms & Condition ",
+                          style:
+                              TextStyle(color: kPrimaryColor, fontSize: 14.sp),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      const TermsAndConditionScreen()));
+                            },
+                          children: [
+                        TextSpan(
+                          text: " And ",
+                          style: TextStyle(color: kTextColor, fontSize: 14.sp),
+                        ),
+                        TextSpan(
+                          //Disclaimer
+                          text: " Privacy Policy ",
+                          style:
+                              TextStyle(color: kPrimaryColor, fontSize: 14.sp),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      const PribacyPolicyScreen()));
+                            },
+                        ),
+                        TextSpan(
+                          text: " And ",
+                          style: TextStyle(color: kTextColor, fontSize: 14.sp),
+                        ),
+                        TextSpan(
+                          //Disclaimer
+                          text: " Disclaimer",
+                          style:
+                              TextStyle(color: kPrimaryColor, fontSize: 14.sp),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      const DisclaimerScreen()));
+                            },
+                        )
+                      ])),
+                  // child: Wrap(
+                  //   // mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     TextButton(
+                  //       onPressed: () {
+                  //         Navigator.of(context).push(MaterialPageRoute(
+                  //             builder: (context) =>
+                  //                 const TermsAndConditionScreen()));
+                  //       },
+                  //       child: const Text(
+                  //         "Terms & Condition",
+                  //         textAlign: TextAlign.center,
+                  //         style: TextStyle(
+                  //             height: -1,
+                  //             fontSize: 14,
+                  //             color: ConstantsColor.primaryColor),
+                  //       ),
+                  //     ),
+                  //     const SizedBox(
+                  //       width: 4,
+                  //     ),
+                  //     const Text(
+                  //       "And",
+                  //       textAlign: TextAlign.center,
+                  //       style: TextStyle(
+                  //           height: -1, fontSize: 14, color: Colors.black),
+                  //     ),
+                  //     const SizedBox(
+                  //       width: 4,
+                  //     ),
+                  //     TextButton(
+                  //       onPressed: () {
+                  //         Navigator.of(context).push(MaterialPageRoute(
+                  //             builder: (context) => const PribacyPolicyScreen()));
+                  //       },
+                  //       child: const Text(
+                  //         "Privacy Policy",
+                  //         textAlign: TextAlign.center,
+                  //         style: TextStyle(
+                  //             height: -1,
+                  //             fontSize: 14,
+                  //             color: ConstantsColor.primaryColor),
+                  //       ),
+                  //     ),
+                  //     const SizedBox(
+                  //       width: 4,
+                  //     ),
+                  //     const Text(
+                  //       "And",
+                  //       textAlign: TextAlign.center,
+                  //       style: TextStyle(
+                  //           height: -1, fontSize: 14, color: Colors.black),
+                  //     ),
+                  //     const SizedBox(
+                  //       width: 4,
+                  //     ),
+                  //     TextButton(
+                  //       onPressed: () {
+                  //         Navigator.of(context).push(MaterialPageRoute(
+                  //             builder: (context) => const DisclaimerScreen()));
+                  //       },
+                  //       child: const Text(
+                  //         "Disclaimer",
+                  //         textAlign: TextAlign.center,
+                  //         style: TextStyle(
+                  //             height: -1,
+                  //             fontSize: 14,
+                  //             color: ConstantsColor.primaryColor),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ),
               )
             ],

@@ -6,7 +6,6 @@ import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:cureways_user/widgets/profile_pic_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({super.key});
@@ -64,7 +63,7 @@ class ProfileView extends GetView<ProfileController> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 decoration: BoxDecoration(
-                    color: kDangerColor,
+                    color: kPrimaryColor,
                     borderRadius: BorderRadius.circular(8)),
                 child: const Text(
                   "Log Out",
