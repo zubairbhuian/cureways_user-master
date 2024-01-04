@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../utils/const_color.dart';
@@ -104,27 +105,30 @@ class _HealthTipsDetailsScreenState extends State<HealthTipsDetailsScreen> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 12, right: 12),
+              padding:  EdgeInsets.only(left: 20.w, right: 20.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
                     height: 8,
                   ),
-                  Container(
-                    height: 228,
-                    width: double.maxFinite,
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(8)),
-                    child: CachedNetworkImage(
-                      imageUrl: widget.path,
-                      placeholder: (context, url) =>
-                          const Center(child: CircularProgressIndicator()),
-                      errorWidget: (context, url, error) => const Icon(
-                        Icons.error,
-                        color: ConstantsColor.primaryColor,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Container(
+                      height: 228,
+                      width: double.maxFinite,
+                      decoration:
+                          BoxDecoration(borderRadius: BorderRadius.circular(8)),
+                      child: CachedNetworkImage(
+                        imageUrl: widget.path,
+                        placeholder: (context, url) =>
+                            const Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) => const Icon(
+                          Icons.error,
+                          color: ConstantsColor.primaryColor,
+                        ),
+                        fit: BoxFit.fill,
                       ),
-                      fit: BoxFit.fill,
                     ),
                   ),
                   const SizedBox(

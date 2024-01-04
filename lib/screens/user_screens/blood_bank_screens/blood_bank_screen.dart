@@ -2,6 +2,7 @@ import 'package:cureways_user/data/network/apis/api_client.dart';
 import 'package:cureways_user/data/network/controllers/blood_bank_search_controller.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -112,7 +113,7 @@ class _BloodBankScreenState extends State<BloodBankScreen> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 8, right: 8),
+                      padding:  EdgeInsets.only(left: 20.w, right: 20.w),
                       child: SingleChildScrollView(
                         child: Column(
                           children: [

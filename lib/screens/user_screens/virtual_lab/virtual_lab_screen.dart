@@ -1,6 +1,7 @@
 import 'package:cureways_user/screens/user_screens/virtual_lab/virtual_lab_work_screen.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../data/network/apis/api_client.dart';
@@ -96,7 +97,7 @@ class _VirtualLabScreenState extends State<VirtualLabScreen> {
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                 padding:  EdgeInsets.only(left: 20.w, right: 20.w,top: 12,bottom: 12),
                   child: Column(
                     children: [
                       const SizedBox(

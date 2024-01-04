@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../utils/const_color.dart';
 import '../../../widgets/appbar.dart';
@@ -16,9 +17,9 @@ class _AmbulanceDetailsScreenState extends State<AmbulanceDetailsScreen> {
       body: Column(
         children: [
           AppDefaultBar(title: "AMBULANCE", userNAme: "userNAme"),
-          const SizedBox(height: 8,),
+          const SizedBox(height: 12,),
           Padding(
-            padding: const EdgeInsets.only(left: 12,right: 12),
+            padding:  EdgeInsets.only(left: 20.w, right: 20.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

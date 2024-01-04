@@ -2,6 +2,7 @@
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 class OverseasTreatmentWorksScreen extends StatefulWidget {
   String userName;
  OverseasTreatmentWorksScreen({Key? key,
@@ -25,11 +26,11 @@ class _OverseasTreatmentWorksScreenState extends State<OverseasTreatmentWorksScr
       body: Column(
       children: [
         AppDefaultBar(title:"OverseasTreatment", userNAme: userName),
-       const Expanded(
+        Expanded(
          child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Column(
+              padding:  EdgeInsets.symmetric(horizontal: 20.w,vertical: 12),
+              child: const Column(
                 children: [
                   Text("Overseas Treatment: Accessing World-Class Healthcare Beyond Borders",
                   style: TextStyle(

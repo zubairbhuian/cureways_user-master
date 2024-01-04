@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../utils/const_color.dart';
 import '../../../widgets/appbar.dart';
@@ -24,11 +25,11 @@ class _VirtualLabWorkScreenState extends State<VirtualLabWorkScreen> {
       body: Column(
         children: [
           AppDefaultBar(title:"VIRTUAL LAB", userNAme: userName),
-          const Expanded(
+           Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
+                padding:  EdgeInsets.only(left: 20.w, right: 20.w,top: 12),
+                child: const Column(
                   children: [
                     Text("Virtual Lab: Revolutionizing Healthcare Diagnostics",
                       style: TextStyle(

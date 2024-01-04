@@ -22,12 +22,6 @@ class _MainBoardCheckState extends State<MainBoardCheck> {
 
   final _myBox = Hive.box('userBox');
 
-  /*final pages = [
-    HomeScreen(userName: userName,),
-    const Page2(),
-    const Page3(),
-  ];*/
-
   @override
   void initState() {
     userName = _myBox.get('userName');

@@ -2,6 +2,7 @@ import 'package:cureways_user/data/network/apis/api_client.dart';
 import 'package:cureways_user/screens/user_screens/ambulance_screens/ambulance_works_screen.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:http/http.dart' as http;
@@ -96,7 +97,7 @@ class _AmbulanceScreenState extends State<AmbulanceScreen> {
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.only(left: 20.w, right: 20.w,top: 12),
                   child: Column(
                     children: [
                       Container(

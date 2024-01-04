@@ -2,6 +2,7 @@ import 'package:cureways_user/data/network/controllers/get_diet_list_controller.
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class DietListScreen extends StatefulWidget {
@@ -61,7 +62,7 @@ class _DietListScreenState extends State<DietListScreen> {
               ));
             }
             return Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding:  EdgeInsets.all(20.w),
               child: ListView.builder(
                 itemCount: controlller.dietList?.length,
                 itemBuilder: (context, index) => Padding(

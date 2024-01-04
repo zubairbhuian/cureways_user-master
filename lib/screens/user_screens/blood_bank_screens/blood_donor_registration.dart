@@ -2,6 +2,7 @@ import 'package:cureways_user/utils/int_extensions.dart';
 import 'package:cureways_user/widgets/profile_pic_card.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive/hive.dart';
 
@@ -108,12 +109,8 @@ class _BloodDonorRegistrationScreenState
               color: ConstantsColor.backgroundColor,
               child: Column(
                 children: [
-
-
-
-
                   Padding(
-                    padding: const EdgeInsets.only(left: 8, right: 8),
+                    padding:  EdgeInsets.only(left: 20.w, right: 20.w),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [

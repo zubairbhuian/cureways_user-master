@@ -1,6 +1,7 @@
 import 'package:cureways_user/screens/user_screens/overseas_treatment/overseas_treatment_works_screen.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../data/network/apis/api_client.dart';
@@ -94,7 +95,7 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding:  EdgeInsets.symmetric(horizontal: 20.w,vertical: 12),
                 child: Column(
                   children: [
                     const Text("Overseas Treatment: Accessing World-Class Healthcare Beyond Borders",
@@ -125,13 +126,13 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                       ),
                     ),
                     const SizedBox(height: 8,),
-                    Divider(height: 4,
+                    const Divider(height: 4,
                       thickness: 1,
                       color: ConstantsColor.primaryColor,
                     ),
 
                     const SizedBox(height: 4,),
-                    Text(
+                    const Text(
                       "Book Now",
                         style: TextStyle(
                             fontSize: 20,
@@ -141,7 +142,7 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                         )
                     ),
                     const SizedBox(height: 4,),
-                    Divider(height: 4,
+                    const Divider(height: 4,
                       thickness: 1,
                       color: ConstantsColor.primaryColor,
                     ),
@@ -165,10 +166,10 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                                 EdgeInsets.only(left: 00, right: 10),
                               ),
                               isExpanded: true,
-                              hint: Row(
+                              hint: const Row(
                                 crossAxisAlignment:
                                 CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     "Select District",
                                     style: TextStyle(
@@ -236,10 +237,10 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                                 EdgeInsets.only(left: 00, right: 10),
                               ),
                               isExpanded: true,
-                              hint: Row(
+                              hint: const Row(
                                 crossAxisAlignment:
                                 CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     "Select Police Station",
                                     style: TextStyle(
@@ -309,10 +310,10 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                                 EdgeInsets.only(left: 00, right: 10),
                               ),
                               isExpanded: true,
-                              hint: Row(
+                              hint: const Row(
                                 crossAxisAlignment:
                                 CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     "Select Area",
                                     style: TextStyle(
@@ -379,9 +380,9 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                               ),
 
                               isExpanded: true,
-                              hint: Row(
+                              hint: const Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     "Service Type",
                                     style: TextStyle(

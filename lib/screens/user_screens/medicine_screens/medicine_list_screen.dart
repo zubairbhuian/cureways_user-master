@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cureways_user/screens/user_screens/medicine_screens/medicine_details_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../data/network/apis/api_client.dart';
@@ -113,7 +114,7 @@ class _MedicineListScreenState extends State<MedicineListScreen> {
                     itemBuilder: (context, int index) {
                       var medicineData = medicineList["data"]["medicine"];
                       return Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 8),
+                          padding:  EdgeInsets.only(left: 20.w, right: 20.w),
                           child: GestureDetector(
                             onTap: () {
                               Navigator.push(

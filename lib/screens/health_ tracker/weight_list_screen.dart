@@ -1,6 +1,7 @@
 import 'package:cureways_user/data/network/controllers/get_weight_list_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class WeightListScreen extends StatefulWidget {
@@ -43,7 +44,7 @@ class _WeightListScreenState extends State<WeightListScreen> {
         builder: (weightList) => weightList.loader
             ? const Center(child: CircularProgressIndicator())
             : Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding:  EdgeInsets.all(20.w),
                 child: ListView.builder(
                   itemCount: weightList.weightList.length,
                   itemBuilder: (context, index) => Padding(

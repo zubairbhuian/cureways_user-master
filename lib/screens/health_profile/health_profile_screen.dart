@@ -3,6 +3,7 @@ import 'package:cureways_user/screens/health_profile/update_health_profile_scree
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/utils/mixins.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -89,7 +90,7 @@ class _HealthProfileScreenState extends State<HealthProfileScreen> {
       ),
       body: Container(
         height: 120,
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding:  EdgeInsets.only(left: 20.w, right: 20.w),
         alignment: Alignment.topCenter,
         child: GridView.builder(
             padding: const EdgeInsets.symmetric(vertical: 10),

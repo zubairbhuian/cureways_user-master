@@ -2,6 +2,7 @@ import 'package:cureways_user/data/network/controllers/slot_booking_controller.d
 import 'package:cureways_user/screens/user_screens/doctor_appointment_screens/doctor_appontment_work_screen.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/const_color.dart';
@@ -47,7 +48,7 @@ class _DoctorAppointmentScreenState extends State<DoctorAppointmentScreen> {
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.only(left: 20.w, right: 20.w),
                     child: Column(
                       // crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

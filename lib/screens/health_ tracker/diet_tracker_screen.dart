@@ -1,6 +1,7 @@
 import 'package:cureways_user/data/network/controllers/store_diet_controller.dart';
 import 'package:cureways_user/utils/style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
@@ -44,8 +45,7 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 8.0, right: 8, top: 12),
+                    padding:EdgeInsets.only(left: 20.w, right: 20.w, top: 12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -133,7 +133,7 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
                               ],
                             )),
                         const SizedBox(
-                          height: 8,
+                          height: 16,
                         ),
                         SizedBox(
                           width: double.maxFinite,

@@ -1,6 +1,7 @@
 import 'package:cureways_user/data/network/controllers/get_glucose_list_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class GlucoseListScreen extends StatefulWidget {
@@ -44,7 +45,7 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
         builder: (glucoseList) => glucoseList.loader
             ? const Center(child: CircularProgressIndicator())
             : Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding:  EdgeInsets.all(20.w),
                 child: ListView.builder(
                   itemCount: glucoseList.glucoseList.length,
                   itemBuilder: (context, index) => Padding(

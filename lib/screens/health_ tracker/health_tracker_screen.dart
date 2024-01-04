@@ -8,6 +8,7 @@ import 'package:cureways_user/screens/health_%20tracker/weight_tracker_screen.da
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -49,7 +50,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
   //for carousel slider
   final List<String> foodTimeName = ['BreakFast', 'Lunch', 'Dinner'];
   final List<String> fTime = ['8.00 AM', '2.00 PM', '8.00 PM'];
-  int _currentIndex = 0;
+  final int _currentIndex = 0;
   dynamic userName;
 
   @override
@@ -77,7 +78,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
               child: Container(
                 color: ConstantsColor.backgroundColor,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8,top: 12),
+                  padding:  EdgeInsets.only(left: 20.w, right: 20.w,top: 12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -142,7 +143,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                         )),
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 16,
                       ),
                       Row(
                         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -248,7 +249,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                         ],
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 16,
                       ),
                       Container(
                         decoration: BoxDecoration(
@@ -283,7 +284,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                         ),
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 16,
                       ),
                       const Text(
                         "DIET TRACKER",

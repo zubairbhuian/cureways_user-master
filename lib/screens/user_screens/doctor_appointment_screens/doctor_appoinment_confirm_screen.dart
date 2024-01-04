@@ -1,6 +1,7 @@
 import 'package:cureways_user/data/network/controllers/find_slot_controller.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -60,7 +61,7 @@ class _DoctorAppoinmentConfirmScreenState
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding:  EdgeInsets.symmetric(horizontal: 20.w,vertical: 12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

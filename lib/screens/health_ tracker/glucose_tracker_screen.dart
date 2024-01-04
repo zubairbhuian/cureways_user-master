@@ -1,6 +1,7 @@
 import 'package:cureways_user/data/network/controllers/store_glucose_controller.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
@@ -48,7 +49,7 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8,top: 12),
+                    padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 12),
                     child: Column(
                       children: [
                         Form(
@@ -56,22 +57,22 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                             child: Column(
                               children: [
                                 TextFormField(
-                                  controller: storeGlucose.dateController,
-                                  keyboardType: TextInputType.text,
-                                  textAlign: TextAlign.center,
-                                  decoration: const InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.symmetric(vertical: 20),
-                                    labelText: '  mm-dd-yyyy',
-                                    hintText: '  mm-dd-yyyy',
-                                    border: OutlineInputBorder(),
-                                    hintStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                    labelStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                    suffixIcon: Icon(Icons.calendar_month),
+                                    controller: storeGlucose.dateController,
+                                    keyboardType: TextInputType.text,
+                                    textAlign: TextAlign.center,
+                                    decoration: const InputDecoration(
+                                      contentPadding:
+                                          EdgeInsets.symmetric(vertical: 20),
+                                      labelText: '  mm-dd-yyyy',
+                                      hintText: '  mm-dd-yyyy',
+                                      border: OutlineInputBorder(),
+                                      hintStyle: TextStyle(
+                                          color: Colors.grey,
+                                          fontStyle: FontStyle.normal),
+                                      labelStyle: TextStyle(
+                                          color: Colors.grey,
+                                          fontStyle: FontStyle.normal),
+                                      suffixIcon: Icon(Icons.calendar_month),
                                     ),
                                     onTap: () async {
                                       DateTime? pickedDate =
@@ -81,14 +82,13 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                                               firstDate: DateTime(2000),
                                               lastDate: DateTime(2101));
                                       if (pickedDate != null) {
-                                        storeGlucose.dateController.text =
-                                            DateFormat(DateFormat.YEAR_NUM_MONTH_DAY
-                                            )
-                                                .format(pickedDate);
+                                        storeGlucose
+                                            .dateController.text = DateFormat(
+                                                DateFormat.YEAR_NUM_MONTH_DAY)
+                                            .format(pickedDate);
                                         storeGlucose.update();
                                       }
-                                    }
-                                ),
+                                    }),
                                 const SizedBox(
                                   height: 8,
                                 ),
@@ -173,7 +173,7 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                               ],
                             )),
                         const SizedBox(
-                          height: 8,
+                          height: 16,
                         ),
                         SizedBox(
                           width: double.maxFinite,

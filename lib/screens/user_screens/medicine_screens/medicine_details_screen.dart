@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../utils/const_color.dart';
@@ -44,11 +45,11 @@ class _MedicineDetailsScreenState extends State<MedicineDetailsScreen> {
              Row(
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                children: [
-                 Expanded(
+                 const Expanded(
                    child: Column(
                      crossAxisAlignment: CrossAxisAlignment.start,
                      mainAxisAlignment: MainAxisAlignment.start,
-                     children: const [
+                     children: [
                        Text(
                          "Hi, Muhammad!",
                          textAlign: TextAlign.start,
@@ -90,9 +91,9 @@ class _MedicineDetailsScreenState extends State<MedicineDetailsScreen> {
                      borderRadius: BorderRadius.circular(5),
                    ),
                  ),
-                 child: Row(
+                 child: const Row(
                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                   children: const [
+                   children: [
                      Icon(
                        Icons.arrow_back,
                        size: 24,
@@ -118,7 +119,7 @@ class _MedicineDetailsScreenState extends State<MedicineDetailsScreen> {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 12,right: 12),
+                    padding:  EdgeInsets.only(left: 20.w,right: 20.w,top: 12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -144,7 +145,7 @@ class _MedicineDetailsScreenState extends State<MedicineDetailsScreen> {
                         const SizedBox(height: 16,),
                         Row(
                           children: [
-                            Text("Namee:",
+                            const Text("Namee:",
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700,
@@ -152,7 +153,7 @@ class _MedicineDetailsScreenState extends State<MedicineDetailsScreen> {
                               ),
                             ),
                             Text(widget.vaccineName,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700,
                                   color: ConstantsColor.primaryColor
@@ -163,7 +164,7 @@ class _MedicineDetailsScreenState extends State<MedicineDetailsScreen> {
                         const SizedBox(height: 16,),
                         Row(
                           children: [
-                            Text("Medicine Type:",
+                            const Text("Medicine Type:",
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700,
@@ -171,7 +172,7 @@ class _MedicineDetailsScreenState extends State<MedicineDetailsScreen> {
                               ),
                             ),
                             Text(widget.vaccineType,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
                                   color: ConstantsColor.primaryColor
@@ -182,7 +183,7 @@ class _MedicineDetailsScreenState extends State<MedicineDetailsScreen> {
                         const SizedBox(height: 16,),
                Row(
                  children: [
-                   Text("Details:",
+                   const Text("Details:",
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700,
@@ -190,7 +191,7 @@ class _MedicineDetailsScreenState extends State<MedicineDetailsScreen> {
                               ),
                             ),
                    Text(widget.vaccineDetails,
-                     style: TextStyle(
+                     style: const TextStyle(
                          fontSize: 18,
                          fontWeight: FontWeight.w700,
                          color: ConstantsColor.primaryColor
@@ -202,7 +203,7 @@ class _MedicineDetailsScreenState extends State<MedicineDetailsScreen> {
                         const SizedBox(height: 16,),
                         Row(
                           children: [
-                            Text("Price:",
+                            const Text("Price:",
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w700,
@@ -210,7 +211,7 @@ class _MedicineDetailsScreenState extends State<MedicineDetailsScreen> {
                               ),
                             ),
                             Text(widget.price,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,
                                   color: ConstantsColor.primaryColor

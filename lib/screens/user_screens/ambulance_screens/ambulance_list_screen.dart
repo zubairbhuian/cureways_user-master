@@ -1,5 +1,6 @@
 import 'package:cureways_user/screens/user_screens/ambulance_screens/ambulance_details_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 import '../../../utils/const_color.dart';
@@ -27,7 +28,7 @@ class _AmbulanceListState extends State<AmbulanceList> {
                 itemCount: Mixins().ambulanceDetails.length,
                 itemBuilder: (context,int index){
                   return Padding(
-                    padding: const EdgeInsets.only(left: 8.0,right: 8),
+                    padding:  EdgeInsets.only(left: 20.w, right: 20.w),
                     child: Card(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -108,7 +109,7 @@ class _AmbulanceListState extends State<AmbulanceList> {
                                     const SizedBox(width:85 ,),
                                     GestureDetector(
                                       onTap: (){
-                                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AmbulanceDetailsScreen()));
+                                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const AmbulanceDetailsScreen()));
 
                                       },
                                       child: Container(

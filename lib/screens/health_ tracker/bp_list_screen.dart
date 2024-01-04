@@ -1,6 +1,7 @@
 import 'package:cureways_user/data/network/controllers/get_bp_list_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class BpListScreen extends StatefulWidget {
@@ -47,7 +48,7 @@ class _BpListScreenState extends State<BpListScreen> {
                 child: ListView.builder(
                   itemCount: bpList.bpList.length,
                   itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding:  EdgeInsets.all(20.w),
                     child: Container(
                       height: 50,
                       decoration: BoxDecoration(

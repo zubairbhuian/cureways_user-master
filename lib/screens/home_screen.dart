@@ -8,6 +8,7 @@ import 'package:cureways_user/screens/user_screens/overseas_treatment/overseas_s
 import 'package:cureways_user/screens/user_screens/vaccine/vaccine_list.dart';
 import 'package:cureways_user/screens/user_screens/virtual_lab/virtual_lab_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../utils/const_color.dart';
@@ -39,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: const Color(0xff0F4B97).withOpacity(0.15),
       body: Padding(
-        padding: const EdgeInsets.only(left: 16, right: 16, top: 40),
+        padding:  EdgeInsets.only(left: 20.w, right: 20.w, top: 40),
         child: Column(
           children: [
             Row(

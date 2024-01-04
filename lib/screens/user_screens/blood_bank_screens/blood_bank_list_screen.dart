@@ -1,5 +1,6 @@
 import 'package:cureways_user/data/network/models/blood_bank_search_response_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -36,7 +37,7 @@ class _BloodBankListScreenState extends State<BloodBankListScreen> {
                   itemCount: widget.bloodBankList.length,
                   itemBuilder: (context, int index) {
                     return Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 8),
+                        padding:  EdgeInsets.only(left: 20.w, right: 20.w),
                         child: Card(
                             child: Padding(
                           padding: const EdgeInsets.all(8.0),
