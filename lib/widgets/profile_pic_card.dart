@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
-class ProfilePicCard extends GetView<ProfileController> {
+class ProfilePicCard extends StatelessWidget {
   const ProfilePicCard({super.key});
 
   @override
@@ -14,7 +14,9 @@ class ProfilePicCard extends GetView<ProfileController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Center(
-          child: GetBuilder<ProfileController>(builder: (controller) {
+          child: GetBuilder<ProfileController>(
+            init: ProfileController(),
+            builder: (controller) {
             File? imgFile = controller.profileImgFile;
             return Stack(
               clipBehavior: Clip.none,

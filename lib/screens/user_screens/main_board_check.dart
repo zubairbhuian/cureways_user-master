@@ -30,7 +30,6 @@ class _MainBoardCheckState extends State<MainBoardCheck> {
 
   @override
   void initState() {
-    Get.put(ProfileController());
     userName = _myBox.get('userName');
     print("The Name of user ===>> $userName");
     // TODO: implement initState

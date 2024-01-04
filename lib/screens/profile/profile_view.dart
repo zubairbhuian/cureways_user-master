@@ -1,5 +1,5 @@
+import 'package:cureways_user/data/network/controllers/get_glucose_list_controller.dart';
 import 'package:cureways_user/data/network/controllers/profile_controller.dart';
-import 'package:cureways_user/screens/welcome_screen.dart';
 import 'package:cureways_user/utils/Int_extensions.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
@@ -7,11 +7,25 @@ import 'package:cureways_user/widgets/profile_pic_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProfileView extends GetView<ProfileController> {
+class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
 
   @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+
+  @override
+  void initState() {
+     Get.put(ProfileController()).getUserInfo();
+    // TODO: implement initState
+    super.initState();
+  }
+  
+  @override
   Widget build(BuildContext context) {
+    ProfileController controller =Get.find<ProfileController>();
     return Scaffold(
       backgroundColor: kWhite,
       body: SingleChildScrollView(
@@ -20,8 +34,8 @@ class ProfileView extends GetView<ProfileController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // profile
-            30.height,
-            // const ProfilePicCard(),
+            100.height,
+            const ProfilePicCard(),
 
             // user info
             40.height,

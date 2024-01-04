@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cureways_user/screens/welcome_screen.dart';
 import 'package:cureways_user/utils/my_image_picker.dart';
+import 'package:cureways_user/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -45,8 +46,10 @@ class ProfileController extends GetxController {
     //email
     var email = myBox.get('email');
     emailController = TextEditingController(text: email);
+    kLogger.e("Get user info colling");
     update();
   }
+
   // ******* Log Out
   onLogOut() async {
     // clean SharedPreferences data
@@ -57,12 +60,6 @@ class ProfileController extends GetxController {
     await box.clear();
 
     // Route For Login
-    Get.offAll(const WelcomescreenCheck());
-  }
-
-  @override
-  void onInit() {
-    getUserInfo();
-    super.onInit();
+    Get.offAll( ()=>const WelcomescreenCheck());
   }
 }
