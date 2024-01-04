@@ -29,8 +29,6 @@ Future<void> main() async {
   /// Add the dio instance to the api service
   final apiService = ApiService(dio: dio);
   Get.put(GlobalController());
-  Get.put(ProfileController());
-  
   runApp(MyApp(
     apiService: apiService,
   ));
