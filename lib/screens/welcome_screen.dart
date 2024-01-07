@@ -309,6 +309,7 @@ class _WelcomescreenCheckState extends State<WelcomescreenCheck> {
                               child: OutlinedButton(
                                 onPressed: () async {
                                   final user = await GoogleSignInApi.login();
+                                  kLogger.e(user?.photoUrl);
                                   if (user == null) {
                                     ScaffoldMessenger.of(context)
                                         .showSnackBar((const SnackBar(

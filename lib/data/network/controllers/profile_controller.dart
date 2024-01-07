@@ -38,13 +38,15 @@ class ProfileController extends GetxController {
   getUserInfo() {
     var myBox = Hive.box('userBox');
     // name
-    var name = myBox.get('userName');
+    var name = myBox.get('userName')??"";
     fullNameController = TextEditingController(text: name);
     //photo
-    var photo = myBox.get('userPhoto');
+    kLogger.e('photo');
+    String photo = myBox.get('userPhoto')??'';
+    kLogger.e(photo);
     userPhoto = photo;
     //email
-    var email = myBox.get('email');
+    var email = myBox.get('email')??'';
     emailController = TextEditingController(text: email);
     kLogger.e("Get user info colling");
     update();
@@ -60,6 +62,6 @@ class ProfileController extends GetxController {
     await box.clear();
 
     // Route For Login
-    Get.offAll( ()=>const WelcomescreenCheck());
+    Get.offAll(() => const WelcomescreenCheck());
   }
 }

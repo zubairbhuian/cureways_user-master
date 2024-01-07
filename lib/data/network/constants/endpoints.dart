@@ -1,7 +1,9 @@
 class Endpoints {
   Endpoints._();
-
+  // **** Old server  *****
   static String server = "https://cureways.vaccinehomebd.com/api/v1/";
+  // **** New server  *****
+  // static String server = "faithoverseas.webbysys.click/api/v1/";
   static String register = "reg";
   static String login = "login";
   static String socialLogin = "social-login";
