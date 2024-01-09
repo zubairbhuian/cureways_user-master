@@ -25,15 +25,15 @@ TextStyle headlineSmall = TextStyle(
 TextStyle kTitleLarge = TextStyle(
     color: kTextColor,
     fontSize: 20.sp,
-    fontWeight: FontWeight.w400,);
+    fontWeight: FontWeight.w500,);
 TextStyle kTitleMedium = TextStyle(
     color: kTextColor,
     fontSize: 18.sp,
-    fontWeight: FontWeight.w400,);
+    fontWeight: FontWeight.w500,);
 TextStyle kTitleSmall = TextStyle(
     color: kTextColor,
     fontSize: 16.sp,
-    fontWeight: FontWeight.w400,);
+    fontWeight: FontWeight.w500,);
 // ******* body ********
 TextStyle kBodyLarge = TextStyle(
     color: kTextColor, fontSize: 16.spMax, fontWeight: FontWeight.w400);

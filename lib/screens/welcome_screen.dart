@@ -1,10 +1,7 @@
 import 'package:cureways_user/data/network/controllers/social_login_controller.dart';
 import 'package:cureways_user/screens/disclaimer/disclaimer_Screen.dart';
 import 'package:cureways_user/screens/pribacy_policy/pribacy_policy_screen.dart';
-import 'package:cureways_user/screens/sign_in_screen.dart';
-import 'package:cureways_user/screens/sign_up/sign_up_screen.dart';
 import 'package:cureways_user/screens/terms_condition/terms_and_condition_screen.dart';
-import 'package:cureways_user/screens/user_screens/main_board_check.dart';
 import 'package:cureways_user/utils/style.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
