@@ -1,4 +1,5 @@
 import 'package:cureways_user/data/network/controllers/find_slot_controller.dart';
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -61,7 +62,8 @@ class _DoctorAppoinmentConfirmScreenState
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 20.w,vertical: 12),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -79,30 +81,14 @@ class _DoctorAppoinmentConfirmScreenState
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              TextFormField(
+                              CustomTextField(
                                 controller: _refferedDate,
                                 onTap: () {
                                   _selectDate();
                                 },
                                 keyboardType: TextInputType.text,
-                                textAlign: TextAlign.center,
-                                decoration: const InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.symmetric(vertical: 20),
-                                  labelText: '   Referred Date',
-                                  hintText: '   Referred Date',
-                                  border: OutlineInputBorder(),
-                                  hintStyle: TextStyle(
-                                      color: Colors.grey,
-                                      fontStyle: FontStyle.normal),
-                                  labelStyle: TextStyle(
-                                      color: Colors.grey,
-                                      fontStyle: FontStyle.normal),
-                                  suffixIcon: Icon(
-                                    Icons.calendar_today,
-                                    color: ConstantsColor.primaryColor,
-                                  ),
-                                ),
+                                labelText: 'Referred Date',
+                                hintText: 'Referred Date',
                               ),
                             ],
                           ),

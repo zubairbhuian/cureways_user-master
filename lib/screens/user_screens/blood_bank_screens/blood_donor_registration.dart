@@ -1,4 +1,5 @@
 import 'package:cureways_user/utils/int_extensions.dart';
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:cureways_user/widgets/profile_pic_card.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
@@ -110,7 +111,7 @@ class _BloodDonorRegistrationScreenState
               child: Column(
                 children: [
                   Padding(
-                    padding:  EdgeInsets.only(left: 20.w, right: 20.w),
+                    padding: EdgeInsets.only(left: 20.w, right: 20.w),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
@@ -136,7 +137,7 @@ class _BloodDonorRegistrationScreenState
                                 children: [
                                   10.height,
                                   // const ProfilePicCard(),
-                                   20.height,
+                                  20.height,
                                   DropdownButtonFormField2(
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -526,26 +527,11 @@ class _BloodDonorRegistrationScreenState
                                               .toString();
                                     },
                                   ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  TextFormField(
+                                  CustomTextField(
                                     controller: _nameController,
                                     keyboardType: TextInputType.text,
-                                    textAlign: TextAlign.start,
-                                    decoration: const InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 20, horizontal: 20),
-                                      labelText: '   Name ',
-                                      hintText: ' Name',
-                                      border: OutlineInputBorder(),
-                                      hintStyle: TextStyle(
-                                          color: Colors.grey,
-                                          fontStyle: FontStyle.normal),
-                                      labelStyle: TextStyle(
-                                          color: Colors.grey,
-                                          fontStyle: FontStyle.normal),
-                                    ),
+                                    labelText: 'Name ',
+                                    hintText: 'Name',
                                     onChanged: (String value) {
                                       name = value;
                                     },
@@ -555,26 +541,11 @@ class _BloodDonorRegistrationScreenState
                                           : null;
                                     },
                                   ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  TextFormField(
+                                  CustomTextField(
                                     controller: _numberController,
                                     keyboardType: TextInputType.text,
-                                    textAlign: TextAlign.start,
-                                    decoration: const InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 20, horizontal: 20),
-                                      labelText: '   Mobile Number ',
-                                      hintText: ' Mobile Number',
-                                      border: OutlineInputBorder(),
-                                      hintStyle: TextStyle(
-                                          color: Colors.grey,
-                                          fontStyle: FontStyle.normal),
-                                      labelStyle: TextStyle(
-                                          color: Colors.grey,
-                                          fontStyle: FontStyle.normal),
-                                    ),
+                                    labelText: 'Mobile Number ',
+                                    hintText: 'Mobile Number',
                                     onChanged: (String value) {
                                       contactNumber = value;
                                     },

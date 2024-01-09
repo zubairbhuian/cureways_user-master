@@ -1,5 +1,6 @@
 import 'package:cureways_user/screens/sign_up/sign_up_screen.dart';
 import 'package:cureways_user/screens/user_screens/main_board_check.dart';
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/const_color.dart';
@@ -54,51 +55,24 @@ class _SignInScreenState extends State<SignInScreen> {
                 padding: const EdgeInsets.only(left: 22,right: 22),
                 child: Column(
                   children: [
-                    TextFormField(
+                    CustomTextField(
                       controller: _mobileEmailController,
                       keyboardType: TextInputType.text,
-
-                      decoration: const InputDecoration(
-
-                        suffixIcon:Icon(Icons.person_2_outlined),
                         labelText: 'Enter your phone number or email',
                         hintText: 'Enter your phone number or email',
-                        border: OutlineInputBorder(),
-                        hintStyle: TextStyle(
-                            color: Colors.grey,
-                            fontStyle: FontStyle.normal),
-                        labelStyle: TextStyle(
-                            color: Colors.grey,
-                            fontStyle: FontStyle.normal),
-                      ),
-
                     ),
-                    const SizedBox(height: 8,),
-                    TextFormField(
+                    CustomTextField(
                       controller:_passwordController,
                       keyboardType: TextInputType.text,
-
-                      decoration: const InputDecoration(
-
-                        suffixIcon:Icon(Icons.remove_red_eye_outlined),
                         labelText:  'Enter your password',
                         hintText: 'Enter your password',
-                        border: OutlineInputBorder(),
-                        hintStyle: TextStyle(
-                            color: Colors.grey,
-                            fontStyle: FontStyle.normal),
-                        labelStyle: TextStyle(
-                            color: Colors.grey,
-                            fontStyle: FontStyle.normal),
-                      ),
-
                     ),
 
                   ],
 
                 ),
               )),
-          const SizedBox(height: 33,),
+          const SizedBox(height: 23,),
           Padding(
             padding: const EdgeInsets.only(left: 22,right: 22),
             child: Center(

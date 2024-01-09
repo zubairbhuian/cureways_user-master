@@ -1,4 +1,6 @@
 import 'package:cureways_user/data/network/controllers/store_body_tmp_controller.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -32,17 +34,18 @@ class _BodyTemparatureScreenState extends State<BodyTemparatureScreen> {
     return GetBuilder<StoreBodyTmpController>(
       init: StoreBodyTmpController(),
       builder: (storeBodyTmp) => Scaffold(
+        appBar: CustomAppBar(title: Text("Body Temperature".toUpperCase())),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppDefaultBar(
-                title: "BODY TEMPERATURE", userNAme: _myBox.get('userName')),
+            // AppDefaultBar(
+            //     title: "BODY TEMPERATURE", userNAme: _myBox.get('userName')),
             const SizedBox(
               height: 8,
             ),
             Expanded(
               child: SingleChildScrollView(
-                padding:EdgeInsets.only(left: 20.w, right: 20.w, top: 12),
+                padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -50,67 +53,35 @@ class _BodyTemparatureScreenState extends State<BodyTemparatureScreen> {
                         key: _formKey,
                         child: Column(
                           children: [
-                            TextFormField(
-                              controller: storeBodyTmp.dateController,
-                              keyboardType: TextInputType.text,
-                              textAlign: TextAlign.center,
-                              decoration: const InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(vertical: 20),
-                                labelText: '    mm-dd-yyyy',
-                                hintText: '  mm-dd-yyyy',
-                                border: OutlineInputBorder(),
-                                hintStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.normal),
-                                labelStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.normal),
-                               suffixIcon: Icon(Icons.calendar_month),
-                                  ),
-                                  onTap: () async {
-                                    DateTime? pickedDate =
-                                        await showDatePicker(
-                                            context: context,
-                                            initialDate: DateTime(2010),
-                                            firstDate: DateTime(2000),
-                                            lastDate: DateTime(2101));
-                                    if (pickedDate != null) {
-                                      storeBodyTmp.dateController.text =
-                                          DateFormat(DateFormat.YEAR_NUM_MONTH_DAY
-                                          )
-                                              .format(pickedDate);
-                                      storeBodyTmp.update();
-                                    }
+                            CustomTextField(
+                                controller: storeBodyTmp.dateController,
+                                keyboardType: TextInputType.text,
+                                labelText: 'mm/dd/yyyy',
+                                hintText: 'mm/dd/yyyy',
+                                onTap: () async {
+                                  DateTime? pickedDate = await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(2000),
+                                      lastDate: DateTime(2101));
+                                  if (pickedDate != null) {
+                                    storeBodyTmp.dateController.text =
+                                        DateFormat(
+                                                DateFormat.YEAR_NUM_MONTH_DAY)
+                                            .format(pickedDate);
+                                    storeBodyTmp.update();
                                   }
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            TextFormField(
+                                }),
+                            CustomTextField(
                               controller:
                                   storeBodyTmp.bodyTemperatureController,
                               keyboardType: TextInputType.text,
-                              textAlign: TextAlign.center,
-                              decoration: const InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(vertical: 20),
-                                labelText: '    Enter BodyTemperature',
-                                hintText: '    Enter BodyTemperature',
-                                border: OutlineInputBorder(),
-                                hintStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.normal),
-                                labelStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.normal),
-                              ),
+                              labelText: 'Enter BodyTemperature',
+                              hintText: 'Enter BodyTemperature',
                             ),
                           ],
                         )),
-                    const SizedBox(
-                      height: 16,
-                    ),
+
                     SizedBox(
                       width: double.maxFinite,
                       height: 52,
@@ -118,9 +89,7 @@ class _BodyTemparatureScreenState extends State<BodyTemparatureScreen> {
                         onPressed: () {
                           storeBodyTmp.storeBodyTmp(
                             context,
-                            storeBodyTmp.dateController.text
-                                .toString()
-                                .trim(),
+                            storeBodyTmp.dateController.text.toString().trim(),
                             storeBodyTmp.bodyTemperatureController.text
                                 .toString()
                                 .trim(),
@@ -133,7 +102,7 @@ class _BodyTemparatureScreenState extends State<BodyTemparatureScreen> {
                           ),
                         ),
                         child: storeBodyTmp.loader
-                            ? const Center(child: CircularProgressIndicator())
+                            ? const Center(child: LoadIndecator())
                             : const Text(
                                 'SUBMIT',
                                 style: TextStyle(

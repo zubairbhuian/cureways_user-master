@@ -1,4 +1,6 @@
 import 'package:cureways_user/data/network/controllers/store_glucose_controller.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,13 +38,14 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
     return GetBuilder<StoreGlucoseController>(
       init: StoreGlucoseController(),
       builder: (storeGlucose) => Scaffold(
+        appBar: CustomAppBar(title: Text("Glucose TRACKER".toUpperCase())),
         body: Container(
           color: ConstantsColor.backgroundColor,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppDefaultBar(
-                  title: "GLUCOSE TRACKER", userNAme: _myBox.get('userName')),
+              // AppDefaultBar(
+              //     title: "GLUCOSE TRACKER", userNAme: _myBox.get('userName')),
               const SizedBox(
                 height: 8,
               ),
@@ -56,29 +59,17 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                             key: _formKey,
                             child: Column(
                               children: [
-                                TextFormField(
+                
+                                CustomTextField(
                                     controller: storeGlucose.dateController,
                                     keyboardType: TextInputType.text,
-                                    textAlign: TextAlign.center,
-                                    decoration: const InputDecoration(
-                                      contentPadding:
-                                          EdgeInsets.symmetric(vertical: 20),
-                                      labelText: '  mm-dd-yyyy',
-                                      hintText: '  mm-dd-yyyy',
-                                      border: OutlineInputBorder(),
-                                      hintStyle: TextStyle(
-                                          color: Colors.grey,
-                                          fontStyle: FontStyle.normal),
-                                      labelStyle: TextStyle(
-                                          color: Colors.grey,
-                                          fontStyle: FontStyle.normal),
-                                      suffixIcon: Icon(Icons.calendar_month),
-                                    ),
+                                    labelText: 'mm/dd/yyyy',
+                                    hintText: 'mm/dd/yyyy',
                                     onTap: () async {
                                       DateTime? pickedDate =
                                           await showDatePicker(
                                               context: context,
-                                              initialDate: DateTime(2010),
+                                              initialDate: DateTime.now(),
                                               firstDate: DateTime(2000),
                                               lastDate: DateTime(2101));
                                       if (pickedDate != null) {
@@ -89,9 +80,6 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                                         storeGlucose.update();
                                       }
                                     }),
-                                const SizedBox(
-                                  height: 8,
-                                ),
                                 DropdownButtonFormField2(
                                   decoration: InputDecoration(
                                     isDense: true,
@@ -150,25 +138,13 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                                   },
                                 ),
                                 const SizedBox(
-                                  height: 8,
+                                  height: 16,
                                 ),
-                                TextFormField(
+                                CustomTextField(
                                   controller: storeGlucose.resultController,
                                   keyboardType: TextInputType.text,
-                                  textAlign: TextAlign.center,
-                                  decoration: const InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.symmetric(vertical: 20),
-                                    labelText: '   Your Glucose Test Result',
-                                    hintText: '   Your Glucose Test Result',
-                                    border: OutlineInputBorder(),
-                                    hintStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                    labelStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                  ),
+                                  labelText: 'Your Glucose Test Result',
+                                  hintText: 'Your Glucose Test Result',
                                 ),
                               ],
                             )),
@@ -203,7 +179,7 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                             ),
                             child: storeGlucose.loader
                                 ? const Center(
-                                    child: CircularProgressIndicator())
+                                    child: LoadIndecator())
                                 : const Text(
                                     'SUBMIT',
                                     style: TextStyle(

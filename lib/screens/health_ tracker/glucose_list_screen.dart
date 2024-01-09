@@ -1,5 +1,6 @@
 import 'package:cureways_user/data/network/controllers/get_glucose_list_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
+import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -25,21 +26,22 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: ConstantsColor.primaryColor,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(12.0),
-              bottomRight: Radius.circular(12.0)),
-        ),
-        title: const Text(
-          "Glucose List",
-          style: TextStyle(
-              color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-      ),
+      appBar:  CustomAppBar(title: Text("Glucose List".toUpperCase())),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   backgroundColor: ConstantsColor.primaryColor,
+      //   shape: const RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.only(
+      //         bottomLeft: Radius.circular(12.0),
+      //         bottomRight: Radius.circular(12.0)),
+      //   ),
+      //   title: const Text(
+      //     "Glucose List",
+      //     style: TextStyle(
+      //         color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+      //   ),
+      //   centerTitle: true,
+      // ),
       body: GetBuilder<GetGlucoseListController>(
         init: GetGlucoseListController(),
         builder: (glucoseList) => glucoseList.loader
@@ -65,6 +67,7 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
                             const SizedBox(height: 3),
                             Text(
                                 "Time of testing: ${glucoseList.glucoseList[index].timePeriodName}"),
+                           
                           ],
                         ),
                       ),

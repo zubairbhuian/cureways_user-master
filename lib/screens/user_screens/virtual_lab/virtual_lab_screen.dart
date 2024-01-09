@@ -1,4 +1,5 @@
 import 'package:cureways_user/screens/user_screens/virtual_lab/virtual_lab_work_screen.dart';
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -97,7 +98,8 @@ class _VirtualLabScreenState extends State<VirtualLabScreen> {
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
-                 padding:  EdgeInsets.only(left: 20.w, right: 20.w,top: 12,bottom: 12),
+                  padding: EdgeInsets.only(
+                      left: 20.w, right: 20.w, top: 12, bottom: 12),
                   child: Column(
                     children: [
                       const SizedBox(
@@ -443,23 +445,11 @@ class _VirtualLabScreenState extends State<VirtualLabScreen> {
                               const SizedBox(
                                 height: 8,
                               ),
-                              TextFormField(
+                              CustomTextField(
                                 controller: _nameController,
                                 keyboardType: TextInputType.text,
-                                textAlign: TextAlign.start,
-                                decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 20),
-                                  labelText: '   Name ',
-                                  hintText: ' Name',
-                                  border: OutlineInputBorder(),
-                                  hintStyle: TextStyle(
-                                      color: Colors.grey,
-                                      fontStyle: FontStyle.normal),
-                                  labelStyle: TextStyle(
-                                      color: Colors.grey,
-                                      fontStyle: FontStyle.normal),
-                                ),
+                                labelText: 'Name ',
+                                hintText: 'Name',
                                 onChanged: (String value) {
                                   name = value;
                                 },
@@ -469,26 +459,11 @@ class _VirtualLabScreenState extends State<VirtualLabScreen> {
                                       : null;
                                 },
                               ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              TextFormField(
+                              CustomTextField(
                                 controller: _numberController,
                                 keyboardType: TextInputType.text,
-                                textAlign: TextAlign.start,
-                                decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 20),
-                                  labelText: '   Mobile Number ',
-                                  hintText: ' Mobile Number',
-                                  border: OutlineInputBorder(),
-                                  hintStyle: TextStyle(
-                                      color: Colors.grey,
-                                      fontStyle: FontStyle.normal),
-                                  labelStyle: TextStyle(
-                                      color: Colors.grey,
-                                      fontStyle: FontStyle.normal),
-                                ),
+                                labelText: 'Mobile Number ',
+                                hintText: 'Mobile Number',
                                 onChanged: (String value) {
                                   contactNumber = value;
                                 },

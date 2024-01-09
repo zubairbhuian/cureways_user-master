@@ -1,4 +1,6 @@
 import 'package:cureways_user/data/network/controllers/store_weight_controller.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -41,7 +43,7 @@ class _WeightTrackerScreenState extends State<WeightTrackerScreen> {
             ),
             Expanded(
               child: SingleChildScrollView(
-                padding:EdgeInsets.only(left: 20.w, right: 20.w, top: 12),
+                padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -49,28 +51,15 @@ class _WeightTrackerScreenState extends State<WeightTrackerScreen> {
                         key: _formKey,
                         child: Column(
                           children: [
-                            TextFormField(
+                            CustomTextField(
                                 controller: storeWeight.dateController,
                                 keyboardType: TextInputType.text,
-                                textAlign: TextAlign.center,
-                                decoration: const InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.symmetric(vertical: 20),
-                                  labelText: '  mm-dd-yyyy',
-                                  hintText: '  mm-dd-yyyy',
-                                  border: OutlineInputBorder(),
-                                  hintStyle: TextStyle(
-                                      color: Colors.grey,
-                                      fontStyle: FontStyle.normal),
-                                  labelStyle: TextStyle(
-                                      color: Colors.grey,
-                                      fontStyle: FontStyle.normal),
-                                  suffixIcon: Icon(Icons.calendar_month),
-                                ),
+                                labelText: 'mm/dd/yyyy',
+                                hintText: 'mm/dd/yyyy',
                                 onTap: () async {
                                   DateTime? pickedDate = await showDatePicker(
                                       context: context,
-                                      initialDate: DateTime(2010),
+                                      initialDate: DateTime.now(),
                                       firstDate: DateTime(2000),
                                       lastDate: DateTime(2101));
                                   if (pickedDate != null) {
@@ -81,31 +70,16 @@ class _WeightTrackerScreenState extends State<WeightTrackerScreen> {
                                     storeWeight.update();
                                   }
                                 }),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            TextFormField(
+                            CustomTextField(
                               controller: storeWeight.weightController,
                               keyboardType: TextInputType.text,
-                              textAlign: TextAlign.center,
-                              decoration: const InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(vertical: 20),
-                                labelText: '    Enter Weight',
-                                hintText: '    Enter Weight',
-                                border: OutlineInputBorder(),
-                                hintStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.normal),
-                                labelStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.normal),
-                              ),
+                                                              labelText: 'Enter Weight',
+                                hintText: 'Enter Weight',
                             ),
                           ],
                         )),
                     const SizedBox(
-                      height: 16,
+                      height: 10,
                     ),
                     SizedBox(
                       width: double.maxFinite,
@@ -115,9 +89,7 @@ class _WeightTrackerScreenState extends State<WeightTrackerScreen> {
                           storeWeight.storeWeight(
                             context,
                             storeWeight.dateController.text.toString().trim(),
-                            storeWeight.weightController.text
-                                .toString()
-                                .trim(),
+                            storeWeight.weightController.text.toString().trim(),
                           );
                         },
                         style: OutlinedButton.styleFrom(
@@ -127,7 +99,7 @@ class _WeightTrackerScreenState extends State<WeightTrackerScreen> {
                           ),
                         ),
                         child: storeWeight.loader
-                            ? const Center(child: CircularProgressIndicator())
+                            ? const Center(child: LoadIndecator())
                             : const Text(
                                 'SUBMIT',
                                 style: TextStyle(

@@ -1,4 +1,5 @@
 import 'package:cureways_user/screens/user_screens/overseas_treatment/overseas_treatment_works_screen.dart';
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,16 +7,17 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../data/network/apis/api_client.dart';
 import '../../../utils/const_color.dart';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 
 import '../../../widgets/appbar.dart';
 
 class OverSeastreatmentScreen extends StatefulWidget {
   String userName;
- OverSeastreatmentScreen({Key? key,required this.userName}) : super(key: key);
+  OverSeastreatmentScreen({Key? key, required this.userName}) : super(key: key);
 
   @override
-  State<OverSeastreatmentScreen> createState() => _OverSeastreatmentScreenState();
+  State<OverSeastreatmentScreen> createState() =>
+      _OverSeastreatmentScreenState();
 }
 
 class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
@@ -28,9 +30,8 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
   String? selectedDivisionId = '',
       selectedPoliceStationId = '',
       selecteAreaId = '',
-      selectedBloodgroupId= '',
-      selectedServiceTypeId= ''
-  ;
+      selectedBloodgroupId = '',
+      selectedServiceTypeId = '';
 
   final TextEditingController _numberController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
@@ -40,7 +41,7 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
 
   //integrate Areamangement Api
   bool isLoading = false;
-  bool  ispostLoading = false;
+  bool ispostLoading = false;
   @override
   void initState() {
     userName = widget.userName;
@@ -63,6 +64,7 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     print(areaManagementList);
@@ -79,14 +81,14 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
     if (areaManagementList != null) {
       divisions = areaManagementList[0]['original']['data']['divisions'];
       policeStation =
-      areaManagementList[0]['original']['data']['policestations'];
+          areaManagementList[0]['original']['data']['policestations'];
       area = areaManagementList[0]['original']['data']['areas'];
-      serviceType =(areaManagementList[0]['original']['data']['serviceType'] as Map<String, dynamic>)
+      serviceType = (areaManagementList[0]['original']['data']['serviceType']
+              as Map<String, dynamic>)
           .entries
-          .map<Map<String, dynamic>>((entry) => {'text': entry.value, 'value': entry.key})
+          .map<Map<String, dynamic>>(
+              (entry) => {'text': entry.value, 'value': entry.key})
           .toList();
-
-
     }
     return Scaffold(
       body: Column(
@@ -95,23 +97,28 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 20.w,vertical: 12),
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12),
                 child: Column(
                   children: [
-                    const Text("Overseas Treatment: Accessing World-Class Healthcare Beyond Borders",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: ConstantsColor.primaryColor
+                    const Text(
+                      "Overseas Treatment: Accessing World-Class Healthcare Beyond Borders",
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: ConstantsColor.primaryColor),
                     ),
+                    const SizedBox(
+                      height: 8,
                     ),
-                    const SizedBox(height: 8,),
                     SizedBox(
                       width: double.maxFinite,
                       height: 52,
                       child: OutlinedButton(
-                        onPressed: ()async{ 
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>OverseasTreatmentWorksScreen(userName: userName)));
+                        onPressed: () async {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  OverseasTreatmentWorksScreen(
+                                      userName: userName)));
                         },
                         style: OutlinedButton.styleFrom(
                           backgroundColor: ConstantsColor.primaryColor,
@@ -125,29 +132,35 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 8,),
-                    const Divider(height: 4,
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    const Divider(
+                      height: 4,
                       thickness: 1,
                       color: ConstantsColor.primaryColor,
                     ),
-
-                    const SizedBox(height: 4,),
-                    const Text(
-                      "Book Now",
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    const Text("Book Now",
                         style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: ConstantsColor.primaryColor,
-                         // decoration: TextDecoration.underline
-                        )
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: ConstantsColor.primaryColor,
+                          // decoration: TextDecoration.underline
+                        )),
+                    const SizedBox(
+                      height: 4,
                     ),
-                    const SizedBox(height: 4,),
-                    const Divider(height: 4,
+                    const Divider(
+                      height: 4,
                       thickness: 1,
                       color: ConstantsColor.primaryColor,
                     ),
-
-                    const SizedBox(height: 8,),
+                    const SizedBox(
+                      height: 8,
+                    ),
                     Form(
                         key: _formKey,
                         child: Column(
@@ -157,26 +170,22 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                                 isDense: true,
                                 contentPadding: EdgeInsets.zero,
                                 border: OutlineInputBorder(
-                                    borderRadius:
-                                    BorderRadius.circular(5)),
+                                    borderRadius: BorderRadius.circular(5)),
                               ),
                               buttonStyleData: const ButtonStyleData(
                                 height: 60,
-                                padding:
-                                EdgeInsets.only(left: 00, right: 10),
+                                padding: EdgeInsets.only(left: 00, right: 10),
                               ),
                               isExpanded: true,
                               hint: const Row(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     "Select District",
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w500,
-                                        color:
-                                        ConstantsColor.primaryColor),
+                                        color: ConstantsColor.primaryColor),
                                   ),
                                   Text(
                                     "*",
@@ -188,10 +197,9 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                                 ],
                               ),
                               items: divisions.map((division) {
-                                final divisionId =
-                                division['id'].toString();
+                                final divisionId = division['id'].toString();
                                 final divisionName =
-                                division['name'].toString();
+                                    division['name'].toString();
                                 return DropdownMenuItem(
                                   value: divisionId,
                                   child: Text(
@@ -205,10 +213,12 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                               onChanged: (value) {
                                 selectedDivisionId = value.toString();
                                 selectDistrict = divisions
-                                    .firstWhere((division) => division['id']?.toString() == value.toString())?['name']?.toString();
+                                    .firstWhere((division) =>
+                                        division['id']?.toString() ==
+                                        value.toString())?['name']
+                                    ?.toString();
                                 //print(selectedDivisionId);
                                 //  print(selectDistrict);
-
                               },
                               validator: (value) {
                                 if (value == null) {
@@ -228,26 +238,22 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                                 isDense: true,
                                 contentPadding: EdgeInsets.zero,
                                 border: OutlineInputBorder(
-                                    borderRadius:
-                                    BorderRadius.circular(5)),
+                                    borderRadius: BorderRadius.circular(5)),
                               ),
                               buttonStyleData: const ButtonStyleData(
                                 height: 60,
-                                padding:
-                                EdgeInsets.only(left: 00, right: 10),
+                                padding: EdgeInsets.only(left: 00, right: 10),
                               ),
                               isExpanded: true,
                               hint: const Row(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     "Select Police Station",
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w500,
-                                        color:
-                                        ConstantsColor.primaryColor),
+                                        color: ConstantsColor.primaryColor),
                                   ),
                                   Text(
                                     "*",
@@ -260,28 +266,31 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                               ),
                               items: policeStation.map((policestations) {
                                 final policeStationId =
-                                policestations['id'].toString();
+                                    policestations['id'].toString();
                                 final policeStationName =
-                                policestations['name'].toString();
-                                return  DropdownMenuItem(
+                                    policestations['name'].toString();
+                                return DropdownMenuItem(
                                   value: policeStationId,
                                   child: Text(
                                     policeStationName,
                                     style: const TextStyle(
                                       fontSize: 16,
                                     ),
-                                  ),);
+                                  ),
+                                );
                               }).toList(),
                               onChanged: (value) {
                                 selectedPoliceStationId = value.toString();
                                 selectedPoliceStation = policeStation
-                                    .firstWhere((policestationss) => policestationss['id']?.toString() == value.toString())?['name']?.toString();
+                                    .firstWhere((policestationss) =>
+                                        policestationss['id']?.toString() ==
+                                        value.toString())?['name']
+                                    ?.toString();
                                 // selectDistrict = divisionNames[int.parse(value.toString())];
 
                                 //print(selectedPoliceStationId);
                                 //print(selectedPoliceStation);
                                 //print('value => $value');
-
                               },
                               validator: (value) {
                                 if (value == null) {
@@ -301,26 +310,22 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                                 isDense: true,
                                 contentPadding: EdgeInsets.zero,
                                 border: OutlineInputBorder(
-                                    borderRadius:
-                                    BorderRadius.circular(5)),
+                                    borderRadius: BorderRadius.circular(5)),
                               ),
                               buttonStyleData: const ButtonStyleData(
                                 height: 60,
-                                padding:
-                                EdgeInsets.only(left: 00, right: 10),
+                                padding: EdgeInsets.only(left: 00, right: 10),
                               ),
                               isExpanded: true,
                               hint: const Row(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     "Select Area",
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w500,
-                                        color:
-                                        ConstantsColor.primaryColor),
+                                        color: ConstantsColor.primaryColor),
                                   ),
                                   Text(
                                     "*",
@@ -331,25 +336,27 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                                   ),
                                 ],
                               ),
-                              items:area.map((areas) {
-                                final areaId =
-                                areas['id'].toString();
-                                final areaName =
-                                areas['name'].toString();
-                                return  DropdownMenuItem(
+                              items: area.map((areas) {
+                                final areaId = areas['id'].toString();
+                                final areaName = areas['name'].toString();
+                                return DropdownMenuItem(
                                   value: areaId,
                                   child: Text(
                                     areaName,
                                     style: const TextStyle(
                                       fontSize: 16,
                                     ),
-                                  ),);
+                                  ),
+                                );
                               }).toList(),
                               onChanged: (value) {
                                 // print('value => $value');
                                 selecteAreaId = value.toString();
-                                selecteArea= area
-                                    .firstWhere((areas) =>areas['id']?.toString() == value.toString())?['name']?.toString();
+                                selecteArea = area
+                                    .firstWhere((areas) =>
+                                        areas['id']?.toString() ==
+                                        value.toString())?['name']
+                                    ?.toString();
                                 //print(selecteAreaId);
                                 // print(selecteArea);
                               },
@@ -363,22 +370,20 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                                 selecteArea = value.toString();
                               },
                             ),
-
-                            const SizedBox(height: 8,),
+                            const SizedBox(
+                              height: 8,
+                            ),
                             DropdownButtonFormField2(
                               decoration: InputDecoration(
                                 isDense: true,
                                 contentPadding: EdgeInsets.zero,
                                 border: OutlineInputBorder(
-                                    borderRadius:
-                                    BorderRadius.circular(5)),
-
+                                    borderRadius: BorderRadius.circular(5)),
                               ),
                               buttonStyleData: const ButtonStyleData(
                                 height: 60,
-                                padding:  EdgeInsets.only(left: 00, right: 10),
+                                padding: EdgeInsets.only(left: 00, right: 10),
                               ),
-
                               isExpanded: true,
                               hint: const Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -386,17 +391,20 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                                   Text(
                                     "Service Type",
                                     style: TextStyle(
-                                        fontSize: 18,fontWeight: FontWeight.w500, color: ConstantsColor.primaryColor),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                        color: ConstantsColor.primaryColor),
                                   ),
                                   Text(
                                     "*",
                                     style: TextStyle(
-                                        fontSize: 16,fontWeight: FontWeight.w500, color: Colors.red),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.red),
                                   ),
                                 ],
                               ),
-
-                              items:serviceType.map((type) {
+                              items: serviceType.map((type) {
                                 final text = type['text'].toString();
                                 final value = type['value'].toString();
                                 return DropdownMenuItem<String>(
@@ -410,15 +418,17 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                                 );
                               }).toList(),
                               onChanged: (value) {
-                                selectedServiceTypeId = value; // Store the selected bloodgroupId
-                                final selectedServiceTypes = serviceType.firstWhere(
-                                      (type) => type['value'] == value,
+                                selectedServiceTypeId =
+                                    value; // Store the selected bloodgroupId
+                                final selectedServiceTypes =
+                                    serviceType.firstWhere(
+                                  (type) => type['value'] == value,
                                   orElse: () => {'text': '', 'value': ''},
                                 );
 
-                                selectedServiceType = selectedServiceTypes['text'].toString();
+                                selectedServiceType =
+                                    selectedServiceTypes['text'].toString();
                                 print("blood group => $selectedServiceTypeId ");
-
                               },
                               validator: (value) {
                                 if (value == null) {
@@ -426,26 +436,15 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                                 }
                                 return null;
                               },
-
                             ),
-                            const SizedBox(height: 8,),
-                            TextFormField(
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            CustomTextField(
                               controller: _nameController,
                               keyboardType: TextInputType.text,
-                              textAlign: TextAlign.start,
-                              decoration: const InputDecoration(
-                                contentPadding:
-                                EdgeInsets.symmetric(vertical: 20,horizontal: 20),
-                                labelText: '   Name ',
-                                hintText: ' Name',
-                                border: OutlineInputBorder(),
-                                hintStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.normal),
-                                labelStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.normal),
-                              ),
+                              labelText: 'Name ',
+                              hintText: 'Name',
                               onChanged: (String value) {
                                 name = value;
                               },
@@ -458,23 +457,11 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                             const SizedBox(
                               height: 8,
                             ),
-                            TextFormField(
+                            CustomTextField(
                               controller: _numberController,
                               keyboardType: TextInputType.text,
-                              textAlign: TextAlign.start,
-                              decoration: const InputDecoration(
-                                contentPadding:
-                                EdgeInsets.symmetric(vertical: 20,horizontal: 20),
-                                labelText: '   Mobile Number ',
-                                hintText: ' Mobile Number',
-                                border: OutlineInputBorder(),
-                                hintStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.normal),
-                                labelStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.normal),
-                              ),
+                              labelText: 'Mobile Number ',
+                              hintText: 'Mobile Number',
                               onChanged: (String value) {
                                 contactNumber = value;
                               },
@@ -484,61 +471,65 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                                     : null;
                               },
                             ),
-
                           ],
                         )),
-                    const SizedBox(height: 16,),
+                    const SizedBox(
+                      height: 16,
+                    ),
                     SizedBox(
                       width: double.maxFinite,
                       height: 52,
                       child: OutlinedButton(
-                        onPressed: ()async{
-                          if(_formKey.currentState!.validate()){
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
                             //print("validate");
                             setState(() {
                               ispostLoading = true;
                             });
                             var request = http.MultipartRequest(
-                                'POST',Uri.parse("https://cureways.vaccinehomebd.com/api/store/overseastreatment")
-                            );
-                            request.fields.addAll(
-                                {
-
-                                  "division_id":selectedDivisionId.toString(),
-                                  "police_station_id": selectedPoliceStationId.toString(),
-                                  "area_id": selecteAreaId.toString(),
-                                  "division": selectDistrict.toString(),
-                                  "policestations": selectedPoliceStation.toString(),
-                                  "area": selecteArea.toString(),
-                                  "name":_nameController.text.toString(),
-                                  "phone": _numberController.text.toString(),
-                                  "type": selectedServiceTypeId.toString(),
-                                  "created_at": "",
-                                  "updated_at": ""
-
-                                });
-                            http.StreamedResponse response = await request.send();
-                            if(response.statusCode == 200){
+                                'POST',
+                                Uri.parse(
+                                    "https://cureways.vaccinehomebd.com/api/store/overseastreatment"));
+                            request.fields.addAll({
+                              "division_id": selectedDivisionId.toString(),
+                              "police_station_id":
+                                  selectedPoliceStationId.toString(),
+                              "area_id": selecteAreaId.toString(),
+                              "division": selectDistrict.toString(),
+                              "policestations":
+                                  selectedPoliceStation.toString(),
+                              "area": selecteArea.toString(),
+                              "name": _nameController.text.toString(),
+                              "phone": _numberController.text.toString(),
+                              "type": selectedServiceTypeId.toString(),
+                              "created_at": "",
+                              "updated_at": ""
+                            });
+                            http.StreamedResponse response =
+                                await request.send();
+                            if (response.statusCode == 200) {
                               _numberController.clear();
                               _nameController.clear();
-                              toastMessage("Overseas Treatment Info Send Successfully", ConstantsColor.primaryColor);
+                              toastMessage(
+                                  "Overseas Treatment Info Send Successfully",
+                                  ConstantsColor.primaryColor);
                               setState(() {
                                 ispostLoading = false;
                               });
-                            }
-                            else{
+                            } else {
                               setState(() {
                                 ispostLoading = false;
                               });
-                              toastMessage("Overseas Treatment Info Send  not  Successfully ,Try again ", ConstantsColor.primaryColor);
+                              toastMessage(
+                                  "Overseas Treatment Info Send  not  Successfully ,Try again ",
+                                  ConstantsColor.primaryColor);
                             }
-
-                          }
-                          else{
+                          } else {
                             setState(() {
                               ispostLoading = false;
                             });
-                            toastMessage("Input All required Information ", ConstantsColor.primaryColor);
+                            toastMessage("Input All required Information ",
+                                ConstantsColor.primaryColor);
                           }
 
                           //   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const AmbulanceList()));
@@ -564,6 +555,7 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
       ),
     );
   }
+
   void toastMessage(String message, Color backgroundColor) {
     Fluttertoast.showToast(
         msg: message,

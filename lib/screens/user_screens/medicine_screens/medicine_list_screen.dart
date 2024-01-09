@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cureways_user/screens/user_screens/medicine_screens/medicine_details_screen.dart';
+import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -48,59 +49,61 @@ class _MedicineListScreenState extends State<MedicineListScreen> {
   Widget build(BuildContext context) {
     print(medicineList);
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 80,
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(12.0),
-              bottomRight: Radius.circular(12.0)),
-        ),
-        title: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              //SizedBox(height: 42,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Hi, $userName!",
-                          textAlign: TextAlign.start,
-                          style: const TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xff0F4B97)),
-                        ),
-                        const Text(
-                          "Welcome back",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xff0F4B97)),
-                        )
-                      ],
-                    ),
-                  ),
-                  SvgPicture.asset(
-                    "assets/home_screen/bell.svg",
-                    height: 32,
-                    width: 32,
-                    color: const Color(0xff0F4B97),
-                  )
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
+      appBar: const CustomAppBar(title: Text("Medicine List")),
+      // appBar: AppBar(
+      //   toolbarHeight: 80,
+      //   automaticallyImplyLeading: false,
+      //   backgroundColor: Colors.white,
+      //   shape: const RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.only(
+      //         bottomLeft: Radius.circular(12.0),
+      //         bottomRight: Radius.circular(12.0)),
+      //   ),
+      //   title: Padding(
+      //     padding: const EdgeInsets.all(8.0),
+      //     child: Column(
+      //       children: [
+      //         //SizedBox(height: 42,),
+      //         Row(
+      //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //           children: [
+      //             Expanded(
+      //               child: Column(
+      //                 crossAxisAlignment: CrossAxisAlignment.start,
+      //                 mainAxisAlignment: MainAxisAlignment.start,
+      //                 children: [
+      //                   Text(
+      //                     "Hi, $userName!",
+      //                     textAlign: TextAlign.start,
+      //                     style: const TextStyle(
+      //                         fontSize: 22,
+      //                         fontWeight: FontWeight.w700,
+      //                         color: Color(0xff0F4B97)),
+      //                   ),
+      //                   const Text(
+      //                     "Welcome back",
+      //                     textAlign: TextAlign.start,
+      //                     style: TextStyle(
+      //                         fontSize: 18,
+      //                         fontWeight: FontWeight.w400,
+      //                         color: Color(0xff0F4B97)),
+      //                   )
+      //                 ],
+      //               ),
+      //             ),
+      //             SvgPicture.asset(
+      //               "assets/home_screen/bell.svg",
+      //               height: 32,
+      //               width: 32,
+      //               color: const Color(0xff0F4B97),
+      //             )
+      //           ],
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
+      
       body: Column(
         children: [
           isLoading == true

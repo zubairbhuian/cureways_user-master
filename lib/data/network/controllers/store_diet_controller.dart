@@ -44,6 +44,9 @@ class StoreDietController extends GetxController {
     loader = false;
     update();
     if (res.statusCode == 200) {
+      dateController.clear();
+      timePeriodController.clear();
+      foodInCaloriesController.clear();
       PopupDialog.showSuccessDialog("Diet Tracker Added");
     } else if (res.statusCode == 422) {
       PopupDialog.showErrorMessage("All field is required");

@@ -1,5 +1,6 @@
 import 'package:cureways_user/screens/sign_in_screen.dart';
 import 'package:cureways_user/screens/sign_up/sign_up_otp.dart';
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/const_color.dart';
@@ -56,43 +57,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                    padding: const EdgeInsets.only(left: 22,right: 22),
                    child: Column(
                      children: [
-                       TextFormField(
+                       CustomTextField(
                          controller: _nameController,
                          keyboardType: TextInputType.text,
-
-                         decoration: const InputDecoration(
-
-                           suffixIcon:Icon(Icons.person_2_outlined),
                            labelText: 'Enter Your  Name',
                            hintText: 'Enter Your Name',
-                           border: OutlineInputBorder(),
-                           hintStyle: TextStyle(
-                               color: Colors.grey,
-                               fontStyle: FontStyle.normal),
-                           labelStyle: TextStyle(
-                               color: Colors.grey,
-                               fontStyle: FontStyle.normal),
-                         ),
 
                        ),
                        const SizedBox(height: 8,),
-                       TextFormField(
+                       CustomTextField(
                          controller: _mobileEmailController,
-                         keyboardType: TextInputType.text,
-
-                         decoration: const InputDecoration(
-
-                           suffixIcon:Icon(Icons.phone),
+                         keyboardType: TextInputType.number,
                            labelText: 'Enter your phone number ',
                            hintText: 'Enter your phone number ',
-                           border: OutlineInputBorder(),
-                           hintStyle: TextStyle(
-                               color: Colors.grey,
-                               fontStyle: FontStyle.normal),
-                           labelStyle: TextStyle(
-                               color: Colors.grey,
-                               fontStyle: FontStyle.normal),
-                         ),
 
                        ),
                        const SizedBox(height: 8,),
@@ -110,7 +87,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 52,
                     child: OutlinedButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SignUpOtp()));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const SignUpOtp()));
                       },
                       style: OutlinedButton.styleFrom(
                         backgroundColor: ConstantsColor.primaryColor,

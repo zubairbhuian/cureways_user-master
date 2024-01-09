@@ -1,5 +1,7 @@
 import 'package:cureways_user/data/network/controllers/get_tmp_list_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
+import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,25 +25,26 @@ class _BodyTmpScreenState extends State<BodyTmpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: ConstantsColor.primaryColor,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(12.0),
-              bottomRight: Radius.circular(12.0)),
-        ),
-        title: const Text(
-          "Body Temperature List",
-          style: TextStyle(
-              color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-      ),
+      appBar: CustomAppBar(title: Text("Body Temperature List".toUpperCase())),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   backgroundColor: ConstantsColor.primaryColor,
+      //   shape: const RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.only(
+      //         bottomLeft: Radius.circular(12.0),
+      //         bottomRight: Radius.circular(12.0)),
+      //   ),
+      //   title: const Text(
+      //     "Body Temperature List",
+      //     style: TextStyle(
+      //         color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+      //   ),
+      //   centerTitle: true,
+      // ),
       body: GetBuilder<GetTmpListController>(
         init: GetTmpListController(),
         builder: (tmpList) => tmpList.loader
-            ? const Center(child: CircularProgressIndicator())
+            ? const Center(child: AppIndecator())
             : Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: ListView.builder(

@@ -1,5 +1,6 @@
 import 'package:cureways_user/data/network/controllers/slot_booking_controller.dart';
 import 'package:cureways_user/screens/user_screens/doctor_appointment_screens/doctor_appontment_work_screen.dart';
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -180,107 +181,35 @@ class _DoctorAppointmentScreenState extends State<DoctorAppointmentScreen> {
                                 const SizedBox(
                                   height: 8,
                                 ),
-                                TextFormField(
+                                CustomTextField(
                                   controller: bookSlot.nameController,
                                   keyboardType: TextInputType.text,
-                                  textAlign: TextAlign.center,
-                                  decoration: const InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.symmetric(vertical: 20),
-                                    labelText: '    Enter Your  Name',
-                                    hintText: '  Enter Your  Name',
-                                    border: OutlineInputBorder(),
-                                    hintStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                    labelStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                  ),
+                                  labelText: 'Enter Your  Name',
+                                  hintText: 'Enter Your  Name',
                                 ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                TextFormField(
+                                CustomTextField(
                                   controller: bookSlot.ageController,
                                   keyboardType: TextInputType.text,
-                                  textAlign: TextAlign.center,
-                                  decoration: const InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.symmetric(vertical: 20),
-                                    labelText: '    Enter Your Age',
-                                    hintText: '    Enter Your Age',
-                                    border: OutlineInputBorder(),
-                                    hintStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                    labelStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                  ),
+                                  labelText: 'Enter Your Age',
+                                  hintText: 'Enter Your Age',
                                 ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                TextFormField(
+                                CustomTextField(
                                   controller: bookSlot.weightController,
                                   keyboardType: TextInputType.text,
-                                  textAlign: TextAlign.center,
-                                  decoration: const InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.symmetric(vertical: 20),
-                                    labelText: '    Enter Your Weight',
-                                    hintText: ' Enter Your Weight',
-                                    border: OutlineInputBorder(),
-                                    hintStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                    labelStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                  ),
+                                  labelText: 'Enter Your Weight',
+                                  hintText: 'Enter Your Weight',
                                 ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                TextFormField(
+                                CustomTextField(
                                   controller: bookSlot.locationController,
                                   keyboardType: TextInputType.text,
-                                  textAlign: TextAlign.center,
-                                  decoration: const InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.symmetric(vertical: 20),
-                                    labelText: '    Enter Your Location',
-                                    hintText: 'Enter Your Location',
-                                    border: OutlineInputBorder(),
-                                    hintStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                    labelStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                  ),
+                                  labelText: 'Enter Your Location',
+                                  hintText: 'Enter Your Location',
                                 ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                TextFormField(
+                                CustomTextField(
                                   controller: bookSlot.phoneController,
                                   keyboardType: TextInputType.text,
-                                  textAlign: TextAlign.center,
-                                  decoration: const InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.symmetric(vertical: 20),
-                                    labelText: '    Enter Your Phone',
-                                    hintText: 'Enter Your Phone Number',
-                                    border: OutlineInputBorder(),
-                                    hintStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                    labelStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                  ),
+                                  labelText: 'Enter Your Phone',
+                                  hintText: 'Enter Your Phone Number',
                                 ),
                                 const SizedBox(
                                   height: 8,

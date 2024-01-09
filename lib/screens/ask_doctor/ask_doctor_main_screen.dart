@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cureways_user/data/network/controllers/get_ask_doctor_controller.dart';
 import 'package:cureways_user/data/network/controllers/store_ask_doctor_controller.dart';
+import 'package:cureways_user/widgets/appbar.dart';
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -48,7 +50,7 @@ class _AskDoctorMainScreenState extends State<AskDoctorMainScreen> {
     "12k",
   ];
   dynamic userName;
-  int _currentIndex = 0;
+  final int _currentIndex = 0;
 
   StoreAskDoctorController storeAskDoctorController =
       StoreAskDoctorController();
@@ -72,59 +74,61 @@ class _AskDoctorMainScreenState extends State<AskDoctorMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 80,
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(12.0),
-              bottomRight: Radius.circular(12.0)),
-        ),
-        title: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              //SizedBox(height: 42,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Hi, $userName!",
-                          textAlign: TextAlign.start,
-                          style: const TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xff0F4B97)),
-                        ),
-                        const Text(
-                          "Welcome back",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xff0F4B97)),
-                        )
-                      ],
-                    ),
-                  ),
-                  SvgPicture.asset(
-                    "assets/home_screen/bell.svg",
-                    height: 32,
-                    width: 32,
-                    color: const Color(0xff0F4B97),
-                  )
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
+      appBar: const CustomAppBar(title: Text("Ask Doctor")),
+      // appBar: AppBar(
+      //   toolbarHeight: 80,
+      //   automaticallyImplyLeading: false,
+      //   backgroundColor: Colors.white,
+      //   shape: const RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.only(
+      //         bottomLeft: Radius.circular(12.0),
+      //         bottomRight: Radius.circular(12.0)),
+      //   ),
+      //   title: Padding(
+      //     padding: const EdgeInsets.all(8.0),
+      //     child: Column(
+      //       children: [
+      //         //SizedBox(height: 42,),
+      //         Row(
+      //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //           children: [
+      //             Expanded(
+      //               child: Column(
+      //                 crossAxisAlignment: CrossAxisAlignment.start,
+      //                 mainAxisAlignment: MainAxisAlignment.start,
+      //                 children: [
+      //                   Text(
+      //                     "Hi, $userName!",
+      //                     textAlign: TextAlign.start,
+      //                     style: const TextStyle(
+      //                         fontSize: 22,
+      //                         fontWeight: FontWeight.w700,
+      //                         color: Color(0xff0F4B97)),
+      //                   ),
+      //                   const Text(
+      //                     "Welcome back",
+      //                     textAlign: TextAlign.start,
+      //                     style: TextStyle(
+      //                         fontSize: 18,
+      //                         fontWeight: FontWeight.w400,
+      //                         color: Color(0xff0F4B97)),
+      //                   )
+      //                 ],
+      //               ),
+      //             ),
+      //             SvgPicture.asset(
+      //               "assets/home_screen/bell.svg",
+      //               height: 32,
+      //               width: 32,
+      //               color: const Color(0xff0F4B97),
+      //             )
+      //           ],
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
+      
       body: GetBuilder<StoreAskDoctorController>(
         init: StoreAskDoctorController(),
         builder: (storeAskDoctor) => Container(
@@ -237,27 +241,11 @@ class _AskDoctorMainScreenState extends State<AskDoctorMainScreen> {
                     child: Row(
                       children: [
                         Expanded(
-                          child: TextFormField(
+                          child: CustomTextField(
                             controller: storeAskDoctor.questionController,
                             keyboardType: TextInputType.text,
+                            hintText: 'Ask for health tips',
                             // textAlign: TextAlign.center,
-                            decoration: const InputDecoration(
-                              filled: true,
-                              fillColor: Color(0xffE8EFFA),
-                              contentPadding: EdgeInsets.fromLTRB(5, 10, 0, 10),
-                              hintText: 'Ask for health tips',
-                              border: OutlineInputBorder(),
-                              hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                              labelStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: ConstantsColor.primaryColor),
-                              ),
-                            ),
                           ),
                         ),
                         const VerticalDivider(),

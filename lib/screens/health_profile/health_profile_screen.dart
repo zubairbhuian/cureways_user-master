@@ -2,6 +2,7 @@ import 'package:cureways_user/screens/health_profile/add_health_profile_screen.d
 import 'package:cureways_user/screens/health_profile/update_health_profile_screen.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/utils/mixins.dart';
+import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -23,71 +24,73 @@ class _HealthProfileScreenState extends State<HealthProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 152,
-        automaticallyImplyLeading: false,
-        backgroundColor: ConstantsColor.primaryColor,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(12.0),
-              bottomRight: Radius.circular(12.0)),
-        ),
-        title: Column(
-          children: [
-            //SizedBox(height: 42,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Hi,${_myBox.get('userName')}",
-                        textAlign: TextAlign.start,
-                        style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
-                      ),
-                      const Text(
-                        "Welcome back",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white),
-                      )
-                    ],
-                  ),
-                ),
-                SvgPicture.asset(
-                  "assets/home_screen/bell.svg",
-                  height: 32,
-                  width: 32,
-                  color: Colors.white,
-                )
-              ],
-            ),
-            const SizedBox(height: 16),
-            const Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'HEALTH PROFILE',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white),
-                )
-              ],
-            )
-          ],
-        ),
-      ),
+      appBar: const CustomAppBar(title: Text("Health Profile")),
+      // appBar: AppBar(
+      //   toolbarHeight: 152,
+      //   automaticallyImplyLeading: false,
+      //   backgroundColor: ConstantsColor.primaryColor,
+      //   shape: const RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.only(
+      //         bottomLeft: Radius.circular(12.0),
+      //         bottomRight: Radius.circular(12.0)),
+      //   ),
+      //   title: Column(
+      //     children: [
+      //       //SizedBox(height: 42,),
+      //       Row(
+      //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //         children: [
+      //           Expanded(
+      //             child: Column(
+      //               crossAxisAlignment: CrossAxisAlignment.start,
+      //               mainAxisAlignment: MainAxisAlignment.start,
+      //               children: [
+      //                 Text(
+      //                   "Hi,${_myBox.get('userName')}",
+      //                   textAlign: TextAlign.start,
+      //                   style: const TextStyle(
+      //                       fontSize: 18,
+      //                       fontWeight: FontWeight.w600,
+      //                       color: Colors.white),
+      //                 ),
+      //                 const Text(
+      //                   "Welcome back",
+      //                   textAlign: TextAlign.start,
+      //                   style: TextStyle(
+      //                       fontSize: 14,
+      //                       fontWeight: FontWeight.w400,
+      //                       color: Colors.white),
+      //                 )
+      //               ],
+      //             ),
+      //           ),
+      //           SvgPicture.asset(
+      //             "assets/home_screen/bell.svg",
+      //             height: 32,
+      //             width: 32,
+      //             color: Colors.white,
+      //           )
+      //         ],
+      //       ),
+      //       const SizedBox(height: 16),
+      //       const Row(
+      //         crossAxisAlignment: CrossAxisAlignment.center,
+      //         mainAxisAlignment: MainAxisAlignment.center,
+      //         children: [
+      //           Text(
+      //             'HEALTH PROFILE',
+      //             textAlign: TextAlign.start,
+      //             style: TextStyle(
+      //                 fontSize: 18,
+      //                 fontWeight: FontWeight.w600,
+      //                 color: Colors.white),
+      //           )
+      //         ],
+      //       )
+      //     ],
+      //   ),
+      // ),
+      
       body: Container(
         height: 120,
         padding:  EdgeInsets.only(left: 20.w, right: 20.w),

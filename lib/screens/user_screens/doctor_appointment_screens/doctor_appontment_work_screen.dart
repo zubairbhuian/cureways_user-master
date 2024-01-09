@@ -5,7 +5,7 @@ import '../../../widgets/appbar.dart';
 
 class DoctorAppointmentWorkScreen extends StatefulWidget {
 // String userName;
-  DoctorAppointmentWorkScreen({Key? key}) : super(key: key);
+  const DoctorAppointmentWorkScreen({Key? key}) : super(key: key);
 
   @override
   State<DoctorAppointmentWorkScreen> createState() =>
@@ -23,11 +23,11 @@ class _DoctorAppointmentWorkScreenState
   // }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Column(
         children: [
           AppDefaultBar(title: "VIRTUAL LAB", userNAme: ''),
-          const Expanded(
+          Expanded(
             child: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.all(8.0),

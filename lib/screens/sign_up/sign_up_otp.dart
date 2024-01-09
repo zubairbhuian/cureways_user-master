@@ -1,3 +1,4 @@
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/const_color.dart';
@@ -29,21 +30,11 @@ class _SignUpOtpState extends State<SignUpOtp> {
                     padding: const EdgeInsets.only(left: 22, right: 22),
                     child: Column(
                       children: [
-                        TextFormField(
+                        CustomTextField(
                           controller: _otpController,
-                          keyboardType: TextInputType.text,
-                          decoration: const InputDecoration(
-                            suffixIcon: Icon(Icons.phone),
-                            labelText: 'Enter your OTP ',
-                            hintText: 'Enter your OTP ',
-                            border: OutlineInputBorder(),
-                            hintStyle: TextStyle(
-                                color: Colors.grey,
-                                fontStyle: FontStyle.normal),
-                            labelStyle: TextStyle(
-                                color: Colors.grey,
-                                fontStyle: FontStyle.normal),
-                          ),
+                          keyboardType: TextInputType.number,
+                          labelText: 'Enter your OTP ',
+                          hintText: 'Enter your OTP ',
                         ),
                         const SizedBox(
                           height: 8,
@@ -51,8 +42,8 @@ class _SignUpOtpState extends State<SignUpOtp> {
                       ],
                     ),
                   )),
-              SizedBox(
-                height: 32,
+              const SizedBox(
+                height: 22,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 22, right: 22),

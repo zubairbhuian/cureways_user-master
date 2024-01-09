@@ -1,7 +1,13 @@
 import 'package:cureways_user/data/network/controllers/store_diet_controller.dart';
+import 'package:cureways_user/utils/mixins.dart';
+import 'package:cureways_user/utils/my_func.dart';
 import 'package:cureways_user/utils/style.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
+import 'package:cureways_user/widgets/custom_textfield.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
@@ -32,20 +38,23 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
     return GetBuilder<StoreDietController>(
       init: StoreDietController(),
       builder: (storeDiet) => Scaffold(
+        appBar: const CustomAppBar(
+          title: Text("DIET TRACKER"),
+        ),
         body: Container(
           height: double.infinity,
           color: ConstantsColor.backgroundColor,
           child: Column(
             children: [
-              AppDefaultBar(
-                  title: "DIET TRACKER", userNAme: _myBox.get('userName')),
+              // AppDefaultBar(
+              //     title: "DIET TRACKER", userNAme: _myBox.get('userName')),
               const SizedBox(
                 height: 8,
               ),
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding:EdgeInsets.only(left: 20.w, right: 20.w, top: 12),
+                    padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -53,83 +62,134 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
                             key: _formKey,
                             child: Column(
                               children: [
-                                TextFormField(
+                                CustomTextField(
                                     controller: storeDiet.dateController,
                                     keyboardType: TextInputType.text,
-                                    textAlign: TextAlign.center,
-                                    decoration: const InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 20, horizontal: 14),
-                                      labelText: 'mm-dd-yyyy',
-                                      hintText: 'mm-dd-yyyy',
-                                      border: OutlineInputBorder(),
-                                      hintStyle: TextStyle(
-                                          color: Colors.grey,
-                                          fontStyle: FontStyle.normal),
-                                      labelStyle: TextStyle(
-                                          color: Colors.grey,
-                                          fontStyle: FontStyle.normal),
-                                      suffixIcon: Icon(Icons.calendar_month),
-                                    ),
+                                    readOnly: true,
+                                    labelText: 'mm/dd/yyyy',
+                                    hintText: 'mm/dd/yyyy',
                                     onTap: () async {
                                       DateTime? pickedDate =
                                           await showDatePicker(
                                               context: context,
-                                              initialDate: DateTime(2010),
+                                              initialDate: DateTime.now(),
                                               firstDate: DateTime(2000),
                                               lastDate: DateTime(2101));
                                       if (pickedDate != null) {
-                                        kLogger.e(pickedDate);
-                                        storeDiet.dateController.text =
-                                            DateFormat(DateFormat.YEAR_NUM_MONTH_DAY
-                                            )
-                                                .format(pickedDate);
+                                        storeDiet
+                                            .dateController.text = DateFormat(
+                                                DateFormat.YEAR_NUM_MONTH_DAY)
+                                            .format(pickedDate);
                                         storeDiet.update();
                                       }
                                     }),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                TextFormField(
+                                CustomTextField(
                                   controller: storeDiet.timePeriodController,
                                   keyboardType: TextInputType.text,
-                                  textAlign: TextAlign.center,
-                                  decoration: const InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.symmetric(vertical: 20),
-                                    labelText: '    Enter Time Period',
-                                    hintText: '    Enter Time Period',
-                                    border: OutlineInputBorder(),
-                                    hintStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                    labelStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                  ),
+                                  readOnly: true,
+                                  labelText: 'Enter Time Period',
+                                  hintText: 'Enter Time Period',
+                                  onTap: () async {
+                                    TimeOfDay? selectedTime =
+                                        await showTimePicker(
+                                      initialTime: TimeOfDay.now(),
+                                      context: context,
+                                    );
+                                    if (selectedTime != null) {
+                                      storeDiet.timePeriodController.text =
+                                          "${selectedTime.hour}:${selectedTime.minute}";
+                                      //! formet the time
+                                      /// MyFunc.formatTimeOfDay(selectedTime);
+                                      storeDiet.update();
+                                    }
+                                  },
                                 ),
                                 const SizedBox(
                                   height: 8,
                                 ),
-                                TextFormField(
-                                  controller:
-                                      storeDiet.foodInCaloriesController,
-                                  keyboardType: TextInputType.text,
-                                  textAlign: TextAlign.center,
-                                  decoration: const InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.symmetric(vertical: 20),
-                                    labelText: '     Food Quantity In Calories',
-                                    hintText: '     Food Quantity In Calories',
-                                    border: OutlineInputBorder(),
-                                    hintStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                    labelStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
+                                DropdownButtonFormField2(
+                                  value: storeDiet
+                                          .foodInCaloriesController.text.isEmpty
+                                      ? null
+                                      : storeDiet.foodInCaloriesController.text,
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                    contentPadding: EdgeInsets.zero,
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5)),
                                   ),
+                                  buttonStyleData: const ButtonStyleData(
+                                    height: 60,
+                                    padding:
+                                        EdgeInsets.only(left: 00, right: 10),
+                                  ),
+                                  isExpanded: true,
+                                  hint: const Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Select Food Quantity",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                            color: ConstantsColor.primaryColor),
+                                      ),
+                                      Text(
+                                        "*",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.red),
+                                      ),
+                                    ],
+                                  ),
+                                  items: Mixins()
+                                      .foodQuantity
+                                      .map((item) => DropdownMenuItem<String>(
+                                          value: item,
+                                          child: Text(
+                                            item,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                            ),
+                                          )))
+                                      .toList(),
+                                  onChanged: (value) {
+                                    storeDiet.foodInCaloriesController.text =
+                                        value.toString();
+                                    // selectTimePeriod = value.toString();
+                                  },
+                                  onSaved: (value) {
+                                    storeDiet.foodInCaloriesController.text =
+                                        value.toString();
+                                  },
+                                  validator: (value) {
+                                    if (value == null) {
+                                      return 'Please Select Food Quantity';
+                                    }
+                                    return null;
+                                  },
                                 ),
+                                // CustomTextField(
+                                //   controller:
+                                //       storeDiet.foodInCaloriesController,
+                                //   keyboardType: TextInputType.text,
+                                //   textAlign: TextAlign.center,
+                                //   decoration: const InputDecoration(
+                                //     contentPadding:
+                                //         EdgeInsets.symmetric(vertical: 20),
+                                //     labelText: '     Food Quantity In Calories',
+                                //     hintText: '     Food Quantity In Calories',
+                                //     border: OutlineInputBorder(),
+                                //     hintStyle: TextStyle(
+                                //         color: Colors.grey,
+                                //         fontStyle: FontStyle.normal),
+                                //     labelStyle: TextStyle(
+                                //         color: Colors.grey,
+                                //         fontStyle: FontStyle.normal),
+                                //   ),
+                                // ),
                               ],
                             )),
                         const SizedBox(
@@ -158,8 +218,7 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
                               ),
                             ),
                             child: storeDiet.loader
-                                ? const Center(
-                                    child: CircularProgressIndicator())
+                                ? const Center(child: LoadIndecator())
                                 : const Text(
                                     'SUBMIT',
                                     style: TextStyle(

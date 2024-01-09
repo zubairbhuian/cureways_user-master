@@ -1,5 +1,7 @@
 import 'package:cureways_user/data/network/controllers/add_health_profile_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
+import 'package:cureways_user/widgets/appbar.dart';
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -32,76 +34,78 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
     return GetBuilder<AddHealthProfileController>(
       init: AddHealthProfileController(),
       builder: (addHealthProfile) => Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 152,
-          automaticallyImplyLeading: false,
-          backgroundColor: ConstantsColor.primaryColor,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(12.0),
-                bottomRight: Radius.circular(12.0)),
-          ),
-          title: Column(
-            children: [
-              //SizedBox(height: 42,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Hi,${_myBox.get('userName')}",
-                          textAlign: TextAlign.start,
-                          style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white),
-                        ),
-                        const Text(
-                          "Welcome back",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
-                        )
-                      ],
-                    ),
-                  ),
-                  SvgPicture.asset(
-                    "assets/home_screen/bell.svg",
-                    height: 32,
-                    width: 32,
-                    color: Colors.white,
-                  )
-                ],
-              ),
-              const SizedBox(height: 16),
-              const Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'UPDATE HEALTH PROFILE',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white),
-                  )
-                ],
-              )
-            ],
-          ),
-        ),
+        appBar: const CustomAppBar(title: Text("Update Health Profile")),
+        // appBar: AppBar(
+        //   toolbarHeight: 152,
+        //   automaticallyImplyLeading: false,
+        //   backgroundColor: ConstantsColor.primaryColor,
+        //   shape: const RoundedRectangleBorder(
+        //     borderRadius: BorderRadius.only(
+        //         bottomLeft: Radius.circular(12.0),
+        //         bottomRight: Radius.circular(12.0)),
+        //   ),
+        //   title: Column(
+        //     children: [
+        //       //SizedBox(height: 42,),
+        //       Row(
+        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //         children: [
+        //           Expanded(
+        //             child: Column(
+        //               crossAxisAlignment: CrossAxisAlignment.start,
+        //               mainAxisAlignment: MainAxisAlignment.start,
+        //               children: [
+        //                 Text(
+        //                   "Hi,${_myBox.get('userName')}",
+        //                   textAlign: TextAlign.start,
+        //                   style: const TextStyle(
+        //                       fontSize: 18,
+        //                       fontWeight: FontWeight.w600,
+        //                       color: Colors.white),
+        //                 ),
+        //                 const Text(
+        //                   "Welcome back",
+        //                   textAlign: TextAlign.start,
+        //                   style: TextStyle(
+        //                       fontSize: 14,
+        //                       fontWeight: FontWeight.w400,
+        //                       color: Colors.white),
+        //                 )
+        //               ],
+        //             ),
+        //           ),
+        //           SvgPicture.asset(
+        //             "assets/home_screen/bell.svg",
+        //             height: 32,
+        //             width: 32,
+        //             color: Colors.white,
+        //           )
+        //         ],
+        //       ),
+        //       const SizedBox(height: 16),
+        //       const Row(
+        //         crossAxisAlignment: CrossAxisAlignment.center,
+        //         mainAxisAlignment: MainAxisAlignment.center,
+        //         children: [
+        //           Text(
+        //             'UPDATE HEALTH PROFILE',
+        //             textAlign: TextAlign.start,
+        //             style: TextStyle(
+        //                 fontSize: 18,
+        //                 fontWeight: FontWeight.w600,
+        //                 color: Colors.white),
+        //           )
+        //         ],
+        //       )
+        //     ],
+        //   ),
+        // ),
+
         body: addHealthProfile.loader
             ? const Center(child: CircularProgressIndicator())
             : SingleChildScrollView(
                 child: Padding(
-                  padding:  EdgeInsets.only(left: 20.w, right: 20.w,bottom: 12),
+                  padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 12),
                   child: Column(
                     children: [
                       const SizedBox(height: 16),
@@ -115,126 +119,54 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                       const SizedBox(height: 16),
                       Column(
                         children: [
-                          TextFormField(
+                          CustomTextField(
                             controller: addHealthProfile.ageController
                               ..text = addHealthProfile.age.toString()
                               ..selection = TextSelection.collapsed(
                                   offset: addHealthProfile
                                       .ageController.text.length),
                             keyboardType: TextInputType.text,
-                            textAlign: TextAlign.start,
-                            decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 20, horizontal: 20),
-                              labelText: 'Age',
-                              hintText: 'Age',
-                              border: OutlineInputBorder(),
-                              hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                              labelStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                            ),
+                            labelText: 'Age',
+                            hintText: 'Age',
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          TextFormField(
+                          CustomTextField(
                             controller: addHealthProfile.genderController
                               ..text = addHealthProfile.gender == "1"
                                   ? "Male"
                                   : "Female",
                             keyboardType: TextInputType.text,
-                            textAlign: TextAlign.start,
-                            decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 20, horizontal: 20),
-                              labelText: 'Gender',
-                              hintText: 'Gender',
-                              border: OutlineInputBorder(),
-                              hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                              labelStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                            ),
+                            labelText: 'Gender',
+                            hintText: 'Gender',
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          TextFormField(
+                          CustomTextField(
                             controller: addHealthProfile.heightController
                               ..text = addHealthProfile.height.toString()
                               ..selection = TextSelection.collapsed(
                                   offset: addHealthProfile
                                       .heightController.text.length),
                             keyboardType: TextInputType.text,
-                            textAlign: TextAlign.start,
-                            decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 20, horizontal: 20),
-                              labelText: 'Height',
-                              hintText: 'Height',
-                              border: OutlineInputBorder(),
-                              hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                              labelStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                            ),
+                            labelText: 'Height',
+                            hintText: 'Height',
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          TextFormField(
+                          CustomTextField(
                             controller: addHealthProfile.weightController
                               ..text = addHealthProfile.weight.toString()
                               ..selection = TextSelection.collapsed(
                                   offset: addHealthProfile
                                       .weightController.text.length),
                             keyboardType: TextInputType.text,
-                            textAlign: TextAlign.start,
-                            decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 20, horizontal: 20),
-                              labelText: 'Weight',
-                              hintText: 'Weight',
-                              border: OutlineInputBorder(),
-                              hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                              labelStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                            ),
+                            labelText: 'Weight',
+                            hintText: 'Weight',
                           ),
                           const SizedBox(
                             height: 8,
                           ),
-                          TextFormField(
+                          CustomTextField(
                             controller: addHealthProfile.msController
                               ..text = addHealthProfile.marital.toString(),
                             keyboardType: TextInputType.text,
-                            textAlign: TextAlign.start,
-                            decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 20, horizontal: 20),
-                              labelText: 'Marital Status',
-                              hintText: 'Marital Status',
-                              border: OutlineInputBorder(),
-                              hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                              labelStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8,
+                            labelText: 'Marital Status',
+                            hintText: 'Marital Status',
                           ),
                           GestureDetector(
                             onTap: () {
@@ -242,164 +174,77 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                                 _isExpanded = !_isExpanded;
                               });
                             },
-                            child: TextFormField(
-                              controller:
-                                  addHealthProfile.chiefComplainController
-                                    ..text = addHealthProfile.chiefComplain.toString()
-                                    ..selection = TextSelection.collapsed(
-                                        offset: addHealthProfile
-                                            .chiefComplainController
-                                            .text
-                                            .length),
+                            child: CustomTextField(
+                              controller: addHealthProfile
+                                  .chiefComplainController
+                                ..text =
+                                    addHealthProfile.chiefComplain.toString()
+                                ..selection = TextSelection.collapsed(
+                                    offset: addHealthProfile
+                                        .chiefComplainController.text.length),
                               keyboardType: TextInputType.multiline,
                               minLines: 1,
                               maxLines: _isExpanded ? null : 3,
-                              textAlign: TextAlign.start,
-                              decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 20, horizontal: 20),
-                                labelText: 'Chief Complain',
-                                hintText: 'Chief Complain(If Any)',
-                                border: OutlineInputBorder(),
-                                hintStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.normal),
-                                labelStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.normal),
-                              ),
+                              labelText: 'Chief Complain',
+                              hintText: 'Chief Complain(If Any)',
                             ),
                           ),
                           const SizedBox(
                             height: 8,
                           ),
-                          TextFormField(
+                          CustomTextField(
                             controller: addHealthProfile.prevDiseaseController
                               ..text = addHealthProfile.prevDisease.toString()
                               ..selection = TextSelection.collapsed(
                                   offset: addHealthProfile
                                       .prevDiseaseController.text.length),
                             keyboardType: TextInputType.text,
-                            textAlign: TextAlign.start,
-                            decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 20, horizontal: 20),
-                              labelText: 'Previous Disease',
-                              hintText: 'Previous Disease(If Any)',
-                              border: OutlineInputBorder(),
-                              hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                              labelStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                            ),
+                            labelText: 'Previous Disease',
+                            hintText: 'Previous Disease(If Any)',
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          TextFormField(
+                          CustomTextField(
                             controller: addHealthProfile.prevOtHistoryController
                               ..text = addHealthProfile.otHistory.toString()
                               ..selection = TextSelection.collapsed(
                                   offset: addHealthProfile
                                       .prevOtHistoryController.text.length),
                             keyboardType: TextInputType.text,
-                            textAlign: TextAlign.start,
-                            decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 20, horizontal: 20),
-                              labelText: 'Ot History',
-                              hintText: 'Ot History(If Any)',
-                              border: OutlineInputBorder(),
-                              hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                              labelStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                            ),
+                            labelText: 'Ot History',
+                            hintText: 'Ot History(If Any)',
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          TextFormField(
+                          CustomTextField(
                             controller: addHealthProfile.medicationController
                               ..text = addHealthProfile.medication.toString()
                               ..selection = TextSelection.collapsed(
                                   offset: addHealthProfile
                                       .medicationController.text.length),
                             keyboardType: TextInputType.text,
-                            textAlign: TextAlign.start,
-                            decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 20, horizontal: 20),
-                              labelText: 'Medication',
-                              hintText: 'Medication(If Any)',
-                              border: OutlineInputBorder(),
-                              hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                              labelStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                            ),
+                            labelText: 'Medication',
+                            hintText: 'Medication(If Any)',
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          TextFormField(
-                            controller:
-                                addHealthProfile.physicalDisabilitiesController
-                                  ..text = addHealthProfile.disabilities.toString()
-                                  ..selection = TextSelection.collapsed(
-                                      offset: addHealthProfile
-                                          .physicalDisabilitiesController
-                                          .text
-                                          .length),
+                          CustomTextField(
+                            controller: addHealthProfile
+                                .physicalDisabilitiesController
+                              ..text = addHealthProfile.disabilities.toString()
+                              ..selection = TextSelection.collapsed(
+                                  offset: addHealthProfile
+                                      .physicalDisabilitiesController
+                                      .text
+                                      .length),
                             keyboardType: TextInputType.text,
-                            textAlign: TextAlign.start,
-                            decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 20, horizontal: 20),
-                              labelText: 'Disabilities',
-                              hintText: 'Disabilities(If Any)',
-                              border: OutlineInputBorder(),
-                              hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                              labelStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                            ),
+                            labelText: 'Disabilities',
+                            hintText: 'Disabilities(If Any)',
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          TextFormField(
-                            controller:
-                                addHealthProfile.prevTestResultController
-                                  ..text = addHealthProfile.testResult.toString()
-                                  ..selection = TextSelection.collapsed(
-                                      offset: addHealthProfile
-                                          .prevTestResultController
-                                          .text
-                                          .length),
+                          CustomTextField(
+                            controller: addHealthProfile
+                                .prevTestResultController
+                              ..text = addHealthProfile.testResult.toString()
+                              ..selection = TextSelection.collapsed(
+                                  offset: addHealthProfile
+                                      .prevTestResultController.text.length),
                             keyboardType: TextInputType.text,
-                            textAlign: TextAlign.start,
-                            decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 20, horizontal: 20),
-                              labelText: 'Test Result',
-                              hintText: 'Test Result(If Any)',
-                              border: OutlineInputBorder(),
-                              hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                              labelStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontStyle: FontStyle.normal),
-                            ),
+                            labelText: 'Test Result',
+                            hintText: 'Test Result(If Any)',
                           ),
                           const SizedBox(
                             height: 8,

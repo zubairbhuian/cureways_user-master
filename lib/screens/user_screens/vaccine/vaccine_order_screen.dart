@@ -1,3 +1,4 @@
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -84,7 +85,7 @@ class _VaccineOrderScreenState extends State<VaccineOrderScreen> {
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding:  EdgeInsets.only(left: 20.w, right: 20.w, top: 12),
+                padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 12),
                 child: Column(
                   children: [
                     Form(
@@ -213,7 +214,7 @@ class _VaccineOrderScreenState extends State<VaccineOrderScreen> {
                                         value.toString())?['name']
                                     ?.toString();
                                 // selectDistrict = divisionNames[int.parse(value.toString())];
-              
+
                                 //print(selectedPoliceStationId);
                                 //print(selectedPoliceStation);
                                 //print('value => $value');
@@ -299,23 +300,11 @@ class _VaccineOrderScreenState extends State<VaccineOrderScreen> {
                             const SizedBox(
                               height: 8,
                             ),
-                            TextFormField(
+                            CustomTextField(
                               controller: _nameController,
                               keyboardType: TextInputType.text,
-                              textAlign: TextAlign.start,
-                              decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 20, horizontal: 20),
-                                labelText: 'Name ',
-                                hintText: 'Name',
-                                border: OutlineInputBorder(),
-                                hintStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.normal),
-                                labelStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.normal),
-                              ),
+                              labelText: 'Name ',
+                              hintText: 'Name',
                               onChanged: (String value) {
                                 name = value;
                               },
@@ -325,26 +314,11 @@ class _VaccineOrderScreenState extends State<VaccineOrderScreen> {
                                     : null;
                               },
                             ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            TextFormField(
+                            CustomTextField(
                               controller: _numberController,
                               keyboardType: TextInputType.text,
-                              textAlign: TextAlign.center,
-                              decoration: const InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(vertical: 20),
-                                labelText: '  Enter Your Mobile Number',
-                                hintText: ' Mobile Number',
-                                border: OutlineInputBorder(),
-                                hintStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.normal),
-                                labelStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.normal),
-                              ),
+                              labelText: 'Enter Your Mobile Number',
+                              hintText: 'Mobile Number',
                             ),
                             const SizedBox(
                               height: 8,
@@ -388,8 +362,7 @@ class _VaccineOrderScreenState extends State<VaccineOrderScreen> {
                                 await request.send();
                             if (response.statusCode == 200) {
                               _numberController.clear();
-                              toastMessage(
-                                  "Virtual Lab Info Send Successfully",
+                              toastMessage("Virtual Lab Info Send Successfully",
                                   ConstantsColor.primaryColor);
                               setState(() {
                                 ispostLoading = false;

@@ -26,7 +26,30 @@ class _DietListScreenState extends State<DietListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: Text("This is ")),
+      appBar:  CustomAppBar(title: Text("Diet List".toUpperCase())),
+      // appBar: AppBar(
+      //   // automaticallyImplyLeading: false,
+      //   leading: IconButton(
+      //       onPressed: () {
+      //         Get.back();
+      //       },
+      //       icon: const Icon(
+      //         Icons.arrow_back_ios_new,
+      //         color: kWhite,
+      //       )),
+      //   backgroundColor: ConstantsColor.primaryColor,
+      //   shape: const RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.only(
+      //         bottomLeft: Radius.circular(12.0),
+      //         bottomRight: Radius.circular(12.0)),
+      //   ),
+      //   title: const Text(
+      //     "Diet List",
+      //     style: TextStyle(
+      //         color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+      //   ),
+      //   centerTitle: true,
+      // ),
       body: GetBuilder<GetDietListController>(
           init: GetDietListController(),
           builder: (controlller) {
@@ -47,7 +70,7 @@ class _DietListScreenState extends State<DietListScreen> {
                 itemBuilder: (context, index) => Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    height: 50,
+                    padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       color: ConstantsColor.backgroundColor,
                       borderRadius: BorderRadius.circular(20.0),
@@ -60,6 +83,8 @@ class _DietListScreenState extends State<DietListScreen> {
                               "Food quantity: ${controlller.dietList?[index].foodQty}"),
                           const SizedBox(height: 3),
                           Text("Date: ${controlller.dietList?[index].date}"),
+                          const SizedBox(height: 3),
+                          Text("Date: ${controlller.dietList?[index].time}"),
                         ],
                       ),
                     ),

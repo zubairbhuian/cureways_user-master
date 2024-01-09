@@ -67,9 +67,11 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ConstantsColor.backgroundColor,
+      appBar: const CustomAppBar(title: Text("HEALTH TRACKER"),),
       body: Column(
         children: [
-          AppDefaultBar(title: "HEALTH TRACKER", userNAme: "$userName"),
+          // AppDefaultBar(title: "HEALTH TRACKER", userNAme: "$userName"),
           const SizedBox(
             height: 8,
           ),

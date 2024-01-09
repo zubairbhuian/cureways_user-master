@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onLeading;
   final double? preferredHeight;
   final List<Widget>? actions;
-
+  final PreferredSizeWidget? bottom;
   final bool centerTitle;
   final bool? hasBackBTN;
 
@@ -22,7 +22,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.preferredHeight,
       this.actions,
        this.centerTitle=true,
-       this.hasBackBTN=true,
+       this.hasBackBTN=true, this.bottom,
     });
 
 // Specify the desired height of the AppBar
@@ -34,11 +34,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       titleSpacing: 0,
-      elevation: 0,
+      elevation: 6,
       centerTitle: centerTitle,
       leadingWidth: 60,
       backgroundColor: kPrimaryColor,
       foregroundColor: kTextColor,
+      bottom: bottom,
       titleTextStyle: kTitleLarge.copyWith(color: kWhite),
       // appbar leading
       leading:hasBackBTN==true? GestureDetector(
@@ -64,83 +65,46 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class AppDefaultBar extends StatelessWidget {
-  String title;
-  String userNAme;
+final  String? title;
+final   String? userNAme;
+final bool? hasBackBTN;
 
-  AppDefaultBar({
-    required this.title,
-    required this.userNAme,
-    Key? key,
+const  AppDefaultBar({
+     this.title,
+     this.userNAme,
+    Key? key, this.hasBackBTN =true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      toolbarHeight: 152,
+  return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: ConstantsColor.primaryColor,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(12.0),
-            bottomRight: Radius.circular(12.0)),
-      ),
-      title: Column(
-        children: [
-          //SizedBox(height: 42,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Hi,$userNAme",
-                      textAlign: TextAlign.start,
-                      style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white),
-                    ),
-                    const Text(
-                      "Welcome back",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white),
-                    )
-                  ],
-                ),
-              ),
-              SvgPicture.asset(
-                "assets/home_screen/bell.svg",
-                height: 32,
-                width: 32,
-                color: Colors.white,
-              )
-            ],
+      titleSpacing: 0,
+      elevation: 6,
+      centerTitle: true,
+      leadingWidth: 60,
+      backgroundColor: kPrimaryColor,
+      foregroundColor: kTextColor,
+      titleTextStyle: kTitleLarge.copyWith(color: kWhite),
+      // appbar leading
+      leading:hasBackBTN==true? GestureDetector(
+        onTap: () {
+          Get.back();
+        },
+        child: const Center(
+          child: CircleAvatar(
+            radius: 24,
+            backgroundColor: kPrimaryColor,
+            child: Icon(
+              Icons.arrow_back_ios_new,
+              color: kWhite,
+            ),
           ),
-          const SizedBox(
-            height: 16,
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                title,
-                textAlign: TextAlign.start,
-                style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white),
-              )
-            ],
-          )
-        ],
-      ),
+        ),
+      ):null,
+      // appbar title
+      title:Text(title?.toUpperCase()??""),
+      // appbar actions),
     );
   }
 }

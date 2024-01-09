@@ -6,6 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
+import '../../widgets/appbar.dart';
+
 class GetHealthProfileScreen extends StatefulWidget {
   const GetHealthProfileScreen({super.key});
 
@@ -28,71 +30,73 @@ class _GetHealthProfileScreenState extends State<GetHealthProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 152,
-        automaticallyImplyLeading: false,
-        backgroundColor: ConstantsColor.primaryColor,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(12.0),
-              bottomRight: Radius.circular(12.0)),
-        ),
-        title: Column(
-          children: [
-            //SizedBox(height: 42,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Hi,${_myBox.get('userName')}",
-                        textAlign: TextAlign.start,
-                        style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
-                      ),
-                      const Text(
-                        "Welcome back",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white),
-                      )
-                    ],
-                  ),
-                ),
-                // IconButton(
-                //   onPressed: () {
-                //     Get.to(() => const UpdateHealthProfileScreen());
-                //   },
-                //   icon: const Icon(Icons.edit_outlined),
-                // ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            const Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'SHOW HEALTH PROFILE',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white),
-                )
-              ],
-            )
-          ],
-        ),
-      ),
+      appBar: const CustomAppBar(title: Text("Get Health Profile")),
+      // appBar: AppBar(
+      //   toolbarHeight: 152,
+      //   automaticallyImplyLeading: false,
+      //   backgroundColor: ConstantsColor.primaryColor,
+      //   shape: const RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.only(
+      //         bottomLeft: Radius.circular(12.0),
+      //         bottomRight: Radius.circular(12.0)),
+      //   ),
+      //   title: Column(
+      //     children: [
+      //       //SizedBox(height: 42,),
+      //       Row(
+      //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //         children: [
+      //           Expanded(
+      //             child: Column(
+      //               crossAxisAlignment: CrossAxisAlignment.start,
+      //               mainAxisAlignment: MainAxisAlignment.start,
+      //               children: [
+      //                 Text(
+      //                   "Hi,${_myBox.get('userName')}",
+      //                   textAlign: TextAlign.start,
+      //                   style: const TextStyle(
+      //                       fontSize: 18,
+      //                       fontWeight: FontWeight.w600,
+      //                       color: Colors.white),
+      //                 ),
+      //                 const Text(
+      //                   "Welcome back",
+      //                   textAlign: TextAlign.start,
+      //                   style: TextStyle(
+      //                       fontSize: 14,
+      //                       fontWeight: FontWeight.w400,
+      //                       color: Colors.white),
+      //                 )
+      //               ],
+      //             ),
+      //           ),
+      //           // IconButton(
+      //           //   onPressed: () {
+      //           //     Get.to(() => const UpdateHealthProfileScreen());
+      //           //   },
+      //           //   icon: const Icon(Icons.edit_outlined),
+      //           // ),
+      //         ],
+      //       ),
+      //       const SizedBox(height: 16),
+      //       const Row(
+      //         crossAxisAlignment: CrossAxisAlignment.center,
+      //         mainAxisAlignment: MainAxisAlignment.center,
+      //         children: [
+      //           Text(
+      //             'SHOW HEALTH PROFILE',
+      //             textAlign: TextAlign.start,
+      //             style: TextStyle(
+      //                 fontSize: 18,
+      //                 fontWeight: FontWeight.w600,
+      //                 color: Colors.white),
+      //           )
+      //         ],
+      //       )
+      //     ],
+      //   ),
+      // ),
+     
       body: GetBuilder<AddHealthProfileController>(
         init: AddHealthProfileController(),
         builder: (getHealthProfile) => getHealthProfile.loader

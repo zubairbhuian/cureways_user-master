@@ -326,4 +326,11 @@ class Mixins {
     'Random',
     '2 Hours After BreakFast'
   ];
+    final List<String> foodQuantity = [
+    'Breakfast',
+    'Lunch',
+    'Evening Snacks',
+    'Dinner',
+  ];
+
 }

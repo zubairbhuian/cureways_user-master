@@ -1,5 +1,7 @@
 import 'package:cureways_user/data/network/controllers/store-bp_controller.dart';
 import 'package:cureways_user/screens/health_%20tracker/health_tracker_screen.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -18,7 +20,6 @@ class BpTrackerScreen extends StatefulWidget {
 
 class _BpTrackerScreenState extends State<BpTrackerScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _myBox = Hive.box('userBox');
 
   StoreBpController storeBpController = StoreBpController();
 
@@ -33,20 +34,21 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
     return GetBuilder<StoreBpController>(
       init: StoreBpController(),
       builder: (storeBp) => Scaffold(
+        appBar: const CustomAppBar(title: Text("BP TRACKER")),
         body: Container(
           height: double.infinity,
           color: ConstantsColor.backgroundColor,
           child: Column(
             children: [
-              AppDefaultBar(
-                  title: "BP TRACKER", userNAme: _myBox.get('userName')),
+              // AppDefaultBar(
+              //     title: "BP TRACKER", userNAme: _myBox.get('userName')),
               const SizedBox(
                 height: 8,
               ),
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding:EdgeInsets.only(left: 20.w, right: 20.w, top: 12),
+                    padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -54,24 +56,13 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                             key: _formKey,
                             child: Column(
                               children: [
-                                TextFormField(
-                                  controller: storeBp.dateController,
-                                  keyboardType: TextInputType.text,
-                                  textAlign: TextAlign.center,
-                                  decoration: const InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.symmetric(vertical: 20),
-                                    labelText: '    mm-dd-yyyy',
-                                    hintText: '  mm-dd-yyyy',
-                                    border: OutlineInputBorder(),
-                                    hintStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                    labelStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                     suffixIcon: Icon(Icons.calendar_month),
-                                    ),
+                                CustomTextField(
+                                    controller: storeBp.dateController,
+                                    keyboardType: TextInputType.text,
+                                    labelText: 'mm/dd/yyyy',
+                                    hintText: ' mm/dd/yyyy',
+                                    suffixIcon:
+                                        const Icon(Icons.calendar_month),
                                     onTap: () async {
                                       DateTime? pickedDate =
                                           await showDatePicker(
@@ -80,60 +71,29 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                                               firstDate: DateTime(2000),
                                               lastDate: DateTime(2101));
                                       if (pickedDate != null) {
-                                        storeBp.dateController.text =
-                                            DateFormat(DateFormat.YEAR_NUM_MONTH_DAY
-                                            )
-                                                .format(pickedDate);
+                                        storeBp
+                                            .dateController.text = DateFormat(
+                                                DateFormat.YEAR_NUM_MONTH_DAY)
+                                            .format(pickedDate);
                                         storeBp.update();
                                       }
-                                    }
-                                ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                TextFormField(
+                                    }),
+                                CustomTextField(
                                   controller: storeBp.systolicBpController,
                                   keyboardType: TextInputType.text,
-                                  textAlign: TextAlign.center,
-                                  decoration: const InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.symmetric(vertical: 20),
-                                    labelText: '    Enter Systolic Value',
-                                    hintText: '  Enter Systolic Value',
-                                    border: OutlineInputBorder(),
-                                    hintStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                    labelStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                  ),
+                                  labelText: 'Enter Systolic Value',
+                                  hintText: 'Enter Systolic Value',
                                 ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                TextFormField(
+                                CustomTextField(
                                   controller: storeBp.diastolicBpController,
                                   keyboardType: TextInputType.text,
-                                  textAlign: TextAlign.center,
-                                  decoration: const InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.symmetric(vertical: 20),
-                                    labelText: '    Enter Diastolic Value',
-                                    hintText: '    Enter Diastolic Value',
-                                    border: OutlineInputBorder(),
-                                    hintStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                    labelStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal),
-                                  ),
+                                  labelText: 'Enter Diastolic Value',
+                                  hintText: 'Enter Diastolic Value',
                                 ),
                               ],
                             )),
                         const SizedBox(
-                          height: 16,
+                          height: 10,
                         ),
                         SizedBox(
                           width: double.maxFinite,
@@ -158,8 +118,7 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                               ),
                             ),
                             child: storeBp.loader
-                                ? const Center(
-                                    child: CircularProgressIndicator())
+                                ? const Center(child: LoadIndecator())
                                 : const Text(
                                     'SUBMIT',
                                     style: TextStyle(

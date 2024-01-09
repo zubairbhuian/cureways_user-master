@@ -1,5 +1,6 @@
 import 'package:cureways_user/data/network/apis/api_client.dart';
 import 'package:cureways_user/screens/user_screens/ambulance_screens/ambulance_works_screen.dart';
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -97,7 +98,7 @@ class _AmbulanceScreenState extends State<AmbulanceScreen> {
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding:  EdgeInsets.only(left: 20.w, right: 20.w,top: 12),
+                  padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 12),
                   child: Column(
                     children: [
                       Container(
@@ -434,23 +435,11 @@ class _AmbulanceScreenState extends State<AmbulanceScreen> {
                               const SizedBox(
                                 height: 8,
                               ),
-                              TextFormField(
+                              CustomTextField(
                                 controller: _nameController,
                                 keyboardType: TextInputType.text,
-                                textAlign: TextAlign.start,
-                                decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 20),
-                                  labelText: 'Name ',
-                                  hintText: 'Name',
-                                  border: OutlineInputBorder(),
-                                  hintStyle: TextStyle(
-                                      color: Colors.grey,
-                                      fontStyle: FontStyle.normal),
-                                  labelStyle: TextStyle(
-                                      color: Colors.grey,
-                                      fontStyle: FontStyle.normal),
-                                ),
+                                labelText: 'Name ',
+                                hintText: 'Name',
                                 onChanged: (String value) {
                                   name = value;
                                 },
@@ -460,26 +449,11 @@ class _AmbulanceScreenState extends State<AmbulanceScreen> {
                                       : null;
                                 },
                               ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              TextFormField(
+                              CustomTextField(
                                 controller: _numberController,
                                 keyboardType: TextInputType.text,
-                                textAlign: TextAlign.start,
-                                decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 20),
-                                  labelText: '  Enter Your Mobile Number',
-                                  hintText: ' Mobile Number',
-                                  border: OutlineInputBorder(),
-                                  hintStyle: TextStyle(
-                                      color: Colors.grey,
-                                      fontStyle: FontStyle.normal),
-                                  labelStyle: TextStyle(
-                                      color: Colors.grey,
-                                      fontStyle: FontStyle.normal),
-                                ),
+                                labelText: 'Enter Your Mobile Number',
+                                hintText: 'Mobile Number',
                                 onChanged: (String value) {
                                   contactNumber = value;
                                 },

@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
-
 class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
   final bool? obscureText;
@@ -15,7 +13,9 @@ class CustomTextField extends StatelessWidget {
   final Widget? suffixIconColor;
   final Widget? prefixIcon;
   final String? hintText;
+  final String? labelText;
   final Widget? label;
+  final int? minLines;
   final String? extraLabel;
   final TextStyle? labelStyle;
   final TextStyle? extraLabelStyle;
@@ -24,7 +24,7 @@ class CustomTextField extends StatelessWidget {
   final AutovalidateMode? autovalidateMode;
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
-  final Function(String)? onChange;
+  final Function(String)? onChanged;
   final EdgeInsetsGeometry? padding;
   final Color? cursorColor;
   final TextAlign? textAlign;
@@ -50,7 +50,7 @@ class CustomTextField extends StatelessWidget {
       this.autovalidateMode,
       this.keyboardType,
       this.validator,
-      this.onChange,
+      this.onChanged,
       this.padding,
       this.cursorColor,
       this.inputFormatters,
@@ -66,7 +66,8 @@ class CustomTextField extends StatelessWidget {
       this.extraLabelStyle,
       this.labelStyle,
       this.errorStyle,
-      this.marginBottom});
+      this.marginBottom,
+      this.labelText, this.minLines});
 
   @override
   Widget build(BuildContext context) => Column(
@@ -83,12 +84,14 @@ class CustomTextField extends StatelessWidget {
               height: 10,
             ),
           TextFormField(
+            minLines: minLines,
             // ********** controller ********
             controller: controller,
             // ********** validator ********
             validator: validator,
             // ********** onChanged ********
-            onChanged: onChange,
+            onChanged: onChanged,
+
             // ********** obscureText ********
             obscureText: obscureText ?? false,
             // ********** readOnly ********
@@ -120,34 +123,22 @@ class CustomTextField extends StatelessWidget {
               errorMaxLines: 5,
               // ********** padding ********
               contentPadding: padding ??
-                  EdgeInsets.symmetric(vertical: 17.h, horizontal: 17.h),
+                  const EdgeInsets.symmetric(vertical: 17, horizontal: 15),
               // ********** prefixIcon ********
               prefixIcon: prefixIcon,
               // ********** suffixIcon ********
               suffixIcon: suffixIcon,
               // ********** border ********
-              border: UnderlineInputBorder(
-                borderRadius: BorderRadius.circular(0),
-                borderSide: const BorderSide(color: kTextColor, width: 1.0),
-              ),
+              border: const OutlineInputBorder(),
               // ********** focusedBorder ********
-              focusedBorder: UnderlineInputBorder(
-                borderRadius: BorderRadius.circular(0),
-                borderSide: const BorderSide(color: kTextColor, width: 1.0),
-              ),
-              // ********** enabledBorder ********
-              enabledBorder: UnderlineInputBorder(
-                  borderRadius: BorderRadius.circular(0),
-                  borderSide: const BorderSide(width: 1, color: kTextColor)),
-              // ********** errorBorder ********
-              errorBorder: UnderlineInputBorder(
-                  borderRadius: BorderRadius.circular(0),
-                  borderSide: const BorderSide(width: 1, color: kDangerColor)),
+
               // ********** hintText ********
               hintText: hintText,
+
               hintStyle: kTitleMedium.copyWith(color: kTextColorLight),
               // ********** label ********
               label: label,
+              labelText: labelText,
               labelStyle: labelStyle ?? kTitleMedium,
             ),
             // ********** inputFormatters ********
@@ -156,7 +147,7 @@ class CustomTextField extends StatelessWidget {
           ),
           // ********** marginBottom ********
           SizedBox(
-            height: marginBottom ?? 24,
+            height: marginBottom ?? 16,
           )
         ],
       );
@@ -286,21 +277,25 @@ class CustomTextField2 extends StatelessWidget {
               // ********** border ********
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: kDisabledTextColor, width: 1.0),
+                borderSide:
+                    const BorderSide(color: kDisabledTextColor, width: 1.0),
               ),
               // ********** focusedBorder ********
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: kDisabledTextColor, width: 1.0),
+                borderSide:
+                    const BorderSide(color: kDisabledTextColor, width: 1.0),
               ),
               // ********** enabledBorder ********
               enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
-                  borderSide: const BorderSide(width: 1, color: kDisabledTextColor)),
+                  borderSide:
+                      const BorderSide(width: 1, color: kDisabledTextColor)),
               // ********** errorBorder ********
               errorBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(0),
-                  borderSide: const BorderSide(width: 1, color: kDisabledTextColor)),
+                  borderSide:
+                      const BorderSide(width: 1, color: kDisabledTextColor)),
               // ********** hintText ********
               hintText: hintText,
               hintStyle: kTitleMedium.copyWith(color: kTextColorLight),
