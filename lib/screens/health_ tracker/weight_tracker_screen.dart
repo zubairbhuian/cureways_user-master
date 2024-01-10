@@ -73,8 +73,8 @@ class _WeightTrackerScreenState extends State<WeightTrackerScreen> {
                             CustomTextField(
                               controller: storeWeight.weightController,
                               keyboardType: TextInputType.text,
-                                                              labelText: 'Enter Weight',
-                                hintText: 'Enter Weight',
+                              labelText: 'Enter Weight',
+                              hintText: '80 KG',
                             ),
                           ],
                         )),

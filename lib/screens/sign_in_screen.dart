@@ -57,7 +57,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   children: [
                     CustomTextField(
                       controller: _mobileEmailController,
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                         labelText: 'Enter your phone number or email',
                         hintText: 'Enter your phone number or email',
                     ),
@@ -140,7 +140,7 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               TextButton(
                 onPressed: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SignUpScreen()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const SignUpScreen()));
               }, child: const Text(
                 "Create" ,
                 textAlign: TextAlign.center,

@@ -316,7 +316,7 @@ class _VaccineOrderScreenState extends State<VaccineOrderScreen> {
                             ),
                             CustomTextField(
                               controller: _numberController,
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.number,
                               labelText: 'Enter Your Mobile Number',
                               hintText: 'Mobile Number',
                             ),

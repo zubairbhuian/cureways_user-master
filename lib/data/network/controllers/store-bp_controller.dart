@@ -39,6 +39,9 @@ class StoreBpController extends GetxController {
     loader = false;
     update();
     if (res.statusCode == 200) {
+      dateController.clear();
+      systolicBpController.clear();
+      diastolicBpController.clear();
       PopupDialog.showSuccessDialog("BP Tracker Added");
     } else if (res.statusCode == 422) {
       PopupDialog.showErrorMessage("All field is required");

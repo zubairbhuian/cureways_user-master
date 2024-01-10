@@ -59,10 +59,9 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                                 CustomTextField(
                                     controller: storeBp.dateController,
                                     keyboardType: TextInputType.text,
+                                    readOnly: true,
                                     labelText: 'mm/dd/yyyy',
                                     hintText: ' mm/dd/yyyy',
-                                    suffixIcon:
-                                        const Icon(Icons.calendar_month),
                                     onTap: () async {
                                       DateTime? pickedDate =
                                           await showDatePicker(

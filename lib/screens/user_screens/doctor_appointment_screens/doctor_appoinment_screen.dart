@@ -207,7 +207,7 @@ class _DoctorAppointmentScreenState extends State<DoctorAppointmentScreen> {
                                 ),
                                 CustomTextField(
                                   controller: bookSlot.phoneController,
-                                  keyboardType: TextInputType.text,
+                                  keyboardType: TextInputType.number,
                                   labelText: 'Enter Your Phone',
                                   hintText: 'Enter Your Phone Number',
                                 ),

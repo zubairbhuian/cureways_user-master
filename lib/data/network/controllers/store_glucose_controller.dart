@@ -15,6 +15,7 @@ class StoreGlucoseController extends GetxController {
 
   final TextEditingController dateController = TextEditingController();
   final TextEditingController resultController = TextEditingController();
+  final TextEditingController timePeriodController = TextEditingController();
 
   storeGlucose(
       BuildContext context, String? date, String? time, String? result) async {
@@ -41,6 +42,7 @@ class StoreGlucoseController extends GetxController {
 
         dateController.clear();
         resultController.clear();
+        timePeriodController.clear();
 
         loader = false;
         Future.delayed(const Duration(milliseconds: 10), () {

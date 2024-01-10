@@ -19,7 +19,6 @@ class BodyTemparatureScreen extends StatefulWidget {
 }
 
 class _BodyTemparatureScreenState extends State<BodyTemparatureScreen> {
-  final _myBox = Hive.box('userBox');
   final _formKey = GlobalKey<FormState>();
   StoreBodyTmpController storeBodyTmpController = StoreBodyTmpController();
 
@@ -56,6 +55,7 @@ class _BodyTemparatureScreenState extends State<BodyTemparatureScreen> {
                             CustomTextField(
                                 controller: storeBodyTmp.dateController,
                                 keyboardType: TextInputType.text,
+                                readOnly: true,
                                 labelText: 'mm/dd/yyyy',
                                 hintText: 'mm/dd/yyyy',
                                 onTap: () async {
@@ -77,7 +77,7 @@ class _BodyTemparatureScreenState extends State<BodyTemparatureScreen> {
                                   storeBodyTmp.bodyTemperatureController,
                               keyboardType: TextInputType.text,
                               labelText: 'Enter BodyTemperature',
-                              hintText: 'Enter BodyTemperature',
+                              hintText: '96.6F',
                             ),
                           ],
                         )),

@@ -21,7 +21,6 @@ class GlucoseTrackerScreen extends StatefulWidget {
 }
 
 class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
-  String selectTimePeriod = '';
   StoreGlucoseController storeGlucoseController = StoreGlucoseController();
   final _myBox = Hive.box('userBox');
 
@@ -81,6 +80,7 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                                       }
                                     }),
                                 DropdownButtonFormField2(
+                                  value: storeGlucose.timePeriodController.text.isEmpty?null:storeGlucose.timePeriodController.text,
                                   decoration: InputDecoration(
                                     isDense: true,
                                     contentPadding: EdgeInsets.zero,
@@ -125,11 +125,11 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                                           )))
                                       .toList(),
                                   onChanged: (value) {
-                                    selectTimePeriod = value.toString();
+                                    storeGlucose.timePeriodController.text = value.toString();
                                   },
-                                  onSaved: (value) {
-                                    selectTimePeriod = value.toString();
-                                  },
+                                  // onSaved: (value) {
+                                  //   storeGlucose.timePeriodController.text = value.toString();
+                                  // },
                                   validator: (value) {
                                     if (value == null) {
                                       return 'Please Select TimePeriod';
@@ -142,9 +142,9 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                                 ),
                                 CustomTextField(
                                   controller: storeGlucose.resultController,
-                                  keyboardType: TextInputType.text,
+                                  keyboardType: TextInputType.number,
                                   labelText: 'Your Glucose Test Result',
-                                  hintText: 'Your Glucose Test Result',
+                                  hintText: '5.4',
                                 ),
                               ],
                             )),
@@ -161,9 +161,9 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                                 storeGlucose.dateController.text
                                     .toString()
                                     .trim(),
-                                selectTimePeriod == 'Fasting'
+                                storeGlucose.timePeriodController.text == 'Fasting'
                                     ? '1'
-                                    : selectTimePeriod == 'Random'
+                                    : storeGlucose.timePeriodController.text == 'Random'
                                         ? '2'
                                         : '3',
                                 storeGlucose.resultController.text

@@ -53,7 +53,7 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
-                      height: 50,
+                      padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         color: ConstantsColor.backgroundColor,
                         borderRadius: BorderRadius.circular(20.0),
@@ -63,6 +63,8 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
+                                "Date: ${glucoseList.glucoseList[index].date}"),
+                                  Text(
                                 "Glucose level: ${glucoseList.glucoseList[index].testResult}"),
                             const SizedBox(height: 3),
                             Text(

@@ -451,7 +451,7 @@ class _AmbulanceScreenState extends State<AmbulanceScreen> {
                               ),
                               CustomTextField(
                                 controller: _numberController,
-                                keyboardType: TextInputType.text,
+                                keyboardType: TextInputType.number,
                                 labelText: 'Enter Your Mobile Number',
                                 hintText: 'Mobile Number',
                                 onChanged: (String value) {

@@ -45,33 +45,31 @@ class _BpListScreenState extends State<BpListScreen> {
         init: GetBpListController(),
         builder: (bpList) => bpList.loader
             ? const Center(child: CircularProgressIndicator())
-            : Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: ListView.builder(
-                  itemCount: bpList.bpList.length,
-                  itemBuilder: (context, index) => Padding(
-                    padding:  EdgeInsets.all(20.w),
-                    child: Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: ConstantsColor.backgroundColor,
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("Systolic: ${bpList.bpList[index].sysotolic}"),
-                            const SizedBox(height: 3),
-                            Text(
-                                "Diastolic: ${bpList.bpList[index].diastolic}"),
-                          ],
-                        ),
-                      ),
+            : ListView.builder(
+              itemCount: bpList.bpList.length,
+              itemBuilder: (context, index) => Padding(
+                padding:  const EdgeInsets.only(left: 20,right: 20,top: 16),
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: ConstantsColor.backgroundColor,
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Data: ${bpList.bpList[index].date}"),
+                        Text("Systolic: ${bpList.bpList[index].sysotolic}"),
+                        const SizedBox(height: 3),
+                        Text(
+                            "Diastolic: ${bpList.bpList[index].diastolic}"),
+                      ],
                     ),
                   ),
                 ),
               ),
+            ),
       ),
     );
   }

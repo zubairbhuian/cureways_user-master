@@ -9,7 +9,7 @@ class PopupDialog {
    // SuccessDialog
   static void showSuccessDialog(String message) {
     var snackBar = SnackBar(
-      dismissDirection: DismissDirection.up,
+      dismissDirection: DismissDirection.horizontal,
       // behavior: SnackBarBehavior.floating,
       backgroundColor: kSuccessColor,
       content: Text(message),
@@ -20,8 +20,8 @@ class PopupDialog {
   // error messase
   static void showErrorMessage(String message) {
     var snackBar = SnackBar(
-      behavior: SnackBarBehavior.floating,
-      // dismissDirection: DismissDirection.horizontal,
+      // behavior: SnackBarBehavior.floating,
+      dismissDirection: DismissDirection.horizontal,
       backgroundColor: kDangerColor,
       content: Text(message),
     );

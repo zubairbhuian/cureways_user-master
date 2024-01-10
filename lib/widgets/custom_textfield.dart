@@ -147,7 +147,7 @@ class CustomTextField extends StatelessWidget {
           ),
           // ********** marginBottom ********
           SizedBox(
-            height: marginBottom ?? 16,
+            height: marginBottom ?? 12,
           )
         ],
       );

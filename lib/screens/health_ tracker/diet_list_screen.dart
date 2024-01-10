@@ -84,7 +84,7 @@ class _DietListScreenState extends State<DietListScreen> {
                           const SizedBox(height: 3),
                           Text("Date: ${controlller.dietList?[index].date}"),
                           const SizedBox(height: 3),
-                          Text("Date: ${controlller.dietList?[index].time}"),
+                          Text("Time: ${controlller.dietList?[index].time}"),
                         ],
                       ),
                     ),

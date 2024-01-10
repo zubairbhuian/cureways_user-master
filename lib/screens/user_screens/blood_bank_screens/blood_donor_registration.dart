@@ -527,6 +527,7 @@ class _BloodDonorRegistrationScreenState
                                               .toString();
                                     },
                                   ),
+                                  12.height,
                                   CustomTextField(
                                     controller: _nameController,
                                     keyboardType: TextInputType.text,
@@ -543,7 +544,7 @@ class _BloodDonorRegistrationScreenState
                                   ),
                                   CustomTextField(
                                     controller: _numberController,
-                                    keyboardType: TextInputType.text,
+                                    keyboardType: TextInputType.number,
                                     labelText: 'Mobile Number ',
                                     hintText: 'Mobile Number',
                                     onChanged: (String value) {

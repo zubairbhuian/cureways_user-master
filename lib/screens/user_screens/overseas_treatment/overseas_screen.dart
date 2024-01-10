@@ -459,7 +459,7 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                             ),
                             CustomTextField(
                               controller: _numberController,
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.number,
                               labelText: 'Mobile Number ',
                               hintText: 'Mobile Number',
                               onChanged: (String value) {
