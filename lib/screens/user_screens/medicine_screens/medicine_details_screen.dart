@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -134,7 +135,7 @@ class _MedicineDetailsScreenState extends State<MedicineDetailsScreen> {
                             placeholder: (context, url) =>
                             const Center(
                                 child:
-                                CircularProgressIndicator()),
+                                AppIndecator()),
                             errorWidget:
                                 (context, url, error) =>
                             const Icon(

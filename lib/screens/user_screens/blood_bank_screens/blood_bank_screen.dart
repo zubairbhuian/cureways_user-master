@@ -1,5 +1,6 @@
 import 'package:cureways_user/data/network/apis/api_client.dart';
 import 'package:cureways_user/data/network/controllers/blood_bank_search_controller.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,7 +55,7 @@ class _BloodBankScreenState extends State<BloodBankScreen> {
   Future<dynamic> getAreaManagementList() async {
     isLoading = true;
     areaManagementList = await ApiClient()
-        .getData("https://cureways.vaccinehomebd.com/api/areamManagement");
+        .getData("https://cureways.webbysys.click/api/areamManagement");
 
     if (areaManagementList == false) {
       isLoading = true;
@@ -538,7 +539,7 @@ class _BloodBankScreenState extends State<BloodBankScreen> {
                                 ),
                                 child: bloodBankSearch.loader
                                     ? const Center(
-                                        child: CircularProgressIndicator())
+                                        child: LoadIndecator())
                                     : const Text(
                                         'SUBMIT',
                                         style: TextStyle(

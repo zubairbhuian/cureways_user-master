@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -125,7 +126,7 @@ class _HealthTipsDetailsScreenState extends State<HealthTipsDetailsScreen> {
                       child: CachedNetworkImage(
                         imageUrl: widget.path,
                         placeholder: (context, url) =>
-                            const Center(child: CircularProgressIndicator()),
+                            const Center(child: AppIndecator()),
                         errorWidget: (context, url, error) => const Icon(
                           Icons.error,
                           color: ConstantsColor.primaryColor,

@@ -1,5 +1,6 @@
 import 'package:cureways_user/data/network/controllers/slot_booking_controller.dart';
 import 'package:cureways_user/screens/user_screens/doctor_appointment_screens/doctor_appontment_work_screen.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
@@ -298,7 +299,7 @@ class _DoctorAppointmentScreenState extends State<DoctorAppointmentScreen> {
                             ),
                             child: bookSlot.loader == true
                                 ? const Center(
-                                    child: CircularProgressIndicator(),
+                                    child: LoadIndecator(),
                                   )
                                 : const Text(
                                     'SUBMIT',

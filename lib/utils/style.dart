@@ -45,12 +45,12 @@ TextStyle kBodySmall =
 TextStyle kLabelLarge = TextStyle(
     color: kTextColor,
     fontSize: 16.sp,
-    fontWeight: FontWeight.w600,);
+    fontWeight: FontWeight.w500,);
 TextStyle kLabelMedium = TextStyle(
     color: kTextColor,
     fontSize: 14.sp,
-    fontWeight: FontWeight.w600,);
+    fontWeight: FontWeight.w500,);
 TextStyle kLabelSmall = TextStyle(
     color: kTextColor,
     fontSize: 12.sp,
-    fontWeight: FontWeight.w600,);
+    fontWeight: FontWeight.w500,);

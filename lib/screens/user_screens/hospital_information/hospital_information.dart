@@ -29,7 +29,7 @@ class _HospitalInformationState extends State<HospitalInformation>
         color: ConstantsColor.backgroundColor,
         child: Column(
           children: [
-            AppDefaultBar(title: "HOSPITAL INFORMATION", userNAme: "userNAme"),
+            const AppDefaultBar(title: "HOSPITAL INFORMATION", userNAme: "userNAme"),
             const SizedBox(
               height: 8,
             ),

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cureways_user/screens/user_screens/health_tips/health_tips_details.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
@@ -29,7 +30,7 @@ class _HealthtipsListScreenState extends State<HealthtipsListScreen> {
   Future<dynamic> gethealthTipsList() async {
     isLoading = true;
     healthTipsList = await ApiClient()
-        .getData("https://cureways.vaccinehomebd.com/api/health-tips");
+        .getData("https://cureways.webbysys.click/api/health-tips");
     if (healthTipsList == false) {
       isLoading = true;
     } else {
@@ -50,7 +51,7 @@ class _HealthtipsListScreenState extends State<HealthtipsListScreen> {
           children: [
             isLoading == true
                 ? const Expanded(
-                    child: Center(child: CircularProgressIndicator()))
+                    child: Center(child: AppIndecator()))
                 : Expanded(
                     child: ListView.builder(
                       itemCount: healthTipsList["data"]["healthTips"].length,
@@ -105,7 +106,7 @@ class _HealthtipsListScreenState extends State<HealthtipsListScreen> {
                                       placeholder: (context, url) =>
                                           const Center(
                                               child:
-                                                  CircularProgressIndicator()),
+                                                  AppIndecator()),
                                       errorWidget: (context, url, error) =>
                                           const Icon(
                                         Icons.error,

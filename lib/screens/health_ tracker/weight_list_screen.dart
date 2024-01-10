@@ -1,5 +1,6 @@
 import 'package:cureways_user/data/network/controllers/get_weight_list_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -44,7 +45,7 @@ class _WeightListScreenState extends State<WeightListScreen> {
       body: GetBuilder<GetWeightListController>(
         init: GetWeightListController(),
         builder: (weightList) => weightList.loader
-            ? const Center(child: CircularProgressIndicator())
+            ? const Center(child: AppIndecator())
             : Padding(
                 padding:  EdgeInsets.all(20.w),
                 child: ListView.builder(

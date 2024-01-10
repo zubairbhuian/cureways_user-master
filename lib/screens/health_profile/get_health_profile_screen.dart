@@ -1,6 +1,7 @@
 import 'package:cureways_user/data/network/controllers/add_health_profile_controller.dart';
 import 'package:cureways_user/screens/health_profile/update_health_profile_screen.dart';
 import 'package:cureways_user/utils/const_color.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -100,7 +101,7 @@ class _GetHealthProfileScreenState extends State<GetHealthProfileScreen> {
       body: GetBuilder<AddHealthProfileController>(
         init: AddHealthProfileController(),
         builder: (getHealthProfile) => getHealthProfile.loader
-            ? const Center(child: CircularProgressIndicator())
+            ? const Center(child: AppIndecator())
             : SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.w, right: 20.w,bottom: 12),

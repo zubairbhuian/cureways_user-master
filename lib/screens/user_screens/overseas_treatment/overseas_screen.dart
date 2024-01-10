@@ -54,7 +54,7 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
   Future<dynamic> getAreaManagementList() async {
     isLoading = true;
     areaManagementList = await ApiClient()
-        .getData("https://cureways.vaccinehomebd.com/api/areamManagement");
+        .getData("https://cureways.webbysys.click/api/areamManagement");
 
     if (areaManagementList == false) {
       isLoading = true;
@@ -489,7 +489,7 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                             var request = http.MultipartRequest(
                                 'POST',
                                 Uri.parse(
-                                    "https://cureways.vaccinehomebd.com/api/store/overseastreatment"));
+                                    "https://cureways.webbysys.click/api/store/overseastreatment"));
                             request.fields.addAll({
                               "division_id": selectedDivisionId.toString(),
                               "police_station_id":

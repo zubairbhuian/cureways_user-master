@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cureways_user/data/network/controllers/doctor_list_controller.dart';
 import 'package:cureways_user/data/network/models/doctor_list_model.dart';
 import 'package:cureways_user/screens/user_screens/doctor_appointment_screens/doctor_appoinment_confirm_screen.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
@@ -44,7 +45,7 @@ class _ForeignDoctorState extends State<ForeignDoctor> {
         return docList.loader
             ? const Scaffold(
                 body: Center(
-                  child: CircularProgressIndicator(),
+                  child: AppIndecator(),
                 ),
               )
             : Scaffold(

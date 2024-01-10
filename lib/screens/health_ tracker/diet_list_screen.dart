@@ -1,5 +1,7 @@
 import 'package:cureways_user/data/network/controllers/get_diet_list_controller.dart';
+import 'package:cureways_user/screens/health_%20tracker/diet_list_details.dart';
 import 'package:cureways_user/utils/const_color.dart';
+import 'package:cureways_user/utils/style.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,7 @@ class _DietListScreenState extends State<DietListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  CustomAppBar(title: Text("Diet List".toUpperCase())),
+      appBar: CustomAppBar(title: Text("Diet List".toUpperCase())),
       // appBar: AppBar(
       //   // automaticallyImplyLeading: false,
       //   leading: IconButton(
@@ -64,28 +66,32 @@ class _DietListScreenState extends State<DietListScreen> {
               ));
             }
             return Padding(
-              padding:  EdgeInsets.all(20.w),
+              padding: EdgeInsets.all(20.w),
               child: ListView.builder(
-                itemCount: controlller.dietList?.length,
+                itemCount: controlller.uniqueList.length,
                 itemBuilder: (context, index) => Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: ConstantsColor.backgroundColor,
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                              "Food quantity: ${controlller.dietList?[index].foodQty}"),
-                          const SizedBox(height: 3),
-                          Text("Date: ${controlller.dietList?[index].date}"),
-                          const SizedBox(height: 3),
-                          Text("Time: ${controlller.dietList?[index].time}"),
-                        ],
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.to(() =>  DietListDetails(data: controlller.uniqueList[index].date??""));
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: ConstantsColor.backgroundColor,
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Date: ${controlller.uniqueList[index].date}",
+                              style: kLabelLarge,
+                            ),
+                            const SizedBox(height: 3),
+                          ],
+                        ),
                       ),
                     ),
                   ),

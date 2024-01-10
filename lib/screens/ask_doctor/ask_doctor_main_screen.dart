@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cureways_user/data/network/controllers/get_ask_doctor_controller.dart';
 import 'package:cureways_user/data/network/controllers/store_ask_doctor_controller.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
@@ -142,7 +143,7 @@ class _AskDoctorMainScreenState extends State<AskDoctorMainScreen> {
                   child: GetBuilder<GetAskDoctorController>(
                     init: GetAskDoctorController(),
                     builder: (getAskDoc) => getAskDoc.loader
-                        ? const Center(child: CircularProgressIndicator())
+                        ? const Center(child: AppIndecator())
                         : ListView.builder(
                             reverse: true,
                             itemCount: getAskDoc.getAskDoctorList.length,
@@ -263,7 +264,7 @@ class _AskDoctorMainScreenState extends State<AskDoctorMainScreen> {
                             backgroundColor: ConstantsColor.primaryColor,
                             child: Center(
                               child: storeAskDoctor.loader
-                                  ? const CircularProgressIndicator()
+                                  ? const AppIndecator()
                                   : const Icon(Icons.send, size: 16),
                             ),
                           ),

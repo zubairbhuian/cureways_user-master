@@ -1,5 +1,6 @@
 import 'package:cureways_user/data/network/controllers/add_health_profile_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
@@ -293,7 +294,7 @@ class _AddHealthProfileScreenState extends State<AddHealthProfileScreen> {
                       ),
                     ),
                     child: addHealthProfile.loader == true
-                        ? const Center(child: CircularProgressIndicator())
+                        ? const Center(child: LoadIndecator())
                         : const Text(
                             ' Save Health Profile ',
                             style: TextStyle(

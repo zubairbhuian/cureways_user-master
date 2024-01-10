@@ -1,4 +1,5 @@
 import 'package:cureways_user/data/network/controllers/find_slot_controller.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
@@ -115,7 +116,7 @@ class _DoctorAppoinmentConfirmScreenState
                             ),
                             child: findSlot.loader == true
                                 ? const Center(
-                                    child: CircularProgressIndicator())
+                                    child: AppIndecator())
                                 : const Text(
                                     'NEXT',
                                     style: TextStyle(

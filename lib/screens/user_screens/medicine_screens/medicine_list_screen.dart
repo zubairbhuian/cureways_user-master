@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cureways_user/screens/user_screens/medicine_screens/medicine_details_screen.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,7 +36,7 @@ class _MedicineListScreenState extends State<MedicineListScreen> {
   Future<dynamic> getMedicineList() async {
     isLoading = true;
     medicineList = await ApiClient()
-        .getData("https://cureways.vaccinehomebd.com/api/medicine");
+        .getData("https://cureways.webbysys.click/api/medicine");
     if (medicineList == false) {
       isLoading = true;
     } else {
@@ -108,7 +109,7 @@ class _MedicineListScreenState extends State<MedicineListScreen> {
         children: [
           isLoading == true
               ? const Expanded(
-                  child: Center(child: CircularProgressIndicator()))
+                  child: Center(child: AppIndecator()))
               : Expanded(
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
@@ -158,7 +159,7 @@ class _MedicineListScreenState extends State<MedicineListScreen> {
                                       placeholder: (context, url) =>
                                           const Center(
                                               child:
-                                                  CircularProgressIndicator()),
+                                                  AppIndecator()),
                                       errorWidget: (context, url, error) =>
                                           const Icon(
                                         Icons.error,

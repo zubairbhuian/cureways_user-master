@@ -55,7 +55,7 @@ class _VaccineOrderScreenState extends State<VaccineOrderScreen> {
   Future<dynamic> getAreaManagementList() async {
     isLoading = true;
     areaManagementList = await ApiClient()
-        .getData("https://cureways.vaccinehomebd.com/api/areamManagement");
+        .getData("https://cureways.webbysys.click/api/areamManagement");
 
     if (areaManagementList == false) {
       isLoading = true;
@@ -341,7 +341,7 @@ class _VaccineOrderScreenState extends State<VaccineOrderScreen> {
                             var request = http.MultipartRequest(
                                 'POST',
                                 Uri.parse(
-                                    "https://cureways.vaccinehomebd.com/api/vaccine/products/order"));
+                                    "https://cureways.webbysys.click/api/vaccine/products/order"));
                             request.fields.addAll({
                               "division_id": selectedDivisionId.toString(),
                               "police_station_id":

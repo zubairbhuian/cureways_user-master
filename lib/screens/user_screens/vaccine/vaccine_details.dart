@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -24,7 +25,7 @@ class _VaccineDetailsScreenState extends State<VaccineDetailsScreen> {
   String? userName;
   @override
   void initState() {
-    userName = widget.userName ?? "";
+    userName = widget.userName ;
     // TODO: implement initState
     super.initState();
   }
@@ -57,7 +58,7 @@ class _VaccineDetailsScreenState extends State<VaccineDetailsScreen> {
                             child: CachedNetworkImage(
                               imageUrl: widget.imagePath,
                               placeholder: (context, url) => const Center(
-                                  child: CircularProgressIndicator()),
+                                  child: AppIndecator()),
                               errorWidget: (context, url, error) => const Icon(
                                 Icons.error,
                                 color: ConstantsColor.primaryColor,

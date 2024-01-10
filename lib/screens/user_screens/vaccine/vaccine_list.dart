@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cureways_user/screens/user_screens/vaccine/vaccine_details.dart';
 import 'package:cureways_user/screens/user_screens/vaccine/vaccine_order_screen.dart';
+import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -24,7 +25,6 @@ class _VaccineListState extends State<VaccineList> {
   @override
   void initState() {
     userName = widget.userName;
-    // TODO: implement initState
     super.initState();
     getVaccineList();
   }
@@ -32,7 +32,7 @@ class _VaccineListState extends State<VaccineList> {
   Future<dynamic> getVaccineList() async {
     isLoading = true;
     vaccineList = await ApiClient()
-        .getData("https://cureways.vaccinehomebd.com/api/vaccine/products");
+        .getData("https://cureways.webbysys.click/api/vaccine/products");
     if (vaccineList == false) {
       isLoading = true;
     } else {
@@ -54,7 +54,7 @@ class _VaccineListState extends State<VaccineList> {
             AppDefaultBar(title: "VACCINE INFORMATION", userNAme: userName),
             isLoading == true
                 ? const Expanded(
-                    child: Center(child: CircularProgressIndicator()))
+                    child: Center(child: AppIndecator()))
                 : Expanded(
                     child: ListView.builder(
                       padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 12),
@@ -80,7 +80,7 @@ class _VaccineListState extends State<VaccineList> {
                                     placeholder: (context, url) =>
                                         const Center(
                                             child:
-                                                CircularProgressIndicator()),
+                                                AppIndecator()),
                                     errorWidget: (context, url, error) =>
                                         const Icon(
                                       Icons.error,

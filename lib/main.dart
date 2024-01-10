@@ -10,7 +10,6 @@ import 'data/network/apis/bindings/base_binding.dart';
 import 'data/network/controllers/base/api_service.dart';
 import 'data/network/controllers/base/dio_interceptor.dart';
 import 'data/network/controllers/global_controller.dart';
-import 'data/network/controllers/profile_controller.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,12 +19,10 @@ Future<void> main() async {
   /// mobile orientation off
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-
   /// Initialize the dio
   final dio = Dio();
   // Initialize the dio instance
   dio.interceptors.add(DioInterceptor());
-
   /// Add the dio instance to the api service
   final apiService = ApiService(dio: dio);
   Get.put(GlobalController());

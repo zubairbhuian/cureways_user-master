@@ -37,7 +37,7 @@ class BloodBankSearchController extends GetxController {
 
     server
         .postR(
-            endPoint: "https://cureways.vaccinehomebd.com/api/bloodbank-search",
+            endPoint: "https://cureways.webbysys.click/api/bloodbank-search",
             body: jsonBody)
         .then((response) {
       print(json.decode(response.body));

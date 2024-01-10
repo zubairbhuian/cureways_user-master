@@ -54,7 +54,7 @@ class _BloodDonorRegistrationScreenState
   Future<dynamic> getAreaManagementList() async {
     isLoading = true;
     areaManagementList = await ApiClient()
-        .getData("https://cureways.vaccinehomebd.com/api/areamManagement");
+        .getData("https://cureways.webbysys.click/api/areamManagement");
 
     if (areaManagementList == false) {
       isLoading = true;
@@ -574,7 +574,7 @@ class _BloodDonorRegistrationScreenState
                                   var request = http.MultipartRequest(
                                       'POST',
                                       Uri.parse(
-                                          "https://cureways.vaccinehomebd.com/api/bloodbanks/store"));
+                                          "https://cureways.webbysys.click/api/bloodbanks/store"));
                                   request.fields.addAll({
                                     "division_id":
                                         selectedDivisionId.toString(),
