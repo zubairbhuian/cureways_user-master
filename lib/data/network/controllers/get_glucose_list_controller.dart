@@ -14,6 +14,28 @@ class GetGlucoseListController extends GetxController {
   bool loader = false;
   final _myBox = Hive.box('userBox');
   List<GlucoseListData> glucoseList = <GlucoseListData>[];
+  List<GlucoseListData> uniqueList = [];
+  List<GlucoseListData> filteredList = [];
+
+  // **** Filtered List with One key
+  void onFilteredList(String key) {
+    if (glucoseList.isNotEmpty) {
+      filteredList =
+          glucoseList.where((element) => element.date == key).toList();
+    }
+  }
+
+  // **** on UnikDietList
+  void onUnikDietList() {
+    if (glucoseList.isNotEmpty) {
+      Set<String> uniqueDates = {};
+      glucoseList
+          .where((element) => uniqueDates.add(element.date!))
+          .forEach((element) {
+        uniqueList.add(element);
+      });
+    }
+  }
 
   getGlucoseList() async {
     loader = true;
@@ -36,6 +58,7 @@ class GetGlucoseListController extends GetxController {
 
         glucoseList = <GlucoseListData>[];
         glucoseList.addAll(glucoseListData.data!);
+        onUnikDietList();
 
         loader = false;
         Future.delayed(const Duration(milliseconds: 10), () {

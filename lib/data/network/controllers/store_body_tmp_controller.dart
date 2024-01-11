@@ -14,10 +14,11 @@ class StoreBodyTmpController extends GetxController {
   final _myBox = Hive.box('userBox');
 
   final TextEditingController dateController = TextEditingController();
-  final TextEditingController bodyTemperatureController =
-      TextEditingController();
+  final TextEditingController timeController = TextEditingController();
+  final TextEditingController bodyTemperatureController =TextEditingController();
 
-  storeBodyTmp(BuildContext context, String? date, String? bodyTmp) async {
+
+  storeBodyTmp() async {
     loader = true;
     Future.delayed(const Duration(milliseconds: 10), () {
       update();
@@ -25,8 +26,9 @@ class StoreBodyTmpController extends GetxController {
 
     Map body = {
       'user_id': _myBox.get('userId'),
-      'date': date,
-      'body_temperature': bodyTmp,
+      'date': dateController.text,
+      // 'time': timeController.text,
+      'body_temperature': "${bodyTemperatureController.text} F",
     };
     String jsonBody = json.encode(body);
 
@@ -39,6 +41,7 @@ class StoreBodyTmpController extends GetxController {
         print(jsonResponse);
 
         dateController.clear();
+        timeController.clear();
         bodyTemperatureController.clear();
 
         loader = false;

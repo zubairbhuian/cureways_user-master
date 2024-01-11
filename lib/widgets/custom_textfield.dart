@@ -15,6 +15,7 @@ class CustomTextField extends StatelessWidget {
   final String? hintText;
   final String? labelText;
   final Widget? label;
+  final Widget? suffix;
   final int? minLines;
   final String? extraLabel;
   final TextStyle? labelStyle;
@@ -67,7 +68,8 @@ class CustomTextField extends StatelessWidget {
       this.labelStyle,
       this.errorStyle,
       this.marginBottom,
-      this.labelText, this.minLines});
+      this.labelText,
+      this.minLines, this.suffix});
 
   @override
   Widget build(BuildContext context) => Column(
@@ -114,6 +116,7 @@ class CustomTextField extends StatelessWidget {
             onEditingComplete: onEditingComplete,
             // ********** keyboardType ********
             keyboardType: keyboardType,
+
             //! ********** decoration ********
             decoration: InputDecoration(
               // ********** errorText ********
@@ -126,8 +129,10 @@ class CustomTextField extends StatelessWidget {
                   const EdgeInsets.symmetric(vertical: 17, horizontal: 15),
               // ********** prefixIcon ********
               prefixIcon: prefixIcon,
+
               // ********** suffixIcon ********
               suffixIcon: suffixIcon,
+              suffix: suffix,
               // ********** border ********
               border: const OutlineInputBorder(),
               // ********** focusedBorder ********

@@ -1,10 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cureways_user/screens/health_%20tracker/body_temparature_screen.dart';
-import 'package:cureways_user/screens/health_%20tracker/bp_tracker.dart';
-import 'package:cureways_user/screens/health_%20tracker/diet_tracker_screen.dart';
-import 'package:cureways_user/screens/health_%20tracker/glucose_tracker_screen.dart';
-import 'package:cureways_user/screens/health_%20tracker/weight_list_screen.dart';
-import 'package:cureways_user/screens/health_%20tracker/weight_tracker_screen.dart';
+import 'package:cureways_user/screens/health_%20tracker/body/body_temparature_screen.dart';
+import 'package:cureways_user/screens/health_%20tracker/bp/bp_list_screen.dart';
+import 'package:cureways_user/screens/health_%20tracker/bp/bp_tracker.dart';
+import 'package:cureways_user/screens/health_%20tracker/diet/diet_tracker_screen.dart';
+import 'package:cureways_user/screens/health_%20tracker/glucose/glucose_tracker_screen.dart';
+import 'package:cureways_user/screens/health_%20tracker/weight/weight_list_screen.dart';
+import 'package:cureways_user/screens/health_%20tracker/weight/weight_tracker_screen.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,10 +15,9 @@ import 'package:pie_chart/pie_chart.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../utils/const_color.dart';
-import 'body_tmp_screen.dart';
-import 'bp_list_screen.dart';
-import 'diet_list_screen.dart';
-import 'glucose_list_screen.dart';
+import 'body/body_list_screen.dart';
+import 'diet/diet_list_screen.dart';
+import 'glucose/glucose_list_screen.dart';
 
 class HealthTrackerScreen extends StatefulWidget {
   String? userName;
@@ -798,7 +798,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Get.to(() => const BodyTmpScreen());
+                              Get.to(() => const BodyListScreen());
                             },
                             child: Container(
                               decoration: BoxDecoration(

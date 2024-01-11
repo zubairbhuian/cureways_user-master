@@ -1,18 +1,19 @@
 import 'package:cureways_user/data/network/controllers/get_tmp_list_controller.dart';
+import 'package:cureways_user/screens/health_%20tracker/body/body_list_details.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BodyTmpScreen extends StatefulWidget {
-  const BodyTmpScreen({super.key});
+class BodyListScreen extends StatefulWidget {
+  const BodyListScreen({super.key});
 
   @override
-  State<BodyTmpScreen> createState() => _BodyTmpScreenState();
+  State<BodyListScreen> createState() => _BodyListScreenState();
 }
 
-class _BodyTmpScreenState extends State<BodyTmpScreen> {
+class _BodyListScreenState extends State<BodyListScreen> {
   GetTmpListController getTmpListController = GetTmpListController();
 
   @override
@@ -48,24 +49,28 @@ class _BodyTmpScreenState extends State<BodyTmpScreen> {
             : Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: ListView.builder(
-                  itemCount: tmpList.tmpList.length,
+                  itemCount: tmpList.uniqueList.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: ConstantsColor.backgroundColor,
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                                "Body Temperature: ${tmpList.tmpList[index].bodyTemperature}"),
-                            const SizedBox(height: 3),
-                            Text("Date: ${tmpList.tmpList[index].date}"),
-                          ],
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.to(() => BodyListDetails(
+                              data: tmpList.uniqueList[index].date ?? "",
+                            ));
+                      },
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: ConstantsColor.backgroundColor,
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Date: ${tmpList.uniqueList[index].date}"),
+                            ],
+                          ),
                         ),
                       ),
                     ),

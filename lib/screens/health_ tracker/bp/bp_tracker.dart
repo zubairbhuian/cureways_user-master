@@ -1,15 +1,16 @@
 import 'package:cureways_user/data/network/controllers/store-bp_controller.dart';
 import 'package:cureways_user/screens/health_%20tracker/health_tracker_screen.dart';
+import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
+import 'package:cureways_user/widgets/appbar.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 
-import '../../utils/const_color.dart';
-import '../../widgets/appbar.dart';
 
 class BpTrackerScreen extends StatefulWidget {
   const BpTrackerScreen({Key? key}) : super(key: key);
@@ -77,17 +78,49 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                                         storeBp.update();
                                       }
                                     }),
+                                       CustomTextField(
+                                  // controller: storeDiet.timePeriodController,
+                                  keyboardType: TextInputType.text,
+                                  readOnly: true,
+                                  labelText: 'Enter Time Period',
+                                  hintText: 'Enter Time Period',
+                                  onTap: () async {
+                                    TimeOfDay? selectedTime =
+                                        await showTimePicker(
+                                      initialTime: TimeOfDay.now(),
+                                      context: context,
+                                    );
+                                    if (selectedTime != null) {
+                                      // storeDiet.timePeriodController.text =
+                                      //     "${selectedTime.hour}:${selectedTime.minute}";
+                                      //! formet the time
+                                      /// MyFunc.formatTimeOfDay(selectedTime);
+                                      // storeDiet.update();
+                                    }
+                                  },
+                                ),
                                 CustomTextField(
                                   controller: storeBp.systolicBpController,
-                                  keyboardType: TextInputType.text,
+                                  keyboardType: TextInputType.number,
+                                  suffix: const Text("mmHg"),
                                   labelText: 'Enter Systolic Value',
                                   hintText: 'Enter Systolic Value',
+                                   inputFormatters: [
+                                    FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9\.\-\/]'))
+                                  ],
                                 ),
                                 CustomTextField(
                                   controller: storeBp.diastolicBpController,
-                                  keyboardType: TextInputType.text,
+                                  keyboardType: TextInputType.number,
+                                  suffix: const Text("mmHg"),
                                   labelText: 'Enter Diastolic Value',
                                   hintText: 'Enter Diastolic Value',
+                                   inputFormatters: [
+                                   FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9\.\-\/]'))
+                                    
+                                  ],
                                 ),
                               ],
                             )),
@@ -99,16 +132,7 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                           height: 52,
                           child: OutlinedButton(
                             onPressed: () {
-                              storeBp.storeBp(
-                                context,
-                                storeBp.dateController.text.toString().trim(),
-                                storeBp.systolicBpController.text
-                                    .toString()
-                                    .trim(),
-                                storeBp.diastolicBpController.text
-                                    .toString()
-                                    .trim(),
-                              );
+                              storeBp.storeBp();
                             },
                             style: OutlinedButton.styleFrom(
                               backgroundColor: ConstantsColor.primaryColor,

@@ -2,14 +2,15 @@ import 'package:cureways_user/data/network/controllers/store_body_tmp_controller
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 
-import '../../utils/const_color.dart';
-import '../../widgets/appbar.dart';
-import 'health_tracker_screen.dart';
+import '../../../utils/const_color.dart';
+import '../../../widgets/appbar.dart';
+import '../health_tracker_screen.dart';
 
 class BodyTemparatureScreen extends StatefulWidget {
   const BodyTemparatureScreen({Key? key}) : super(key: key);
@@ -73,27 +74,43 @@ class _BodyTemparatureScreenState extends State<BodyTemparatureScreen> {
                                   }
                                 }),
                             CustomTextField(
+                              controller: storeBodyTmp.timeController,
+                              keyboardType: TextInputType.text,
+                              readOnly: true,
+                              labelText: 'Enter Time Period',
+                              hintText: 'Enter Time Period',
+                              onTap: () async {
+                                TimeOfDay? selectedTime = await showTimePicker(
+                                  initialTime: TimeOfDay.now(),
+                                  context: context,
+                                );
+                                if (selectedTime != null) {
+                                  storeBodyTmp.timeController.text =
+                                      "${selectedTime.hour}:${selectedTime.minute}";
+                                  //! formet the time
+                                  // / MyFunc.formatTimeOfDay(selectedTime);
+                                  storeBodyTmp.update();
+                                }
+                              },
+                            ),
+                            CustomTextField(
                               controller:
                                   storeBodyTmp.bodyTemperatureController,
-                              keyboardType: TextInputType.text,
+                              suffix: const Text("Fahrenheit"),
+                              keyboardType: TextInputType.number,
                               labelText: 'Enter BodyTemperature',
-                              hintText: '96.6F',
+                              hintText: 'Enter BodyTemperature',
+                              inputFormatters: [FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9\.\-\/]'))],
                             ),
                           ],
                         )),
-
                     SizedBox(
                       width: double.maxFinite,
                       height: 52,
                       child: OutlinedButton(
                         onPressed: () {
-                          storeBodyTmp.storeBodyTmp(
-                            context,
-                            storeBodyTmp.dateController.text.toString().trim(),
-                            storeBodyTmp.bodyTemperatureController.text
-                                .toString()
-                                .trim(),
-                          );
+                          storeBodyTmp.storeBodyTmp();
                         },
                         style: OutlinedButton.styleFrom(
                           backgroundColor: ConstantsColor.primaryColor,

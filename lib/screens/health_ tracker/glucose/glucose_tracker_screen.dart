@@ -3,15 +3,16 @@ import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 
-import '../../utils/const_color.dart';
-import '../../utils/mixins.dart';
-import '../../widgets/appbar.dart';
-import 'health_tracker_screen.dart';
+import '../../../utils/const_color.dart';
+import '../../../utils/mixins.dart';
+import '../../../widgets/appbar.dart';
+import '../health_tracker_screen.dart';
 
 class GlucoseTrackerScreen extends StatefulWidget {
   const GlucoseTrackerScreen({Key? key}) : super(key: key);
@@ -79,6 +80,27 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                                         storeGlucose.update();
                                       }
                                     }),
+                                     CustomTextField(
+                                  controller: storeGlucose.timeController,
+                                  keyboardType: TextInputType.text,
+                                  readOnly: true,
+                                  labelText: 'Enter Time Period',
+                                  hintText: 'Enter Time Period',
+                                  onTap: () async {
+                                    TimeOfDay? selectedTime =
+                                        await showTimePicker(
+                                      initialTime: TimeOfDay.now(),
+                                      context: context,
+                                    );
+                                    if (selectedTime != null) {
+                                      storeGlucose.timeController.text =
+                                          "${selectedTime.hour}:${selectedTime.minute}";
+                                      //! formet the time
+                                      /// MyFunc.formatTimeOfDay(selectedTime);
+                                      storeGlucose.update();
+                                    }
+                                  },
+                                ),
                                 DropdownButtonFormField2(
                                   value: storeGlucose.timePeriodController.text.isEmpty?null:storeGlucose.timePeriodController.text,
                                   decoration: InputDecoration(
@@ -143,8 +165,14 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                                 CustomTextField(
                                   controller: storeGlucose.resultController,
                                   keyboardType: TextInputType.number,
+                                  suffix: const Text("mmol/L"),
                                   labelText: 'Your Glucose Test Result',
-                                  hintText: '5.4',
+                                  hintText: 'Your Glucose Test Result',
+                                    inputFormatters: [
+                                    FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9\.\-\/]'))
+                                  ],
+
                                 ),
                               ],
                             )),
@@ -156,20 +184,7 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                           height: 52,
                           child: OutlinedButton(
                             onPressed: () {
-                              storeGlucose.storeGlucose(
-                                context,
-                                storeGlucose.dateController.text
-                                    .toString()
-                                    .trim(),
-                                storeGlucose.timePeriodController.text == 'Fasting'
-                                    ? '1'
-                                    : storeGlucose.timePeriodController.text == 'Random'
-                                        ? '2'
-                                        : '3',
-                                storeGlucose.resultController.text
-                                    .toString()
-                                    .trim(),
-                              );
+                              storeGlucose.storeGlucose();
                             },
                             style: OutlinedButton.styleFrom(
                               backgroundColor: ConstantsColor.primaryColor,

@@ -1,4 +1,5 @@
 import 'package:cureways_user/data/network/controllers/get_weight_list_controller.dart';
+import 'package:cureways_user/screens/health_%20tracker/weight/weight_list_details.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/appbar.dart';
@@ -26,7 +27,7 @@ class _WeightListScreenState extends State<WeightListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: CustomAppBar(title: Text("Weight List".toUpperCase())),
+      appBar: CustomAppBar(title: Text("Weight List".toUpperCase())),
       // appBar: AppBar(
       //   automaticallyImplyLeading: false,
       //   backgroundColor: ConstantsColor.primaryColor,
@@ -47,26 +48,29 @@ class _WeightListScreenState extends State<WeightListScreen> {
         builder: (weightList) => weightList.loader
             ? const Center(child: AppIndecator())
             : Padding(
-                padding:  EdgeInsets.all(20.w),
+                padding: EdgeInsets.all(20.w),
                 child: ListView.builder(
-                  itemCount: weightList.weightList.length,
+                  itemCount: weightList.uniqueList.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: ConstantsColor.backgroundColor,
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                                "Body Weight: ${weightList.weightList[index].weight}"),
-                            const SizedBox(height: 3),
-                            Text("Date: ${weightList.weightList[index].date}"),
-                          ],
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.to(() => WeightListDetails(data:weightList.uniqueList[index].date??""));
+                      },
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: ConstantsColor.backgroundColor,
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                  "Date: ${weightList.uniqueList[index].date}"),
+                            ],
+                          ),
                         ),
                       ),
                     ),

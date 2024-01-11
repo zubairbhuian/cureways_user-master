@@ -17,11 +17,13 @@ class StoreBpController extends GetxController {
   bool loader = false;
   final _myBox = Hive.box('userBox');
   final TextEditingController dateController = TextEditingController();
+  final TextEditingController timeController = TextEditingController();
   final TextEditingController systolicBpController = TextEditingController();
   final TextEditingController diastolicBpController = TextEditingController();
 
-  storeBp(BuildContext context, String? date, String? systolic,
-      String? diastolic) async {
+
+
+  storeBp() async {
     loader = true;
     update();
     // Future.delayed(const Duration(milliseconds: 10), () {
@@ -29,9 +31,10 @@ class StoreBpController extends GetxController {
     // });
     final FormData formData = FormData.fromMap({
       'user_id': _myBox.get('userId'),
-      'date': date,
-      'sysotolic': systolic,
-      'diastolic': diastolic,
+      'date': dateController.text,
+      // 'time': timeController.text,
+      'sysotolic': systolicBpController.text,
+      'diastolic': diastolicBpController.text,
     });
     BaseModel res = await BaseController.to.apiService
         .makePostRequestWithFormData(
@@ -40,8 +43,10 @@ class StoreBpController extends GetxController {
     update();
     if (res.statusCode == 200) {
       dateController.clear();
+      timeController.clear();
       systolicBpController.clear();
       diastolicBpController.clear();
+
       PopupDialog.showSuccessDialog("BP Tracker Added");
     } else if (res.statusCode == 422) {
       PopupDialog.showErrorMessage("All field is required");

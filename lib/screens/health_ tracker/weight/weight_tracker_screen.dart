@@ -2,13 +2,14 @@ import 'package:cureways_user/data/network/controllers/store_weight_controller.d
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 
-import '../../utils/const_color.dart';
-import '../../widgets/appbar.dart';
+import '../../../utils/const_color.dart';
+import '../../../widgets/appbar.dart';
 
 class WeightTrackerScreen extends StatefulWidget {
   const WeightTrackerScreen({Key? key}) : super(key: key);
@@ -72,9 +73,14 @@ class _WeightTrackerScreenState extends State<WeightTrackerScreen> {
                                 }),
                             CustomTextField(
                               controller: storeWeight.weightController,
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.number,
                               labelText: 'Enter Weight',
-                              hintText: '80 KG',
+                              hintText: 'Enter Weight',
+                              suffix: const Text("KG"),
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9\.\-\/]'))
+                              ],
                             ),
                           ],
                         )),

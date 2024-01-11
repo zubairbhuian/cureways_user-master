@@ -1,5 +1,5 @@
 import 'package:cureways_user/data/network/controllers/get_diet_list_controller.dart';
-import 'package:cureways_user/screens/health_%20tracker/diet_list_details.dart';
+import 'package:cureways_user/screens/health_%20tracker/diet/diet_list_details.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/utils/style.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';

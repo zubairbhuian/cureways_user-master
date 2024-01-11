@@ -1,5 +1,6 @@
 import 'package:cureways_user/data/network/controllers/get_bp_list_controller.dart';
 import 'package:cureways_user/data/network/controllers/get_diet_list_controller.dart';
+import 'package:cureways_user/data/network/controllers/get_glucose_list_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/utils/int_extensions.dart';
 import 'package:cureways_user/utils/style.dart';
@@ -8,18 +9,18 @@ import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DietListDetails extends GetView<GetDietListController> {
+class GlucoseListDetails extends GetView<GetGlucoseListController> {
   final String data;
-  const DietListDetails({super.key, required this.data});
+  const GlucoseListDetails({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(GetDietListController()).onFilteredList(data);
+    Get.put(GetGlucoseListController()).onFilteredList(data);
     return Scaffold(
       appBar: CustomAppBar(title: Text(data)),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        child: GetBuilder<GetDietListController>(builder: (controller) {
+        child: GetBuilder<GetGlucoseListController>(builder: (controller) {
           if (controller.filteredList.isEmpty) {
             return const Center(
               child: AppIndecator(),
@@ -36,20 +37,14 @@ class DietListDetails extends GetView<GetDietListController> {
                     borderRadius: BorderRadius.circular(10)),
                 child: Column(
                   children: [
+                    Text("Date: ${controller.glucoseList[index].date}"),
                     Text(
-                      "Date: ${controller.filteredList[index].date}",
-                      style: kBodyLarge,
-                    ),
-                    4.height,
-                      Text(
-                      "Time: ${controller.filteredList[index].time}",
-                      style: kBodyLarge,
-                    ),
-                     4.height,
-                      Text(
-                      "Food Quality: ${controller.filteredList[index].foodQty}",
-                      style: kBodyLarge,
-                    ),
+                        "Time of testing: ${controller.glucoseList[index].timePeriod}"),
+                    const SizedBox(height: 3),
+                    Text(
+                        "Time Period Name: ${controller.glucoseList[index].timePeriodName}"),
+                    Text(
+                        "Glucose level: ${controller.glucoseList[index].testResult}"),
                   ],
                 ),
               );

@@ -1,4 +1,5 @@
 import 'package:cureways_user/data/network/controllers/store_diet_controller.dart';
+import 'package:cureways_user/utils/int_extensions.dart';
 import 'package:cureways_user/utils/mixins.dart';
 import 'package:cureways_user/utils/my_func.dart';
 import 'package:cureways_user/utils/style.dart';
@@ -6,14 +7,15 @@ import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 
-import '../../utils/const_color.dart';
-import '../../widgets/appbar.dart';
+import '../../../utils/const_color.dart';
+import '../../../widgets/appbar.dart';
 
 class DietTrackerScreen extends StatefulWidget {
   const DietTrackerScreen({Key? key}) : super(key: key);
@@ -25,7 +27,6 @@ class DietTrackerScreen extends StatefulWidget {
 class _DietTrackerScreenState extends State<DietTrackerScreen> {
   final _formKey = GlobalKey<FormState>();
   StoreDietController storeDietController = StoreDietController();
-  final _myBox = Hive.box('userBox');
 
   @override
   void didChangeDependencies() {
@@ -108,10 +109,10 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
                                   height: 8,
                                 ),
                                 DropdownButtonFormField2(
-                                  value: storeDiet
-                                          .foodInCaloriesController.text.isEmpty
-                                      ? null
-                                      : storeDiet.foodInCaloriesController.text,
+                                  value:
+                                      storeDiet.foodTypeController.text.isEmpty
+                                          ? null
+                                          : storeDiet.foodTypeController.text,
                                   decoration: InputDecoration(
                                     isDense: true,
                                     contentPadding: EdgeInsets.zero,
@@ -129,7 +130,7 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Select Food Quantity",
+                                        "Select Food Type",
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,
@@ -156,40 +157,36 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
                                           )))
                                       .toList(),
                                   onChanged: (value) {
-                                    storeDiet.foodInCaloriesController.text =
+                                    storeDiet.foodTypeController.text =
                                         value.toString();
                                     // selectTimePeriod = value.toString();
                                   },
                                   onSaved: (value) {
-                                    storeDiet.foodInCaloriesController.text =
+                                    storeDiet.foodTypeController.text =
                                         value.toString();
                                   },
                                   validator: (value) {
                                     if (value == null) {
-                                      return 'Please Select Food Quantity';
+                                      return 'Please Select Food Type';
                                     }
                                     return null;
                                   },
                                 ),
-                                // CustomTextField(
-                                //   controller:
-                                //       storeDiet.foodInCaloriesController,
-                                //   keyboardType: TextInputType.text,
-                                //   textAlign: TextAlign.center,
-                                //   decoration: const InputDecoration(
-                                //     contentPadding:
-                                //         EdgeInsets.symmetric(vertical: 20),
-                                //     labelText: '     Food Quantity In Calories',
-                                //     hintText: '     Food Quantity In Calories',
-                                //     border: OutlineInputBorder(),
-                                //     hintStyle: TextStyle(
-                                //         color: Colors.grey,
-                                //         fontStyle: FontStyle.normal),
-                                //     labelStyle: TextStyle(
-                                //         color: Colors.grey,
-                                //         fontStyle: FontStyle.normal),
-                                //   ),
-                                // ),
+                                16.height,
+                                CustomTextField(
+                                  controller:
+                                      storeDiet.foodInCaloriesController,
+                                  keyboardType: TextInputType.number,
+                                  suffix: const Text("Gram"),
+                                  labelText: 'Food Quantity In Calories',
+                                  hintText: 'Food Quantity In Calories',
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly
+                                  ],
+                                  // onChanged: (value){
+                                  //   storeDiet.foodInCaloriesController.text = '$value KG ';
+                                  // },
+                                ),
                               ],
                             )),
                         const SizedBox(
@@ -200,16 +197,7 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
                           height: 52,
                           child: OutlinedButton(
                             onPressed: () {
-                              storeDiet.storeDiet(
-                                context,
-                                storeDiet.dateController.text.toString().trim(),
-                                storeDiet.timePeriodController.text
-                                    .toString()
-                                    .trim(),
-                                storeDiet.foodInCaloriesController.text
-                                    .toString()
-                                    .trim(),
-                              );
+                              storeDiet.storeDiet();
                             },
                             style: OutlinedButton.styleFrom(
                               backgroundColor: ConstantsColor.primaryColor,

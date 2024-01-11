@@ -4,6 +4,7 @@ import 'package:cureways_user/data/network/constants/endpoints.dart';
 import 'package:cureways_user/data/network/constants/server.dart';
 import 'package:cureways_user/data/network/models/get_tmp_model.dart';
 import 'package:cureways_user/data/service/user_service.dart';
+import 'package:cureways_user/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -14,6 +15,27 @@ class GetTmpListController extends GetxController {
   bool loader = false;
   final _myBox = Hive.box('userBox');
   List<TmpListData> tmpList = <TmpListData>[];
+  List<TmpListData> uniqueList = [];
+  List<TmpListData> filteredList = [];
+
+  // **** Filtered List with One key
+  void onFilteredList(String key) {
+    if (tmpList.isNotEmpty) {
+      filteredList = tmpList.where((element) => element.date == key).toList();
+    }
+  }
+
+  // **** on UnikDietList
+  void onUnikDietList() {
+    if (tmpList.isNotEmpty) {
+      Set<String> uniqueDates = {};
+      tmpList
+          .where((element) => uniqueDates.add(element.date!))
+          .forEach((element) {
+        uniqueList.add(element);
+      });
+    }
+  }
 
   getTmpList() async {
     loader = true;
@@ -38,6 +60,8 @@ class GetTmpListController extends GetxController {
         tmpList.addAll(tmpListData.data!);
 
         loader = false;
+        // date
+        onUnikDietList();
         Future.delayed(const Duration(milliseconds: 10), () {
           update();
         });

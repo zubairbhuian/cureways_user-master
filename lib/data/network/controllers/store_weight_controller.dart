@@ -25,7 +25,7 @@ class StoreWeightController extends GetxController {
     Map body = {
       'user_id': _myBox.get('userId'),
       'date': date,
-      'weight': weight,
+      'weight': "$weight KG",
     };
     String jsonBody = json.encode(body);
 

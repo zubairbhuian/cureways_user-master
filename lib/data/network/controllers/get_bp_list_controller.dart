@@ -14,6 +14,27 @@ class GetBpListController extends GetxController {
   bool loader = false;
   final _myBox = Hive.box('userBox');
   List<GetBpListData> bpList = <GetBpListData>[];
+  List<GetBpListData> uniqueList = [];
+  List<GetBpListData> filteredList = [];
+
+  // **** Filtered List with One key
+  void onFilteredList(String key) {
+    if (bpList.isNotEmpty) {
+      filteredList = bpList.where((element) => element.date == key).toList();
+    }
+  }
+
+  // **** on UnikDietList
+  void onUnikDietList() {
+    if (bpList.isNotEmpty) {
+      Set<String> uniqueDates = {};
+      bpList
+          .where((element) => uniqueDates.add(element.date!))
+          .forEach((element) {
+        uniqueList.add(element);
+      });
+    }
+  }
 
   getBpList() async {
     loader = true;
@@ -32,9 +53,8 @@ class GetBpListController extends GetxController {
         print(jsonResponse);
 
         var bpListData = GetBpListModel.fromJson(jsonResponse);
-
-        bpList = <GetBpListData>[];
         bpList.addAll(bpListData.data!);
+        onUnikDietList();
 
         loader = false;
         Future.delayed(const Duration(milliseconds: 10), () {

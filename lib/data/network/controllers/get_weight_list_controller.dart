@@ -13,7 +13,29 @@ class GetWeightListController extends GetxController {
   Server server = Server();
   bool loader = false;
   final _myBox = Hive.box('userBox');
-  List<WeightListData> weightList = <WeightListData>[];
+  List<WeightListData> weightList = [];
+  List<WeightListData> uniqueList = [];
+  List<WeightListData> filteredList = [];
+
+  // **** Filtered List with One key
+  void onFilteredList(String key) {
+    if (weightList.isNotEmpty) {
+      filteredList =
+          weightList.where((element) => element.date == key).toList();
+    }
+  }
+
+  // **** on UnikDietList
+  void onUnikDietList() {
+    if (weightList.isNotEmpty) {
+      Set<String> uniqueDates = {};
+      weightList
+          .where((element) => uniqueDates.add(element.date!))
+          .forEach((element) {
+        uniqueList.add(element);
+      });
+    }
+  }
 
   getWeightList() async {
     loader = true;
@@ -33,9 +55,8 @@ class GetWeightListController extends GetxController {
         print(jsonResponse);
 
         var weightData = GetWeightModel.fromJson(jsonResponse);
-
-        weightList = <WeightListData>[];
         weightList.addAll(weightData.data!);
+        onUnikDietList();
 
         loader = false;
         Future.delayed(const Duration(milliseconds: 10), () {

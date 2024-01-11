@@ -1,4 +1,5 @@
 import 'package:cureways_user/data/network/controllers/get_glucose_list_controller.dart';
+import 'package:cureways_user/screens/health_%20tracker/glucose/glucose_list_details.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/appbar.dart';
@@ -27,7 +28,7 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  CustomAppBar(title: Text("Glucose List".toUpperCase())),
+      appBar: CustomAppBar(title: Text("Glucose List".toUpperCase())),
       // appBar: AppBar(
       //   automaticallyImplyLeading: false,
       //   backgroundColor: ConstantsColor.primaryColor,
@@ -48,30 +49,30 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
         builder: (glucoseList) => glucoseList.loader
             ? const Center(child: AppIndecator())
             : Padding(
-                padding:  EdgeInsets.all(20.w),
+                padding: EdgeInsets.all(20.w),
                 child: ListView.builder(
-                  itemCount: glucoseList.glucoseList.length,
+                  itemCount: glucoseList.uniqueList.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: ConstantsColor.backgroundColor,
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                                "Date: ${glucoseList.glucoseList[index].date}"),
-                                  Text(
-                                "Glucose level: ${glucoseList.glucoseList[index].testResult}"),
-                            const SizedBox(height: 3),
-                            Text(
-                                "Time of testing: ${glucoseList.glucoseList[index].timePeriodName}"),
-                           
-                          ],
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.to(() => GlucoseListDetails(
+                            data: glucoseList.uniqueList[index].date ?? ""));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: ConstantsColor.backgroundColor,
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                  "Date: ${glucoseList.uniqueList[index].date}"),
+                            ],
+                          ),
                         ),
                       ),
                     ),

@@ -14,21 +14,31 @@ class StoreGlucoseController extends GetxController {
   final _myBox = Hive.box('userBox');
 
   final TextEditingController dateController = TextEditingController();
+  final TextEditingController timeController = TextEditingController();
   final TextEditingController resultController = TextEditingController();
   final TextEditingController timePeriodController = TextEditingController();
 
-  storeGlucose(
-      BuildContext context, String? date, String? time, String? result) async {
+  storeGlucose() async {
     loader = true;
     Future.delayed(const Duration(milliseconds: 10), () {
       update();
     });
 
+    String formetTimePeriodName(String text) {
+      if (text == 'Fasting') {
+        return "1";
+      } else if (text == 'Random') {
+        return "2";
+      }
+      return "3";
+    }
+
     Map body = {
       'user_id': _myBox.get('userId'),
-      'date': date,
-      'time_period': time,
-      'test_result': result,
+      'date': dateController.text,
+      'time_period':timeController.text,
+      'time_period_name': formetTimePeriodName(timePeriodController.text),
+      'test_result': "${resultController.text} mmol/L",
     };
     String jsonBody = json.encode(body);
 
@@ -41,6 +51,7 @@ class StoreGlucoseController extends GetxController {
         print(jsonResponse);
 
         dateController.clear();
+        timeController.clear();
         resultController.clear();
         timePeriodController.clear();
 

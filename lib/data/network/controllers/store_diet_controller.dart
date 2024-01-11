@@ -21,11 +21,10 @@ class StoreDietController extends GetxController {
 
   final TextEditingController dateController = TextEditingController();
   final TextEditingController timePeriodController = TextEditingController();
-  final TextEditingController foodInCaloriesController =
-      TextEditingController();
+  final TextEditingController foodInCaloriesController =TextEditingController();
+  final TextEditingController foodTypeController =TextEditingController();
 
-  storeDiet(
-      BuildContext context, String? date, String? time, String? foodQty) async {
+  storeDiet() async {
     loader = true;
     update();
     // Future.delayed(const Duration(milliseconds: 10), () {
@@ -34,9 +33,10 @@ class StoreDietController extends GetxController {
 
     final FormData formData = FormData.fromMap({
       'user_id': _myBox.get('userId'),
-      'date': date,
-      'time': time,
-      'food_qty': foodQty,
+      'date': dateController.text,
+      'time': timePeriodController.text,
+      'foodType':foodTypeController.text,
+      'food_qty': foodInCaloriesController.text,
     });
     BaseModel res = await BaseController.to.apiService
         .makePostRequestWithFormData(
