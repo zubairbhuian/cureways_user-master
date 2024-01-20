@@ -468,9 +468,12 @@ class _VirtualLabScreenState extends State<VirtualLabScreen> {
                                   contactNumber = value;
                                 },
                                 validator: (value) {
-                                  return value!.isEmpty
-                                      ? 'Enter Your Mobile Number'
-                                      : null;
+                                  if (value!.isEmpty) {
+                                    return 'Enter Your Mobile Number';
+                                  } else if (value.length != 11) {
+                                    return "mobile number should be 11 digits";
+                                  }
+                                  return null;
                                 },
                               ),
                             ],

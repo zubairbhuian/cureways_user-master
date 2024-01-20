@@ -256,6 +256,6 @@ class _PribacyPolicyScreenState extends State<PribacyPolicyScreen> {
           ),
         ),
       ),
-    );;
+    );
   }
 }

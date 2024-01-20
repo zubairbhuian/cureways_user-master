@@ -1,5 +1,3 @@
-import 'package:cureways_user/data/network/controllers/get_bp_list_controller.dart';
-import 'package:cureways_user/data/network/controllers/get_diet_list_controller.dart';
 import 'package:cureways_user/data/network/controllers/get_weight_list_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/utils/int_extensions.dart';

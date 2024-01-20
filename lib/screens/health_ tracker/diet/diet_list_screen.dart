@@ -29,29 +29,6 @@ class _DietListScreenState extends State<DietListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: Text("Diet List".toUpperCase())),
-      // appBar: AppBar(
-      //   // automaticallyImplyLeading: false,
-      //   leading: IconButton(
-      //       onPressed: () {
-      //         Get.back();
-      //       },
-      //       icon: const Icon(
-      //         Icons.arrow_back_ios_new,
-      //         color: kWhite,
-      //       )),
-      //   backgroundColor: ConstantsColor.primaryColor,
-      //   shape: const RoundedRectangleBorder(
-      //     borderRadius: BorderRadius.only(
-      //         bottomLeft: Radius.circular(12.0),
-      //         bottomRight: Radius.circular(12.0)),
-      //   ),
-      //   title: const Text(
-      //     "Diet List",
-      //     style: TextStyle(
-      //         color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-      //   ),
-      //   centerTitle: true,
-      // ),
       body: GetBuilder<GetDietListController>(
           init: GetDietListController(),
           builder: (controlller) {

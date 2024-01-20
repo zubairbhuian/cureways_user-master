@@ -1,6 +1,4 @@
-import 'package:cureways_user/utils/int_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../utils/const_color.dart';

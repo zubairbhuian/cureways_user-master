@@ -319,6 +319,14 @@ class _VaccineOrderScreenState extends State<VaccineOrderScreen> {
                               keyboardType: TextInputType.number,
                               labelText: 'Enter Your Mobile Number',
                               hintText: 'Mobile Number',
+                               validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Enter Your Mobile Number';
+                                  } else if (value.length != 11) {
+                                    return "mobile number should be 11 digits";
+                                  }
+                                  return null;
+                                },
                             ),
                             const SizedBox(
                               height: 8,

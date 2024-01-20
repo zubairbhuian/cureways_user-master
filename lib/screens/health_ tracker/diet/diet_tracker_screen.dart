@@ -1,7 +1,8 @@
+import 'package:cureways_user/data/network/controllers/get_diet_list_controller.dart';
 import 'package:cureways_user/data/network/controllers/store_diet_controller.dart';
+import 'package:cureways_user/screens/health_%20tracker/body/widgets/today_added_diet_list.dart';
 import 'package:cureways_user/utils/int_extensions.dart';
 import 'package:cureways_user/utils/mixins.dart';
-import 'package:cureways_user/utils/my_func.dart';
 import 'package:cureways_user/utils/style.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
@@ -9,9 +10,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 
 import '../../../utils/const_color.dart';
@@ -27,10 +26,15 @@ class DietTrackerScreen extends StatefulWidget {
 class _DietTrackerScreenState extends State<DietTrackerScreen> {
   final _formKey = GlobalKey<FormState>();
   StoreDietController storeDietController = StoreDietController();
-
+  GetDietListController getDietListController = GetDietListController();
+  String todayDate = "30-Nov--0001"; //DateFormat('DD-MM-yyyy').format(DateTime.now());
+ 
   @override
   void didChangeDependencies() {
     storeDietController = Get.put(StoreDietController());
+    getDietListController = Get.put(GetDietListController());
+    getDietListController.getDietList();
+    getDietListController.onFilteredList(todayDate);
     super.didChangeDependencies();
   }
 
@@ -177,7 +181,7 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
                                   controller:
                                       storeDiet.foodInCaloriesController,
                                   keyboardType: TextInputType.number,
-                                  suffix: const Text("Gram"),
+                                  suffix: const Text("Calories"),
                                   labelText: 'Food Quantity In Calories',
                                   hintText: 'Food Quantity In Calories',
                                   inputFormatters: [
@@ -214,6 +218,12 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
                                   ),
                           ),
                         ),
+
+                        //. ======== today diet list ====
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        const TodayAddedDietList(),
                         const SizedBox(
                           height: 16,
                         ),

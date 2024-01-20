@@ -14,12 +14,12 @@ class GetDietListController extends GetxController {
   final _myBox = Hive.box('userBox');
   List<DietListData>? dietList;
   List<DietListData> uniqueList=[];
-  List<DietListData> filteredList=[];
+  List<DietListData> todayFilteredList=[];
 
   // **** Filtered List with One key
   void onFilteredList(String key) {
     if (dietList != null && dietList!.isNotEmpty) {
-      filteredList = dietList!.where((element) => element.date == key).toList();
+      todayFilteredList = dietList!.where((element) => element.date == key).toList();
     }
   }
 

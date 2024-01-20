@@ -465,11 +465,14 @@ class _OverSeastreatmentScreenState extends State<OverSeastreatmentScreen> {
                               onChanged: (String value) {
                                 contactNumber = value;
                               },
-                              validator: (value) {
-                                return value!.isEmpty
-                                    ? 'Enter Your Mobile Number'
-                                    : null;
-                              },
+                            validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Enter Your Mobile Number';
+                                  } else if (value.length != 11) {
+                                    return "mobile number should be 11 digits";
+                                  }
+                                  return null;
+                                },
                             ),
                           ],
                         )),

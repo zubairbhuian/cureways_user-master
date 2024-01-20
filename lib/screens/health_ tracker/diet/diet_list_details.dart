@@ -1,4 +1,3 @@
-import 'package:cureways_user/data/network/controllers/get_bp_list_controller.dart';
 import 'package:cureways_user/data/network/controllers/get_diet_list_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/utils/int_extensions.dart';
@@ -21,13 +20,13 @@ class DietListDetails extends GetView<GetDietListController> {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         child: GetBuilder<GetDietListController>(
           builder: (controller) {
-          if (controller.filteredList.isEmpty) {
+          if (controller.todayFilteredList.isEmpty) {
             return const Center(
               child: AppIndecator(),
             );
           }
           return Column(
-            children: List.generate(controller.filteredList.length, (index) {
+            children: List.generate(controller.todayFilteredList.length, (index) {
               return Container(
                 margin: const EdgeInsets.only(bottom: 12),
                 width: double.infinity,
@@ -38,17 +37,17 @@ class DietListDetails extends GetView<GetDietListController> {
                 child: Column(
                   children: [
                     Text(
-                      "Date: ${controller.filteredList[index].date}",
+                      "Date: ${controller.todayFilteredList[index].date}",
                       style: kBodyLarge,
                     ),
                     4.height,
                       Text(
-                      "Time: ${controller.filteredList[index].time}",
+                      "Time: ${controller.todayFilteredList[index].time}",
                       style: kBodyLarge,
                     ),
                      4.height,
                       Text(
-                      "Food Quality: ${controller.filteredList[index].foodQty}",
+                      "Food Quality: ${controller.todayFilteredList[index].foodQty}",
                       style: kBodyLarge,
                     ),
                   ],
@@ -57,6 +56,9 @@ class DietListDetails extends GetView<GetDietListController> {
             }),
           );
         }),
+     
+     
+     
       ),
     );
   }

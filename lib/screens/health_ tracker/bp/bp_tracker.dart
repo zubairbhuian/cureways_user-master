@@ -67,7 +67,7 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                                       DateTime? pickedDate =
                                           await showDatePicker(
                                               context: context,
-                                              initialDate: DateTime(2010),
+                                              initialDate: DateTime.now(),
                                               firstDate: DateTime(2000),
                                               lastDate: DateTime(2101));
                                       if (pickedDate != null) {
