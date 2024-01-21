@@ -1,17 +1,16 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 class ConstantsColor{
-  static const Color primaryColor = Color(0xff0F4B97);
-  static const Color secondaryColor = Color(0xff3B5998
+  static const Color primaryColor = Color(0xff236AFD);
+  static const Color secondaryColor = Color(0xff236AFD
   );
   static const Color greyColor = Color(0xff8F8F8F);
   static const Color backgroundColor = Color(0xffE8EFFA);
 }
-const Color kPrimaryColor = Color(0xff0F4B97);
+const Color kPrimaryColor = Color(0xff236AFD);
 const Color kTitleColor = Color(0xff222222);
 const Color kTextColor = Color(0xff222222);
-const Color kTextColorLight = Color(0xff828282);
-const Color kTextLightColor = Color(0xff828282);
+const Color kTextColorLight = Color(0xff7D7F88);
+const Color kTextLightColor = Color(0xff7D7F88);
 
 const Color kDisabledColor = Color(0xff828282);
 const Color kDisabledTextColor = Color(0xff9F9F9F);

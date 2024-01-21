@@ -39,7 +39,6 @@ class _ProfileViewState extends State<ProfileView> {
           children: [
             // profile
             100.height,
-
             Center(
               child: GetBuilder<ProfileController>(
                   init: ProfileController(),

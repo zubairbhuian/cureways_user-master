@@ -28,7 +28,7 @@ class _SplashState extends State<Splash> {
   logInCheck() async {
     var isUser = await userService.getBool();
     if (isUser == true) {
-      Get.off(() => MainBoardCheck());
+      Get.off(() => const MainBoardCheck());
     } else {
       Get.off(() => const WelcomescreenCheck());
     }

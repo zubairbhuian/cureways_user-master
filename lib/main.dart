@@ -15,7 +15,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox('userBox');
-
   /// mobile orientation off
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
@@ -44,9 +43,11 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return GetMaterialApp(
             theme: ThemeData(
+              fontFamily: 'Urbanist',
               primarySwatch: Colors.blue,
             ),
             debugShowCheckedModeBanner: false,
+            
             initialBinding: BaseBinding(
               apiService: apiService,
             ),

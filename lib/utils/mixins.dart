@@ -16,41 +16,18 @@ class Mixins {
 
   final List<Map<String, dynamic>> mainMenuItem = [
     {
-      "title": "HEALTH\nTRACKER",
-      "images": "assets/home_screen/healthtracker_final.png"
+      "title": "Health Profile",
+      "images": "assets/home/health_profile.svg"
     },
-    {"title": "VACCINE", "images": "assets/home_screen/Vaccine_final.png"},
-    {"title": "MEDICINE", "images": "assets/home_screen/Medicine_final.png"},
-    {"title": "BLOOD BANK", "images": "assets/home_screen/BloodBank_final.png"},
-    {"title": "AMBULANCE", "images": "assets/home_screen/Ambulance_final.png"},
+    {"title": "Health Tracker", "images": "assets/home/health_tracker.svg"},
+    {"title": "Doctor Appointment", "images": "assets/home/doctor_appointment.svg"},
+    {"title": "Blood Bank", "images": "assets/home/blood_bank.svg"},
+    {"title": "Vaccine", "images": "assets/home/vaccine.svg"},
     {
-      "title": "DOCTOR APPOINTMENT",
-      "images": "assets/home_screen/DoctorAppointment_final.png"
+      "title": "Overseas Treatment",
+      "images": "assets/home/overseas_treatment .svg"
     },
-    {
-      "title": "VIRTUAL LAB",
-      "images": "assets/home_screen/Virtuallab_final.png"
-    },
-    {
-      "title": "HOSPITAL INFORMATION",
-      "images": "assets/home_screen/HospitalInfo_final.png"
-    },
-    {
-      "title": "OVERSEAS TREATMENT",
-      "images": "assets/home_screen/Overseas_final.png"
-    },
-    {
-      "title": "HEALTH TIPS",
-      "images": "assets/home_screen/Healthtips_final.png"
-    },
-    {
-      "title": "HEALTH PROFILE",
-      "images": "assets/home_screen/Healthprofile_final.png"
-    },
-    {
-      "title": "ASK \nDOCTOR",
-      "images": "assets/home_screen/Askdoctor_final.png"
-    },
+   
   ];
   final List<Map<String, dynamic>> doctorDetails = [
     {
