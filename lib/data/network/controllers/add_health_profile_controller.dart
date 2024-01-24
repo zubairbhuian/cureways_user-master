@@ -6,6 +6,7 @@ import 'package:cureways_user/data/network/controllers/base/base_controller.dart
 import 'package:cureways_user/data/network/models/base/base_model.dart';
 import 'package:cureways_user/data/network/models/get_health_profile_model.dart';
 import 'package:cureways_user/data/service/user_service.dart';
+import 'package:cureways_user/utils/style.dart';
 import 'package:cureways_user/widgets/popup_dialogs.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +61,7 @@ class AddHealthProfileController extends GetxController {
   ) async {
     loader = true;
     update();
-    final FormData formData = FormData.fromMap({
+    Map<String, dynamic> map = {
       'id': id,
       'age': age,
       'gender': gender,
@@ -74,7 +75,9 @@ class AddHealthProfileController extends GetxController {
       'disabilities': disabilities,
       'test_result': testResult,
       'user_id': '${_myBox.get('userId')}'
-    });
+    };
+    kLogger.e(map);
+    final FormData formData = FormData.fromMap(map);
     BaseModel res = await BaseController.to.apiService
         .makePostRequestWithFormData(
             Endpoints.server + Endpoints.healthProfile, formData);

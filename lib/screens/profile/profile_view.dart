@@ -1,12 +1,9 @@
 import 'dart:io';
-
-import 'package:cureways_user/data/network/controllers/get_glucose_list_controller.dart';
 import 'package:cureways_user/data/network/controllers/profile_controller.dart';
 import 'package:cureways_user/utils/Int_extensions.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:cureways_user/widgets/network_img.dart';
-import 'package:cureways_user/widgets/profile_pic_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

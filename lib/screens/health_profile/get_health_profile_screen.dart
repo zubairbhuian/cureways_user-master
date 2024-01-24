@@ -17,7 +17,6 @@ class GetHealthProfileScreen extends StatefulWidget {
 }
 
 class _GetHealthProfileScreenState extends State<GetHealthProfileScreen> {
-  final _myBox = Hive.box('userBox');
   AddHealthProfileController addHealthProfileController =
       AddHealthProfileController();
 

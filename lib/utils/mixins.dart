@@ -15,19 +15,18 @@ class Mixins {
   ];
 
   final List<Map<String, dynamic>> mainMenuItem = [
-    {
-      "title": "Health Profile",
-      "images": "assets/home/health_profile.svg"
-    },
+    {"title": "Health Profile", "images": "assets/home/health_profile.svg"},
     {"title": "Health Tracker", "images": "assets/home/health_tracker.svg"},
-    {"title": "Doctor Appointment", "images": "assets/home/doctor_appointment.svg"},
+    {
+      "title": "Doctor Appointment",
+      "images": "assets/home/doctor_appointment.svg"
+    },
     {"title": "Blood Bank", "images": "assets/home/blood_bank.svg"},
     {"title": "Vaccine", "images": "assets/home/vaccine.svg"},
     {
       "title": "Overseas Treatment",
       "images": "assets/home/overseas_treatment .svg"
     },
-   
   ];
   final List<Map<String, dynamic>> doctorDetails = [
     {
@@ -303,11 +302,11 @@ class Mixins {
     'Random',
     '2 Hours After BreakFast'
   ];
-    final List<String> foodQuantity = [
+  final List<String> foodQuantity = [
     'Breakfast',
     'Lunch',
     'Evening Snacks',
     'Dinner',
   ];
-
+  final List<String> mutualStatus = ["Married","Unmarried"];
 }
