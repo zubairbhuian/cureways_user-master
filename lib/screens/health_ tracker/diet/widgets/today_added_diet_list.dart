@@ -10,6 +10,7 @@ class TodayAddedDietList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return GetBuilder<GetDietListController>(builder: (controller) {
       if (controller.todayFilteredList.isEmpty) {
         return const SizedBox();

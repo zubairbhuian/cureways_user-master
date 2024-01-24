@@ -23,6 +23,7 @@ class _GetHealthProfileScreenState extends State<GetHealthProfileScreen> {
   @override
   void didChangeDependencies() {
     addHealthProfileController = Get.put(AddHealthProfileController());
+    
     addHealthProfileController.showHealthProfile();
     super.didChangeDependencies();
   }

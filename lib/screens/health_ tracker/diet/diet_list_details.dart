@@ -19,6 +19,7 @@ class DietListDetails extends GetView<GetDietListController> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         child: GetBuilder<GetDietListController>(
+          init: GetDietListController(),
           builder: (controller) {
           if (controller.todayFilteredList.isEmpty) {
             return const Center(
