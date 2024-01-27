@@ -37,18 +37,21 @@ class GetBpListData {
     this.date,
     this.sysotolic,
     this.diastolic,
+    this.time
   });
 
   GetBpListData.fromJson(dynamic json) {
     id = json['id'];
     userId = json['user_id'];
     date = json['date'];
+    time = json['time'];
     sysotolic = json['sysotolic'];
     diastolic = json['diastolic'];
   }
   int? id;
   String? userId;
   String? date;
+  String? time;
   String? sysotolic;
   String? diastolic;
 
@@ -57,6 +60,7 @@ class GetBpListData {
     map['id'] = id;
     map['user_id'] = userId;
     map['date'] = date;
+    map['time'] = time;
     map['sysotolic'] = sysotolic;
     map['diastolic'] = diastolic;
     return map;

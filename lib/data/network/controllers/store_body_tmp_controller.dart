@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cureways_user/data/network/constants/endpoints.dart';
 import 'package:cureways_user/data/network/constants/server.dart';
+import 'package:cureways_user/data/network/controllers/get_tmp_list_controller.dart';
 import 'package:cureways_user/data/service/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,8 +16,8 @@ class StoreBodyTmpController extends GetxController {
 
   final TextEditingController dateController = TextEditingController();
   final TextEditingController timeController = TextEditingController();
-  final TextEditingController bodyTemperatureController =TextEditingController();
-
+  final TextEditingController bodyTemperatureController =
+      TextEditingController();
 
   storeBodyTmp() async {
     loader = true;
@@ -39,21 +40,17 @@ class StoreBodyTmpController extends GetxController {
       if (response != null && response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);
         print(jsonResponse);
-
+        Get.find<GetTmpListController>().getTmpList();
         dateController.clear();
         timeController.clear();
         bodyTemperatureController.clear();
 
         loader = false;
-        Future.delayed(const Duration(milliseconds: 10), () {
-          update();
-        });
+        update();
         Get.rawSnackbar(message: 'Submitted!', backgroundColor: Colors.green);
       } else {
         loader = false;
-        Future.delayed(const Duration(milliseconds: 10), () {
-          update();
-        });
+         update();
         Get.rawSnackbar(
             message: 'Please enter valid input', backgroundColor: Colors.red);
       }

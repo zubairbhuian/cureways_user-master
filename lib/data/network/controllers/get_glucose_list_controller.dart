@@ -4,15 +4,21 @@ import 'package:cureways_user/data/network/constants/endpoints.dart';
 import 'package:cureways_user/data/network/constants/server.dart';
 import 'package:cureways_user/data/network/models/get_glucose_model.dart';
 import 'package:cureways_user/data/service/user_service.dart';
+import 'package:cureways_user/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 
 class GetGlucoseListController extends GetxController {
   UserService userService = UserService();
   Server server = Server();
   bool loader = false;
   final _myBox = Hive.box('userBox');
+  String todayDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+  final TextEditingController fromController = TextEditingController();
+  final TextEditingController toController = TextEditingController();
+
   List<GlucoseListData> glucoseList = <GlucoseListData>[];
   List<GlucoseListData> uniqueList = [];
   List<GlucoseListData> filteredList = [];
@@ -25,17 +31,17 @@ class GetGlucoseListController extends GetxController {
     }
   }
 
-  // **** on UnikDietList
-  void onUnikDietList() {
-    if (glucoseList.isNotEmpty) {
-      Set<String> uniqueDates = {};
-      glucoseList
-          .where((element) => uniqueDates.add(element.date!))
-          .forEach((element) {
-        uniqueList.add(element);
-      });
-    }
-  }
+  // // **** on UnikDietList
+  // void onUnikDietList() {
+  //   if (glucoseList.isNotEmpty) {
+  //     Set<String> uniqueDates = {};
+  //     glucoseList
+  //         .where((element) => uniqueDates.add(element.date!))
+  //         .forEach((element) {
+  //       uniqueList.add(element);
+  //     });
+  //   }
+  // }
 
   getGlucoseList() async {
     loader = true;
@@ -43,7 +49,12 @@ class GetGlucoseListController extends GetxController {
       update();
     });
 
-    Map body = {'user_id': _myBox.get('userId')};
+    Map body = {
+      'user_id': _myBox.get('userId'),
+      "from": fromController.text,
+      "to": toController.text,
+    };
+    kLogger.e(body);
     String jsonBody = json.encode(body);
 
     server
@@ -55,15 +66,12 @@ class GetGlucoseListController extends GetxController {
         print(jsonResponse);
 
         var glucoseListData = GetGlucoseModel.fromJson(jsonResponse);
-
         glucoseList = <GlucoseListData>[];
         glucoseList.addAll(glucoseListData.data!);
-        onUnikDietList();
-
+        onFilteredList(todayDate);
+        kLogger.e(filteredList.length);
         loader = false;
-        Future.delayed(const Duration(milliseconds: 10), () {
-          update();
-        });
+        update();
       } else {
         loader = false;
         Future.delayed(const Duration(milliseconds: 10), () {

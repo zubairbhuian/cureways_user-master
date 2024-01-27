@@ -8,12 +8,17 @@ import 'package:cureways_user/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 
 class GetTmpListController extends GetxController {
   UserService userService = UserService();
   Server server = Server();
   bool loader = false;
   final _myBox = Hive.box('userBox');
+  String todayDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+  final TextEditingController fromController = TextEditingController();
+  final TextEditingController toController = TextEditingController();
+
   List<TmpListData> tmpList = <TmpListData>[];
   List<TmpListData> uniqueList = [];
   List<TmpListData> filteredList = [];
@@ -43,7 +48,12 @@ class GetTmpListController extends GetxController {
       update();
     });
 
-    Map body = {'user_id': _myBox.get('userId')};
+    Map body = {
+      'user_id': _myBox.get('userId'),
+      "from": fromController.text,
+      "to": toController.text,
+      
+      };
     String jsonBody = json.encode(body);
 
     server
@@ -58,10 +68,8 @@ class GetTmpListController extends GetxController {
 
         tmpList = <TmpListData>[];
         tmpList.addAll(tmpListData.data!);
-
+        onFilteredList(todayDate);
         loader = false;
-        // date
-        onUnikDietList();
         Future.delayed(const Duration(milliseconds: 10), () {
           update();
         });

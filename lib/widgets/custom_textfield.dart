@@ -20,6 +20,7 @@ class CustomTextField extends StatelessWidget {
   final String? extraLabel;
   final TextStyle? labelStyle;
   final TextStyle? extraLabelStyle;
+  final TextStyle? hintStyle;
   final TextStyle? errorStyle;
   final VoidCallback? onTap;
   final AutovalidateMode? autovalidateMode;
@@ -69,7 +70,7 @@ class CustomTextField extends StatelessWidget {
       this.errorStyle,
       this.marginBottom,
       this.labelText,
-      this.minLines, this.suffix});
+      this.minLines, this.suffix, this.hintStyle});
 
   @override
   Widget build(BuildContext context) => Column(
@@ -171,6 +172,7 @@ class CustomTextField2 extends StatelessWidget {
   final TextStyle? labelStyle;
   final TextStyle? extraLabelStyle;
   final TextStyle? errorStyle;
+  final TextStyle? hintStyle;
   final VoidCallback? onTap;
   final AutovalidateMode? autovalidateMode;
   final TextInputType? keyboardType;
@@ -218,7 +220,7 @@ class CustomTextField2 extends StatelessWidget {
       this.extraLabelStyle,
       this.labelStyle,
       this.errorStyle,
-      this.marginBottom});
+      this.marginBottom, this.hintStyle});
 
   @override
   Widget build(BuildContext context) => Column(
@@ -303,7 +305,7 @@ class CustomTextField2 extends StatelessWidget {
                       const BorderSide(width: 1, color: kDisabledTextColor)),
               // ********** hintText ********
               hintText: hintText,
-              hintStyle: kTitleMedium.copyWith(color: kTextColorLight),
+              hintStyle:hintStyle?? kTitleMedium.copyWith(color: kTextColorLight),
               // ********** label ********
               label: label,
               labelStyle: labelStyle ?? kTitleMedium,

@@ -41,9 +41,7 @@ class ProfileController extends GetxController {
     var name = myBox.get('userName')??"";
     fullNameController = TextEditingController(text: name);
     //photo
-    kLogger.e('photo');
     String photo = myBox.get('userPhoto')??'';
-    kLogger.e(photo);
     userPhoto = photo;
     //email
     var email = myBox.get('email')??'';

@@ -49,11 +49,6 @@ class TodayAddedDietList extends StatelessWidget {
                           child: Text("Time",
                               style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white)),
                         ),
-                         Padding(
-                          padding: EdgeInsets.all(12),
-                          child: Text("Food Type",
-                              style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white)),
-                        ),
                         Padding(
                           padding: EdgeInsets.all(12),
                           child: Text("Food Quantity",
@@ -70,10 +65,6 @@ class TodayAddedDietList extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(12),
                             child: Text(controller.todayFilteredList[index].time ?? ""),
-                          ),
-                            Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: Text(controller.todayFilteredList[index].foodType ?? ""),
                           ),
                             Padding(
                             padding: const EdgeInsets.all(12),

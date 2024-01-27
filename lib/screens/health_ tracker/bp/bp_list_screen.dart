@@ -1,10 +1,14 @@
 import 'package:cureways_user/data/network/controllers/get_bp_list_controller.dart';
-import 'package:cureways_user/screens/health_%20tracker/bp/bp_list_details.dart';
+import 'package:cureways_user/utils/Int_extensions.dart';
 import 'package:cureways_user/utils/const_color.dart';
+import 'package:cureways_user/utils/style.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/appbar.dart';
+import 'package:cureways_user/widgets/custom_btn.dart';
+import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class BpListScreen extends StatefulWidget {
   const BpListScreen({super.key});
@@ -27,57 +31,176 @@ class _BpListScreenState extends State<BpListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: Text("Bp List".toUpperCase())),
-      // appBar: AppBar(
-      //   automaticallyImplyLeading: false,
-      //   backgroundColor: ConstantsColor.primaryColor,
-      //   shape: const RoundedRectangleBorder(
-      //     borderRadius: BorderRadius.only(
-      //         bottomLeft: Radius.circular(12.0),
-      //         bottomRight: Radius.circular(12.0)),
-      //   ),
-      //   title: const Text(
-      //     "Bp List",
-      //     style: TextStyle(
-      //         color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-      //   ),
-      //   centerTitle: true,
-      // ),
-      body: GetBuilder<GetBpListController>(
-        init: GetBpListController(),
-        builder: (bpList) => bpList.loader
-            ? const Center(child: AppIndecator())
-            : ListView.builder(
-                itemCount: bpList.uniqueList.length,
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 16),
-                  child: GestureDetector(
-                    onTap: () {
-                      Get.to(() => BPListDetails(
-                            data: bpList.uniqueList[index].date ?? "",
-                          ));
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: ConstantsColor.backgroundColor,
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("Data: ${bpList.uniqueList[index].date}"),
-                            // Text("Systolic: ${bpList.bpList[index].sysotolic}"),
-                            // const SizedBox(height: 3),
-                            // Text(
-                            //     "Diastolic: ${bpList.bpList[index].diastolic}"),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+            // margin: const EdgeInsets.all(12),
+            width: double.infinity,
+            // height: 200,
+            decoration: const BoxDecoration(
+              color: kPrimaryColor,
+              // borderRadius: BorderRadius.circular(12)
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: CustomTextField2(
+                      style: const TextStyle(color: kWhite),
+                      hintStyle: const TextStyle(color: kWhite),
+                      controller: getBpListController.fromController,
+                      marginBottom: 0,
+                      hintText: "From",
+                      keyboardType: TextInputType.text,
+                      readOnly: true,
+                      onTap: () async {
+                        DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2000),
+                            lastDate: DateTime(2101));
+                        if (pickedDate != null) {
+                          getBpListController.fromController.text =
+                              DateFormat("yyyy-MM-dd").format(pickedDate);
+                        }
+                      }),
                 ),
-              ),
+                10.width,
+                Expanded(
+                  child: CustomTextField2(
+                      controller: getBpListController.toController,
+                      keyboardType: TextInputType.text,
+                      style: const TextStyle(color: kWhite),
+                      hintStyle: const TextStyle(color: kWhite),
+                      hintText: "To",
+                      marginBottom: 0,
+                      readOnly: true,
+                      onTap: () async {
+                        DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2000),
+                            lastDate: DateTime(2101));
+                        if (pickedDate != null) {
+                          getBpListController.toController.text =
+                              DateFormat("yyyy-MM-dd").format(pickedDate);
+                        }
+                      }),
+                ),
+                10.width,
+                PrimaryBtn(
+                  color: kDangerColor,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 13, vertical: 14),
+                  child: const Text("Search"),
+                  onPressed: () {
+                    if (getBpListController.fromController.text.isNotEmpty &&
+                        getBpListController.toController.text.isNotEmpty) {
+                      kLogger.e("message");
+                      getBpListController.getBpList();
+                    }
+                  },
+                )
+              ],
+            ),
+          ),
+          Expanded(
+            child: GetBuilder<GetBpListController>(
+                init: GetBpListController(),
+                builder: (controller) {
+                  if (controller.bpList.isEmpty) {
+                    return const Center(child: AppIndecator());
+                  } else {
+                    var data = controller.bpList;
+                    return SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 22),
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 12),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            color: ConstantsColor.backgroundColor,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Table(
+                            border: TableBorder.all(),
+                            columnWidths: const <int, TableColumnWidth>{
+                              0: FixedColumnWidth(100),
+                              // 1: FlexColumnWidth()
+                              // : const IntrinsicColumnWidth(),
+                              // 1: FlexColumnWidth(),
+                              // 1: FixedColumnWidth(m.xl ? 200 : 364),
+                              // 2: FlexColumnWidth(),
+                              // 3: FlexColumnWidth(),
+                              // 4: FlexColumnWidth(),
+                            },
+                            defaultVerticalAlignment:
+                                TableCellVerticalAlignment.middle,
+                            children: [
+                              // header
+                              const TableRow(
+                                  decoration: BoxDecoration(
+                                      color: ConstantsColor.primaryColor),
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.all(12),
+                                      child: Text("Date",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.white)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.all(12),
+                                      child: Text("Time",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.white)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.all(12),
+                                      child: Text("Sysotolic",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.white)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.all(12),
+                                      child: Text("Diastolic",
+
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.white)),
+                                    ),
+                                  ]),
+                              ...List.generate(data.length, (index) {
+                                return TableRow(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(12),
+                                    child: Text(data[index].date ?? "",
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.w400)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(12),
+                                    child: Text(data[index].time ?? ""),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(12),
+                                    child: Text(data[index].sysotolic ?? ""),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(12),
+                                    child: Text(data[index].diastolic ?? ""),
+                                  ),
+                                ]);
+                              })
+                            ]),
+                      ),
+                    );
+                  }
+                }),
+          ),
+        ],
       ),
     );
   }

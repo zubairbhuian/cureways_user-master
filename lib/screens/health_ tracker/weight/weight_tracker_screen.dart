@@ -1,4 +1,6 @@
+import 'package:cureways_user/data/network/controllers/get_weight_list_controller.dart';
 import 'package:cureways_user/data/network/controllers/store_weight_controller.dart';
+import 'package:cureways_user/screens/health_%20tracker/weight/widgets/today_added_weight_list.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +22,15 @@ class WeightTrackerScreen extends StatefulWidget {
 
 class _WeightTrackerScreenState extends State<WeightTrackerScreen> {
   StoreWeightController storeWeightController = StoreWeightController();
+   GetWeightListController getWeightListController = GetWeightListController();
   final _formKey = GlobalKey<FormState>();
   final _myBox = Hive.box('userBox');
 
   @override
   void didChangeDependencies() {
     storeWeightController = Get.put(StoreWeightController());
+    getWeightListController = Get.put(GetWeightListController());
+    getWeightListController.getWeightList();
     super.didChangeDependencies();
   }
 
@@ -55,8 +60,8 @@ class _WeightTrackerScreenState extends State<WeightTrackerScreen> {
                             CustomTextField(
                                 controller: storeWeight.dateController,
                                 keyboardType: TextInputType.text,
-                                labelText: 'mm/dd/yyyy',
-                                hintText: 'mm/dd/yyyy',
+                                labelText: 'yyyy-mm-dd',
+                                hintText: 'yyyy-mm-dd',
                                 onTap: () async {
                                   DateTime? pickedDate = await showDatePicker(
                                       context: context,
@@ -65,8 +70,7 @@ class _WeightTrackerScreenState extends State<WeightTrackerScreen> {
                                       lastDate: DateTime(2101));
                                   if (pickedDate != null) {
                                     storeWeight.dateController.text =
-                                        DateFormat(
-                                                DateFormat.YEAR_NUM_MONTH_DAY)
+                                        DateFormat("yyyy-MM-dd")
                                             .format(pickedDate);
                                     storeWeight.update();
                                   }
@@ -116,6 +120,7 @@ class _WeightTrackerScreenState extends State<WeightTrackerScreen> {
                     const SizedBox(
                       height: 16,
                     ),
+                    const TodayAddedWeightList(),
                     const Text(
                       'Normal Weight Ranges: Body Mass Index (BMI)',
                       style: TextStyle(

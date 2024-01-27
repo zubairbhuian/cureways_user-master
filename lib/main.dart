@@ -52,7 +52,6 @@ class MyApp extends StatelessWidget {
               apiService: apiService,
             ),
             home: const Splash(),
-            // home:  HealtipsMainScreen(userName: "zubair",),
           );
         });
   }

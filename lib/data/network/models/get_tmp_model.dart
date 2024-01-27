@@ -35,6 +35,7 @@ class TmpListData {
     this.id,
     this.userId,
     this.date,
+    this.time,
     this.bodyTemperature,
   });
 
@@ -42,11 +43,13 @@ class TmpListData {
     id = json['id'];
     userId = json['user_id'];
     date = json['date'];
+    time = json['time'];
     bodyTemperature = json['body_temperature'];
   }
   int? id;
   String? userId;
   String? date;
+  String? time;
   String? bodyTemperature;
 
   Map<String, dynamic> toJson() {
@@ -54,6 +57,7 @@ class TmpListData {
     map['id'] = id;
     map['user_id'] = userId;
     map['date'] = date;
+    map['time'] = time;
     map['body_temperature'] = bodyTemperature;
     return map;
   }

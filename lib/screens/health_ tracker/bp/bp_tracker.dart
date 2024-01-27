@@ -1,6 +1,9 @@
+import 'package:cureways_user/data/network/controllers/get_bp_list_controller.dart';
 import 'package:cureways_user/data/network/controllers/store-bp_controller.dart';
+import 'package:cureways_user/screens/health_%20tracker/bp/widgets/today_added_bp_list.dart';
 import 'package:cureways_user/screens/health_%20tracker/health_tracker_screen.dart';
 import 'package:cureways_user/utils/const_color.dart';
+import 'package:cureways_user/utils/my_func.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
@@ -8,9 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
-
 
 class BpTrackerScreen extends StatefulWidget {
   const BpTrackerScreen({Key? key}) : super(key: key);
@@ -23,10 +24,13 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
   final _formKey = GlobalKey<FormState>();
 
   StoreBpController storeBpController = StoreBpController();
+  GetBpListController getBpController = GetBpListController();
 
   @override
   void didChangeDependencies() {
     storeBpController = Get.put(StoreBpController());
+    getBpController = Get.put(GetBpListController());
+    getBpController.getBpList();
     super.didChangeDependencies();
   }
 
@@ -61,8 +65,8 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                                     controller: storeBp.dateController,
                                     keyboardType: TextInputType.text,
                                     readOnly: true,
-                                    labelText: 'mm/dd/yyyy',
-                                    hintText: ' mm/dd/yyyy',
+                                    labelText: 'yyyy-mm-dd',
+                                    hintText: 'yyyy-mm-dd',
                                     onTap: () async {
                                       DateTime? pickedDate =
                                           await showDatePicker(
@@ -72,14 +76,13 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                                               lastDate: DateTime(2101));
                                       if (pickedDate != null) {
                                         storeBp
-                                            .dateController.text = DateFormat(
-                                                DateFormat.YEAR_NUM_MONTH_DAY)
+                                            .dateController.text = DateFormat("yyyy-MM-dd")
                                             .format(pickedDate);
                                         storeBp.update();
                                       }
                                     }),
-                                       CustomTextField(
-                                  // controller: storeDiet.timePeriodController,
+                                CustomTextField(
+                                  controller: storeBp.timeController,
                                   keyboardType: TextInputType.text,
                                   readOnly: true,
                                   labelText: 'Enter Time Period',
@@ -91,11 +94,11 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                                       context: context,
                                     );
                                     if (selectedTime != null) {
-                                      // storeDiet.timePeriodController.text =
-                                      //     "${selectedTime.hour}:${selectedTime.minute}";
+                                      storeBp.timeController.text =
+                                          "${selectedTime.hour}:${selectedTime.minute}";
                                       //! formet the time
-                                      /// MyFunc.formatTimeOfDay(selectedTime);
-                                      // storeDiet.update();
+                                      //  MyFunc.formatTimeOfDay(selectedTime);
+                                   
                                     }
                                   },
                                 ),
@@ -105,9 +108,9 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                                   suffix: const Text("mmHg"),
                                   labelText: 'Enter Systolic Value',
                                   hintText: 'Enter Systolic Value',
-                                   inputFormatters: [
+                                  inputFormatters: [
                                     FilteringTextInputFormatter.allow(
-                                    RegExp(r'[0-9\.\-\/]'))
+                                        RegExp(r'[0-9\.\-\/]'))
                                   ],
                                 ),
                                 CustomTextField(
@@ -116,10 +119,9 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                                   suffix: const Text("mmHg"),
                                   labelText: 'Enter Diastolic Value',
                                   hintText: 'Enter Diastolic Value',
-                                   inputFormatters: [
-                                   FilteringTextInputFormatter.allow(
-                                    RegExp(r'[0-9\.\-\/]'))
-                                    
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9\.\-\/]'))
                                   ],
                                 ),
                               ],
@@ -152,6 +154,7 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                         const SizedBox(
                           height: 16,
                         ),
+                        const TodayAddedBPList(),
                         const Text(
                           'Blood pressure categories',
                           style: TextStyle(

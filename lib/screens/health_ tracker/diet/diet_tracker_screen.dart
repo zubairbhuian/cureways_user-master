@@ -68,8 +68,8 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
                                   controller: storeDietController.dateController,
                                   keyboardType: TextInputType.text,
                                   readOnly: true,
-                                  labelText: 'mm/dd/yyyy',
-                                  hintText: 'mm/dd/yyyy',
+                                  labelText: 'yyyy-mm-dd',
+                                  hintText: 'yyyy-mm-dd',
                                   onTap: () async {
                                     DateTime? pickedDate = await showDatePicker(
                                         context: context,
@@ -78,8 +78,7 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
                                         lastDate: DateTime(2101));
                                     if (pickedDate != null) {
                                       storeDietController.dateController.text =
-                                          DateFormat(
-                                                  DateFormat.YEAR_NUM_MONTH_DAY)
+                                          DateFormat("yyyy-MM-dd")
                                               .format(pickedDate);
                                       storeDietController.update();
                                     }
@@ -188,27 +187,31 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
                       const SizedBox(
                         height: 16,
                       ),
-                      SizedBox(
-                        width: double.maxFinite,
-                        height: 52,
-                        child: OutlinedButton(
-                          onPressed: () {
-                            storeDietController.storeDiet();
-                          },
-                          style: OutlinedButton.styleFrom(
-                            backgroundColor: ConstantsColor.primaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
-                          child: storeDietController.loader
-                              ? const Center(child: LoadIndecator())
-                              : const Text(
-                                  'SUBMIT',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
+                      GetBuilder<StoreDietController>(
+                        builder: (storeDietController) {
+                          return SizedBox(
+                            width: double.maxFinite,
+                            height: 52,
+                            child: OutlinedButton(
+                              onPressed: () {
+                                storeDietController.storeDiet();
+                              },
+                              style: OutlinedButton.styleFrom(
+                                backgroundColor: ConstantsColor.primaryColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
-                        ),
+                              ),
+                              child: storeDietController.loader
+                                  ? const Center(child: LoadIndecator())
+                                  : const Text(
+                                      'SUBMIT',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 20),
+                                    ),
+                            ),
+                          );
+                        }
                       ),
 
                       //. ======== today diet list ====

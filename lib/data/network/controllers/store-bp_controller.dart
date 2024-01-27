@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cureways_user/data/network/constants/endpoints.dart';
 import 'package:cureways_user/data/network/constants/server.dart';
 import 'package:cureways_user/data/network/controllers/base/base_controller.dart';
+import 'package:cureways_user/data/network/controllers/get_bp_list_controller.dart';
 import 'package:cureways_user/data/network/models/base/base_model.dart';
 import 'package:cureways_user/data/service/user_service.dart';
 import 'package:cureways_user/widgets/popup_dialogs.dart';
@@ -20,8 +21,6 @@ class StoreBpController extends GetxController {
   final TextEditingController timeController = TextEditingController();
   final TextEditingController systolicBpController = TextEditingController();
   final TextEditingController diastolicBpController = TextEditingController();
-
-
 
   storeBp() async {
     loader = true;
@@ -42,6 +41,7 @@ class StoreBpController extends GetxController {
     loader = false;
     update();
     if (res.statusCode == 200) {
+      Get.find<GetBpListController>().getBpList();
       dateController.clear();
       timeController.clear();
       systolicBpController.clear();

@@ -1,16 +1,16 @@
+import 'package:cureways_user/data/network/controllers/get_tmp_list_controller.dart';
 import 'package:cureways_user/data/network/controllers/store_body_tmp_controller.dart';
+import 'package:cureways_user/screens/health_%20tracker/body/widgets/today_added_body_temparature_list.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 
 import '../../../utils/const_color.dart';
 import '../../../widgets/appbar.dart';
-import '../health_tracker_screen.dart';
 
 class BodyTemparatureScreen extends StatefulWidget {
   const BodyTemparatureScreen({Key? key}) : super(key: key);
@@ -22,10 +22,13 @@ class BodyTemparatureScreen extends StatefulWidget {
 class _BodyTemparatureScreenState extends State<BodyTemparatureScreen> {
   final _formKey = GlobalKey<FormState>();
   StoreBodyTmpController storeBodyTmpController = StoreBodyTmpController();
+  GetTmpListController getTmpListController = GetTmpListController();
 
   @override
   void didChangeDependencies() {
     storeBodyTmpController = Get.put(StoreBodyTmpController());
+    getTmpListController = Get.put(GetTmpListController());
+    getTmpListController.getTmpList();
     super.didChangeDependencies();
   }
 
@@ -57,8 +60,8 @@ class _BodyTemparatureScreenState extends State<BodyTemparatureScreen> {
                                 controller: storeBodyTmp.dateController,
                                 keyboardType: TextInputType.text,
                                 readOnly: true,
-                                labelText: 'mm/dd/yyyy',
-                                hintText: 'mm/dd/yyyy',
+                                labelText: 'yyyy-mm-dd',
+                                hintText: 'yyyy-mm-dd',
                                 onTap: () async {
                                   DateTime? pickedDate = await showDatePicker(
                                       context: context,
@@ -67,8 +70,7 @@ class _BodyTemparatureScreenState extends State<BodyTemparatureScreen> {
                                       lastDate: DateTime(2101));
                                   if (pickedDate != null) {
                                     storeBodyTmp.dateController.text =
-                                        DateFormat(
-                                                DateFormat.YEAR_NUM_MONTH_DAY)
+                                        DateFormat("yyyy-MM-dd")
                                             .format(pickedDate);
                                     storeBodyTmp.update();
                                   }
@@ -100,8 +102,10 @@ class _BodyTemparatureScreenState extends State<BodyTemparatureScreen> {
                               keyboardType: TextInputType.number,
                               labelText: 'Enter BodyTemperature',
                               hintText: 'Enter BodyTemperature',
-                              inputFormatters: [FilteringTextInputFormatter.allow(
-                                    RegExp(r'[0-9\.\-\/]'))],
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9\.\-\/]'))
+                              ],
                             ),
                           ],
                         )),
@@ -130,6 +134,7 @@ class _BodyTemparatureScreenState extends State<BodyTemparatureScreen> {
                     const SizedBox(
                       height: 16,
                     ),
+                    const TodayAddedBodyTemparatureList(),
                     const Text(
                       'Age and average body temperature',
                       style: TextStyle(

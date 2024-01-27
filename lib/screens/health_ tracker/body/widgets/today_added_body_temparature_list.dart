@@ -1,16 +1,17 @@
 import 'package:cureways_user/data/network/controllers/get_diet_list_controller.dart';
+import 'package:cureways_user/data/network/controllers/get_tmp_list_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class TodayAddedDietList extends StatelessWidget {
-  const TodayAddedDietList({super.key});
+class TodayAddedBodyTemparatureList extends StatelessWidget {
+  const TodayAddedBodyTemparatureList({super.key});
 
   @override
   Widget build(BuildContext context) {
     
-    return GetBuilder<GetDietListController>(builder: (controller) {
-      if (controller.todayFilteredList.isEmpty) {
+    return GetBuilder<GetTmpListController>(builder: (controller) {
+      if (controller.filteredList.isEmpty) {
         return const SizedBox();
       }
       return Container(
@@ -49,35 +50,26 @@ class TodayAddedDietList extends StatelessWidget {
                           child: Text("Time",
                               style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white)),
                         ),
-                         Padding(
-                          padding: EdgeInsets.all(12),
-                          child: Text("Food Type",
-                              style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white)),
-                        ),
                         Padding(
                           padding: EdgeInsets.all(12),
-                          child: Text("Food Quantity",
+                          child: Text("Body Temperature",
                               style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white)),
                         ),
                       ]),
-                      ...List.generate(controller.todayFilteredList.length, (index) {
+                      ...List.generate(controller.filteredList.length, (index) {
                         return TableRow(children: [
                           Padding(
                             padding: const EdgeInsets.all(12),
-                            child: Text(controller.todayFilteredList[index].date ?? "",
+                            child: Text(controller.filteredList[index].date ?? "",
                                 style: const TextStyle(fontWeight: FontWeight.w400)),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(12),
-                            child: Text(controller.todayFilteredList[index].time ?? ""),
+                            child: Text(controller.filteredList[index].time ?? ""),
                           ),
                             Padding(
                             padding: const EdgeInsets.all(12),
-                            child: Text(controller.todayFilteredList[index].foodType ?? ""),
-                          ),
-                            Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: Text(controller.todayFilteredList[index].foodQty ?? ""),
+                            child: Text(controller.filteredList[index].bodyTemperature ?? ""),
                           ),
                         ]);
                       })

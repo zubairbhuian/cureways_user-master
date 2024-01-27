@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cureways_user/data/network/constants/endpoints.dart';
 import 'package:cureways_user/data/network/constants/server.dart';
+import 'package:cureways_user/data/network/controllers/get_glucose_list_controller.dart';
 import 'package:cureways_user/data/service/user_service.dart';
 import 'package:cureways_user/utils/style.dart';
 import 'package:flutter/material.dart';
@@ -52,8 +53,7 @@ class StoreGlucoseController extends GetxController {
         .then((response) {
       print(json.decode(response.body));
       if (response != null && response.statusCode == 200) {
-        final jsonResponse = json.decode(response.body);
-        print(jsonResponse);
+        Get.find<GetGlucoseListController>().getGlucoseList();
 
         dateController.clear();
         timeController.clear();
@@ -61,15 +61,11 @@ class StoreGlucoseController extends GetxController {
         timePeriodController.clear();
 
         loader = false;
-        Future.delayed(const Duration(milliseconds: 10), () {
-          update();
-        });
+        update();
         Get.rawSnackbar(message: 'Submitted!', backgroundColor: Colors.green);
       } else {
         loader = false;
-        Future.delayed(const Duration(milliseconds: 10), () {
-          update();
-        });
+        update();
         Get.rawSnackbar(
             message: 'Please enter valid input', backgroundColor: Colors.red);
       }

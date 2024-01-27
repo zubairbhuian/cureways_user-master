@@ -39,11 +39,11 @@ class Server {
     try {
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
-      var res = await http.get(Uri.parse(Endpoints.server! + endPoint!),
+      var res = await http.get(Uri.parse(Endpoints.server + endPoint!),
           headers: getAuthHeaders());
 
       if (kDebugMode) {
-        kLogger.d("URL => ${Endpoints.server! + endPoint}");
+        kLogger.d("URL => ${Endpoints.server + endPoint}");
         kLogger.i("RESPONSE => $res");
       }
       return res;
@@ -106,7 +106,7 @@ class Server {
   getRequestSettings(endPoint) async {
     HttpClient client = HttpClient();
     try {
-      return await http.get(Uri.parse(Endpoints.server! + endPoint!),
+      return await http.get(Uri.parse(Endpoints.server + endPoint!),
           headers: getAuthHeaders());
     } catch (error) {
       return null;
@@ -121,7 +121,7 @@ class Server {
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
       return await http.get(
-          Uri.parse("${Endpoints.server!}category/$categoryId/show"),
+          Uri.parse("${Endpoints.server}category/$categoryId/show"),
           headers: _getHttpHeaders());
     } catch (error) {
       return null;

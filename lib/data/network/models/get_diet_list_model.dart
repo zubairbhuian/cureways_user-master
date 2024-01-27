@@ -37,6 +37,7 @@ class DietListData {
     this.date,
     this.time,
     this.foodQty,
+    this.foodType,
   });
 
   DietListData.fromJson(dynamic json) {
@@ -45,12 +46,14 @@ class DietListData {
     date = json['date'];
     time = json['time'];
     foodQty = json['food_qty'];
+    foodType = json['food_type'];
   }
   int? id;
   String? userId;
   String? date;
   String? time;
   String? foodQty;
+  String? foodType;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -59,6 +62,7 @@ class DietListData {
     map['date'] = date;
     map['time'] = time;
     map['food_qty'] = foodQty;
+    map['food_type'] = foodType;
     return map;
   }
 }

@@ -1,4 +1,6 @@
+import 'package:cureways_user/data/network/controllers/get_glucose_list_controller.dart';
 import 'package:cureways_user/data/network/controllers/store_glucose_controller.dart';
+import 'package:cureways_user/screens/health_%20tracker/glucose/widgets/today_added_glucose_list.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -6,13 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 
 import '../../../utils/const_color.dart';
 import '../../../utils/mixins.dart';
 import '../../../widgets/appbar.dart';
-import '../health_tracker_screen.dart';
 
 class GlucoseTrackerScreen extends StatefulWidget {
   const GlucoseTrackerScreen({Key? key}) : super(key: key);
@@ -23,13 +23,15 @@ class GlucoseTrackerScreen extends StatefulWidget {
 
 class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
   StoreGlucoseController storeGlucoseController = StoreGlucoseController();
-  final _myBox = Hive.box('userBox');
+  GetGlucoseListController glucoseListController = GetGlucoseListController();
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   void didChangeDependencies() {
     storeGlucoseController = Get.put(StoreGlucoseController());
+    glucoseListController = Get.put(GetGlucoseListController());
+    glucoseListController.getGlucoseList();
     super.didChangeDependencies();
   }
 
@@ -59,12 +61,11 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                             key: _formKey,
                             child: Column(
                               children: [
-                
                                 CustomTextField(
                                     controller: storeGlucose.dateController,
                                     keyboardType: TextInputType.text,
-                                    labelText: 'mm/dd/yyyy',
-                                    hintText: 'mm/dd/yyyy',
+                                    labelText: 'yyyy-mm-dd',
+                                    hintText: 'yyyy-mm-dd',
                                     onTap: () async {
                                       DateTime? pickedDate =
                                           await showDatePicker(
@@ -74,13 +75,12 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                                               lastDate: DateTime(2101));
                                       if (pickedDate != null) {
                                         storeGlucose
-                                            .dateController.text = DateFormat(
-                                                DateFormat.YEAR_NUM_MONTH_DAY)
+                                            .dateController.text = DateFormat("yyyy-MM-dd")
                                             .format(pickedDate);
                                         storeGlucose.update();
                                       }
                                     }),
-                                     CustomTextField(
+                                CustomTextField(
                                   controller: storeGlucose.timeController,
                                   keyboardType: TextInputType.text,
                                   readOnly: true,
@@ -102,7 +102,10 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                                   },
                                 ),
                                 DropdownButtonFormField2(
-                                  value: storeGlucose.timePeriodController.text.isEmpty?null:storeGlucose.timePeriodController.text,
+                                  value: storeGlucose
+                                          .timePeriodController.text.isEmpty
+                                      ? null
+                                      : storeGlucose.timePeriodController.text,
                                   decoration: InputDecoration(
                                     isDense: true,
                                     contentPadding: EdgeInsets.zero,
@@ -147,7 +150,8 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                                           )))
                                       .toList(),
                                   onChanged: (value) {
-                                    storeGlucose.timePeriodController.text = value.toString();
+                                    storeGlucose.timePeriodController.text =
+                                        value.toString();
                                   },
                                   // onSaved: (value) {
                                   //   storeGlucose.timePeriodController.text = value.toString();
@@ -168,11 +172,10 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                                   suffix: const Text("mmol/L"),
                                   labelText: 'Your Glucose Test Result',
                                   hintText: 'Your Glucose Test Result',
-                                    inputFormatters: [
+                                  inputFormatters: [
                                     FilteringTextInputFormatter.allow(
-                                    RegExp(r'[0-9\.\-\/]'))
+                                        RegExp(r'[0-9\.\-\/]'))
                                   ],
-
                                 ),
                               ],
                             )),
@@ -193,8 +196,7 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                               ),
                             ),
                             child: storeGlucose.loader
-                                ? const Center(
-                                    child: LoadIndecator())
+                                ? const Center(child: LoadIndecator())
                                 : const Text(
                                     'SUBMIT',
                                     style: TextStyle(
@@ -205,6 +207,7 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
                         const SizedBox(
                           height: 16,
                         ),
+                        const TodayAddedGlucoseList(),
                         const Text(
                           'Normal and diabetic blood sugar ranges',
                           style: TextStyle(
