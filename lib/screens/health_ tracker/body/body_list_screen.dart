@@ -46,8 +46,7 @@ class _BodyListScreenState extends State<BodyListScreen> {
               children: [
                 Expanded(
                   child: CustomTextField2(
-                      style: const TextStyle(color: kWhite),
-                      hintStyle: const TextStyle(color: kWhite),
+                      style: const TextStyle(color: kTextColor),
                       controller: getTmpListController.fromController,
                       marginBottom: 0,
                       hintText: "From",
@@ -70,8 +69,7 @@ class _BodyListScreenState extends State<BodyListScreen> {
                   child: CustomTextField2(
                       controller: getTmpListController.toController,
                       keyboardType: TextInputType.text,
-                      style: const TextStyle(color: kWhite),
-                      hintStyle: const TextStyle(color: kWhite),
+                      style: const TextStyle(color: kTextColor),
                       hintText: "To",
                       marginBottom: 0,
                       readOnly: true,
@@ -109,7 +107,7 @@ class _BodyListScreenState extends State<BodyListScreen> {
                 builder: (controller) {
                   if (controller.tmpList.isEmpty) {
                     return const Center(child: AppIndecator());
-                  }else {
+                  } else {
                     var data = controller.tmpList;
                     return SingleChildScrollView(
                       padding: const EdgeInsets.symmetric(
@@ -176,7 +174,8 @@ class _BodyListScreenState extends State<BodyListScreen> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(12),
-                                    child: Text(data[index].bodyTemperature ?? ""),
+                                    child:
+                                        Text(data[index].bodyTemperature ?? ""),
                                   ),
                                 ]);
                               })
@@ -188,8 +187,6 @@ class _BodyListScreenState extends State<BodyListScreen> {
           ),
         ],
       ),
-    
-    
     );
   }
 }

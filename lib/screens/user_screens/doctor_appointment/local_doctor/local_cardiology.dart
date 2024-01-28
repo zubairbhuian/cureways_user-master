@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cureways_user/data/network/controllers/doctor_list_controller.dart';
 import 'package:cureways_user/data/network/models/doctor_list_model.dart';
-import 'package:cureways_user/screens/user_screens/doctor_appointment_screens/doctor_appoinment_confirm_screen.dart';
+import 'package:cureways_user/screens/user_screens/doctor_appointment/doctor_appoinment_confirm_screen.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,15 +9,15 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../../../utils/const_color.dart';
 
-class ForeignDoctor extends StatefulWidget {
+class LocalCardiology extends StatefulWidget {
   String userName;
-  ForeignDoctor({Key? key, required this.userName}) : super(key: key);
+  LocalCardiology({Key? key, required this.userName}) : super(key: key);
 
   @override
-  State<ForeignDoctor> createState() => _ForeignDoctorState();
+  State<LocalCardiology> createState() => _LocalCardiologyState();
 }
 
-class _ForeignDoctorState extends State<ForeignDoctor> {
+class _LocalCardiologyState extends State<LocalCardiology> {
   dynamic userName;
   DoctorListController doctorListController = DoctorListController();
   @override
@@ -40,7 +40,7 @@ class _ForeignDoctorState extends State<ForeignDoctor> {
       init: DoctorListController(),
       builder: (docList) {
         List<DoctorData> foreignDoctorList = docList.doctorDataList
-            .where((doctor) => doctor.type == "Foreign")
+            .where((doctor) => doctor.type == "Local")
             .toList();
         return docList.loader
             ? const Scaffold(

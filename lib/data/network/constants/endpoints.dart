@@ -23,7 +23,12 @@ class Endpoints {
   static String storeBp = "bp-store";
   static String storeBodyTmp = "body-temperature-store";
   static String storeWeight = "weight-store";
+  static String vaccineList = "vaccine";
   static String storeGlucose = "glucose-store";
+    static String vaccineOrder = "vaccine/order";
+    static String overseasTreatment = "overseas-treatment";
+    static String doctorSpecialist = "specialist";
   static String apiUrl = "cureways.vaccinehomebd.com";
   static String apiEndPoint = "/api/v1/";
+
 }

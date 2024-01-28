@@ -1,4 +1,4 @@
-import 'package:cureways_user/screens/user_screens/doctor_appointment_screens/doctor_appoinment_confirm_screen.dart';
+import 'package:cureways_user/screens/user_screens/doctor_appointment/doctor_appoinment_confirm_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/const_color.dart';

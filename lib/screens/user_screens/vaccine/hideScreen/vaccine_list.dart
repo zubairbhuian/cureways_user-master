@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cureways_user/screens/user_screens/vaccine/vaccine_details.dart';
-import 'package:cureways_user/screens/user_screens/vaccine/vaccine_order_screen.dart';
+import 'package:cureways_user/screens/user_screens/vaccine/hideScreen/vaccine_details.dart';
+import 'package:cureways_user/screens/user_screens/vaccine/hideScreen/vaccine_order_screen.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../data/network/apis/api_client.dart';
-import '../../../utils/const_color.dart';
-import '../../../widgets/appbar.dart';
+import '../../../../data/network/apis/api_client.dart';
+import '../../../../utils/const_color.dart';
+import '../../../../widgets/appbar.dart';
 
 class VaccineList extends StatefulWidget {
   String userName;

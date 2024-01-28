@@ -47,8 +47,8 @@ class _BpListScreenState extends State<BpListScreen> {
               children: [
                 Expanded(
                   child: CustomTextField2(
-                      style: const TextStyle(color: kWhite),
-                      hintStyle: const TextStyle(color: kWhite),
+                      style: const TextStyle(color: kTextColor),
+              
                       controller: getBpListController.fromController,
                       marginBottom: 0,
                       hintText: "From",
@@ -71,8 +71,7 @@ class _BpListScreenState extends State<BpListScreen> {
                   child: CustomTextField2(
                       controller: getBpListController.toController,
                       keyboardType: TextInputType.text,
-                      style: const TextStyle(color: kWhite),
-                      hintStyle: const TextStyle(color: kWhite),
+                      style: const TextStyle(color: kTextColor),
                       hintText: "To",
                       marginBottom: 0,
                       readOnly: true,

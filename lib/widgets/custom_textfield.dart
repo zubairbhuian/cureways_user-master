@@ -70,7 +70,9 @@ class CustomTextField extends StatelessWidget {
       this.errorStyle,
       this.marginBottom,
       this.labelText,
-      this.minLines, this.suffix, this.hintStyle});
+      this.minLines,
+      this.suffix,
+      this.hintStyle});
 
   @override
   Widget build(BuildContext context) => Column(
@@ -220,7 +222,8 @@ class CustomTextField2 extends StatelessWidget {
       this.extraLabelStyle,
       this.labelStyle,
       this.errorStyle,
-      this.marginBottom, this.hintStyle});
+      this.marginBottom,
+      this.hintStyle});
 
   @override
   Widget build(BuildContext context) => Column(
@@ -272,13 +275,15 @@ class CustomTextField2 extends StatelessWidget {
               // ********** errorText ********
               errorText: errorText,
               errorStyle:
-                  errorStyle ?? kBodyLarge.copyWith(color: kDangerColor),
-              errorMaxLines: 5,
+                  errorStyle ?? kBodySmall.copyWith(color: kDangerColor),
+              errorMaxLines: 1,
               // ********** padding ********
               contentPadding: padding ??
-                  EdgeInsets.symmetric(vertical: 12, horizontal: 24.w),
+                  EdgeInsets.symmetric(vertical: 15, horizontal: 24.w),
               // ********** prefixIcon ********
               prefixIcon: prefixIcon,
+              filled: true,
+              fillColor: kWhite,
               // ********** suffixIcon ********
               suffixIcon: suffixIcon,
               // ********** border ********
@@ -300,12 +305,13 @@ class CustomTextField2 extends StatelessWidget {
                       const BorderSide(width: 1, color: kDisabledTextColor)),
               // ********** errorBorder ********
               errorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(0),
+                  borderRadius: BorderRadius.circular(8),
                   borderSide:
-                      const BorderSide(width: 1, color: kDisabledTextColor)),
+                      const BorderSide(width: 1, color: kDangerColor)),
               // ********** hintText ********
               hintText: hintText,
-              hintStyle:hintStyle?? kTitleMedium.copyWith(color: kTextColorLight),
+              hintStyle:
+                  hintStyle ?? kTitleMedium.copyWith(color: kTextColorLight),
               // ********** label ********
               label: label,
               labelStyle: labelStyle ?? kTitleMedium,
@@ -316,7 +322,7 @@ class CustomTextField2 extends StatelessWidget {
           ),
           // ********** marginBottom ********
           SizedBox(
-            height: marginBottom ?? 24,
+            height: marginBottom ?? 16,
           )
         ],
       );
@@ -326,22 +332,23 @@ class CustomDropdownTextFiel extends StatelessWidget {
   const CustomDropdownTextFiel({
     super.key,
     this.label,
-    required this.data,
     required this.onChanged,
     this.hint,
     this.icon,
     this.enabledBorderColor,
     this.borderColor,
+    this.items, this.value, this.validator,
   });
-
+  final String? Function(String?)? validator;
   final String? label;
-  final List data;
+  final List<DropdownMenuItem<String>>? items;
   final Widget? hint;
   final Widget? icon;
+  final String? value;
   final Function(String?) onChanged;
   final Color? enabledBorderColor;
   final Color? borderColor;
-
+  
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -354,14 +361,20 @@ class CustomDropdownTextFiel extends StatelessWidget {
           ),
         SizedBox(height: label == null ? 0 : 8.h),
         DropdownButtonFormField<String>(
+          validator:validator,
           hint: hint ??
               Text(
                 'Select',
                 style: kBodyLarge.copyWith(color: const Color(0xFFC0C0C0)),
               ),
+          value: value,
           icon: icon,
           dropdownColor: kWhite,
+          
           decoration: InputDecoration(
+                          // ********** errorText ********
+              errorStyle: kBodySmall.copyWith(color: kDangerColor),
+              errorMaxLines: 1,
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.r),
                   borderSide: const BorderSide(color: kDisabledTextColor)),
@@ -372,22 +385,14 @@ class CustomDropdownTextFiel extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8.r),
                   borderSide: const BorderSide(color: kDisabledTextColor)),
               contentPadding:
-                  const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                  const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
               filled: true,
               fillColor: kWhite,
               hintStyle: TextStyle(
                   color: kTextColor,
                   fontSize: 16.sp) // Set the background color here
               ),
-          items: List.generate(
-              data.length,
-              (index) => DropdownMenuItem<String>(
-                    value: data[index],
-                    child: Text(
-                      data[index],
-                      style: kBodyLarge,
-                    ),
-                  )),
+          items: items,
           onChanged: onChanged,
         ),
         // SizedBox(height: 24.h),

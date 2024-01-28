@@ -2,13 +2,15 @@ import 'package:cureways_user/data/network/controllers/profile_controller.dart';
 import 'package:cureways_user/screens/user_screens/ambulance_screens/ambulance_screen.dart';
 import 'package:cureways_user/screens/user_screens/blood_bank_screens/blood_bank_screen.dart';
 import 'package:cureways_user/screens/user_screens/blood_bank_screens/blood_bank_user_type_screen.dart';
-import 'package:cureways_user/screens/user_screens/doctor_appointment_screens/doctor_appoinment_screen.dart';
-import 'package:cureways_user/screens/user_screens/doctor_appointment_screens/doctor_list_screen.dart';
+import 'package:cureways_user/screens/user_screens/doctor_appointment/doctor_appoinment_screen.dart';
+import 'package:cureways_user/screens/user_screens/doctor_appointment/doctor_list_screen.dart';
+import 'package:cureways_user/screens/user_screens/doctor_appointment/pages/doctors_list_screen.dart';
 import 'package:cureways_user/screens/user_screens/health_tips/health_tips_main_screen.dart';
 import 'package:cureways_user/screens/user_screens/hospital_information/hospital_list_Screen.dart';
 import 'package:cureways_user/screens/user_screens/medicine_screens/medicine_list_screen.dart';
-import 'package:cureways_user/screens/user_screens/overseas_treatment/overseas_screen.dart';
-import 'package:cureways_user/screens/user_screens/vaccine/vaccine_list.dart';
+import 'package:cureways_user/screens/user_screens/overseas_treatment/hide_screen/overseas_screen.dart';
+import 'package:cureways_user/screens/user_screens/vaccine/hideScreen/vaccine_list.dart';
+import 'package:cureways_user/screens/user_screens/vaccine/vaccine_request.dart';
 import 'package:cureways_user/screens/user_screens/virtual_lab/virtual_lab_screen.dart';
 import 'package:cureways_user/utils/int_extensions.dart';
 import 'package:cureways_user/widgets/network_img.dart';
@@ -21,6 +23,7 @@ import '../utils/const_color.dart';
 import '../utils/mixins.dart';
 import 'health_ tracker/health_tracker_screen.dart';
 import 'health_profile/health_profile_screen.dart';
+import 'user_screens/overseas_treatment/overseas_treatment_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final String userName;
@@ -167,19 +170,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ));
                             break;
                           case "Doctor Appointment":
-                            Get.to(() => const DoctorAppointmentScreen());
+                            Get.to(() => const DoctorsListScreen());
                             break;
                           case "Blood Bank":
                             Get.to(() => const BloodBankScreen());
                             break;
                           case "Vaccine":
-                            Get.to(() => VaccineList(
-                                  userName: userName,
-                                ));
+                            Get.to(() => const VaccineRequestScreen());
                             break;
                           case "Overseas Treatment":
-                            Get.to(() => OverSeastreatmentScreen(
-                                  userName: userName,
+                            Get.to(() => const OverseasTreatmentScreen(
                                 ));
                             break;
                         }
@@ -193,7 +193,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 offset: Offset(0, 14), // x, y offset
                                 blurRadius: 34,
                                 spreadRadius: 0,
-                                color: Color.fromARGB(255, 234, 241, 253), // Replace with your desired color
+                                color: Color.fromARGB(255, 234, 241,
+                                    253), // Replace with your desired color
                               ),
                             ]),
                         child: Column(

@@ -47,8 +47,7 @@ class _DietListScreenState extends State<DietListScreen> {
               children: [
                 Expanded(
                   child: CustomTextField2(
-                      style: const TextStyle(color: kWhite),
-                      hintStyle: const TextStyle(color: kWhite),
+                      style: const TextStyle(color: kTextColor),
                       controller: getDietListController.fromController,
                       marginBottom: 0,
                       hintText: "From",
@@ -71,8 +70,7 @@ class _DietListScreenState extends State<DietListScreen> {
                   child: CustomTextField2(
                       controller: getDietListController.toController,
                       keyboardType: TextInputType.text,
-                      style: const TextStyle(color: kWhite),
-                      hintStyle: const TextStyle(color: kWhite),
+                      style: const TextStyle(color: kTextColor),
                       hintText: "To",
                       marginBottom: 0,
                       readOnly: true,
@@ -207,8 +205,6 @@ class _DietListScreenState extends State<DietListScreen> {
           ),
         ],
       ),
-    
-    
     );
   }
 }

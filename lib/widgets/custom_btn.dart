@@ -53,6 +53,7 @@ class PrimaryBtn extends StatelessWidget {
           backgroundColor: color ?? kPrimaryColor,
           foregroundColor: textColor ?? kWhite,
           surfaceTintColor:Colors.transparent,
+          shadowColor: kBlack,
 
           padding:
               padding ?? EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),

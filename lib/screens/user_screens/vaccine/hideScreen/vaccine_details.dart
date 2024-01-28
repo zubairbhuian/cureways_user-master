@@ -3,8 +3,8 @@ import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../utils/const_color.dart';
-import '../../../widgets/appbar.dart';
+import '../../../../utils/const_color.dart';
+import '../../../../widgets/appbar.dart';
 
 class VaccineDetailsScreen extends StatefulWidget {
   String vaccineName, vaccineType, vaccineDetails, imagePath, userName;

@@ -46,8 +46,8 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
               children: [
                 Expanded(
                   child: CustomTextField2(
-                      style: const TextStyle(color: kWhite),
-                      hintStyle: const TextStyle(color: kWhite),
+                      style: const TextStyle(color: kTextColor),
+
                       controller: getGlucoseListController.fromController,
                       marginBottom: 0,
                       hintText: "From",
@@ -70,8 +70,8 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
                   child: CustomTextField2(
                       controller: getGlucoseListController.toController,
                       keyboardType: TextInputType.text,
-                      style: const TextStyle(color: kWhite),
-                      hintStyle: const TextStyle(color: kWhite),
+                      style: const TextStyle(color: kTextColor),
+
                       hintText: "To",
                       marginBottom: 0,
                       readOnly: true,

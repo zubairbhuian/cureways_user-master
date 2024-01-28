@@ -14,11 +14,11 @@ class _MainBoardScreenState extends State<MainBoardScreen> {
   int _currentIndex = 0;
   final pages =[
 
-    Center(
-      child: const Text("Emergency",
+    const Center(
+      child: Text("Emergency",
       ),
     ),
-    Center(child: const Text("Profile"))
+    const Center(child: Text("Profile"))
 
   ];
   @override
@@ -34,9 +34,9 @@ class _MainBoardScreenState extends State<MainBoardScreen> {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 5,
               blurRadius: 7,
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
           )],
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(10),
               topRight: Radius.circular(10)
             )),
@@ -52,16 +52,16 @@ class _MainBoardScreenState extends State<MainBoardScreen> {
               _currentIndex=index;
             });
           },
-          items: [
-            const BottomNavigationBarItem(
+          items: const [
+            BottomNavigationBarItem(
               icon:Icon(Icons.home),
               label: 'Home'
             ),
-            const BottomNavigationBarItem(
+            BottomNavigationBarItem(
                 icon:Icon(Icons.call),
                 label: 'Emergency'
             ),
-            const BottomNavigationBarItem(
+            BottomNavigationBarItem(
                 icon:Icon(Icons.person_2_outlined),
                 label: 'Profile'
             ),

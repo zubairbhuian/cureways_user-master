@@ -1,4 +1,4 @@
-import 'package:cureways_user/screens/user_screens/doctor_appointment_screens/local_doctor/local_cardiology.dart';
+import 'package:cureways_user/screens/user_screens/doctor_appointment/local_doctor/local_cardiology.dart';
 import 'package:flutter/material.dart';
 
 

@@ -27,9 +27,6 @@ class StoreDietController extends GetxController {
   storeDiet() async {
     loader = true;
     update();
-    // Future.delayed(const Duration(milliseconds: 10), () {
-    //   update();
-    // });
     Map<String, dynamic> data = {
       'user_id': _myBox.get('userId'),
       'date': dateController.text,

@@ -1,5 +1,5 @@
-import 'package:cureways_user/screens/user_screens/doctor_appointment_screens/foreign_doctor/foreign_doctor.dart';
-import 'package:cureways_user/screens/user_screens/doctor_appointment_screens/local_doctor/local_doctor.dart';
+import 'package:cureways_user/screens/user_screens/doctor_appointment/foreign_doctor/foreign_doctor.dart';
+import 'package:cureways_user/screens/user_screens/doctor_appointment/local_doctor/local_doctor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

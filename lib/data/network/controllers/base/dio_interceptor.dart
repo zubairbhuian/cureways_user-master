@@ -12,7 +12,7 @@ class DioInterceptor extends Interceptor {
     String token = GlobalController.to.bearerToken??"";
     if (token.isNotEmpty) {
       // options.headers['access-token'] =token;
-      options.headers['Authorization'] = 'Bearer $token';
+      options.headers['Authorization'] = token;
     }
 
     /// set options
