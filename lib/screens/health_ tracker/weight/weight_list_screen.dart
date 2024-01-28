@@ -46,8 +46,7 @@ class _WeightListScreenState extends State<WeightListScreen> {
               children: [
                 Expanded(
                   child: CustomTextField2(
-                      style: const TextStyle(color: kWhite),
-                      hintStyle: const TextStyle(color: kWhite),
+                      style: const TextStyle(color: kTextColor),
                       controller: getWeightListController.fromController,
                       marginBottom: 0,
                       hintText: "From",
@@ -70,8 +69,7 @@ class _WeightListScreenState extends State<WeightListScreen> {
                   child: CustomTextField2(
                       controller: getWeightListController.toController,
                       keyboardType: TextInputType.text,
-                      style: const TextStyle(color: kWhite),
-                      hintStyle: const TextStyle(color: kWhite),
+                      style: const TextStyle(color: kTextColor),
                       hintText: "To",
                       marginBottom: 0,
                       readOnly: true,

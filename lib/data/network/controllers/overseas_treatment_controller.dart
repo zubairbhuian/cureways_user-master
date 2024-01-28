@@ -11,16 +11,21 @@ import 'package:get/get.dart' hide FormData, MultipartFile;
 
 class OverseasTreatmentController extends GetxController {
   final otformKey = GlobalKey<FormState>();
-  final TextEditingController nameController = TextEditingController(text: "zubair");
-  final TextEditingController phoneController = TextEditingController(text: "01732665086");
-  final TextEditingController emailController = TextEditingController(text: "demo@gmail.com");
-  final TextEditingController uhidController = TextEditingController(text: "demo");
+  final TextEditingController nameController =
+      TextEditingController(text: "zubair");
+  final TextEditingController phoneController =
+      TextEditingController(text: "01732665086");
+  final TextEditingController emailController =
+      TextEditingController(text: "demo@gmail.com");
+  final TextEditingController uhidController =
+      TextEditingController(text: "demo");
   final TextEditingController selecetedServiceType = TextEditingController();
 
-  /// 
+  ///
   final TextEditingController dateController = TextEditingController();
   final TextEditingController timeController = TextEditingController();
-  final TextEditingController totalPassengersController = TextEditingController();
+  final TextEditingController totalPassengersController =
+      TextEditingController();
   final TextEditingController hospitalNameController = TextEditingController();
 
   File? imgFile;
@@ -29,7 +34,7 @@ class OverseasTreatmentController extends GetxController {
   File? imgFile4;
 
   List serviceTypeList = [
-    'VIL(Visa Invitation Letter',
+    'VIL(Visa Invitation Letter)',
     'Doctor Appointment',
     'Airport Pickup',
     'SMO(Second Medical Opinion) ',
@@ -44,17 +49,39 @@ class OverseasTreatmentController extends GetxController {
           'name': nameController.text,
           'phone': phoneController.text,
           'email': emailController.text,
-          // 'uhid': uhidController.text,
+          'uhid': uhidController.text,
           'type': selecetedServiceType.text,
           'passport_copy': await MultipartFile.fromFile(
             imgFile!.path,
           ),
+          // //
+          'previous_report': imgFile2 == null
+              ? null
+              : await MultipartFile.fromFile(
+                  imgFile2!.path,
+                ),
+          'previous_prescription': imgFile3 == null
+              ? null
+              : await MultipartFile.fromFile(
+                  imgFile3!.path,
+                ),
+          'ticket_upload': imgFile4 == null
+              ? null
+              : await MultipartFile.fromFile(
+                  imgFile4!.path,
+                ),
+          'total_passengers': selecetedServiceType.text,
+          'hostpital_name': selecetedServiceType.text,
+          'arrival_date': selecetedServiceType.text,
+          'arrival_time': selecetedServiceType.text,
         };
         final FormData formData = FormData.fromMap(data);
         update();
         PopupDialog.showLoadingDialog();
         BaseModel res = await BaseController.to.apiService
-            .makePostRequestWithFormData('https://cureways.webbysys.click/api/v1/overseas-treatment', formData);
+            .makePostRequestWithFormData(
+                'https://cureways.webbysys.click/api/v1/overseas-treatment',
+                formData);
         PopupDialog.closeLoadingDialog();
         update();
         if (res.statusCode == 200) {
@@ -69,7 +96,7 @@ class OverseasTreatmentController extends GetxController {
           PopupDialog.showErrorMessage("All field is required");
         }
       } catch (e) {
-        PopupDialog.closeLoadingDialog();
+        // PopupDialog.closeLoadingDialog();
         kLogger.e(e);
       }
     } else {
