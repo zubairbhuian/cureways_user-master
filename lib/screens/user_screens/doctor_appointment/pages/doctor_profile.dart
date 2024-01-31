@@ -68,7 +68,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
             Center(
               child: PrimaryBtn(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: const Text("Book Me"),
+                child: const Text("Appointment"),
                 onPressed: () {
                     Get.to(() => const DoctorAppointmentScreen());
                 },
@@ -86,6 +86,20 @@ class _DoctorProfileState extends State<DoctorProfile> {
                 maxLines: 6,
                 overflow: TextOverflow.ellipsis,
               ),
+              12.height,
+              Row(children: [
+                  Text(
+                "Email: ",
+                style: kLabelLarge,
+
+              ),
+                Text(
+                data.user.email,
+                style: kBodyLarge,
+                maxLines: 6,
+                overflow: TextOverflow.ellipsis,
+              ),
+              ],)
           ],
         ),
       ),

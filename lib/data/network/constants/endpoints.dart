@@ -21,6 +21,7 @@ class Endpoints {
   static String getWeight = "weight";
   static String storeDiet = "diet-store";
   static String storeBp = "bp-store";
+  static String reportsTracker  = "reports_tracker"; 
   static String storeBodyTmp = "body-temperature-store";
   static String storeWeight = "weight-store";
   static String vaccineList = "vaccine";

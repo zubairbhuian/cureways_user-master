@@ -4,6 +4,8 @@ import 'package:cureways_user/screens/health_%20tracker/bp/bp_list_screen.dart';
 import 'package:cureways_user/screens/health_%20tracker/bp/bp_tracker.dart';
 import 'package:cureways_user/screens/health_%20tracker/diet/diet_tracker_screen.dart';
 import 'package:cureways_user/screens/health_%20tracker/glucose/glucose_tracker_screen.dart';
+import 'package:cureways_user/screens/health_%20tracker/reports/reports_list_screen.dart';
+import 'package:cureways_user/screens/health_%20tracker/reports/reports_tracker_screen.dart';
 import 'package:cureways_user/screens/health_%20tracker/weight/weight_list_screen.dart';
 import 'package:cureways_user/screens/health_%20tracker/weight/weight_tracker_screen.dart';
 import 'package:cureways_user/widgets/appbar.dart';
@@ -68,7 +70,9 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ConstantsColor.backgroundColor,
-      appBar: const CustomAppBar(title: Text("HEALTH TRACKER"),),
+      appBar: const CustomAppBar(
+        title: Text("HEALTH TRACKER"),
+      ),
       body: Column(
         children: [
           // AppDefaultBar(title: "HEALTH TRACKER", userNAme: "$userName"),
@@ -80,13 +84,13 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
               child: Container(
                 color: ConstantsColor.backgroundColor,
                 child: Padding(
-                  padding:  EdgeInsets.only(left: 20.w, right: 20.w,top: 12),
+                  padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                            color: const Color(0xff082244),
+                            color: kPrimaryColor,
                             borderRadius: BorderRadius.circular(10)),
                         height: 125,
                         width: double.maxFinite,
@@ -128,9 +132,10 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                                 initialAngleInDegree: 80,
                                 centerText: "80%",
                                 centerTextStyle: const TextStyle(
-                                    backgroundColor: Color(0xff082244),
+                                    backgroundColor: kPrimaryColor,
                                     fontSize: 18),
-                                baseChartColor: const Color(0xff6D90C6),
+                                baseChartColor:
+                                    const Color.fromARGB(255, 121, 173, 250),
                                 colorList: colorList,
                                 chartValuesOptions: const ChartValuesOptions(
                                   showChartValuesInPercentage: true,
@@ -292,7 +297,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                         "DIET TRACKER",
                         style: TextStyle(
                             fontSize: 18,
-                            color: Color(0xff082244),
+                            color: kPrimaryColor,
                             fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(
@@ -303,7 +308,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                                color: const Color(0xff082244),
+                                color: kPrimaryColor,
                                 borderRadius: BorderRadius.circular(10)),
                             height: 100,
                             width: 80,
@@ -327,9 +332,10 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                                         initialAngleInDegree: 80,
                                         centerText: "80%",
                                         centerTextStyle: const TextStyle(
-                                            backgroundColor: Color(0xff082244),
+                                            backgroundColor: kPrimaryColor,
                                             fontSize: 12),
-                                        baseChartColor: const Color(0xff6D90C6),
+                                        baseChartColor: const Color.fromARGB(
+                                            255, 121, 173, 250),
                                         colorList: colorList,
                                         chartValuesOptions:
                                             const ChartValuesOptions(
@@ -430,7 +436,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                         "BP TRACKER",
                         style: TextStyle(
                             fontSize: 18,
-                            color: Color(0xff082244),
+                            color: kPrimaryColor,
                             fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(
@@ -440,7 +446,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                                color: const Color(0xff082244),
+                                color: kPrimaryColor,
                                 borderRadius: BorderRadius.circular(10)),
                             height: 100,
                             width: 80,
@@ -464,9 +470,10 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                                         initialAngleInDegree: 80,
                                         centerText: "00%",
                                         centerTextStyle: const TextStyle(
-                                            backgroundColor: Color(0xff082244),
+                                            backgroundColor: kPrimaryColor,
                                             fontSize: 12),
-                                        baseChartColor: const Color(0xff6D90C6),
+                                        baseChartColor: const Color.fromARGB(
+                                            255, 121, 173, 250),
                                         colorList: colorList,
                                         chartValuesOptions:
                                             const ChartValuesOptions(
@@ -568,7 +575,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                         "GLUCOSE TRACKER",
                         style: TextStyle(
                             fontSize: 18,
-                            color: Color(0xff082244),
+                            color: kPrimaryColor,
                             fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(
@@ -578,7 +585,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                                color: const Color(0xff082244),
+                                color: kPrimaryColor,
                                 borderRadius: BorderRadius.circular(10)),
                             height: 100,
                             width: 80,
@@ -602,9 +609,10 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                                         initialAngleInDegree: 80,
                                         centerText: "00%",
                                         centerTextStyle: const TextStyle(
-                                            backgroundColor: Color(0xff082244),
+                                            backgroundColor: kPrimaryColor,
                                             fontSize: 12),
-                                        baseChartColor: const Color(0xff6D90C6),
+                                        baseChartColor: const Color.fromARGB(
+                                            255, 121, 173, 250),
                                         colorList: colorList,
                                         chartValuesOptions:
                                             const ChartValuesOptions(
@@ -703,7 +711,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                         "BODY TEMPERATURE",
                         style: TextStyle(
                             fontSize: 18,
-                            color: Color(0xff082244),
+                            color: kPrimaryColor,
                             fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(
@@ -713,7 +721,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                                color: const Color(0xff082244),
+                                color: kPrimaryColor,
                                 borderRadius: BorderRadius.circular(10)),
                             height: 100,
                             width: 80,
@@ -737,9 +745,10 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                                         initialAngleInDegree: 80,
                                         centerText: "00%",
                                         centerTextStyle: const TextStyle(
-                                            backgroundColor: Color(0xff082244),
+                                            backgroundColor: kPrimaryColor,
                                             fontSize: 12),
-                                        baseChartColor: const Color(0xff6D90C6),
+                                        baseChartColor: const Color.fromARGB(
+                                            255, 121, 173, 250),
                                         colorList: colorList,
                                         chartValuesOptions:
                                             const ChartValuesOptions(
@@ -841,7 +850,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                         "WEIGHT TRACKER",
                         style: TextStyle(
                             fontSize: 18,
-                            color: Color(0xff082244),
+                            color: kPrimaryColor,
                             fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(
@@ -851,7 +860,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                                color: const Color(0xff082244),
+                                color: kPrimaryColor,
                                 borderRadius: BorderRadius.circular(10)),
                             height: 100,
                             width: 80,
@@ -875,9 +884,10 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                                         initialAngleInDegree: 80,
                                         centerText: "00%",
                                         centerTextStyle: const TextStyle(
-                                            backgroundColor: Color(0xff082244),
+                                            backgroundColor: kPrimaryColor,
                                             fontSize: 12),
-                                        baseChartColor: const Color(0xff6D90C6),
+                                        baseChartColor: const Color.fromARGB(
+                                            255, 121, 173, 250),
                                         colorList: colorList,
                                         chartValuesOptions:
                                             const ChartValuesOptions(
@@ -977,12 +987,148 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                       const SizedBox(
                         height: 16,
                       ),
+                      /// ! new tracker
+          const Text(
+            "REPORTS TRACKER",
+            style: TextStyle(
+                fontSize: 18,
+                color: kPrimaryColor,
+                fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Row(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    color: kPrimaryColor,
+                    borderRadius: BorderRadius.circular(10)),
+                height: 100,
+                width: 80,
+                child: Center(
+                    child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          PieChart(
+                            dataMap: bodyTemperature,
+                            chartType: ChartType.ring,
+                            chartRadius: 45,
+                            ringStrokeWidth: 5,
+                            initialAngleInDegree: 80,
+                            centerText: "00%",
+                            centerTextStyle: const TextStyle(
+                                backgroundColor: kPrimaryColor, fontSize: 12),
+                            baseChartColor:
+                                const Color.fromARGB(255, 121, 173, 250),
+                            colorList: colorList,
+                            chartValuesOptions: const ChartValuesOptions(
+                              showChartValuesInPercentage: true,
+                              showChartValues: false,
+                            ),
+                            legendOptions:
+                                const LegendOptions(showLegends: false),
+                            totalValue: 100,
+                          ),
+                          const SizedBox(
+                            height: 2,
+                          ),
+                          const Text(
+                            "7 DAYS",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w700),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                )),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ReportsTrackerScreen()));
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  height: 100,
+                  width: 80,
+                  child: const Center(
+                    child: Image(
+                      image:
+                          AssetImage("assets/health_tracker/plus-circle.png"),
+                      height: 52,
+                      width: 52,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => const ReportsListScreen());
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  height: 100,
+                  width: 80,
+                  child: const Center(
+                    child: Text(
+                      "See\nList",
+                      style: TextStyle(color: Colors.black, fontSize: 14),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          SizedBox(
+            height: 232,
+            child: SfCartesianChart(
+              series: <ChartSeries>[
+                LineSeries<WeightTrackerData, double>(
+                  dataSource: getWeightTrackerData(),
+                  xValueMapper: (WeightTrackerData day, _) => day.day,
+                  yValueMapper: (WeightTrackerData day, _) => day.weight,
+                  pointColorMapper: (WeightTrackerData day, _) =>
+                      day.pointColorMapper,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
                     ],
                   ),
                 ),
               ),
             ),
-          )
+          ),
+
+          
         ],
       ),
     );

@@ -308,5 +308,12 @@ class Mixins {
     'Evening Snacks',
     'Dinner',
   ];
-  final List<String> mutualStatus = ["Married","Unmarried"];
+  final List<String> mutualStatus = ["Married", "Unmarried"];
+  final List<String> testNameList = [
+    "Sr.Creatinine",
+    "Sr.Uric Acid",
+    "TSH",
+    "CBC",
+    "SGPT",
+    ];
 }

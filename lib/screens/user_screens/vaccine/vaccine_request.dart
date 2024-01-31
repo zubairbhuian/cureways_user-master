@@ -86,7 +86,7 @@ class _VaccineRequestScreenState extends State<VaccineRequestScreen> {
             SizedBox(
                 width: double.infinity,
                 child: PrimaryBtn(
-                    child: const Text("Send"),
+                    child: const Text("Submit"),
                     onPressed: () {
                       vaccineController.makeVaccineRequest();
                     }))

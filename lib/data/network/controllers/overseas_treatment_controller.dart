@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:cureways_user/data/network/constants/endpoints.dart';
 import 'package:cureways_user/data/network/controllers/base/base_controller.dart';
 import 'package:cureways_user/data/network/models/base/base_model.dart';
 import 'package:cureways_user/utils/style.dart';
@@ -11,14 +10,10 @@ import 'package:get/get.dart' hide FormData, MultipartFile;
 
 class OverseasTreatmentController extends GetxController {
   final otformKey = GlobalKey<FormState>();
-  final TextEditingController nameController =
-      TextEditingController(text: "zubair");
-  final TextEditingController phoneController =
-      TextEditingController(text: "01732665086");
-  final TextEditingController emailController =
-      TextEditingController(text: "demo@gmail.com");
-  final TextEditingController uhidController =
-      TextEditingController(text: "demo");
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController uhidController = TextEditingController();
   final TextEditingController selecetedServiceType = TextEditingController();
 
   ///

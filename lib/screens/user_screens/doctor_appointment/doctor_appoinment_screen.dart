@@ -45,7 +45,7 @@ class _DoctorAppointmentScreenState extends State<DoctorAppointmentScreen> {
           color: ConstantsColor.backgroundColor,
           child: Column(
             children: [
-              AppDefaultBar(title: "BOOK AN APPOINTMENT", userNAme: ''),
+              const AppDefaultBar(title: "BOOK AN APPOINTMENT", userNAme: ''),
               //  const SizedBox(height: 8,),
               Expanded(
                 child: SingleChildScrollView(
@@ -74,7 +74,7 @@ class _DoctorAppointmentScreenState extends State<DoctorAppointmentScreen> {
                             onPressed: () async {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) =>
-                                      DoctorAppointmentWorkScreen()));
+                                      const DoctorAppointmentWorkScreen()));
                             },
                             style: OutlinedButton.styleFrom(
                               backgroundColor: ConstantsColor.primaryColor,

@@ -1,6 +1,7 @@
-import 'package:cureways_user/data/network/controllers/get_glucose_list_controller.dart';
+import 'package:cureways_user/data/network/controllers/get_diet_list_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/utils/int_extensions.dart';
+import 'package:cureways_user/utils/style.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:cureways_user/widgets/custom_btn.dart';
@@ -9,27 +10,27 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class GlucoseListScreen extends StatefulWidget {
-  const GlucoseListScreen({super.key});
+class ReportsListScreen extends StatefulWidget {
+  const ReportsListScreen({super.key});
 
   @override
-  State<GlucoseListScreen> createState() => _GlucoseListScreenState();
+  State<ReportsListScreen> createState() => _ReportsListScreenState();
 }
 
-class _GlucoseListScreenState extends State<GlucoseListScreen> {
-  GetGlucoseListController getGlucoseListController =GetGlucoseListController();
+class _ReportsListScreenState extends State<ReportsListScreen> {
+  GetDietListController getReportsListController = GetDietListController();
 
   @override
   void didChangeDependencies() {
-    getGlucoseListController = Get.put(GetGlucoseListController());
-    getGlucoseListController.getGlucoseList();
+    getReportsListController = Get.put(GetDietListController());
+    getReportsListController.getDietList();
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: Text("Glucose List".toUpperCase())),
+      appBar: CustomAppBar(title: Text("Reports List".toUpperCase())),
       body: Column(
         children: [
           Container(
@@ -37,7 +38,7 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
             // margin: const EdgeInsets.all(12),
             width: double.infinity,
             // height: 200,
-            decoration: BoxDecoration(
+            decoration:  BoxDecoration(
               color: kPrimaryColor.withOpacity(.9),
               // borderRadius: BorderRadius.circular(12)
             ),
@@ -47,8 +48,7 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
                 Expanded(
                   child: CustomTextField2(
                       style: const TextStyle(color: kTextColor),
-
-                      controller: getGlucoseListController.fromController,
+                      controller: getReportsListController.fromController,
                       marginBottom: 0,
                       hintText: "From",
                       keyboardType: TextInputType.text,
@@ -60,7 +60,7 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
                             firstDate: DateTime(2000),
                             lastDate: DateTime(2101));
                         if (pickedDate != null) {
-                          getGlucoseListController.fromController.text =
+                          getReportsListController.fromController.text =
                               DateFormat("yyyy-MM-dd").format(pickedDate);
                         }
                       }),
@@ -68,7 +68,7 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
                 10.width,
                 Expanded(
                   child: CustomTextField2(
-                      controller: getGlucoseListController.toController,
+                      controller: getReportsListController.toController,
                       keyboardType: TextInputType.text,
                       style: const TextStyle(color: kTextColor),
                       hintText: "To",
@@ -81,7 +81,7 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
                             firstDate: DateTime(2000),
                             lastDate: DateTime(2101));
                         if (pickedDate != null) {
-                          getGlucoseListController.toController.text =
+                          getReportsListController.toController.text =
                               DateFormat("yyyy-MM-dd").format(pickedDate);
                         }
                       }),
@@ -93,9 +93,9 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
                       const EdgeInsets.symmetric(horizontal: 13, vertical: 14),
                   child: const Text("Search"),
                   onPressed: () {
-                    if (getGlucoseListController.fromController.text.isNotEmpty &&
-                        getGlucoseListController.toController.text.isNotEmpty) {
-                      getGlucoseListController.getGlucoseList();
+                    if (getReportsListController.fromController.text.isNotEmpty &&
+                        getReportsListController.toController.text.isNotEmpty) {
+                      getReportsListController.getDietList();
                     }
                   },
                 )
@@ -103,13 +103,20 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
             ),
           ),
           Expanded(
-            child: GetBuilder<GetGlucoseListController>(
-                init: GetGlucoseListController(),
+            child: GetBuilder<GetDietListController>(
+                init: GetDietListController(),
                 builder: (controller) {
-                  if (controller.glucoseList.isEmpty) {
+                  if (controller.dietList == null) {
                     return const Center(child: AppIndecator());
-                  }else {
-                    var data = controller.glucoseList;
+                  }
+                  if (controller.dietList!.isEmpty) {
+                    return const Center(
+                        child: Text(
+                      "No Data Found",
+                      style: TextStyle(color: kDisabledTextColor),
+                    ));
+                  } else {
+                    var data = controller.dietList ?? [];
                     return SingleChildScrollView(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 22),
@@ -155,14 +162,14 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.all(12),
-                                      child: Text("Time Period Name",
+                                      child: Text("Food Type",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w600,
                                               color: Colors.white)),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.all(12),
-                                      child: Text("Result",
+                                      child: Text("Food Quantity",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w600,
                                               color: Colors.white)),
@@ -178,15 +185,15 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(12),
-                                    child: Text(data[index].timePeriod ?? ""),
+                                    child: Text(data[index].time ?? ""),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(12),
-                                    child: Text(data[index].timePeriodName ?? ""),
+                                    child: Text(data[index].foodType ?? ""),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(12),
-                                    child: Text(data[index].testResult ?? ""),
+                                    child: Text(data[index].foodQty ?? ""),
                                   ),
                                 ]);
                               })
@@ -198,8 +205,6 @@ class _GlucoseListScreenState extends State<GlucoseListScreen> {
           ),
         ],
       ),
-    
-    
     );
   }
 }

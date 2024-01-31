@@ -34,12 +34,9 @@ class _BodyListScreenState extends State<BodyListScreen> {
         children: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-            // margin: const EdgeInsets.all(12),
             width: double.infinity,
-            // height: 200,
-            decoration: const BoxDecoration(
-              color: kPrimaryColor,
-              // borderRadius: BorderRadius.circular(12)
+            decoration:  BoxDecoration(
+              color: kPrimaryColor.withOpacity(.9),
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -87,7 +84,7 @@ class _BodyListScreenState extends State<BodyListScreen> {
                 ),
                 10.width,
                 PrimaryBtn(
-                  color: kDangerColor,
+                  color:kPrimaryColor,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 13, vertical: 14),
                   child: const Text("Search"),

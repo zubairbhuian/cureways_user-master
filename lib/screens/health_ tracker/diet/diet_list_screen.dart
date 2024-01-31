@@ -38,8 +38,8 @@ class _DietListScreenState extends State<DietListScreen> {
             // margin: const EdgeInsets.all(12),
             width: double.infinity,
             // height: 200,
-            decoration: const BoxDecoration(
-              color: kPrimaryColor,
+            decoration:  BoxDecoration(
+              color: kPrimaryColor.withOpacity(.9),
               // borderRadius: BorderRadius.circular(12)
             ),
             child: Row(
@@ -88,7 +88,7 @@ class _DietListScreenState extends State<DietListScreen> {
                 ),
                 10.width,
                 PrimaryBtn(
-                  color: kDangerColor,
+                  color: kPrimaryColor,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 13, vertical: 14),
                   child: const Text("Search"),
