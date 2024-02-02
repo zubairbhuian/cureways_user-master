@@ -8,7 +8,8 @@ class ApiService {
   ApiService({required this.dio});
 
   Future<BaseModel> _makeRequest(String url, dynamic data, HttpMethod method,
-      {String contentType = 'application/json',dynamic queryParameters}) async {
+      {String contentType = 'application/json',
+      dynamic queryParameters}) async {
     try {
       late Response response;
       if (method == HttpMethod.get) {
@@ -19,25 +20,20 @@ class ApiService {
           options: Options(contentType: contentType),
         );
       } else if (method == HttpMethod.post) {
-        response = await dio.post(
-          url,
-          data: data,
-          options: Options(contentType: contentType, receiveDataWhenStatusError: true),
-          queryParameters: queryParameters
-        );
+        response = await dio.post(url,
+            data: data,
+            options: Options(
+                contentType: contentType, receiveDataWhenStatusError: true),
+            queryParameters: queryParameters);
       } else if (method == HttpMethod.put) {
-        response = await dio.put(
-          url,
-          data: data,
-          options: Options(contentType: contentType),
-           queryParameters: queryParameters
-        );
+        response = await dio.put(url,
+            data: data,
+            options: Options(contentType: contentType),
+            queryParameters: queryParameters);
       } else if (method == HttpMethod.delete) {
-        response = await dio.delete(
-          url,
-          options: Options(contentType: contentType),
-          queryParameters: queryParameters
-        );
+        response = await dio.delete(url,
+            options: Options(contentType: contentType),
+            queryParameters: queryParameters);
       }
 
       return BaseModel(
@@ -68,30 +64,23 @@ class ApiService {
     }
   }
 
-  Future<BaseModel> makePostRequest(
-    String url,
-    Map<String, dynamic> data,
-    {Map<String, dynamic>? queryParameters}
-  ) async {
-    return _makeRequest(url, data, HttpMethod.post,queryParameters: queryParameters);
+  Future<BaseModel> makePostRequest(String url, Map<String, dynamic> data,
+      {Map<String, dynamic>? queryParameters}) async {
+    return _makeRequest(url, data, HttpMethod.post,
+        queryParameters: queryParameters);
   }
 
-  Future<BaseModel> makePostRequestWithFormData(
-    String url,
-    FormData data,
-    {Map<String, dynamic>? queryParameters}
-  ) async {
-    return _makeRequest(
-      url,
-      data,
-      HttpMethod.post,
-      contentType: "multipart/form-data",
-      queryParameters: queryParameters
-    );
+  Future<BaseModel> makePostRequestWithFormData(String url, FormData data,
+      {Map<String, dynamic>? queryParameters}) async {
+    return _makeRequest(url, data, HttpMethod.post,
+        contentType: "multipart/form-data", queryParameters: queryParameters);
   }
 
-  Future<BaseModel> makeGetRequest(String url,{Map<String, dynamic>? queryParameters,Map<String, dynamic>? data}) async {
-    return _makeRequest(url,data, HttpMethod.get,queryParameters:queryParameters );
+  Future<BaseModel> makeGetRequest(String url,
+      {Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? data}) async {
+    return _makeRequest(url, data, HttpMethod.get,
+        queryParameters: queryParameters);
   }
 
   Future<BaseModel> makePutRequest(
@@ -111,3 +100,8 @@ enum HttpMethod {
   put,
   delete,
 }
+
+
+
+
+

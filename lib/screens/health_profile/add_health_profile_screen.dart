@@ -107,12 +107,12 @@ class _AddHealthProfileScreenState extends State<AddHealthProfileScreen> {
       //     ],
       //   ),
       // ),
-     
+
       body: GetBuilder<AddHealthProfileController>(
         init: AddHealthProfileController(),
         builder: (addHealthProfile) => SingleChildScrollView(
           child: Padding(
-           padding:  EdgeInsets.only(left: 20.w, right: 20.w,bottom: 12),
+            padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 12),
             child: Column(
               children: [
                 const SizedBox(height: 16),
@@ -130,156 +130,149 @@ class _AddHealthProfileScreenState extends State<AddHealthProfileScreen> {
                     children: [
                       CustomTextField(
                         controller: addHealthProfile.ageController,
-                        keyboardType: TextInputType.text,
-                          labelText: 'Age',
-                          hintText: 'Age',
+                        keyboardType: TextInputType.number,
+                        labelText: 'Age',
+                        hintText: 'Age',
                         validator: (value) {
                           return value!.isEmpty ? 'Enter Your Age' : null;
                         },
                       ),
-                        DropdownButtonFormField2(
-                          // value: Mixins().patientGender.first,
-                                  decoration: InputDecoration(
-                                    isDense: true,
-                                    contentPadding: EdgeInsets.zero,
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(5)),
+                      DropdownButtonFormField2(
+                        // value: Mixins().patientGender.first,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          contentPadding: EdgeInsets.zero,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                        ),
+                        buttonStyleData: const ButtonStyleData(
+                          height: 60,
+                          padding: EdgeInsets.only(left: 00, right: 10),
+                        ),
+                        isExpanded: true,
+                        hint: const Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Select Gender",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  color: ConstantsColor.primaryColor),
+                            ),
+                            Text(
+                              "*",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.red),
+                            ),
+                          ],
+                        ),
+                        items: Mixins()
+                            .patientGender
+                            .map((item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style: const TextStyle(
+                                    fontSize: 16,
                                   ),
-                                  buttonStyleData: const ButtonStyleData(
-                                    height: 60,
-                                    padding:
-                                        EdgeInsets.only(left: 00, right: 10),
-                                  ),
-                                  isExpanded: true,
-                                  hint: const Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Select Gender",
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                            color: ConstantsColor.primaryColor),
-                                      ),
-                                      Text(
-                                        "*",
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.red),
-                                      ),
-                                    ],
-                                  ),
-                                  items: Mixins()
-                                      .patientGender
-                                      .map((item) => DropdownMenuItem<String>(
-                                          value: item,
-                                          child: Text(
-                                            item,
-                                            style: const TextStyle(
-                                              fontSize: 16,
-                                            ),
-                                          )))
-                                      .toList(),
-                                  onChanged: (value) {
-                                    addHealthProfile.genderController.text= value.toString();
-                                  },
-                                  // onSaved: (value) {
-                                  //   storeGlucose.timePeriodController.text = value.toString();
-                                  // },
-                                  validator: (value) {
-                                    if (value == null) {
-                                      return 'Please Select Gender';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                12.height,
-            
+                                )))
+                            .toList(),
+                        onChanged: (value) {
+                          addHealthProfile.genderController.text =
+                              value.toString();
+                        },
+                        // onSaved: (value) {
+                        //   storeGlucose.timePeriodController.text = value.toString();
+                        // },
+                        validator: (value) {
+                          if (value == null) {
+                            return 'Please Select Gender';
+                          }
+                          return null;
+                        },
+                      ),
+                    
+                      12.height,
                       CustomTextField(
                         suffix: const Text("cm"),
                         controller: addHealthProfile.heightController,
-                        keyboardType: TextInputType.text,
-                                             labelText: 'Height',
-                          hintText: 'Height',
-  
+                        keyboardType: TextInputType.number,
+                        labelText: 'Height',
+                        hintText: 'Height',
                         validator: (value) {
                           return value!.isEmpty ? 'Enter Your Height' : null;
                         },
                       ),
-   
                       CustomTextField(
                         suffix: const Text("kg"),
                         controller: addHealthProfile.weightController,
-                        keyboardType: TextInputType.text,
-                                          labelText: 'Weight',
-                          hintText: 'Weight',
-
+                        keyboardType: TextInputType.number,
+                        labelText: 'Weight',
+                        hintText: 'Weight',
                         validator: (value) {
                           return value!.isEmpty ? 'Enter Your Weight' : null;
                         },
                       ),
-                        DropdownButtonFormField2(
-                          // value: Mixins().mutualStatus.first,
-                                  decoration: InputDecoration(
-                                    isDense: true,
-                                    contentPadding: EdgeInsets.zero,
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(5)),
+                      DropdownButtonFormField2(
+                        // value: Mixins().mutualStatus.first,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          contentPadding: EdgeInsets.zero,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                        ),
+                        buttonStyleData: const ButtonStyleData(
+                          height: 60,
+                          padding: EdgeInsets.only(left: 00, right: 10),
+                        ),
+                        isExpanded: true,
+                        hint: const Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Select Marital Status",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  color: ConstantsColor.primaryColor),
+                            ),
+                            Text(
+                              "*",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.red),
+                            ),
+                          ],
+                        ),
+                        items: Mixins()
+                            .mutualStatus
+                            .map((item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style: const TextStyle(
+                                    fontSize: 16,
                                   ),
-                                  buttonStyleData: const ButtonStyleData(
-                                    height: 60,
-                                    padding:
-                                        EdgeInsets.only(left: 00, right: 10),
-                                  ),
-                                  isExpanded: true,
-                                  hint: const Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Select Marital Status",
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                            color: ConstantsColor.primaryColor),
-                                      ),
-                                      Text(
-                                        "*",
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.red),
-                                      ),
-                                    ],
-                                  ),
-                                  items: Mixins()
-                                      .mutualStatus
-                                      .map((item) => DropdownMenuItem<String>(
-                                          value: item,
-                                          child: Text(
-                                            item,
-                                            style: const TextStyle(
-                                              fontSize: 16,
-                                            ),
-                                          )))
-                                      .toList(),
-                                  onChanged: (value) {
-                                    addHealthProfile.msController.text= value.toString();
-                                  },
-                                  // onSaved: (value) {
-                                  //   storeGlucose.timePeriodController.text = value.toString();
-                                  // },
-                                  validator: (value) {
-                                    if (value == null) {
-                                      return 'Please Select Marital Status';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                12.height,
- 
+                                )))
+                            .toList(),
+                        onChanged: (value) {
+                          addHealthProfile.msController.text = value.toString();
+                        },
+                        // onSaved: (value) {
+                        //   storeGlucose.timePeriodController.text = value.toString();
+                        // },
+                        validator: (value) {
+                          if (value == null) {
+                            return 'Please Select Marital Status';
+                          }
+                          return null;
+                        },
+                      ),
+                      12.height,
                       GestureDetector(
                         onTap: () {
                           setState(() {
@@ -291,17 +284,15 @@ class _AddHealthProfileScreenState extends State<AddHealthProfileScreen> {
                           keyboardType: TextInputType.multiline,
                           minLines: 1,
                           maxLines: _isExpanded ? null : 3,
-                                                 labelText: 'Chief Complain',
-                            hintText: 'Chief Complain(If Any)',
-    
+                          labelText: 'Chief Complain',
+                          hintText: 'Chief Complain(If Any)',
                         ),
                       ),
                       CustomTextField(
                         controller: addHealthProfile.prevDiseaseController,
                         keyboardType: TextInputType.text,
-                                           labelText: 'Previous Disease',
-                          hintText: 'Previous Disease(If Any)',
-               
+                        labelText: 'Previous Disease',
+                        hintText: 'Previous Disease(If Any)',
                       ),
                       const SizedBox(
                         height: 8,
@@ -309,8 +300,8 @@ class _AddHealthProfileScreenState extends State<AddHealthProfileScreen> {
                       CustomTextField(
                         controller: addHealthProfile.prevOtHistoryController,
                         keyboardType: TextInputType.text,
-                                      labelText: 'Ot History',
-                          hintText: 'Ot History(If Any)',
+                        labelText: 'Ot History',
+                        hintText: 'Ot History(If Any)',
                       ),
                       const SizedBox(
                         height: 8,
@@ -318,8 +309,8 @@ class _AddHealthProfileScreenState extends State<AddHealthProfileScreen> {
                       CustomTextField(
                         controller: addHealthProfile.medicationController,
                         keyboardType: TextInputType.text,
-                                              labelText: 'Medication',
-                          hintText: 'Medication(If Any)',
+                        labelText: 'Medication',
+                        hintText: 'Medication(If Any)',
                       ),
                       const SizedBox(
                         height: 8,
@@ -328,18 +319,17 @@ class _AddHealthProfileScreenState extends State<AddHealthProfileScreen> {
                         controller:
                             addHealthProfile.physicalDisabilitiesController,
                         keyboardType: TextInputType.text,
-                                          labelText: 'Disabilities',
-                          hintText: 'Disabilities(If Any)',
+                        labelText: 'Disabilities',
+                        hintText: 'Disabilities(If Any)',
                       ),
                       const SizedBox(
                         height: 8,
                       ),
                       CustomTextField(
                         controller: addHealthProfile.prevTestResultController,
-                        keyboardType: TextInputType.text,
-                                              labelText: 'Test Result',
-                          hintText: 'Test Result(If Any)',
-
+                        keyboardType: TextInputType.number,
+                        labelText: 'Test Result',
+                        hintText: 'Test Result(If Any)',
                       ),
                       const SizedBox(
                         height: 8,

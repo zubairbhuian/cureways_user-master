@@ -1,4 +1,5 @@
 import 'package:cureways_user/data/network/controllers/global_controller.dart';
+import 'package:cureways_user/data/network/controllers/profile_controller.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
@@ -9,7 +10,7 @@ class DioInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     /// add token to header if user is logged in
-    String token = GlobalController.to.bearerToken??"";
+    String token = GlobalController.to.bearerToken ?? "";
     if (token.isNotEmpty) {
       // options.headers['access-token'] =token;
       options.headers['Authorization'] = token;
@@ -44,6 +45,8 @@ class DioInterceptor extends Interceptor {
         // hide Auto add token
         // Preferences.token = token;
       }
+    } else if (response.statusCode == 302) {
+      ProfileController.to.onLogOut();
     }
     if (kDebugMode) {
       logger.d('Response: ${response.statusCode} ${response.statusMessage}');

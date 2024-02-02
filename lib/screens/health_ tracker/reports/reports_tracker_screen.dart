@@ -119,7 +119,7 @@ class _ReportsTrackerScreenState extends State<ReportsTrackerScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Select Test Name",
+                                      "Select Test Type",
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500,

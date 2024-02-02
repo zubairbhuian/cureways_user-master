@@ -1127,8 +1127,6 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
               ),
             ),
           ),
-
-          
         ],
       ),
     );

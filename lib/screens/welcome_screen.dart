@@ -130,7 +130,6 @@ class _WelcomescreenCheckState extends State<WelcomescreenCheck> {
                   fit: BoxFit.cover,
                 ),
               ),
-
               Positioned(
                 left: width * 00,
                 right: width * 00,
@@ -151,7 +150,7 @@ class _WelcomescreenCheckState extends State<WelcomescreenCheck> {
                               child: OutlinedButton(
                                 onPressed: () async {
                                   final user = await GoogleSignInApi.login();
-                                  kLogger.e(user?.photoUrl);
+                                  kLogger.e(user);
                                   if (user == null) {
                                     ScaffoldMessenger.of(context)
                                         .showSnackBar((const SnackBar(
@@ -200,7 +199,6 @@ class _WelcomescreenCheckState extends State<WelcomescreenCheck> {
                         ],
                       ),
                     ),
-
                   ],
                 ),
               ),

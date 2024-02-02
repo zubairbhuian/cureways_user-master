@@ -1,4 +1,5 @@
 import 'package:cureways_user/data/network/controllers/get_diet_list_controller.dart';
+import 'package:cureways_user/data/network/controllers/reports_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,8 +10,11 @@ class TodayAddedReportsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    return GetBuilder<GetDietListController>(builder: (controller) {
-      if (controller.todayFilteredList.isEmpty) {
+    return GetBuilder<ReportsController>(builder: (controller) {
+      if
+      
+      
+       (controller.todayFilteredList.isEmpty) {
         return const SizedBox();
       }
       return Container(
@@ -73,11 +77,11 @@ class TodayAddedReportsList extends StatelessWidget {
                           ),
                             Padding(
                             padding: const EdgeInsets.all(12),
-                            child: Text(controller.todayFilteredList[index].foodType ?? ""),
+                            child: Text(controller.todayFilteredList[index].testType ?? ""),
                           ),
                             Padding(
                             padding: const EdgeInsets.all(12),
-                            child: Text(controller.todayFilteredList[index].foodQty ?? ""),
+                            child: Text(controller.todayFilteredList[index].result ?? ""),
                           ),
                         ]);
                       })

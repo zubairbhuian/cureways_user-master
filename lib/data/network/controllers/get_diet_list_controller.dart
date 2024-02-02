@@ -72,6 +72,7 @@ class GetDietListController extends GetxController {
 
       update();
     } else {
+      dietList = [];
       update();
     }
   }

@@ -1,7 +1,6 @@
 import 'package:cureways_user/data/network/constants/endpoints.dart';
 import 'package:cureways_user/data/network/constants/server.dart';
 import 'package:cureways_user/data/network/controllers/base/base_controller.dart';
-import 'package:cureways_user/data/network/models/get_diet_list_model.dart';
 import 'package:cureways_user/data/network/models/report_model.dart';
 import 'package:cureways_user/data/service/user_service.dart';
 import 'package:cureways_user/utils/style.dart';
@@ -56,7 +55,7 @@ class ReportsController extends GetxController {
     update();
     BaseModel res = await BaseController.to.apiService
         .makePostRequestWithFormData(
-            Endpoints.server + Endpoints.reportsTracker, formData);
+            Endpoints.server + Endpoints.reportsStore, formData);
     loader = false;
     update();
     if (res.statusCode == 200) {
@@ -72,15 +71,14 @@ class ReportsController extends GetxController {
   getReportList() async {
     resultList = [];
     update();
-    Map<String, dynamic> map = {
+    Map<String, dynamic> body = {
       "user_id": _myBox.get('userId'),
       "from": fromController.text,
       "to": toController.text,
     };
-    final FormData formData = FormData.fromMap(map);
+    kLogger.e(body);
     BaseModel res = await BaseController.to.apiService
-        .makePostRequestWithFormData(
-            Endpoints.server + Endpoints.getDiet, formData);
+        .makeGetRequest(Endpoints.server + Endpoints.reports,);
     if (res.statusCode == 200) {
       if (res.data["data"].isEmpty) {
         resultList = [];

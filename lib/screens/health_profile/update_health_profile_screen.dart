@@ -1,8 +1,11 @@
 import 'package:cureways_user/data/network/controllers/add_health_profile_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
+import 'package:cureways_user/utils/int_extensions.dart';
+import 'package:cureways_user/utils/mixins.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -36,72 +39,6 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
       init: AddHealthProfileController(),
       builder: (addHealthProfile) => Scaffold(
         appBar: const CustomAppBar(title: Text("Update Health Profile")),
-        // appBar: AppBar(
-        //   toolbarHeight: 152,
-        //   automaticallyImplyLeading: false,
-        //   backgroundColor: ConstantsColor.primaryColor,
-        //   shape: const RoundedRectangleBorder(
-        //     borderRadius: BorderRadius.only(
-        //         bottomLeft: Radius.circular(12.0),
-        //         bottomRight: Radius.circular(12.0)),
-        //   ),
-        //   title: Column(
-        //     children: [
-        //       //SizedBox(height: 42,),
-        //       Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //         children: [
-        //           Expanded(
-        //             child: Column(
-        //               crossAxisAlignment: CrossAxisAlignment.start,
-        //               mainAxisAlignment: MainAxisAlignment.start,
-        //               children: [
-        //                 Text(
-        //                   "Hi,${_myBox.get('userName')}",
-        //                   textAlign: TextAlign.start,
-        //                   style: const TextStyle(
-        //                       fontSize: 18,
-        //                       fontWeight: FontWeight.w600,
-        //                       color: Colors.white),
-        //                 ),
-        //                 const Text(
-        //                   "Welcome back",
-        //                   textAlign: TextAlign.start,
-        //                   style: TextStyle(
-        //                       fontSize: 14,
-        //                       fontWeight: FontWeight.w400,
-        //                       color: Colors.white),
-        //                 )
-        //               ],
-        //             ),
-        //           ),
-        //           SvgPicture.asset(
-        //             "assets/home_screen/bell.svg",
-        //             height: 32,
-        //             width: 32,
-        //             color: Colors.white,
-        //           )
-        //         ],
-        //       ),
-        //       const SizedBox(height: 16),
-        //       const Row(
-        //         crossAxisAlignment: CrossAxisAlignment.center,
-        //         mainAxisAlignment: MainAxisAlignment.center,
-        //         children: [
-        //           Text(
-        //             'UPDATE HEALTH PROFILE',
-        //             textAlign: TextAlign.start,
-        //             style: TextStyle(
-        //                 fontSize: 18,
-        //                 fontWeight: FontWeight.w600,
-        //                 color: Colors.white),
-        //           )
-        //         ],
-        //       )
-        //     ],
-        //   ),
-        // ),
-
         body: addHealthProfile.loader
             ? const Center(child: AppIndecator())
             : SingleChildScrollView(
@@ -130,6 +67,64 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                             labelText: 'Age',
                             hintText: 'Age',
                           ),
+                          DropdownButtonFormField2(
+                            // value: Mixins().patientGender.first,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              contentPadding: EdgeInsets.zero,
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5)),
+                            ),
+                            buttonStyleData: const ButtonStyleData(
+                              height: 60,
+                              padding: EdgeInsets.only(left: 00, right: 10),
+                            ),
+                            isExpanded: true,
+                            hint: const Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Select Gender",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                      color: ConstantsColor.primaryColor),
+                                ),
+                                Text(
+                                  "*",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.red),
+                                ),
+                              ],
+                            ),
+                            items: Mixins()
+                                .patientGender
+                                .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    )))
+                                .toList(),
+                            onChanged: (value) {
+                              addHealthProfile.genderController.text =
+                                  value.toString();
+                            },
+                            // onSaved: (value) {
+                            //   storeGlucose.timePeriodController.text = value.toString();
+                            // },
+                            validator: (value) {
+                              if (value == null) {
+                                return 'Please Select Gender';
+                              }
+                              return null;
+                            },
+                          ),
+                          16.height,
                           CustomTextField(
                             controller: addHealthProfile.genderController
                               ..text = addHealthProfile.gender == "1"

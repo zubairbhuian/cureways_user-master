@@ -1,4 +1,5 @@
 import 'package:cureways_user/data/network/controllers/get_diet_list_controller.dart';
+import 'package:cureways_user/data/network/controllers/reports_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/utils/int_extensions.dart';
 import 'package:cureways_user/utils/style.dart';
@@ -18,12 +19,12 @@ class ReportsListScreen extends StatefulWidget {
 }
 
 class _ReportsListScreenState extends State<ReportsListScreen> {
-  GetDietListController getReportsListController = GetDietListController();
+ ReportsController reportController = ReportsController();
 
   @override
   void didChangeDependencies() {
-    getReportsListController = Get.put(GetDietListController());
-    getReportsListController.getDietList();
+    reportController = Get.put(ReportsController());
+    reportController.getReportList();
     super.didChangeDependencies();
   }
 
@@ -48,7 +49,7 @@ class _ReportsListScreenState extends State<ReportsListScreen> {
                 Expanded(
                   child: CustomTextField2(
                       style: const TextStyle(color: kTextColor),
-                      controller: getReportsListController.fromController,
+                      controller: reportController.fromController,
                       marginBottom: 0,
                       hintText: "From",
                       keyboardType: TextInputType.text,
@@ -60,7 +61,7 @@ class _ReportsListScreenState extends State<ReportsListScreen> {
                             firstDate: DateTime(2000),
                             lastDate: DateTime(2101));
                         if (pickedDate != null) {
-                          getReportsListController.fromController.text =
+                          reportController.fromController.text =
                               DateFormat("yyyy-MM-dd").format(pickedDate);
                         }
                       }),
@@ -68,7 +69,7 @@ class _ReportsListScreenState extends State<ReportsListScreen> {
                 10.width,
                 Expanded(
                   child: CustomTextField2(
-                      controller: getReportsListController.toController,
+                      controller: reportController.toController,
                       keyboardType: TextInputType.text,
                       style: const TextStyle(color: kTextColor),
                       hintText: "To",
@@ -81,7 +82,7 @@ class _ReportsListScreenState extends State<ReportsListScreen> {
                             firstDate: DateTime(2000),
                             lastDate: DateTime(2101));
                         if (pickedDate != null) {
-                          getReportsListController.toController.text =
+                          reportController.toController.text =
                               DateFormat("yyyy-MM-dd").format(pickedDate);
                         }
                       }),
@@ -93,9 +94,9 @@ class _ReportsListScreenState extends State<ReportsListScreen> {
                       const EdgeInsets.symmetric(horizontal: 13, vertical: 14),
                   child: const Text("Search"),
                   onPressed: () {
-                    if (getReportsListController.fromController.text.isNotEmpty &&
-                        getReportsListController.toController.text.isNotEmpty) {
-                      getReportsListController.getDietList();
+                    if (reportController.fromController.text.isNotEmpty &&
+                        reportController.toController.text.isNotEmpty) {
+                      reportController.getReportList();
                     }
                   },
                 )
@@ -103,20 +104,20 @@ class _ReportsListScreenState extends State<ReportsListScreen> {
             ),
           ),
           Expanded(
-            child: GetBuilder<GetDietListController>(
-                init: GetDietListController(),
+            child: GetBuilder<ReportsController>(
+                init: ReportsController(),
                 builder: (controller) {
-                  if (controller.dietList == null) {
+                  if (controller.resultList == null) {
                     return const Center(child: AppIndecator());
                   }
-                  if (controller.dietList!.isEmpty) {
+                  if (controller.resultList!.isEmpty) {
                     return const Center(
                         child: Text(
                       "No Data Found",
                       style: TextStyle(color: kDisabledTextColor),
                     ));
                   } else {
-                    var data = controller.dietList ?? [];
+                    var data = controller.resultList;
                     return SingleChildScrollView(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 22),
@@ -175,7 +176,7 @@ class _ReportsListScreenState extends State<ReportsListScreen> {
                                               color: Colors.white)),
                                     ),
                                   ]),
-                              ...List.generate(data.length, (index) {
+                              ...List.generate(data!.length, (index) {
                                 return TableRow(children: [
                                   Padding(
                                     padding: const EdgeInsets.all(12),
@@ -189,11 +190,11 @@ class _ReportsListScreenState extends State<ReportsListScreen> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(12),
-                                    child: Text(data[index].foodType ?? ""),
+                                    child: Text(data[index].testType ?? ""),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(12),
-                                    child: Text(data[index].foodQty ?? ""),
+                                    child: Text(data[index].result ?? ""),
                                   ),
                                 ]);
                               })
