@@ -6,6 +6,7 @@ import 'package:cureways_user/data/network/controllers/base/base_controller.dart
 import 'package:cureways_user/data/network/controllers/get_bp_list_controller.dart';
 import 'package:cureways_user/data/network/models/base/base_model.dart';
 import 'package:cureways_user/data/service/user_service.dart';
+import 'package:cureways_user/utils/style.dart';
 import 'package:cureways_user/widgets/popup_dialogs.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -28,13 +29,15 @@ class StoreBpController extends GetxController {
     // Future.delayed(const Duration(milliseconds: 10), () {
     //   update();
     // });
-    final FormData formData = FormData.fromMap({
+    Map<String, dynamic> map = {
       'user_id': _myBox.get('userId'),
       'date': dateController.text,
-      // 'time': timeController.text,
+      'time': timeController.text,
       'sysotolic': systolicBpController.text,
       'diastolic': diastolicBpController.text,
-    });
+    };
+    kLogger.e(map);
+    final FormData formData = FormData.fromMap(map);
     BaseModel res = await BaseController.to.apiService
         .makePostRequestWithFormData(
             Endpoints.server + Endpoints.storeBp, formData);

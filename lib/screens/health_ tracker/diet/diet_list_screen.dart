@@ -1,7 +1,6 @@
 import 'package:cureways_user/data/network/controllers/get_diet_list_controller.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/utils/int_extensions.dart';
-import 'package:cureways_user/utils/style.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:cureways_user/widgets/custom_btn.dart';

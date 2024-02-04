@@ -289,7 +289,7 @@ class Mixins {
   final List<String> bloodGroup = ['A', 'B', 'O', 'AB'];
   final List<String> rhFactor = ['+(ve)', '-(ve)'];
   final List<String> patientType = ['New', 'Existing'];
-  final List<String> patientGender = ['Male', 'Female', 'Others'];
+  final List<String> patientGender = ['Male', 'Female',];
   final List<String> doctorAppoinmentSlots = [
     '8 am - 9am',
     '9 am - 10 am',

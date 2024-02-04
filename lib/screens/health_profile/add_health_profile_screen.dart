@@ -182,7 +182,7 @@ class _AddHealthProfileScreenState extends State<AddHealthProfileScreen> {
                             .toList(),
                         onChanged: (value) {
                           addHealthProfile.genderController.text =
-                              value.toString();
+                                  value=="Male"?"1":"2";
                         },
                         // onSaved: (value) {
                         //   storeGlucose.timePeriodController.text = value.toString();

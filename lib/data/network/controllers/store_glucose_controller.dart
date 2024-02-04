@@ -41,7 +41,7 @@ class StoreGlucoseController extends GetxController {
     Map body = {
       'user_id': _myBox.get('userId'),
       'date': dateController.text,
-      'time_period': timeController.text,
+      'time': timeController.text,
       'time_period_name': timePeriodName,
       'test_result': "${resultController.text} mmol/L",
     };

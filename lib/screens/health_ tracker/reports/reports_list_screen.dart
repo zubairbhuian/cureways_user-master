@@ -130,14 +130,6 @@ class _ReportsListScreenState extends State<ReportsListScreen> {
                         child: Table(
                             border: TableBorder.all(),
                             columnWidths: const <int, TableColumnWidth>{
-                              // 0: FixedColumnWidth(),
-                              // 1: FlexColumnWidth()
-                              // : const IntrinsicColumnWidth(),
-                              // 1: FlexColumnWidth(),
-                              // 1: FixedColumnWidth(m.xl ? 200 : 364),
-                              // 2: FlexColumnWidth(),
-                              // 3: FlexColumnWidth(),
-                              // 4: FlexColumnWidth(),
                             },
                             defaultVerticalAlignment:
                                 TableCellVerticalAlignment.middle,
@@ -163,14 +155,14 @@ class _ReportsListScreenState extends State<ReportsListScreen> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.all(12),
-                                      child: Text("Food Type",
+                                      child: Text("Test Type",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w600,
                                               color: Colors.white)),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.all(12),
-                                      child: Text("Food Quantity",
+                                      child: Text("Result",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w600,
                                               color: Colors.white)),

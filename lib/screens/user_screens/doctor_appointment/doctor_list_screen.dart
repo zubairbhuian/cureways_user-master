@@ -1,7 +1,5 @@
 import 'package:cureways_user/screens/user_screens/doctor_appointment/foreign_doctor/foreign_doctor.dart';
-import 'package:cureways_user/screens/user_screens/doctor_appointment/local_doctor/local_doctor.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../../utils/const_color.dart';
 import '../../../widgets/appbar.dart';
@@ -30,8 +28,7 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar:  CustomAppBar(
-          title: const Text("Doctor Appontment"),
+        appBar:  CustomAppBar(     title: const Text("Doctor Appontment"),
           preferredHeight: 130,
           bottom: TabBar(
               padding: const EdgeInsets.only(bottom: 8, left: 4, right: 4),

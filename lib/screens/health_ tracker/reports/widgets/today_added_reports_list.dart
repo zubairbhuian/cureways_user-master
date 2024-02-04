@@ -55,12 +55,12 @@ class TodayAddedReportsList extends StatelessWidget {
                         ),
                          Padding(
                           padding: EdgeInsets.all(12),
-                          child: Text("Food Type",
+                          child: Text("Test Type",
                               style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white)),
                         ),
                         Padding(
                           padding: EdgeInsets.all(12),
-                          child: Text("Food Quantity",
+                          child: Text("Result",
                               style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white)),
                         ),
                       ]),

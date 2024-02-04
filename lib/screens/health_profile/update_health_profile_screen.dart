@@ -2,6 +2,7 @@ import 'package:cureways_user/data/network/controllers/add_health_profile_contro
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/utils/int_extensions.dart';
 import 'package:cureways_user/utils/mixins.dart';
+import 'package:cureways_user/utils/style.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
@@ -36,8 +37,11 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AddHealthProfileController>(
+      
       init: AddHealthProfileController(),
-      builder: (addHealthProfile) => Scaffold(
+      builder: (addHealthProfile) {
+        String gender =addHealthProfile.gender??"";
+        return Scaffold(
         appBar: const CustomAppBar(title: Text("Update Health Profile")),
         body: addHealthProfile.loader
             ? const Center(child: AppIndecator())
@@ -80,17 +84,17 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                               padding: EdgeInsets.only(left: 00, right: 10),
                             ),
                             isExpanded: true,
-                            hint: const Row(
+                            hint: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Select Gender",
-                                  style: TextStyle(
+                                  gender=="1"?"Male":"Female",
+                                  style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
                                       color: ConstantsColor.primaryColor),
                                 ),
-                                Text(
+                                const Text(
                                   "*",
                                   style: TextStyle(
                                       fontSize: 16,
@@ -111,8 +115,9 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                                     )))
                                 .toList(),
                             onChanged: (value) {
+                              kLogger.e(value);
                               addHealthProfile.genderController.text =
-                                  value.toString();
+                                  value=="Male"?"1":"2";
                             },
                             // onSaved: (value) {
                             //   storeGlucose.timePeriodController.text = value.toString();
@@ -125,15 +130,6 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                             },
                           ),
                           16.height,
-                          CustomTextField(
-                            controller: addHealthProfile.genderController
-                              ..text = addHealthProfile.gender == "1"
-                                  ? "Male"
-                                  : "Female",
-                            keyboardType: TextInputType.text,
-                            labelText: 'Gender',
-                            hintText: 'Gender',
-                          ),
                           CustomTextField(
                             controller: addHealthProfile.heightController
                               ..text = addHealthProfile.height.toString()
@@ -157,13 +153,64 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                           const SizedBox(
                             height: 8,
                           ),
-                          CustomTextField(
-                            controller: addHealthProfile.msController
-                              ..text = addHealthProfile.marital.toString(),
-                            keyboardType: TextInputType.text,
-                            labelText: 'Marital Status',
-                            hintText: 'Marital Status',
+                          DropdownButtonFormField2(
+                            // value: Mixins().mutualStatus.first,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              contentPadding: EdgeInsets.zero,
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5)),
+                            ),
+                            buttonStyleData: const ButtonStyleData(
+                              height: 60,
+                              padding: EdgeInsets.only(left: 00, right: 10),
+                            ),
+                            isExpanded: true,
+                            hint: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  addHealthProfile.marital ?? "",
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                      color: ConstantsColor.primaryColor),
+                                ),
+                                const Text(
+                                  "*",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.red),
+                                ),
+                              ],
+                            ),
+                            items: Mixins()
+                                .mutualStatus
+                                .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    )))
+                                .toList(),
+                            onChanged: (value) {
+                              addHealthProfile.msController.text =
+                                  value.toString();
+                            },
+                            // onSaved: (value) {
+                            //   storeGlucose.timePeriodController.text = value.toString();
+                            // },
+                            validator: (value) {
+                              if (value == null) {
+                                return 'Please Select Marital Status';
+                              }
+                              return null;
+                            },
                           ),
+                          16.height,
                           GestureDetector(
                             onTap: () {
                               setState(() {
@@ -310,7 +357,8 @@ class _UpdateHealthProfileScreenState extends State<UpdateHealthProfileScreen> {
                   ),
                 ),
               ),
-      ),
+      );
+      }
     );
   }
 }

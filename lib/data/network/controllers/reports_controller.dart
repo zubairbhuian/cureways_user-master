@@ -30,7 +30,6 @@ class ReportsController extends GetxController {
     if (resultList != null) {
       todayFilteredList =
           resultList!.where((element) => element.date == key).toList();
-      kLogger.e(todayFilteredList.length);
     }
   }
 
@@ -50,6 +49,7 @@ class ReportsController extends GetxController {
       'result': resultController.text,
     };
 
+
     kLogger.i(data);
     final FormData formData = FormData.fromMap(data);
     update();
@@ -62,14 +62,13 @@ class ReportsController extends GetxController {
       dateController.clear();
       timePeriodController.clear();
       resultController.clear();
-      PopupDialog.showSuccessDialog("Diet Tracker Added");
+      PopupDialog.showSuccessDialog("Report Tracker Added");
     } else if (res.statusCode == 422) {
       PopupDialog.showErrorMessage("All field is required");
     }
   }
 
   getReportList() async {
-    resultList = [];
     update();
     Map<String, dynamic> body = {
       "user_id": _myBox.get('userId'),

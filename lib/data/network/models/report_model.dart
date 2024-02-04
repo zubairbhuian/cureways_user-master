@@ -13,7 +13,7 @@ class ReportsModel {
     userId = json['user_id'];
     date = json['date'];
     time = json['time'];
-    testType = json['test_type'];
+    testType = json['test_name'];
     result = json['result'];
   }
   int? id;
@@ -29,7 +29,7 @@ class ReportsModel {
     map['user_id'] = userId;
     map['date'] = date;
     map['time'] = time;
-    map['test_type'] = testType;
+    map['test_name'] = testType;
     map['result'] = result;
     return map;
   }

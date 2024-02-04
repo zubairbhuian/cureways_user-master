@@ -46,7 +46,6 @@ class GetDietListController extends GetxController {
   // }
 
   getDietList() async {
-    dietList = [];
     update();
     Map<String, dynamic> map = {
       "user_id": _myBox.get('userId'),

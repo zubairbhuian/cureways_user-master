@@ -153,8 +153,7 @@ class _DietTrackerScreenState extends State<DietTrackerScreen> {
                                         )))
                                     .toList(),
                                 onChanged: (value) {
-                                  storeDietController.foodTypeController.text =
-                                      value.toString();
+                                  storeDietController.foodTypeController.text = value!;
                                   // selectTimePeriod = value.toString();
                                 },
                                 onSaved: (value) {

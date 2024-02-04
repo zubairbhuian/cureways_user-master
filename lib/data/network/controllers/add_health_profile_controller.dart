@@ -84,6 +84,7 @@ class AddHealthProfileController extends GetxController {
     loader = false;
     update();
     if (res.statusCode == 200) {
+      showHealthProfile();
       PopupDialog.showSuccessDialog("Health profile Process Success");
     } else if (res.statusCode == 422) {
       PopupDialog.showErrorMessage("All field is required");
@@ -168,9 +169,7 @@ class AddHealthProfileController extends GetxController {
         testResult = getHealthProfileData.data!.testResult;
         _myBox.put('healthId', getHealthProfileData.data!.id.toString());
         loader = false;
-        Future.delayed(const Duration(milliseconds: 10), () {
-          update();
-        });
+        update();
       } else {
         loader = false;
         Future.delayed(const Duration(milliseconds: 10), () {

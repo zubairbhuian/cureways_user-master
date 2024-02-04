@@ -4,6 +4,7 @@ import 'package:cureways_user/data/network/constants/endpoints.dart';
 import 'package:cureways_user/data/network/constants/server.dart';
 import 'package:cureways_user/data/network/controllers/get_tmp_list_controller.dart';
 import 'package:cureways_user/data/service/user_service.dart';
+import 'package:cureways_user/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -28,9 +29,10 @@ class StoreBodyTmpController extends GetxController {
     Map body = {
       'user_id': _myBox.get('userId'),
       'date': dateController.text,
-      // 'time': timeController.text,
+      'time': timeController.text,
       'body_temperature': "${bodyTemperatureController.text} F",
     };
+    kLogger.e(body);
     String jsonBody = json.encode(body);
 
     server
@@ -50,7 +52,7 @@ class StoreBodyTmpController extends GetxController {
         Get.rawSnackbar(message: 'Submitted!', backgroundColor: Colors.green);
       } else {
         loader = false;
-         update();
+        update();
         Get.rawSnackbar(
             message: 'Please enter valid input', backgroundColor: Colors.red);
       }
