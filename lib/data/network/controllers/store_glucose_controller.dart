@@ -42,7 +42,7 @@ class StoreGlucoseController extends GetxController {
       'user_id': _myBox.get('userId'),
       'date': dateController.text,
       'time': timeController.text,
-      'time_period_name': timePeriodName,
+      'time_period': timePeriodName,
       'test_result': "${resultController.text} mmol/L",
     };
     kLogger.e(body);

@@ -49,7 +49,6 @@ class ReportsController extends GetxController {
       'result': resultController.text,
     };
 
-
     kLogger.i(data);
     final FormData formData = FormData.fromMap(data);
     update();
@@ -62,6 +61,8 @@ class ReportsController extends GetxController {
       dateController.clear();
       timePeriodController.clear();
       resultController.clear();
+      getReportList();
+      update();
       PopupDialog.showSuccessDialog("Report Tracker Added");
     } else if (res.statusCode == 422) {
       PopupDialog.showErrorMessage("All field is required");
@@ -75,9 +76,9 @@ class ReportsController extends GetxController {
       "from": fromController.text,
       "to": toController.text,
     };
-    kLogger.e(body);
-    BaseModel res = await BaseController.to.apiService
-        .makeGetRequest(Endpoints.server + Endpoints.reports,);
+    BaseModel res = await BaseController.to.apiService.makeGetRequest(
+      Endpoints.server + Endpoints.reports,data:body
+    );
     if (res.statusCode == 200) {
       if (res.data["data"].isEmpty) {
         resultList = [];

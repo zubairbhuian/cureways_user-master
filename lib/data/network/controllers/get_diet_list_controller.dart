@@ -60,7 +60,7 @@ class GetDietListController extends GetxController {
     if (res.statusCode == 200) {
       if (res.data["data"].isEmpty) {
         dietList = [];
-      } else {
+      } else {                                                                               
         // if there is no data
         dietList = (res.data['data'] as List)
             .map((item) => DietListData.fromJson(item))

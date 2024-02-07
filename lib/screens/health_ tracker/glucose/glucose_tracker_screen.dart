@@ -46,8 +46,6 @@ class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // AppDefaultBar(
-              //     title: "GLUCOSE TRACKER", userNAme: _myBox.get('userName')),
               const SizedBox(
                 height: 8,
               ),
