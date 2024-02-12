@@ -1,4 +1,5 @@
 import 'package:cureways_user/data/network/controllers/vaccine_request_controller.dart';
+import 'package:cureways_user/utils/const_color.dart';
 
 import 'package:cureways_user/utils/int_extensions.dart';
 import 'package:cureways_user/utils/style.dart';
@@ -76,11 +77,16 @@ class _VaccineRequestScreenState extends State<VaccineRequestScreen> {
               controller: vaccineController.referenceController,
               keyboardType: TextInputType.emailAddress,
             ),
-            ImgUploadBtn(
-              text: "Upload Prescription",
-              onTap: () {
-                vaccineController.onPickImage();
-              },
+            GetBuilder<VaccineRequestController>(
+              builder: (controller) {
+                return ImgUploadBtn(
+                  color:controller.imgFile==null?null: kSuccessColor,
+                  text: "Upload Prescription",
+                  onTap: () {
+                    vaccineController.onPickImage();
+                  },
+                );
+              }
             ),
             26.height,
             SizedBox(

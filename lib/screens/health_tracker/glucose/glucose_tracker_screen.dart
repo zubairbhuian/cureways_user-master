@@ -1,52 +1,51 @@
-import 'package:cureways_user/data/network/controllers/get_bp_list_controller.dart';
-import 'package:cureways_user/data/network/controllers/store-bp_controller.dart';
-import 'package:cureways_user/screens/health_%20tracker/bp/widgets/today_added_bp_list.dart';
-import 'package:cureways_user/screens/health_%20tracker/health_tracker_screen.dart';
-import 'package:cureways_user/utils/const_color.dart';
-import 'package:cureways_user/utils/my_func.dart';
+import 'package:cureways_user/data/network/controllers/get_glucose_list_controller.dart';
+import 'package:cureways_user/data/network/controllers/store_glucose_controller.dart';
+import 'package:cureways_user/screens/health_tracker/glucose/widgets/today_added_glucose_list.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
-import 'package:cureways_user/widgets/appbar.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class BpTrackerScreen extends StatefulWidget {
-  const BpTrackerScreen({Key? key}) : super(key: key);
+import '../../../utils/const_color.dart';
+import '../../../utils/mixins.dart';
+import '../../../widgets/appbar.dart';
+
+class GlucoseTrackerScreen extends StatefulWidget {
+  const GlucoseTrackerScreen({Key? key}) : super(key: key);
 
   @override
-  State<BpTrackerScreen> createState() => _BpTrackerScreenState();
+  State<GlucoseTrackerScreen> createState() => _GlucoseTrackerScreenState();
 }
 
-class _BpTrackerScreenState extends State<BpTrackerScreen> {
-  final _formKey = GlobalKey<FormState>();
+class _GlucoseTrackerScreenState extends State<GlucoseTrackerScreen> {
+  StoreGlucoseController storeGlucoseController = StoreGlucoseController();
+  GetGlucoseListController glucoseListController = GetGlucoseListController();
 
-  StoreBpController storeBpController = StoreBpController();
-  GetBpListController getBpController = GetBpListController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void didChangeDependencies() {
-    storeBpController = Get.put(StoreBpController());
-    getBpController = Get.put(GetBpListController());
-    getBpController.getBpList();
+    storeGlucoseController = Get.put(StoreGlucoseController());
+    glucoseListController = Get.put(GetGlucoseListController());
+    glucoseListController.getGlucoseList();
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<StoreBpController>(
-      init: StoreBpController(),
-      builder: (storeBp) => Scaffold(
-        appBar: const CustomAppBar(title: Text("BP TRACKER")),
+    return GetBuilder<StoreGlucoseController>(
+      init: StoreGlucoseController(),
+      builder: (storeGlucose) => Scaffold(
+        appBar: CustomAppBar(title: Text("Glucose TRACKER".toUpperCase())),
         body: Container(
-          height: double.infinity,
           color: ConstantsColor.backgroundColor,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // AppDefaultBar(
-              //     title: "BP TRACKER", userNAme: _myBox.get('userName')),
               const SizedBox(
                 height: 8,
               ),
@@ -55,16 +54,14 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 12),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Form(
                             key: _formKey,
                             child: Column(
                               children: [
                                 CustomTextField(
-                                    controller: storeBp.dateController,
+                                    controller: storeGlucose.dateController,
                                     keyboardType: TextInputType.text,
-                                    readOnly: true,
                                     labelText: 'yyyy-mm-dd',
                                     hintText: 'yyyy-mm-dd',
                                     onTap: () async {
@@ -75,14 +72,14 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                                               firstDate: DateTime(2000),
                                               lastDate: DateTime(2101));
                                       if (pickedDate != null) {
-                                        storeBp
+                                        storeGlucose
                                             .dateController.text = DateFormat("yyyy-MM-dd")
                                             .format(pickedDate);
-                                        storeBp.update();
+                                        storeGlucose.update();
                                       }
                                     }),
                                 CustomTextField(
-                                  controller: storeBp.timeController,
+                                  controller: storeGlucose.timeController,
                                   keyboardType: TextInputType.text,
                                   readOnly: true,
                                   labelText: 'Enter Time Period',
@@ -94,31 +91,85 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                                       context: context,
                                     );
                                     if (selectedTime != null) {
-                                      storeBp.timeController.text =
+                                      storeGlucose.timeController.text =
                                           "${selectedTime.hour}:${selectedTime.minute}";
                                       //! formet the time
-                                      //  MyFunc.formatTimeOfDay(selectedTime);
-                                   
+                                      /// MyFunc.formatTimeOfDay(selectedTime);
+                                      storeGlucose.update();
                                     }
                                   },
                                 ),
-                                CustomTextField(
-                                  controller: storeBp.systolicBpController,
-                                  keyboardType: TextInputType.number,
-                                  suffix: const Text("mmHg"),
-                                  labelText: 'Enter Systolic Value',
-                                  hintText: 'Enter Systolic Value',
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.allow(
-                                        RegExp(r'[0-9\.\-\/]'))
-                                  ],
+                                DropdownButtonFormField2(
+                                  value: storeGlucose
+                                          .timePeriodController.text.isEmpty
+                                      ? null
+                                      : storeGlucose.timePeriodController.text,
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                    contentPadding: EdgeInsets.zero,
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5)),
+                                  ),
+                                  buttonStyleData: const ButtonStyleData(
+                                    height: 60,
+                                    padding:
+                                        EdgeInsets.only(left: 00, right: 10),
+                                  ),
+                                  isExpanded: true,
+                                  hint: const Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Select TimePeriod",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                            color: ConstantsColor.primaryColor),
+                                      ),
+                                      Text(
+                                        "*",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.red),
+                                      ),
+                                    ],
+                                  ),
+                                  items: Mixins()
+                                      .glucoseTestTimeperiod
+                                      .map((item) => DropdownMenuItem<String>(
+                                          value: item,
+                                          child: Text(
+                                            item,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                            ),
+                                          )))
+                                      .toList(),
+                                  onChanged: (value) {
+                                    storeGlucose.timePeriodController.text =
+                                        value.toString();
+                                  },
+                                  // onSaved: (value) {
+                                  //   storeGlucose.timePeriodController.text = value.toString();
+                                  // },
+                                  validator: (value) {
+                                    if (value == null) {
+                                      return 'Please Select TimePeriod';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(
+                                  height: 16,
                                 ),
                                 CustomTextField(
-                                  controller: storeBp.diastolicBpController,
+                                  controller: storeGlucose.resultController,
                                   keyboardType: TextInputType.number,
-                                  suffix: const Text("mmHg"),
-                                  labelText: 'Enter Diastolic Value',
-                                  hintText: 'Enter Diastolic Value',
+                                  suffix: const Text("mmol/L"),
+                                  labelText: 'Your Glucose Test Result',
+                                  hintText: 'Your Glucose Test Result',
                                   inputFormatters: [
                                     FilteringTextInputFormatter.allow(
                                         RegExp(r'[0-9\.\-\/]'))
@@ -127,14 +178,14 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                               ],
                             )),
                         const SizedBox(
-                          height: 10,
+                          height: 16,
                         ),
                         SizedBox(
                           width: double.maxFinite,
                           height: 52,
                           child: OutlinedButton(
                             onPressed: () {
-                              storeBp.storeBp();
+                              storeGlucose.storeGlucose();
                             },
                             style: OutlinedButton.styleFrom(
                               backgroundColor: ConstantsColor.primaryColor,
@@ -142,7 +193,7 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                                 borderRadius: BorderRadius.circular(5),
                               ),
                             ),
-                            child: storeBp.loader
+                            child: storeGlucose.loader
                                 ? const Center(child: LoadIndecator())
                                 : const Text(
                                     'SUBMIT',
@@ -154,9 +205,9 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                         const SizedBox(
                           height: 16,
                         ),
-                        const TodayAddedBPList(),
+                        const TodayAddedGlucoseList(),
                         const Text(
-                          'Blood pressure categories',
+                          'Normal and diabetic blood sugar ranges',
                           style: TextStyle(
                               color: ConstantsColor.primaryColor,
                               fontSize: 20,
@@ -166,7 +217,26 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                           height: 8,
                         ),
                         const Text(
-                          'The five blood pressure (BP) ranges as recognized by the American Heart Association are:',
+                          'For the majority of healthy individuals, normal blood sugar levels are as follows:',
+                          style: TextStyle(
+                              color: ConstantsColor.primaryColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal),
+                          textAlign: TextAlign.start,
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        const Text(
+                          'Between 4.0 to 5.4 mmol/L (72 to 99 mg/dL) when fasting [361]',
+                          style: TextStyle(
+                              color: ConstantsColor.greyColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal),
+                          textAlign: TextAlign.start,
+                        ),
+                        const Text(
+                          'Up to 7.8 mmol/L (140 mg/dL) 2 hours after eating',
                           style: TextStyle(
                               color: ConstantsColor.greyColor,
                               fontSize: 16,
@@ -174,104 +244,26 @@ class _BpTrackerScreenState extends State<BpTrackerScreen> {
                           textAlign: TextAlign.start,
                         ),
                         const SizedBox(
-                          height: 16,
-                        ),
-                        const Text(
-                          'Normal',
-                          style: TextStyle(
-                              color: ConstantsColor.primaryColor,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(
                           height: 8,
                         ),
                         const Text(
-                          'Blood pressure numbers of less than 120/80 mm Hg are considered within the normal range. If your results fall into this category, stick with heart-healthy habits like following a balanced diet and getting regular exercise',
+                          'For people with diabetes, blood sugar level targets are as follows:',
+                          style: TextStyle(
+                              color: ConstantsColor.primaryColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal),
+                          textAlign: TextAlign.start,
+                        ),
+                        const Text(
+                          'Before meals : 4 to 7 mmol/L for people with type 1 or type 2 diabetes',
                           style: TextStyle(
                               color: ConstantsColor.greyColor,
                               fontSize: 16,
                               fontWeight: FontWeight.normal),
                           textAlign: TextAlign.start,
                         ),
-                        const SizedBox(
-                          height: 16,
-                        ),
                         const Text(
-                          'Elevated',
-                          style: TextStyle(
-                              color: ConstantsColor.primaryColor,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        const Text(
-                          'Elevated blood pressure is when readings consistently range from 120-129 systolic and less than 80 mm Hg diastolic. People with elevated blood pressure are likely to develop high blood pressure unless steps are taken to control the condition.',
-                          style: TextStyle(
-                              color: ConstantsColor.greyColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.normal),
-                          textAlign: TextAlign.start,
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        const Text(
-                          'Hypertension Stage 1',
-                          style: TextStyle(
-                              color: ConstantsColor.primaryColor,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        const Text(
-                          'Hypertension Stage 1 is when blood pressure consistently ranges from 130-139 systolic or 80-89 mm Hg diastolic. At this stage of high blood pressure, doctors are likely to prescribe lifestyle changes and may consider adding blood pressure medication based on your risk of atherosclerotic cardiovascular disease (ASCVD), such as heart attack or stroke.',
-                          style: TextStyle(
-                              color: ConstantsColor.greyColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.normal),
-                          textAlign: TextAlign.start,
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        const Text(
-                          'Hypertension Stage 2',
-                          style: TextStyle(
-                              color: ConstantsColor.primaryColor,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        const Text(
-                          'Hypertension Stage 2 is when blood pressure consistently ranges at 140/90 mm Hg or higher. At this stage of high blood pressure, doctors are likely to prescribe a combination of blood pressure medications and lifestyle changes.',
-                          style: TextStyle(
-                              color: ConstantsColor.greyColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.normal),
-                          textAlign: TextAlign.start,
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        const Text(
-                          'Hypertensive crisis',
-                          style: TextStyle(
-                              color: ConstantsColor.primaryColor,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        const Text(
-                          'This stage of high blood pressure requires medical attention. If your blood pressure readings suddenly exceed 180/120 mm Hg, wait five minutes and then test your blood pressure again. If your readings are still unusually high, contact your doctor immediately. You could be experiencing a hypertensive crisis.',
+                          'After meals : under 9 mmol/L for people with type 1 diabetes and under 8.5mmol/L for people with type 2 diabetes',
                           style: TextStyle(
                               color: ConstantsColor.greyColor,
                               fontSize: 16,

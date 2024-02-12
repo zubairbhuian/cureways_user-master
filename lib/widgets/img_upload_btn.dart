@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 
 class ImgUploadBtn extends StatelessWidget {
   final String text;
+  final Color? color;
   final void Function()? onTap;
-  const ImgUploadBtn({super.key, required this.text, this.onTap});
+  const ImgUploadBtn({super.key, required this.text, this.onTap, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +18,13 @@ class ImgUploadBtn extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: kDisabledTextColor)),
+            border: Border.all(color:color?? kDisabledTextColor)),
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          const Icon(Icons.photo_camera_outlined),
+           Icon(Icons.photo_camera_outlined,color: color??kTextColor,),
           8.width,
           Text(
             text,
-            style: kLabelLarge,
+            style: kLabelLarge.copyWith(color:color?? kTextColor),
           ),
         ]),
       ),

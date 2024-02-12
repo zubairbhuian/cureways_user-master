@@ -21,7 +21,7 @@ import 'package:get/get.dart';
 
 import '../utils/const_color.dart';
 import '../utils/mixins.dart';
-import 'health_ tracker/health_tracker_screen.dart';
+import 'health_tracker/health_tracker_screen.dart';
 import 'health_profile/health_profile_screen.dart';
 import 'user_screens/overseas_treatment/overseas_treatment_screen.dart';
 

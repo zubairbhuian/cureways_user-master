@@ -1,6 +1,6 @@
 import 'package:cureways_user/data/network/controllers/get_weight_list_controller.dart';
 import 'package:cureways_user/data/network/controllers/store_weight_controller.dart';
-import 'package:cureways_user/screens/health_%20tracker/weight/widgets/today_added_weight_list.dart';
+import 'package:cureways_user/screens/health_tracker/weight/widgets/today_added_weight_list.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
