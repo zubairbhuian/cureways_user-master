@@ -14,9 +14,8 @@ class OverseasTreatmentController extends GetxController {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController uhidController = TextEditingController();
-  final TextEditingController selecetedServiceType = TextEditingController();
+  String? selecetedServiceType;
 
-  ///
   final TextEditingController dateController = TextEditingController();
   final TextEditingController timeController = TextEditingController();
   final TextEditingController totalPassengersController =
@@ -45,7 +44,7 @@ class OverseasTreatmentController extends GetxController {
           'phone': phoneController.text,
           'email': emailController.text,
           'uhid': uhidController.text,
-          'type': selecetedServiceType.text,
+          'type': selecetedServiceType,
           'passport_copy': await MultipartFile.fromFile(
             imgFile!.path,
           ),
@@ -65,10 +64,10 @@ class OverseasTreatmentController extends GetxController {
               : await MultipartFile.fromFile(
                   imgFile4!.path,
                 ),
-          'total_passengers': selecetedServiceType.text,
-          'hostpital_name': selecetedServiceType.text,
-          'arrival_date': selecetedServiceType.text,
-          'arrival_time': selecetedServiceType.text,
+          'total_passengers': totalPassengersController.text,
+          'hostpital_name': hospitalNameController.text,
+          'arrival_date': dateController.text,
+          'arrival_time': timeController.text,
         };
         final FormData formData = FormData.fromMap(data);
         update();
@@ -80,11 +79,20 @@ class OverseasTreatmentController extends GetxController {
         PopupDialog.closeLoadingDialog();
         update();
         if (res.statusCode == 200) {
+          Get.back();
           nameController.clear();
           emailController.clear();
           phoneController.clear();
           uhidController.clear();
+          selecetedServiceType = null;
+          dateController.clear();
+          timeController.clear();
+          totalPassengersController.clear();
+          hospitalNameController.clear();
           imgFile = null;
+          imgFile2 = null;
+          imgFile3 = null;
+          imgFile4 = null;
           update();
           PopupDialog.showSuccessDialog("Request Success");
         } else if (res.statusCode == 422) {

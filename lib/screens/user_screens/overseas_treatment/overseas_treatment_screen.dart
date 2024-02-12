@@ -80,6 +80,7 @@ class _OverseasTreatmentScreenState extends State<OverseasTreatmentScreen> {
               GetBuilder<OverseasTreatmentController>(builder: (controller) {
                 var data = controller.serviceTypeList;
                 return CustomDropdownTextFiel(
+                  value: controller.selecetedServiceType,
                   hint: const Text("Service Type"),
                   items: List.generate(
                       data.length,
@@ -91,7 +92,8 @@ class _OverseasTreatmentScreenState extends State<OverseasTreatmentScreen> {
                             ),
                           )),
                   onChanged: (String? value) {
-                    controller.selecetedServiceType.text = value!;
+                    controller.selecetedServiceType = value!;
+                    controller.update();
                   },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -108,7 +110,11 @@ class _OverseasTreatmentScreenState extends State<OverseasTreatmentScreen> {
                       child: const Text("Next"),
                       onPressed: () {
                         if (otcontroller.otformKey.currentState!.validate()) {
-                          Get.to(() => const OverseasTreatmentDocScreen());
+                          otcontroller.imgFile = null;
+                          otcontroller.imgFile2 = null;
+                          otcontroller.imgFile3 = null;
+                          otcontroller.imgFile4 = null;
+                          Get.to(() =>  OverseasTreatmentDocScreen(title: otcontroller.selecetedServiceType,));
                         }
                       }))
             ],

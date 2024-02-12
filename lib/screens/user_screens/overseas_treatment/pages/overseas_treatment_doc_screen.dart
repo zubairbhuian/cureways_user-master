@@ -1,4 +1,5 @@
 import 'package:cureways_user/data/network/controllers/overseas_treatment_controller.dart';
+import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/utils/int_extensions.dart';
 import 'package:cureways_user/utils/my_image_picker.dart';
 import 'package:cureways_user/widgets/appbar.dart';
@@ -10,7 +11,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class OverseasTreatmentDocScreen extends StatefulWidget {
-  const OverseasTreatmentDocScreen({super.key});
+  final String? title;
+  const OverseasTreatmentDocScreen({super.key, this.title});
 
   @override
   State<OverseasTreatmentDocScreen> createState() =>
@@ -30,46 +32,62 @@ class _OverseasTreatmentDocScreenState
   @override
   Widget build(BuildContext context) {
     // ! ==== VIL(Visa Invitation Letter ====
-    if (otcontroller.selecetedServiceType.text ==
-        "VIL(Visa Invitation Letter)") {
+    if (otcontroller.selecetedServiceType == "VIL(Visa Invitation Letter)") {
       return Scaffold(
-        appBar: const CustomAppBar(title: Text("Overseas Treatment")),
+        appBar: CustomAppBar(title: Text(widget.title??"")),
         body: SingleChildScrollView(
           padding: const EdgeInsetsDirectional.symmetric(
               horizontal: 20, vertical: 22),
           child: Column(
             children: [
-              ImgUploadBtn(
-                onTap: () async {
-                  otcontroller.imgFile = null;
-                  otcontroller.imgFile = await MyImagePicker.pickImageAndCrop();
-                },
-                text: "Patient Passport",
-              ),
+              GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
+                return ImgUploadBtn(
+                  color: otcontroller.imgFile == null ? null : kSuccessColor,
+                  onTap: () async {
+                    otcontroller.imgFile = null;
+                    otcontroller.imgFile =
+                        await MyImagePicker.pickImageAndCrop();
+                    otcontroller.update();
+                  },
+                  text: "Patient Passport",
+                );
+              }),
               16.height,
-              ImgUploadBtn(
-                onTap: () async {
-                  otcontroller.imgFile2 =
-                      await MyImagePicker.pickImageAndCrop();
-                },
-                text: "Attendant 1 Passport",
-              ),
+              GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
+                return ImgUploadBtn(
+                  color: otcontroller.imgFile2 == null ? null : kSuccessColor,
+                  onTap: () async {
+                    otcontroller.imgFile2 =
+                        await MyImagePicker.pickImageAndCrop();
+                    otcontroller.update();
+                  },
+                  text: "Attendant 1 Passport",
+                );
+              }),
               16.height,
-              ImgUploadBtn(
-                onTap: () async {
-                  otcontroller.imgFile3 =
-                      await MyImagePicker.pickImageAndCrop();
-                },
-                text: "Attendant 2 Passport",
-              ),
+              GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
+                return ImgUploadBtn(
+                  color: otcontroller.imgFile3 == null ? null : kSuccessColor,
+                  onTap: () async {
+                    otcontroller.imgFile3 =
+                        await MyImagePicker.pickImageAndCrop();
+                    otcontroller.update();
+                  },
+                  text: "Attendant 2 Passport",
+                );
+              }),
               16.height,
-              ImgUploadBtn(
-                onTap: () async {
-                  otcontroller.imgFile4 =
-                      await MyImagePicker.pickImageAndCrop();
-                },
-                text: "Attendant 3 Passport",
-              ),
+              GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
+                return ImgUploadBtn(
+                  color: otcontroller.imgFile4 == null ? null : kSuccessColor,
+                  onTap: () async {
+                    otcontroller.imgFile4 =
+                        await MyImagePicker.pickImageAndCrop();
+                    otcontroller.update();
+                  },
+                  text: "Attendant 3 Passport",
+                );
+              }),
               26.height,
               SizedBox(
                   width: double.infinity,
@@ -83,30 +101,39 @@ class _OverseasTreatmentDocScreenState
         ),
       );
       // ! ==== Airport Pickup ====
-    } else if (otcontroller.selecetedServiceType.text == "Airport Pickup") {
+    } else if (otcontroller.selecetedServiceType == "Airport Pickup") {
       return Scaffold(
-        appBar: const CustomAppBar(title: Text("Overseas Treatment")),
+        appBar:CustomAppBar(title: Text(widget.title??"")),
         body: SingleChildScrollView(
           padding: const EdgeInsetsDirectional.symmetric(
               horizontal: 20, vertical: 22),
           child: Column(
             children: [
-              ImgUploadBtn(
-                onTap: () async {
-                  otcontroller.imgFile = null;
-                  otcontroller.imgFile = await MyImagePicker.pickImageAndCrop();
-                },
-                text: "Patient Passport",
-              ),
+              GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
+                return ImgUploadBtn(
+                  color: otcontroller.imgFile == null ? null : kSuccessColor,
+                  onTap: () async {
+                    otcontroller.imgFile = null;
+                    otcontroller.imgFile =
+                        await MyImagePicker.pickImageAndCrop();
+                    otcontroller.update();
+                  },
+                  text: "Patient Passport",
+                );
+              }),
               16.height,
-              ImgUploadBtn(
-                onTap: () async {
-                  otcontroller.imgFile2 = null;
-                  otcontroller.imgFile2 =
-                      await MyImagePicker.pickImageAndCrop();
-                },
-                text: "Ticket Upload",
-              ),
+              GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
+                return ImgUploadBtn(
+                  color: otcontroller.imgFile2 == null ? null : kSuccessColor,
+                  onTap: () async {
+                    otcontroller.imgFile2 = null;
+                    otcontroller.imgFile2 =
+                        await MyImagePicker.pickImageAndCrop();
+                    otcontroller.update();
+                  },
+                  text: "Ticket Upload",
+                );
+              }),
               16.height,
               CustomTextField2(
                 controller: otcontroller.totalPassengersController,
@@ -168,37 +195,50 @@ class _OverseasTreatmentDocScreenState
       // ! ==== Others ====
     } else {
       return Scaffold(
-        appBar: const CustomAppBar(title: Text("Overseas Treatment")),
+        appBar: CustomAppBar(title: Text(widget.title??"")),
         body: SingleChildScrollView(
           padding: const EdgeInsetsDirectional.symmetric(
               horizontal: 20, vertical: 22),
           child: Column(
             children: [
-              ImgUploadBtn(
-                onTap: () async {
-                  otcontroller.imgFile = null;
-                  otcontroller.imgFile = await MyImagePicker.pickImageAndCrop();
-                },
-                text: "Passport Copy",
-              ),
+              GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
+                return ImgUploadBtn(
+                  color: otcontroller.imgFile == null ? null : kSuccessColor,
+                  onTap: () async {
+                    otcontroller.imgFile = null;
+                    otcontroller.imgFile =
+                        await MyImagePicker.pickImageAndCrop();
+                    otcontroller.update();
+                  },
+                  text: "Passport Copy",
+                );
+              }),
               16.height,
-              ImgUploadBtn(
-                onTap: () async {
-                  otcontroller.imgFile2 = null;
-                  otcontroller.imgFile2 =
-                      await MyImagePicker.pickImageAndCrop();
-                },
-                text: "Previous Report",
-              ),
+              GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
+                return ImgUploadBtn(
+                  color: otcontroller.imgFile2 == null ? null : kSuccessColor,
+                  onTap: () async {
+                    otcontroller.imgFile2 = null;
+                    otcontroller.imgFile2 =
+                        await MyImagePicker.pickImageAndCrop();
+                    otcontroller.update();
+                  },
+                  text: "Previous Report",
+                );
+              }),
               16.height,
-              ImgUploadBtn(
-                onTap: () async {
-                  otcontroller.imgFile3 = null;
-                  otcontroller.imgFile3 =
-                      await MyImagePicker.pickImageAndCrop();
-                },
-                text: "Previous Prescription",
-              ),
+              GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
+                return ImgUploadBtn(
+                  color: otcontroller.imgFile3 == null ? null : kSuccessColor,
+                  onTap: () async {
+                    otcontroller.imgFile3 = null;
+                    otcontroller.imgFile3 =
+                        await MyImagePicker.pickImageAndCrop();
+                    otcontroller.update();
+                  },
+                  text: "Previous Prescription",
+                );
+              }),
               16.height,
               26.height,
               SizedBox(
