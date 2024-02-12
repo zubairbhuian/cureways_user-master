@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cureways_user/data/network/constants/endpoints.dart';
 import 'package:cureways_user/data/network/constants/server.dart';
 import 'package:cureways_user/data/service/user_service.dart';
+import 'package:cureways_user/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -43,12 +44,13 @@ class SlotBookingController extends GetxController {
       'phone': phone,
       'gender': gender,
     };
+    kLogger.e(body);
     String jsonBody = json.encode(body);
 
     server
         .postRequest(endPoint: Endpoints.slotBooking, body: jsonBody)
         .then((response) {
-      print(json.decode(response.body));
+      kLogger.e(json.decode(response.body));
       if (response != null && response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);
         print(jsonResponse);

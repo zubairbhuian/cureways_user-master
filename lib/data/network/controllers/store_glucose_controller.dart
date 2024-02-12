@@ -14,7 +14,7 @@ class StoreGlucoseController extends GetxController {
   Server server = Server();
   bool loader = false;
   final _myBox = Hive.box('userBox');
-
+  
   final TextEditingController dateController = TextEditingController();
   final TextEditingController timeController = TextEditingController();
   final TextEditingController resultController = TextEditingController();
@@ -43,7 +43,7 @@ class StoreGlucoseController extends GetxController {
       'date': dateController.text,
       'time': timeController.text,
       'time_period': timePeriodName,
-      'test_result': "${resultController.text} mmol/L",
+      'test_result': resultController.text,
     };
     kLogger.e(body);
     String jsonBody = json.encode(body);

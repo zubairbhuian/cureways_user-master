@@ -137,11 +137,20 @@ class _DoctorsListScreenState extends State<DoctorsListScreen> {
                                   ),
                                   10.width,
                                   PrimaryBtn(
-                                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                                    style: const TextStyle(fontSize: 12,fontWeight: FontWeight.w500),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500),
                                     child: const Text("Appointment"),
                                     onPressed: () {
-                                      Get.to(() => const DoctorAppointmentScreen());
+                                      var id =
+                                          controller.doctorList?[index].id;
+                                      Get.to(() => DoctorAppointmentScreen(
+                                            // slotId: controller.doctorList[index].,
+                                            doctorId:
+                                                id.toString(),
+                                          ));
                                     },
                                   )
                                 ],

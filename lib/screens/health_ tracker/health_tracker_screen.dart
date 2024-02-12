@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cureways_user/screens/health_%20tracker/body/body_temparature_screen.dart';
 import 'package:cureways_user/screens/health_%20tracker/bp/bp_list_screen.dart';
 import 'package:cureways_user/screens/health_%20tracker/bp/bp_tracker.dart';
@@ -8,11 +7,13 @@ import 'package:cureways_user/screens/health_%20tracker/reports/reports_list_scr
 import 'package:cureways_user/screens/health_%20tracker/reports/reports_tracker_screen.dart';
 import 'package:cureways_user/screens/health_%20tracker/weight/weight_list_screen.dart';
 import 'package:cureways_user/screens/health_%20tracker/weight/weight_tracker_screen.dart';
+import 'package:cureways_user/screens/health_%20tracker/widgets/custom_circular_percent_indicator.dart';
+import 'package:cureways_user/utils/Int_extensions.dart';
 import 'package:cureways_user/widgets/appbar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -22,8 +23,8 @@ import 'diet/diet_list_screen.dart';
 import 'glucose/glucose_list_screen.dart';
 
 class HealthTrackerScreen extends StatefulWidget {
-  String? userName;
-  HealthTrackerScreen({Key? key, this.userName}) : super(key: key);
+  final String? userName;
+  const HealthTrackerScreen({Key? key, this.userName}) : super(key: key);
 
   @override
   State<HealthTrackerScreen> createState() => _HealthTrackerScreenState();
@@ -94,14 +95,14 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                             borderRadius: BorderRadius.circular(10)),
                         height: 125,
                         width: double.maxFinite,
-                        child: Center(
+                        child: const Center(
                             child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              const Column(
+                              Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -123,27 +124,6 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                                         fontWeight: FontWeight.w400),
                                   )
                                 ],
-                              ),
-                              PieChart(
-                                dataMap: dataMap,
-                                chartType: ChartType.ring,
-                                chartRadius: 100,
-                                ringStrokeWidth: 15,
-                                initialAngleInDegree: 80,
-                                centerText: "80%",
-                                centerTextStyle: const TextStyle(
-                                    backgroundColor: kPrimaryColor,
-                                    fontSize: 18),
-                                baseChartColor:
-                                    const Color.fromARGB(255, 121, 173, 250),
-                                colorList: colorList,
-                                chartValuesOptions: const ChartValuesOptions(
-                                  showChartValuesInPercentage: true,
-                                  showChartValues: false,
-                                ),
-                                legendOptions:
-                                    const LegendOptions(showLegends: false),
-                                totalValue: 100,
                               ),
                             ],
                           ),
@@ -306,61 +286,29 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          // top progress bar
                           Container(
                             decoration: BoxDecoration(
                                 color: kPrimaryColor,
                                 borderRadius: BorderRadius.circular(10)),
                             height: 100,
                             width: 80,
-                            child: Center(
-                                child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      PieChart(
-                                        dataMap: dietMap,
-                                        chartType: ChartType.ring,
-                                        chartRadius: 45,
-                                        ringStrokeWidth: 5,
-                                        initialAngleInDegree: 80,
-                                        centerText: "80%",
-                                        centerTextStyle: const TextStyle(
-                                            backgroundColor: kPrimaryColor,
-                                            fontSize: 12),
-                                        baseChartColor: const Color.fromARGB(
-                                            255, 121, 173, 250),
-                                        colorList: colorList,
-                                        chartValuesOptions:
-                                            const ChartValuesOptions(
-                                          showChartValuesInPercentage: true,
-                                          showChartValues: false,
-                                        ),
-                                        legendOptions: const LegendOptions(
-                                            showLegends: false),
-                                        totalValue: 100,
-                                      ),
-                                      const SizedBox(
-                                        height: 2,
-                                      ),
-                                      const Text(
-                                        "7 DAYS",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w700),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            )),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                // progress bar
+                                const CustomCircularPercentIndicator("50"),
+                                3.height,
+                                const Text(
+                                  "7 DAYS",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w700),
+                                )
+                              ],
+                            ),
                           ),
                           const SizedBox(
                             width: 10,
@@ -444,61 +392,29 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                       ),
                       Row(
                         children: [
+                          // top progress bar
                           Container(
                             decoration: BoxDecoration(
                                 color: kPrimaryColor,
                                 borderRadius: BorderRadius.circular(10)),
                             height: 100,
                             width: 80,
-                            child: Center(
-                                child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      PieChart(
-                                        dataMap: bpTracker,
-                                        chartType: ChartType.ring,
-                                        chartRadius: 45,
-                                        ringStrokeWidth: 5,
-                                        initialAngleInDegree: 80,
-                                        centerText: "00%",
-                                        centerTextStyle: const TextStyle(
-                                            backgroundColor: kPrimaryColor,
-                                            fontSize: 12),
-                                        baseChartColor: const Color.fromARGB(
-                                            255, 121, 173, 250),
-                                        colorList: colorList,
-                                        chartValuesOptions:
-                                            const ChartValuesOptions(
-                                          showChartValuesInPercentage: true,
-                                          showChartValues: false,
-                                        ),
-                                        legendOptions: const LegendOptions(
-                                            showLegends: false),
-                                        totalValue: 100,
-                                      ),
-                                      const SizedBox(
-                                        height: 2,
-                                      ),
-                                      const Text(
-                                        "7 DAYS",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w700),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            )),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                // progress bar
+                                const CustomCircularPercentIndicator("50"),
+                                3.height,
+                                const Text(
+                                  "7 DAYS",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w700),
+                                )
+                              ],
+                            ),
                           ),
                           const SizedBox(
                             width: 10,
@@ -583,61 +499,29 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                       ),
                       Row(
                         children: [
+                          // top progress bar
                           Container(
                             decoration: BoxDecoration(
                                 color: kPrimaryColor,
                                 borderRadius: BorderRadius.circular(10)),
                             height: 100,
                             width: 80,
-                            child: Center(
-                                child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      PieChart(
-                                        dataMap: glucoseTracker,
-                                        chartType: ChartType.ring,
-                                        chartRadius: 45,
-                                        ringStrokeWidth: 5,
-                                        initialAngleInDegree: 80,
-                                        centerText: "00%",
-                                        centerTextStyle: const TextStyle(
-                                            backgroundColor: kPrimaryColor,
-                                            fontSize: 12),
-                                        baseChartColor: const Color.fromARGB(
-                                            255, 121, 173, 250),
-                                        colorList: colorList,
-                                        chartValuesOptions:
-                                            const ChartValuesOptions(
-                                          showChartValuesInPercentage: true,
-                                          showChartValues: false,
-                                        ),
-                                        legendOptions: const LegendOptions(
-                                            showLegends: false),
-                                        totalValue: 100,
-                                      ),
-                                      const SizedBox(
-                                        height: 2,
-                                      ),
-                                      const Text(
-                                        "7 DAYS",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w700),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            )),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                // progress bar
+                                const CustomCircularPercentIndicator("50"),
+                                3.height,
+                                const Text(
+                                  "7 DAYS",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w700),
+                                )
+                              ],
+                            ),
                           ),
                           const SizedBox(
                             width: 10,
@@ -719,61 +603,29 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                       ),
                       Row(
                         children: [
+                          // top progress bar
                           Container(
                             decoration: BoxDecoration(
                                 color: kPrimaryColor,
                                 borderRadius: BorderRadius.circular(10)),
                             height: 100,
                             width: 80,
-                            child: Center(
-                                child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      PieChart(
-                                        dataMap: bodyTemperature,
-                                        chartType: ChartType.ring,
-                                        chartRadius: 45,
-                                        ringStrokeWidth: 5,
-                                        initialAngleInDegree: 80,
-                                        centerText: "00%",
-                                        centerTextStyle: const TextStyle(
-                                            backgroundColor: kPrimaryColor,
-                                            fontSize: 12),
-                                        baseChartColor: const Color.fromARGB(
-                                            255, 121, 173, 250),
-                                        colorList: colorList,
-                                        chartValuesOptions:
-                                            const ChartValuesOptions(
-                                          showChartValuesInPercentage: true,
-                                          showChartValues: false,
-                                        ),
-                                        legendOptions: const LegendOptions(
-                                            showLegends: false),
-                                        totalValue: 100,
-                                      ),
-                                      const SizedBox(
-                                        height: 2,
-                                      ),
-                                      const Text(
-                                        "7 DAYS",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w700),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            )),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                // progress bar
+                                const CustomCircularPercentIndicator("50"),
+                                3.height,
+                                const Text(
+                                  "7 DAYS",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w700),
+                                )
+                              ],
+                            ),
                           ),
                           const SizedBox(
                             width: 10,
@@ -858,62 +710,31 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                       ),
                       Row(
                         children: [
+                          // top progress bar
                           Container(
                             decoration: BoxDecoration(
                                 color: kPrimaryColor,
                                 borderRadius: BorderRadius.circular(10)),
                             height: 100,
                             width: 80,
-                            child: Center(
-                                child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      PieChart(
-                                        dataMap: bodyTemperature,
-                                        chartType: ChartType.ring,
-                                        chartRadius: 45,
-                                        ringStrokeWidth: 5,
-                                        initialAngleInDegree: 80,
-                                        centerText: "00%",
-                                        centerTextStyle: const TextStyle(
-                                            backgroundColor: kPrimaryColor,
-                                            fontSize: 12),
-                                        baseChartColor: const Color.fromARGB(
-                                            255, 121, 173, 250),
-                                        colorList: colorList,
-                                        chartValuesOptions:
-                                            const ChartValuesOptions(
-                                          showChartValuesInPercentage: true,
-                                          showChartValues: false,
-                                        ),
-                                        legendOptions: const LegendOptions(
-                                            showLegends: false),
-                                        totalValue: 100,
-                                      ),
-                                      const SizedBox(
-                                        height: 2,
-                                      ),
-                                      const Text(
-                                        "7 DAYS",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w700),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            )),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                // progress bar
+                                const CustomCircularPercentIndicator("50"),
+                                3.height,
+                                const Text(
+                                  "7 DAYS",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w700),
+                                )
+                              ],
+                            ),
                           ),
+
                           const SizedBox(
                             width: 10,
                           ),
@@ -987,140 +808,118 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                       const SizedBox(
                         height: 16,
                       ),
+
                       /// ! new tracker
-          const Text(
-            "REPORTS TRACKER",
-            style: TextStyle(
-                fontSize: 18,
-                color: kPrimaryColor,
-                fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    color: kPrimaryColor,
-                    borderRadius: BorderRadius.circular(10)),
-                height: 100,
-                width: 80,
-                child: Center(
-                    child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                      const Text(
+                        "REPORTS TRACKER",
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Row(
                         children: [
-                          PieChart(
-                            dataMap: bodyTemperature,
-                            chartType: ChartType.ring,
-                            chartRadius: 45,
-                            ringStrokeWidth: 5,
-                            initialAngleInDegree: 80,
-                            centerText: "00%",
-                            centerTextStyle: const TextStyle(
-                                backgroundColor: kPrimaryColor, fontSize: 12),
-                            baseChartColor:
-                                const Color.fromARGB(255, 121, 173, 250),
-                            colorList: colorList,
-                            chartValuesOptions: const ChartValuesOptions(
-                              showChartValuesInPercentage: true,
-                              showChartValues: false,
+                          // top progress bar
+                          Container(
+                            decoration: BoxDecoration(
+                                color: kPrimaryColor,
+                                borderRadius: BorderRadius.circular(10)),
+                            height: 100,
+                            width: 80,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                // progress bar
+                                const CustomCircularPercentIndicator("50"),
+                                3.height,
+                                const Text(
+                                  "7 DAYS",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w700),
+                                )
+                              ],
                             ),
-                            legendOptions:
-                                const LegendOptions(showLegends: false),
-                            totalValue: 100,
+                          ),
+
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ReportsTrackerScreen()));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10)),
+                              height: 100,
+                              width: 80,
+                              child: const Center(
+                                child: Image(
+                                  image: AssetImage(
+                                      "assets/health_tracker/plus-circle.png"),
+                                  height: 52,
+                                  width: 52,
+                                ),
+                              ),
+                            ),
                           ),
                           const SizedBox(
-                            height: 2,
+                            width: 10,
                           ),
-                          const Text(
-                            "7 DAYS",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
-                                fontWeight: FontWeight.w700),
-                          )
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => const ReportsListScreen());
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10)),
+                              height: 100,
+                              width: 80,
+                              child: const Center(
+                                child: Text(
+                                  "See\nList",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 14),
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
-                    ],
-                  ),
-                )),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ReportsTrackerScreen()));
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  height: 100,
-                  width: 80,
-                  child: const Center(
-                    child: Image(
-                      image:
-                          AssetImage("assets/health_tracker/plus-circle.png"),
-                      height: 52,
-                      width: 52,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(() => const ReportsListScreen());
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  height: 100,
-                  width: 80,
-                  child: const Center(
-                    child: Text(
-                      "See\nList",
-                      style: TextStyle(color: Colors.black, fontSize: 14),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          SizedBox(
-            height: 232,
-            child: SfCartesianChart(
-              series: <ChartSeries>[
-                LineSeries<WeightTrackerData, double>(
-                  dataSource: getWeightTrackerData(),
-                  xValueMapper: (WeightTrackerData day, _) => day.day,
-                  yValueMapper: (WeightTrackerData day, _) => day.weight,
-                  pointColorMapper: (WeightTrackerData day, _) =>
-                      day.pointColorMapper,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      SizedBox(
+                        height: 232,
+                        child: SfCartesianChart(
+                          series: <ChartSeries>[
+                            LineSeries<WeightTrackerData, double>(
+                              dataSource: getWeightTrackerData(),
+                              xValueMapper: (WeightTrackerData day, _) =>
+                                  day.day,
+                              yValueMapper: (WeightTrackerData day, _) =>
+                                  day.weight,
+                              pointColorMapper: (WeightTrackerData day, _) =>
+                                  day.pointColorMapper,
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
                     ],
                   ),
                 ),

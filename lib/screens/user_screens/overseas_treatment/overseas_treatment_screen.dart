@@ -4,7 +4,6 @@ import 'package:cureways_user/utils/int_extensions.dart';
 import 'package:cureways_user/widgets/appbar.dart';
 import 'package:cureways_user/widgets/custom_btn.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
-import 'package:cureways_user/widgets/img_upload_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -12,9 +12,9 @@ import '../../../utils/mixins.dart';
 import '../../../widgets/appbar.dart';
 
 class DoctorAppoinmentConfirmScreen extends StatefulWidget {
-  int? doctorId;
-  String? userName;
-  DoctorAppoinmentConfirmScreen({Key? key, this.userName, this.doctorId})
+ final int? doctorId;
+ final String? userName;
+ const DoctorAppoinmentConfirmScreen({Key? key, this.userName, this.doctorId})
       : super(key: key);
 
   @override

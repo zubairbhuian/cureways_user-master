@@ -30,7 +30,7 @@ class StoreBodyTmpController extends GetxController {
       'user_id': _myBox.get('userId'),
       'date': dateController.text,
       'time': timeController.text,
-      'body_temperature': "${bodyTemperatureController.text} F",
+      'body_temperature': bodyTemperatureController.text,
     };
     kLogger.e(body);
     String jsonBody = json.encode(body);
