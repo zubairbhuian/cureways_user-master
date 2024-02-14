@@ -142,7 +142,7 @@ class _OverseasTreatmentDocScreenState
               ),
               CustomTextField2(
                 controller: otcontroller.hospitalNameController,
-                hintText: "Hostpital Name",
+                hintText: "Airport Name",
               ),
               CustomTextField2(
                   controller: otcontroller.dateController,
