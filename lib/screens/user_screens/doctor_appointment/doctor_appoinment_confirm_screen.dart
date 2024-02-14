@@ -1,14 +1,12 @@
 import 'package:cureways_user/data/network/controllers/find_slot_controller.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../utils/const_color.dart';
-import '../../../utils/mixins.dart';
 import '../../../widgets/appbar.dart';
 
 class DoctorAppoinmentConfirmScreen extends StatefulWidget {

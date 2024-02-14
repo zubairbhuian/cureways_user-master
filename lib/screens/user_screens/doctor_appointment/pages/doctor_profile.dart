@@ -1,4 +1,5 @@
 import 'package:cureways_user/data/network/controllers/doctor_appoinment_controller.dart';
+import 'package:cureways_user/screens/user_screens/doctor_appointment/doctor_appoinment_confirm_screen.dart';
 import 'package:cureways_user/screens/user_screens/doctor_appointment/doctor_appoinment_screen.dart';
 import 'package:cureways_user/utils/const_color.dart';
 import 'package:cureways_user/utils/int_extensions.dart';
@@ -70,7 +71,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: const Text("Appointment"),
                 onPressed: () {
-                    Get.to(() => const DoctorAppointmentScreen());
+                    Get.to(() => DoctorAppoinmentConfirmScreen(doctorId:data.id,));
                 },
               ),
             ),

@@ -1,4 +1,6 @@
 import 'package:cureways_user/data/network/controllers/doctor_appoinment_controller.dart';
+import 'package:cureways_user/screens/user_screens/doctor_appointment/available_slot_screen.dart';
+import 'package:cureways_user/screens/user_screens/doctor_appointment/doctor_appoinment_confirm_screen.dart';
 import 'package:cureways_user/screens/user_screens/doctor_appointment/doctor_appoinment_screen.dart';
 import 'package:cureways_user/screens/user_screens/doctor_appointment/pages/doctor_profile.dart';
 import 'package:cureways_user/utils/const_color.dart';
@@ -144,13 +146,13 @@ class _DoctorsListScreenState extends State<DoctorsListScreen> {
                                         fontWeight: FontWeight.w500),
                                     child: const Text("Appointment"),
                                     onPressed: () {
-                                      var id =
-                                          controller.doctorList?[index].id;
-                                      Get.to(() => DoctorAppointmentScreen(
-                                            // slotId: controller.doctorList[index].,
-                                            doctorId:
-                                                id.toString(),
-                                          ));
+                                      var id = controller.doctorList?[index].id;
+
+                                      Get.to(
+                                          () => DoctorAppoinmentConfirmScreen(
+                                                doctorId: id,
+                                              ));
+
                                     },
                                   )
                                 ],

@@ -46,7 +46,7 @@ class PrimaryBtn extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          elevation: elevation ?? 2,
+          elevation: elevation ?? 0,
           textStyle: style ?? TextStyle(color: textColor ?? kWhite,fontSize: 16),
           disabledBackgroundColor: kDisabledColor,
           disabledForegroundColor: kWhite,

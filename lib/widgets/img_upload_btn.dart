@@ -24,7 +24,7 @@ class ImgUploadBtn extends StatelessWidget {
           8.width,
           Text(
             color==null?text:"File Attached",
-            style: kLabelLarge.copyWith(color:color?? kTextColor),
+            style: kLabelLarge.copyWith(color:color?? kTextColor,fontWeight: color==null?null:FontWeight.w700),
           ),
         ]),
       ),

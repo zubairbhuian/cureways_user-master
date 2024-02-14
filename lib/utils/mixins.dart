@@ -1,16 +1,18 @@
+import 'package:flutter/material.dart';
+
 class Mixins {
   final List<Map<String, dynamic>> healthProfileMenuItem = [
     {
       "title": "Add\nHealth Profile",
-      "images": "assets/health_profile/active_orders.png"
+      "iconData": Icons.add_to_photos_rounded
     },
     {
       "title": "Show\nHealth Profile",
-      "images": "assets/health_profile/pending_orders.png"
+      "iconData": Icons.person_pin_outlined
     },
     {
       "title": "Update\nHealth Profile",
-      "images": "assets/health_profile/compleat_orders.png"
+      "iconData": Icons.edit_document
     },
   ];
 
