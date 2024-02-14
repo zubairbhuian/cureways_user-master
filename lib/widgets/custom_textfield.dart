@@ -306,8 +306,7 @@ class CustomTextField2 extends StatelessWidget {
               // ********** errorBorder ********
               errorBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
-                  borderSide:
-                      const BorderSide(width: 1, color: kDangerColor)),
+                  borderSide: const BorderSide(width: 1, color: kDangerColor)),
               // ********** hintText ********
               hintText: hintText,
               hintStyle:
@@ -337,7 +336,9 @@ class CustomDropdownTextFiel extends StatelessWidget {
     this.icon,
     this.enabledBorderColor,
     this.borderColor,
-    this.items, this.value, this.validator,
+    this.items,
+    this.value,
+    this.validator, this.onSaved,
   });
   final String? Function(String?)? validator;
   final String? label;
@@ -346,9 +347,10 @@ class CustomDropdownTextFiel extends StatelessWidget {
   final Widget? icon;
   final String? value;
   final Function(String?) onChanged;
+  final void Function(String?)? onSaved;
   final Color? enabledBorderColor;
   final Color? borderColor;
-  
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -361,7 +363,7 @@ class CustomDropdownTextFiel extends StatelessWidget {
           ),
         SizedBox(height: label == null ? 0 : 8.h),
         DropdownButtonFormField<String>(
-          validator:validator,
+          validator: validator,
           hint: hint ??
               Text(
                 'Select',
@@ -370,9 +372,8 @@ class CustomDropdownTextFiel extends StatelessWidget {
           value: value,
           icon: icon,
           dropdownColor: kWhite,
-          
           decoration: InputDecoration(
-                          // ********** errorText ********
+              // ********** errorText ********
               errorStyle: kBodySmall.copyWith(color: kDangerColor),
               errorMaxLines: 1,
               border: OutlineInputBorder(
@@ -394,6 +395,7 @@ class CustomDropdownTextFiel extends StatelessWidget {
               ),
           items: items,
           onChanged: onChanged,
+          onSaved: onSaved,
         ),
         // SizedBox(height: 24.h),
       ],

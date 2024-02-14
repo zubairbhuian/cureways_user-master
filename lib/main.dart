@@ -1,4 +1,5 @@
 import 'package:cureways_user/screens/splash.dart';
+import 'package:cureways_user/utils/const_color.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return GetMaterialApp(
             theme: ThemeData(
+              scaffoldBackgroundColor: kWhite,
               fontFamily: 'Urbanist',
               primarySwatch: Colors.blue,
             ),

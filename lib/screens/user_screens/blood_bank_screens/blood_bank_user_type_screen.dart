@@ -6,8 +6,7 @@ import '../../../utils/const_color.dart';
 import '../../../widgets/appbar.dart';
 
 class BloodBankUserTypeScreen extends StatefulWidget {
-  String userName;
-  BloodBankUserTypeScreen({Key? key, required this.userName}) : super(key: key);
+ const BloodBankUserTypeScreen({Key? key,}) : super(key: key);
 
   @override
   State<BloodBankUserTypeScreen> createState() =>
@@ -15,20 +14,14 @@ class BloodBankUserTypeScreen extends StatefulWidget {
 }
 
 class _BloodBankUserTypeScreenState extends State<BloodBankUserTypeScreen> {
-  dynamic userName;
-  @override
-  void initState() {
-    userName = widget.userName;
-    // TODO: implement initState
-    super.initState();
-  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: const CustomAppBar(title: Text("BLOOD BANK")),
       body: Column(
         children: [
-          AppDefaultBar(title: "BLOOD BANK", userNAme: userName),
           const SizedBox(
             height: 8,
           ),

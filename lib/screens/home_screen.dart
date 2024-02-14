@@ -173,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Get.to(() => const DoctorsListScreen());
                             break;
                           case "Blood Bank":
-                            Get.to(() => const BloodBankScreen());
+                            Get.to(() =>  BloodBankUserTypeScreen());
                             break;
                           case "Vaccine":
                             Get.to(() => const VaccineRequestScreen());
