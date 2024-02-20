@@ -13,8 +13,6 @@ import 'package:cureways_user/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:pie_chart/pie_chart.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../utils/const_color.dart';
@@ -53,7 +51,6 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
   //for carousel slider
   final List<String> foodTimeName = ['BreakFast', 'Lunch', 'Dinner'];
   final List<String> fTime = ['8.00 AM', '2.00 PM', '8.00 PM'];
-  final int _currentIndex = 0;
   dynamic userName;
 
   @override
@@ -270,6 +267,56 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                           ],
                         ),
                       ),
+                      20.height,
+                      // ! =====  Graph  ======
+                      SizedBox(
+                        height: 232,
+                        child: SfCartesianChart(
+                          // primaryXAxis: CategoryAxis(),
+                          // primaryYAxis: CategoryAxis(),
+                          series: <ChartSeries>[
+                            // Diet
+                            LineSeries<HealTrackerData, double>(
+                              dataSource: getChartData(),
+                              xValueMapper: (HealTrackerData day, _) => day.day,
+                              yValueMapper: (HealTrackerData day, _) =>
+                                  day.mealInCalories,
+                            ),
+                            // bp
+                            LineSeries<GlucoseTrackerData, double>(
+                              yAxisName: "demo",
+                              xAxisName: "sss",
+                              dataSource: getGlucoseTrackerData(),
+                              xValueMapper: (GlucoseTrackerData day, _) =>
+                                  day.day,
+                              yValueMapper: (GlucoseTrackerData day, _) =>
+                                  day.glucose,
+                            ),
+
+                            // Glucose
+                                         LineSeries<GlucoseTrackerData, double>(
+                              dataSource: getGlucoseTrackerData(),
+                              xValueMapper: (GlucoseTrackerData day, _) =>
+                                  day.day,
+                              yValueMapper: (GlucoseTrackerData day, _) =>
+                                  day.glucose,
+                            ),
+
+                            LineSeries<MedicineTrackerData, double>(
+                              dataSource: getMedData(),
+                              xValueMapper: (MedicineTrackerData day, _) =>
+                                  day.day,
+                              yValueMapper: (MedicineTrackerData day, _) =>
+                                  day.mealInCalories,
+                            )
+                            // Body
+                            // Weight
+                            // Report
+                            //
+                            //
+                          ],
+                        ),
+                      ),
                       const SizedBox(
                         height: 16,
                       ),
@@ -283,6 +330,7 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                       const SizedBox(
                         height: 8,
                       ),
+                      // !Diet row
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -361,25 +409,26 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                           ),
                         ],
                       ),
+                      // const SizedBox(
+                      //   height: 8,
+                      // ),
+                      // SizedBox(
+                      //   height: 232,
+                      //   child: SfCartesianChart(
+                      //     series: <ChartSeries>[
+                      //       LineSeries<HealTrackerData, double>(
+                      //         dataSource: getChartData(),
+                      //         xValueMapper: (HealTrackerData day, _) => day.day,
+                      //         yValueMapper: (HealTrackerData day, _) =>
+                      //             day.mealInCalories,
+                      //       )
+                      //     ],
+                      //   ),
+                      // ),
                       const SizedBox(
-                        height: 8,
+                        height: 24,
                       ),
-                      SizedBox(
-                        height: 232,
-                        child: SfCartesianChart(
-                          series: <ChartSeries>[
-                            LineSeries<HealTrackerData, double>(
-                              dataSource: getChartData(),
-                              xValueMapper: (HealTrackerData day, _) => day.day,
-                              yValueMapper: (HealTrackerData day, _) =>
-                                  day.mealInCalories,
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
+                      // ! BP Row
                       const Text(
                         "BP TRACKER",
                         style: TextStyle(
@@ -467,25 +516,26 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                           ),
                         ],
                       ),
+                      // const SizedBox(
+                      //   height: 8,
+                      // ),
+                      // SizedBox(
+                      //   height: 232,
+                      //   child: SfCartesianChart(
+                      //     series: <ChartSeries>[
+                      //       LineSeries<MedicineTrackerData, double>(
+                      //         dataSource: getMedData(),
+                      //         xValueMapper: (MedicineTrackerData day, _) =>
+                      //             day.day,
+                      //         yValueMapper: (MedicineTrackerData day, _) =>
+                      //             day.mealInCalories,
+                      //       )
+                      //     ],
+                      //   ),
+                      // ),
+                      // ! GLUCOSE Row
                       const SizedBox(
-                        height: 8,
-                      ),
-                      SizedBox(
-                        height: 232,
-                        child: SfCartesianChart(
-                          series: <ChartSeries>[
-                            LineSeries<MedicineTrackerData, double>(
-                              dataSource: getMedData(),
-                              xValueMapper: (MedicineTrackerData day, _) =>
-                                  day.day,
-                              yValueMapper: (MedicineTrackerData day, _) =>
-                                  day.mealInCalories,
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 8,
+                        height: 24,
                       ),
                       const Text(
                         "GLUCOSE TRACKER",
@@ -575,22 +625,23 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                         ],
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 24,
                       ),
-                      SizedBox(
-                        height: 232,
-                        child: SfCartesianChart(
-                          series: <ChartSeries>[
-                            LineSeries<GlucoseTrackerData, double>(
-                              dataSource: getGlucoseTrackerData(),
-                              xValueMapper: (GlucoseTrackerData day, _) =>
-                                  day.day,
-                              yValueMapper: (GlucoseTrackerData day, _) =>
-                                  day.glucose,
-                            )
-                          ],
-                        ),
-                      ),
+                      // SizedBox(
+                      //   height: 232,
+                      //   child: SfCartesianChart(
+                      //     series: <ChartSeries>[
+                      //       LineSeries<GlucoseTrackerData, double>(
+                      //         dataSource: getGlucoseTrackerData(),
+                      //         xValueMapper: (GlucoseTrackerData day, _) =>
+                      //             day.day,
+                      //         yValueMapper: (GlucoseTrackerData day, _) =>
+                      //             day.glucose,
+                      //       )
+                      //     ],
+                      //   ),
+                      // ),
+                      // ! BODY TEMPERATURE
                       const Text(
                         "BODY TEMPERATURE",
                         style: TextStyle(
@@ -678,26 +729,27 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                           ),
                         ],
                       ),
+                      // const SizedBox(
+                      //   height: 8,
+                      // ),
+                      // SizedBox(
+                      //   height: 232,
+                      //   child: SfCartesianChart(
+                      //     series: <ChartSeries>[
+                      //       LineSeries<TemperatureTrackerData, double>(
+                      //         dataSource: getTemperatureTrackerData(),
+                      //         xValueMapper: (TemperatureTrackerData day, _) =>
+                      //             day.day,
+                      //         yValueMapper: (TemperatureTrackerData day, _) =>
+                      //             day.temp,
+                      //       )
+                      //     ],
+                      //   ),
+                      // ),
                       const SizedBox(
-                        height: 8,
+                        height: 16,
                       ),
-                      SizedBox(
-                        height: 232,
-                        child: SfCartesianChart(
-                          series: <ChartSeries>[
-                            LineSeries<TemperatureTrackerData, double>(
-                              dataSource: getTemperatureTrackerData(),
-                              xValueMapper: (TemperatureTrackerData day, _) =>
-                                  day.day,
-                              yValueMapper: (TemperatureTrackerData day, _) =>
-                                  day.temp,
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
+                      // ! WEIGHT row
                       const Text(
                         "WEIGHT TRACKER",
                         style: TextStyle(
@@ -786,30 +838,30 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      SizedBox(
-                        height: 232,
-                        child: SfCartesianChart(
-                          series: <ChartSeries>[
-                            LineSeries<WeightTrackerData, double>(
-                              dataSource: getWeightTrackerData(),
-                              xValueMapper: (WeightTrackerData day, _) =>
-                                  day.day,
-                              yValueMapper: (WeightTrackerData day, _) =>
-                                  day.weight,
-                              pointColorMapper: (WeightTrackerData day, _) =>
-                                  day.pointColorMapper,
-                            ),
-                          ],
-                        ),
-                      ),
+                      // const SizedBox(
+                      //   height: 8,
+                      // ),
+                      // SizedBox(
+                      //   height: 232,
+                      //   child: SfCartesianChart(
+                      //     series: <ChartSeries>[
+                      //       LineSeries<WeightTrackerData, double>(
+                      //         dataSource: getWeightTrackerData(),
+                      //         xValueMapper: (WeightTrackerData day, _) =>
+                      //             day.day,
+                      //         yValueMapper: (WeightTrackerData day, _) =>
+                      //             day.weight,
+                      //         pointColorMapper: (WeightTrackerData day, _) =>
+                      //             day.pointColorMapper,
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                       const SizedBox(
                         height: 16,
                       ),
 
-                      /// ! new tracker
+                      /// ! REPORTS tracker
                       const Text(
                         "REPORTS TRACKER",
                         style: TextStyle(
@@ -898,27 +950,27 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                           ),
                         ],
                       ),
+                      // const SizedBox(
+                      //   height: 8,
+                      // ),
+                      // SizedBox(
+                      //   height: 232,
+                      //   child: SfCartesianChart(
+                      //     series: <ChartSeries>[
+                      //       LineSeries<WeightTrackerData, double>(
+                      //         dataSource: getWeightTrackerData(),
+                      //         xValueMapper: (WeightTrackerData day, _) =>
+                      //             day.day,
+                      //         yValueMapper: (WeightTrackerData day, _) =>
+                      //             day.weight,
+                      //         pointColorMapper: (WeightTrackerData day, _) =>
+                      //             day.pointColorMapper,
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                       const SizedBox(
-                        height: 8,
-                      ),
-                      SizedBox(
-                        height: 232,
-                        child: SfCartesianChart(
-                          series: <ChartSeries>[
-                            LineSeries<WeightTrackerData, double>(
-                              dataSource: getWeightTrackerData(),
-                              xValueMapper: (WeightTrackerData day, _) =>
-                                  day.day,
-                              yValueMapper: (WeightTrackerData day, _) =>
-                                  day.weight,
-                              pointColorMapper: (WeightTrackerData day, _) =>
-                                  day.pointColorMapper,
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 16,
+                        height: 26,
                       ),
                     ],
                   ),
@@ -946,13 +998,13 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
 
   List<MedicineTrackerData> getMedData() {
     final List<MedicineTrackerData> mediData = [
-      MedicineTrackerData(1, 2),
+      MedicineTrackerData(1, 7),
       MedicineTrackerData(2, 3),
-      MedicineTrackerData(3, 2),
+      MedicineTrackerData(3, 3),
       MedicineTrackerData(4, 3),
-      MedicineTrackerData(5, 4),
-      MedicineTrackerData(6, 2),
-      MedicineTrackerData(7, 3),
+      MedicineTrackerData(5, 6),
+      MedicineTrackerData(6, 23),
+      MedicineTrackerData(7, 6),
     ];
     return mediData;
   }

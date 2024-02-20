@@ -1,5 +1,4 @@
 import 'package:cureways_user/data/network/controllers/reports_controller.dart';
-import 'package:cureways_user/data/network/controllers/store_diet_controller.dart';
 import 'package:cureways_user/utils/int_extensions.dart';
 import 'package:cureways_user/utils/mixins.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
@@ -32,7 +31,6 @@ class _ReportsTrackerScreenState extends State<ReportsTrackerScreen> {
     reportsController.getReportList();
     super.didChangeDependencies();
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +77,8 @@ class _ReportsTrackerScreenState extends State<ReportsTrackerScreen> {
                                     }
                                   }),
                               CustomTextField(
-                                controller: reportsController.timePeriodController,
+                                controller:
+                                    reportsController.timePeriodController,
                                 keyboardType: TextInputType.text,
                                 readOnly: true,
                                 labelText: 'Enter Time Period',
@@ -91,7 +90,8 @@ class _ReportsTrackerScreenState extends State<ReportsTrackerScreen> {
                                     context: context,
                                   );
                                   if (selectedTime != null) {
-                                    reportsController.timePeriodController.text =
+                                    reportsController
+                                            .timePeriodController.text =
                                         "${selectedTime.hour}:${selectedTime.minute}";
                                     //! formet the time
                                     /// MyFunc.formatTimeOfDay(selectedTime);
@@ -146,8 +146,7 @@ class _ReportsTrackerScreenState extends State<ReportsTrackerScreen> {
                                         )))
                                     .toList(),
                                 onChanged: (value) {
-                                  reportsController.selectedTestName =
-                                      value;
+                                  reportsController.selectedTestName = value;
                                   // selectTimePeriod = value.toString();
                                 },
                                 onSaved: (value) {
@@ -181,31 +180,30 @@ class _ReportsTrackerScreenState extends State<ReportsTrackerScreen> {
                         height: 16,
                       ),
                       GetBuilder<ReportsController>(
-                        builder: (storeDietController) {
-                          return SizedBox(
-                            width: double.maxFinite,
-                            height: 52,
-                            child: OutlinedButton(
-                              onPressed: () {
-                                storeDietController.storeReports();
-                              },
-                              style: OutlinedButton.styleFrom(
-                                backgroundColor: ConstantsColor.primaryColor,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
+                          builder: (storeDietController) {
+                        return SizedBox(
+                          width: double.maxFinite,
+                          height: 52,
+                          child: OutlinedButton(
+                            onPressed: () {
+                              storeDietController.storeReports();
+                            },
+                            style: OutlinedButton.styleFrom(
+                              backgroundColor: ConstantsColor.primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
                               ),
-                              child: storeDietController.loader
-                                  ? const Center(child: LoadIndecator())
-                                  : const Text(
-                                      'SUBMIT',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20),
-                                    ),
                             ),
-                          );
-                        }
-                      ),
+                            child: storeDietController.loader
+                                ? const Center(child: LoadIndecator())
+                                : const Text(
+                                    'SUBMIT',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                          ),
+                        );
+                      }),
 
                       //. ======== today diet list ====
                       const SizedBox(
@@ -216,7 +214,7 @@ class _ReportsTrackerScreenState extends State<ReportsTrackerScreen> {
                         height: 16,
                       ),
                       const Text(
-                        'A healthy lifestyle',
+                        'Sr.Creatinine',
                         style: TextStyle(
                             color: ConstantsColor.primaryColor,
                             fontSize: 20,
@@ -226,7 +224,7 @@ class _ReportsTrackerScreenState extends State<ReportsTrackerScreen> {
                         height: 8,
                       ),
                       const Text(
-                        'To ensure a healthy lifestyle, WHO recommends eating lots of fruits and vegetables, reducing fat, sugar and salt intake and exercising. Based on height and weight, people can check their body mass index (BMI) to see if they are overweight. WHO provides a series of publications to promote and support healthy lifestyles.',
+                        "A normal result is 0.7 to 1.3 mg/dL (61.9 to 114.9 µmol/L) for men and 0.6 to 1.1 mg/dL (53 to 97.2 µmol/L) for women. Women often have a lower blood creatinine level than men. This is because women often have less muscle mass than men. Creatinine level varies based on a person's size and muscle mass.",
                         style: TextStyle(
                             color: ConstantsColor.greyColor,
                             fontSize: 16,
@@ -237,7 +235,7 @@ class _ReportsTrackerScreenState extends State<ReportsTrackerScreen> {
                         height: 16,
                       ),
                       const Text(
-                        '12 steps to healthy eating',
+                        'Sr.Uric Acid',
                         style: TextStyle(
                             color: ConstantsColor.primaryColor,
                             fontSize: 18,
@@ -247,7 +245,7 @@ class _ReportsTrackerScreenState extends State<ReportsTrackerScreen> {
                         height: 8,
                       ),
                       const Text(
-                        '1.Eat a nutritious diet based on a variety of foods originating mainly from plants, rather than animals',
+                        'By this approach, serum uric acid values between 3.5 and 7.2 mg/dL in adult males and postmenopausal women and between 2.6 and 6.0 mg/dL in premenopausal women have been identified as normal in many countries.',
                         style: TextStyle(
                             color: ConstantsColor.greyColor,
                             fontSize: 16,
@@ -255,129 +253,68 @@ class _ReportsTrackerScreenState extends State<ReportsTrackerScreen> {
                         textAlign: TextAlign.start,
                       ),
                       const SizedBox(
-                        height: 4,
+                        height: 16,
+                      ),
+                      // new para
+                      const Text(
+                        'TSH',
+                        style: TextStyle(
+                            color: ConstantsColor.primaryColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 8,
                       ),
                       const Text(
-                        '2.Eat bread, whole grains, pasta, rice or potatoes several times per day.',
+                        'TSH normal values are 0.5 to 5.0 mIU/L. Some people with a TSH value over 2.0 mIU/L, who have no signs or symptoms suggestive of an under-active thyroid, may develop hypothyroidism sometime in the future. Anyone with a TSH above 2.0 mIU/L, therefore, should be followed very closely by a doctor.',
                         style: TextStyle(
                             color: ConstantsColor.greyColor,
                             fontSize: 16,
                             fontWeight: FontWeight.normal),
                         textAlign: TextAlign.start,
                       ),
+                      16.height,
+                      // new para
+                      const Text(
+                        'CBC',
+                        style: TextStyle(
+                            color: ConstantsColor.primaryColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
                       const SizedBox(
-                        height: 4,
+                        height: 8,
                       ),
                       const Text(
-                        '3.Eat a variety of vegetables and fruits, preferably fresh and local, several times per day (at least 400g per day).',
+                        'Male: 4.35 trillion to 5.65 trillion cells/L Female: 3.92 trillion to 5.13 trillion cells/L',
                         style: TextStyle(
                             color: ConstantsColor.greyColor,
                             fontSize: 16,
                             fontWeight: FontWeight.normal),
                         textAlign: TextAlign.start,
                       ),
+                      16.height,
+                      // new para
+                      const Text(
+                        'SGPT',
+                        style: TextStyle(
+                            color: ConstantsColor.primaryColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
                       const SizedBox(
-                        height: 4,
+                        height: 8,
                       ),
                       const Text(
-                        '4.Maintain body weight between the recommended limits (a BMI of 18.5–25) by taking moderate to vigorous levels of physical activity, preferably daily.',
+                        'The SGPT or Serum Glutamate Pyruvate Transaminase is one of the enzymes found in the liver. The normal range of SGPT is 7 to 56 units per liter of blood serum. High levels of enzymes in the liver can be a serious indication of diseases or damage.',
                         style: TextStyle(
                             color: ConstantsColor.greyColor,
                             fontSize: 16,
                             fontWeight: FontWeight.normal),
                         textAlign: TextAlign.start,
                       ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      const Text(
-                        '5.Control fat intake (not more than 30% of daily energy) and replace most saturated fats with unsaturated fats.',
-                        style: TextStyle(
-                            color: ConstantsColor.greyColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal),
-                        textAlign: TextAlign.start,
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      const Text(
-                        '6.Replace fatty meat and meat products with beans, legumes, lentils, fish, poultry or lean meat.',
-                        style: TextStyle(
-                            color: ConstantsColor.greyColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal),
-                        textAlign: TextAlign.start,
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      const Text(
-                        '7.Use milk and dairy products (kefir, sour milk, yoghurt and cheese) that are low in both fat and salt.',
-                        style: TextStyle(
-                            color: ConstantsColor.greyColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal),
-                        textAlign: TextAlign.start,
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      const Text(
-                        '8.Select foods that are low in sugar, and eat free sugars sparingly, limiting the frequency of sugary drinks and sweets.',
-                        style: TextStyle(
-                            color: ConstantsColor.greyColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal),
-                        textAlign: TextAlign.start,
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      const Text(
-                        '9.Choose a low-salt diet. Total salt intake should not be more than one teaspoon (5g) per day, including the salt in bread and processed, cured and preserved foods. (Salt iodization should be universal where iodine deficiency is a problem)',
-                        style: TextStyle(
-                            color: ConstantsColor.greyColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal),
-                        textAlign: TextAlign.start,
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      const Text(
-                        '10.WHO does not set particular limits for alcohol consumption because the evidence shows that the ideal solution for health is not to drink at all, therefore less is better.',
-                        style: TextStyle(
-                            color: ConstantsColor.greyColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal),
-                        textAlign: TextAlign.start,
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      const Text(
-                        '11.Prepare food in a safe and hygienic way. Steam, bake, boil or microwave to help reduce the amount of added fat.',
-                        style: TextStyle(
-                            color: ConstantsColor.greyColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal),
-                        textAlign: TextAlign.start,
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      const Text(
-                        '12.Promote exclusive breastfeeding up to 6 months, and the introduction of safe and adequate complementary foods from the age of about 6 months. Promote the continuation of breastfeeding during the first 2 years of life.',
-                        style: TextStyle(
-                            color: ConstantsColor.greyColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal),
-                        textAlign: TextAlign.start,
-                      ),
-                      const SizedBox(
-                        height: 32,
-                      ),
+                      24.height
                     ],
                   ),
                 ),
