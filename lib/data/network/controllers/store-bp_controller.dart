@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cureways_user/data/network/constants/endpoints.dart';
 import 'package:cureways_user/data/network/constants/server.dart';
 import 'package:cureways_user/data/network/controllers/base/base_controller.dart';
