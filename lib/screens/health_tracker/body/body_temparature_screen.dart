@@ -1,6 +1,7 @@
 import 'package:cureways_user/data/network/controllers/get_tmp_list_controller.dart';
 import 'package:cureways_user/data/network/controllers/store_body_tmp_controller.dart';
 import 'package:cureways_user/screens/health_tracker/body/widgets/today_added_body_temparature_list.dart';
+import 'package:cureways_user/utils/my_func.dart';
 import 'package:cureways_user/widgets/app_indecator.dart';
 import 'package:cureways_user/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
@@ -90,7 +91,7 @@ class _BodyTemparatureScreenState extends State<BodyTemparatureScreen> {
                                   storeBodyTmp.timeController.text =
                                       "${selectedTime.hour}:${selectedTime.minute}";
                                   //! formet the time
-                                  // / MyFunc.formatTimeOfDay(selectedTime);
+                                   MyFunc.formatTimeOfDay(selectedTime);
                                   storeBodyTmp.update();
                                 }
                               },

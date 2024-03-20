@@ -26,14 +26,14 @@ class _HealthProfileScreenState extends State<HealthProfileScreen> {
       appBar: const CustomAppBar(title: Text("Health Profile")),
       body: Container(
         height: 120,
-        padding:  EdgeInsets.only(left: 20.w, right: 20.w),
+        padding: EdgeInsets.only(left: 20.w, right: 20.w),
         alignment: Alignment.topCenter,
         child: GridView.builder(
             padding: const EdgeInsets.symmetric(vertical: 10),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8,
+              crossAxisSpacing:12,
+              mainAxisSpacing: 12,
               mainAxisExtent: 105,
             ),
             itemCount: Mixins().healthProfileMenuItem.length,
@@ -59,24 +59,41 @@ class _HealthProfileScreenState extends State<HealthProfileScreen> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: ConstantsColor.primaryColor,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  height: 80,
-                  width: 100,
+                      color: kWhite,
+                      borderRadius: BorderRadius.circular(26),
+                      boxShadow: const [
+                        BoxShadow(
+                          offset: Offset(0, 14), // x, y offset
+                          blurRadius: 34,
+                          spreadRadius: 0,
+                          color: Color.fromARGB(255, 234, 241,
+                              253), // Replace with your desired color
+                        ),
+                      ]),
+                  // decoration: BoxDecoration(
+                  //   color: ConstantsColor.primaryColor,
+                  //   borderRadius: BorderRadius.circular(5),
+                  // ),
+                  // height: 80,
+                  // width: 100,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Mixins().healthProfileMenuItem.elementAt(index)["iconData"],size: 33,color: kWhite,),
-                    
+                      Icon(
+                        Mixins()
+                            .healthProfileMenuItem
+                            .elementAt(index)["iconData"],
+                        size: 33,
+                        color: kPrimaryColor,
+                      ),
                       const SizedBox(
                         height: 8,
                       ),
                       Text(
                         "${Mixins().healthProfileMenuItem.elementAt(index)["title"]}",
                         style: const TextStyle(
-                            color: Colors.white,
+                            color: kTextColor,
                             fontSize: 12,
                             fontWeight: FontWeight.w500),
                         textAlign: TextAlign.center,

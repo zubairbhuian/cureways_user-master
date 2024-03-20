@@ -38,7 +38,6 @@ class OverseasTreatmentController extends GetxController {
     if (imgFile != null) {
       try {
         update();
-
         Map<String, dynamic> data = {
           'name': nameController.text,
           'phone': phoneController.text,

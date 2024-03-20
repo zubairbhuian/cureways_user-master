@@ -4,6 +4,7 @@ import 'package:cureways_user/data/network/constants/endpoints.dart';
 import 'package:cureways_user/data/network/constants/server.dart';
 import 'package:cureways_user/data/network/controllers/get_weight_list_controller.dart';
 import 'package:cureways_user/data/service/user_service.dart';
+import 'package:cureways_user/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -17,20 +18,17 @@ class StoreWeightController extends GetxController {
   final TextEditingController dateController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
 
-  storeWeight(BuildContext context, String? date, String? weight) async {
+  storeWeight() async {
     loader = true;
-    Future.delayed(const Duration(milliseconds: 10), () {
-      update();
-    });
-
+   
     Map body = {
       'user_id': _myBox.get('userId'),
-      'date': date,
-      'weight': "$weight",
+      'date': dateController.text,
+      'weight': weightController.text,
     };
     String jsonBody = json.encode(body);
-
-    server
+    try {
+          server
         .postRequestWithToken(endPoint: Endpoints.storeWeight, body: jsonBody)
         .then((response) {
       print(json.decode(response.body));
@@ -48,5 +46,13 @@ class StoreWeightController extends GetxController {
             message: 'Please enter valid input', backgroundColor: Colors.red);
       }
     });
+    
+    } catch (e) {
+      loader = false;
+      
+
+     kLogger.e('Error from %%%% store weight %%%% => $e');
+    }
+
   }
 }

@@ -97,9 +97,7 @@ class _WeightTrackerScreenState extends State<WeightTrackerScreen> {
                       child: OutlinedButton(
                         onPressed: () {
                           storeWeight.storeWeight(
-                            context,
-                            storeWeight.dateController.text.toString().trim(),
-                            storeWeight.weightController.text.toString().trim(),
+
                           );
                         },
                         style: OutlinedButton.styleFrom(
