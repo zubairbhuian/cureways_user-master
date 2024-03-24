@@ -214,10 +214,10 @@ class Server {
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
 
-      var res = await http.post(Uri.parse(Endpoints.server! + endPoint!),
+      var res = await http.post(Uri.parse(Endpoints.server + endPoint!),
           headers: _getHttpHeaders(), body: body);
       if (kDebugMode) {
-        kLogger.d("URL => ${Endpoints.server! + endPoint}");
+        kLogger.d("URL => ${Endpoints.server + endPoint}");
         kLogger.d("BODY => $body");
         kLogger.d(_getHttpHeaders());
         kLogger.i(res);

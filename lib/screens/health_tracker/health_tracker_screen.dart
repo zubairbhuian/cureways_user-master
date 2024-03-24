@@ -13,16 +13,20 @@ import 'package:cureways_user/screens/health_tracker/widgets/custom_circular_per
 import 'package:cureways_user/utils/Int_extensions.dart';
 import 'package:cureways_user/utils/style.dart';
 import 'package:cureways_user/widgets/appbar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../utils/const_color.dart';
 import 'body/body_list_screen.dart';
 import 'diet/diet_list_screen.dart';
 import 'glucose/glucose_list_screen.dart';
+import 'widgets/health_tracker_card.dart';
 
 class HealthTrackerScreen extends StatefulWidget {
   final String? userName;
@@ -317,687 +321,64 @@ class _HealthTrackerScreenState extends State<HealthTrackerScreen> {
                       // const SizedBox(
                       //   height: 16,
                       // ),
-                      const Text(
-                        "DIET TRACKER",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: kPrimaryColor,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      // !Diet row
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // top progress bar
-                          // Container(
-                          //   decoration: BoxDecoration(
-                          //       color: kPrimaryColor,
-                          //       borderRadius: BorderRadius.circular(10)),
-                          //   height: 100,
-                          //   width: 80,
-                          //   child: Column(
-                          //     mainAxisAlignment: MainAxisAlignment.center,
-                          //     crossAxisAlignment: CrossAxisAlignment.center,
-                          //     children: [
-                          //       // progress bar
-                          //       CustomCircularPercentIndicator(dietPercentage),
-                          //       3.height,
-                          //       const Text(
-                          //         "7 DAYS",
-                          //         style: TextStyle(
-                          //             color: Colors.white,
-                          //             fontSize: 10,
-                          //             fontWeight: FontWeight.w700),
-                          //       )
-                          //     ],
-                          //   ),
-                          // ),
-
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const DietTrackerScreen()));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: kWhite,
-                                  borderRadius: BorderRadius.circular(12),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      offset: Offset(0, 14), // x, y offset
-                                      blurRadius: 34,
-                                      spreadRadius: 0,
-                                      color: Color.fromARGB(255, 234, 241,
-                                          253), // Replace with your desired color
-                                    ),
-                                  ]),
-                              height: 100,
-                              width: 80,
-                              child: Center(
-                                child: Icon(
-                                  Icons.add_circle_sharp,
-                                  size: 36.sp,
-                                  color: kPrimaryColor,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(() => const DietListScreen());
-                            },
-                            child: Container(
-                             decoration: BoxDecoration(
-                                  color: kWhite,
-                                  borderRadius: BorderRadius.circular(12),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      offset: Offset(0, 14), // x, y offset
-                                      blurRadius: 34,
-                                      spreadRadius: 0,
-                                      color: Color.fromARGB(255, 234, 241,
-                                          253), // Replace with your desired color
-                                    ),
-                                  ]),
-                              height: 100,
-                              width: 80,
-                              child: const Center(
-                                child: Text(
-                                  "See\nList",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 14),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      // SizedBox(
-                      //   height: 232,
-                      //   child: SfCartesianChart(
-                      //     series: <ChartSeries>[
-                      //       LineSeries<HealthDataModel, int>(
-                      //         dataSource: dietList,
-                      //         xValueMapper: (HealthDataModel data, _) => _ + 1,
-                      //         yValueMapper: (HealthDataModel data, _) =>
-                      //             data.y1Value,
-                      //         pointColorMapper: (HealthDataModel data, _) =>
-                      //             data.y1color,
-                      //       )
-                      //     ],
-                      //   ),
-                      // ),
-                      const SizedBox(
-                        height: 24,
+                      HealthTrackerCard(
+                        title: 'DIET TRACKER',
+                        onAdd: () {
+                          Get.to(() => const DietTrackerScreen());
+                        },
+                         onList: () {
+                          Get.to(() => const DietListScreen());
+                        },
                       ),
                       // ! BP Row
-                      const Text(
-                        "BP TRACKER",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: kPrimaryColor,
-                            fontWeight: FontWeight.bold),
+                        HealthTrackerCard(
+                        title: 'BP TRACKER',
+                        onAdd: () {
+                          Get.to(() => const BpTrackerScreen());
+                        },
+                         onList: () {
+                          Get.to(() => const BpListScreen());
+                        },
                       ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Row(
-                        children: [
-                          // top progress bar
-                          // Container(
-                          //   decoration: BoxDecoration(
-                          //       color: kPrimaryColor,
-                          //       borderRadius: BorderRadius.circular(10)),
-                          //   height: 100,
-                          //   width: 80,
-                          //   child: Column(
-                          //     mainAxisAlignment: MainAxisAlignment.center,
-                          //     crossAxisAlignment: CrossAxisAlignment.center,
-                          //     children: [
-                          //       // progress bar
-                          //       CustomCircularPercentIndicator(bpPercentage),
-                          //       3.height,
-                          //       const Text(
-                          //         "7 DAYS",
-                          //         style: TextStyle(
-                          //             color: Colors.white,
-                          //             fontSize: 10,
-                          //             fontWeight: FontWeight.w700),
-                          //       )
-                          //     ],
-                          //   ),
-                          // ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const BpTrackerScreen()));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10)),
-                              height: 100,
-                              width: 80,
-                              child: const Center(
-                                child: Image(
-                                  image: AssetImage(
-                                      "assets/health_tracker/plus-circle.png"),
-                                  height: 52,
-                                  width: 52,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(() => const BpListScreen());
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10)),
-                              height: 100,
-                              width: 80,
-                              child: const Center(
-                                child: Text(
-                                  "See\nList",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 14),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      // SizedBox(
-                      //   height: 232,
-                      //   child: SfCartesianChart(
-                      //     series: <ChartSeries>[
-                      //       LineSeries<HealthDataModel, int>(
-                      //           dataSource: bpList,
-                      //           xValueMapper: (HealthDataModel data, _) =>
-                      //               _ + 1,
-                      //           yValueMapper: (HealthDataModel data, _) =>
-                      //               data.y1Value,
-                      //           pointColorMapper: (HealthDataModel data, _) =>
-                      //               data.y1color),
-                      //       LineSeries<HealthDataModel, int>(
-                      //           dataSource: bpList,
-                      //           xValueMapper: (HealthDataModel data, _) =>
-                      //               _ + 1,
-                      //           yValueMapper: (HealthDataModel data, _) =>
-                      //               data.y2Value,
-                      //           pointColorMapper: (HealthDataModel data, _) =>
-                      //               data.y2color)
-                      //     ],
-                      //   ),
-                      // ),
                       // ! GLUCOSE Row
-                      const SizedBox(
-                        height: 24,
+                        HealthTrackerCard(
+                        title: 'GLUCOSE TRACKER',
+                        onAdd: () {
+                          Get.to(() => const GlucoseTrackerScreen());
+                        },
+                         onList: () {
+                          Get.to(() => const GlucoseListScreen());
+                        },
                       ),
-                      const Text(
-                        "GLUCOSE TRACKER",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: kPrimaryColor,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Row(
-                        children: [
-                          // top progress bar
-                          // Container(
-                          //   decoration: BoxDecoration(
-                          //       color: kPrimaryColor,
-                          //       borderRadius: BorderRadius.circular(10)),
-                          //   height: 100,
-                          //   width: 80,
-                          //   child: Column(
-                          //     mainAxisAlignment: MainAxisAlignment.center,
-                          //     crossAxisAlignment: CrossAxisAlignment.center,
-                          //     children: [
-                          //       // progress bar
-                          //       CustomCircularPercentIndicator(
-                          //           glucosePercentage),
-                          //       3.height,
-                          //       const Text(
-                          //         "7 DAYS",
-                          //         style: TextStyle(
-                          //             color: Colors.white,
-                          //             fontSize: 10,
-                          //             fontWeight: FontWeight.w700),
-                          //       )
-                          //     ],
-                          //   ),
-                          // ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const GlucoseTrackerScreen()));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10)),
-                              height: 100,
-                              width: 80,
-                              child: const Center(
-                                child: Image(
-                                  image: AssetImage(
-                                      "assets/health_tracker/plus-circle.png"),
-                                  height: 52,
-                                  width: 52,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(() => const GlucoseListScreen());
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10)),
-                              height: 100,
-                              width: 80,
-                              child: const Center(
-                                child: Text(
-                                  "See\nList",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 14),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 24,
-                      ),
-                      // SizedBox(
-                      //   height: 232,
-                      //   child: SfCartesianChart(
-                      //     series: <ChartSeries>[
-                      //       LineSeries<HealthDataModel, int>(
-                      //         dataSource: glucoseList,
-                      //         xValueMapper: (HealthDataModel data, _) => _ + 1,
-                      //         yValueMapper: (HealthDataModel data, _) =>
-                      //             data.y1Value,
-                      //         pointColorMapper: (HealthDataModel data, _) =>
-                      //             data.y1color,
-                      //       )
-                      //     ],
-                      //   ),
-                      // ),
                       // ! BODY TEMPERATURE
-                      const Text(
-                        "BODY TEMPERATURE",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: kPrimaryColor,
-                            fontWeight: FontWeight.bold),
+                       HealthTrackerCard(
+                        title: 'BODY TEMPERATURE',
+                        onAdd: () {
+                          Get.to(() => const BodyTemparatureScreen());
+                        },
+                         onList: () {
+                          Get.to(() => const BodyListScreen());
+                        },
                       ),
-                      const SizedBox(
-                        height: 8,
+                      //! WEIGHT row
+                        HealthTrackerCard(
+                        title: 'WEIGHT TRACKER',
+                        onAdd: () {
+                          Get.to(() => const WeightTrackerScreen());
+                        },
+                         onList: () {
+                          Get.to(() => const WeightListScreen());
+                        },
                       ),
-                      Row(
-                        children: [
-                          // top progress bar
-                          // Container(
-                          //   decoration: BoxDecoration(
-                          //       color: kPrimaryColor,
-                          //       borderRadius: BorderRadius.circular(10)),
-                          //   height: 100,
-                          //   width: 80,
-                          //   child: Column(
-                          //     mainAxisAlignment: MainAxisAlignment.center,
-                          //     crossAxisAlignment: CrossAxisAlignment.center,
-                          //     children: [
-                          //       // progress bar
-                          //       CustomCircularPercentIndicator(
-                          //           bodyTempPercentage),
-                          //       3.height,
-                          //       const Text(
-                          //         "7 DAYS",
-                          //         style: TextStyle(
-                          //             color: Colors.white,
-                          //             fontSize: 10,
-                          //             fontWeight: FontWeight.w700),
-                          //       )
-                          //     ],
-                          //   ),
-                          // ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const BodyTemparatureScreen()));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10)),
-                              height: 100,
-                              width: 80,
-                              child: const Center(
-                                child: Image(
-                                  image: AssetImage(
-                                      "assets/health_tracker/plus-circle.png"),
-                                  height: 52,
-                                  width: 52,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(() => const BodyListScreen());
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10)),
-                              height: 100,
-                              width: 80,
-                              child: const Center(
-                                child: Text(
-                                  "See\nList",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 14),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      // SizedBox(
-                      //   height: 232,
-                      //   child: SfCartesianChart(
-                      //     series: <ChartSeries>[
-                      //       LineSeries<HealthDataModel, double>(
-                      //         dataSource: bodyTempList,
-                      //         xValueMapper: (HealthDataModel data, _) => _ + 1,
-                      //         yValueMapper: (HealthDataModel data, _) =>
-                      //             data.y1Value,
-                      //         pointColorMapper: (HealthDataModel data, _) =>
-                      //             data.y1color,
-                      //       )
-                      //     ],
-                      //   ),
-                      // ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      // ! WEIGHT row
-                      const Text(
-                        "WEIGHT TRACKER",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: kPrimaryColor,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Row(
-                        children: [
-                          // top progress bar
-                          // Container(
-                          //   decoration: BoxDecoration(
-                          //       color: kPrimaryColor,
-                          //       borderRadius: BorderRadius.circular(10)),
-                          //   height: 100,
-                          //   width: 80,
-                          //   child: Column(
-                          //     mainAxisAlignment: MainAxisAlignment.center,
-                          //     crossAxisAlignment: CrossAxisAlignment.center,
-                          //     children: [
-                          //       // progress bar
-                          //       CustomCircularPercentIndicator(
-                          //           weightPercentage),
-                          //       3.height,
-                          //       const Text(
-                          //         "7 DAYS",
-                          //         style: TextStyle(
-                          //             color: Colors.white,
-                          //             fontSize: 10,
-                          //             fontWeight: FontWeight.w700),
-                          //       )
-                          //     ],
-                          //   ),
-                          // ),
-
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const WeightTrackerScreen()));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10)),
-                              height: 100,
-                              width: 80,
-                              child: const Center(
-                                child: Image(
-                                  image: AssetImage(
-                                      "assets/health_tracker/plus-circle.png"),
-                                  height: 52,
-                                  width: 52,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(() => const WeightListScreen());
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10)),
-                              height: 100,
-                              width: 80,
-                              child: const Center(
-                                child: Text(
-                                  "See\nList",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 14),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      // SizedBox(
-                      //   height: 232,
-                      //   child: SfCartesianChart(
-                      //     series: <ChartSeries>[
-                      //       LineSeries<HealthDataModel, int>(
-                      //         dataSource: weightList,
-                      //         xValueMapper: (HealthDataModel data, _) => _ + 1,
-                      //         yValueMapper: (HealthDataModel data, _) =>
-                      //             data.y1Value,
-                      //         // pointColorMapper: (HealthDataModel data, _) =>
-                      //         //     data.y1color,
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-
-                      /// ! REPORTS tracker
-                      const Text(
-                        "REPORTS TRACKER",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: kPrimaryColor,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Row(
-                        children: [
-                          // top progress bar
-                          // Container(
-                          //   decoration: BoxDecoration(
-                          //       color: kPrimaryColor,
-                          //       borderRadius: BorderRadius.circular(10)),
-                          //   height: 100,
-                          //   width: 80,
-                          //   child: Column(
-                          //     mainAxisAlignment: MainAxisAlignment.center,
-                          //     crossAxisAlignment: CrossAxisAlignment.center,
-                          //     children: [
-                          //       // progress bar
-                          //       CustomCircularPercentIndicator(
-                          //           reportPercentage),
-                          //       3.height,
-                          //       const Text(
-                          //         "7 DAYS",
-                          //         style: TextStyle(
-                          //             color: Colors.white,
-                          //             fontSize: 10,
-                          //             fontWeight: FontWeight.w700),
-                          //       )
-                          //     ],
-                          //   ),
-                          // ),
-
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ReportsTrackerScreen()));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10)),
-                              height: 100,
-                              width: 80,
-                              child: const Center(
-                                child: Image(
-                                  image: AssetImage(
-                                      "assets/health_tracker/plus-circle.png"),
-                                  height: 52,
-                                  width: 52,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(() => const ReportsListScreen());
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10)),
-                              height: 100,
-                              width: 80,
-                              child: const Center(
-                                child: Text(
-                                  "See\nList",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 14),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      // SizedBox(
-                      //   height: 232,
-                      //   child: SfCartesianChart(
-                      //     series: <ChartSeries>[
-                      //       LineSeries<HealthDataModel, int>(
-                      //         dataSource: reportList,
-                      //         xValueMapper: (HealthDataModel data, _) => _ + 1,
-                      //         yValueMapper: (HealthDataModel data, _) =>
-                      //             data.y1Value,
-                      //         // pointColorMapper: (HealthDataModel data, _) =>
-                      //         //     data.y1color,
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                      const SizedBox(
-                        height: 26,
+                       /// ! REPORTS tracker
+                         HealthTrackerCard(
+                        title: 'REPORTS TRACKER',
+                        onAdd: () {
+                          Get.to(() => const ReportsTrackerScreen());
+                        },
+                         onList: () {
+                          Get.to(() => const ReportsListScreen());
+                        },
                       ),
                     ],
                   ),

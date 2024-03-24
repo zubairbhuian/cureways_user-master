@@ -34,60 +34,86 @@ class _OverseasTreatmentDocScreenState
     // ! ==== VIL(Visa Invitation Letter ====
     if (otcontroller.selecetedServiceType == "VIL(Visa Invitation Letter)") {
       return Scaffold(
-        appBar: CustomAppBar(title: Text(widget.title??"")),
+        appBar: CustomAppBar(title: Text(widget.title ?? "")),
         body: SingleChildScrollView(
           padding: const EdgeInsetsDirectional.symmetric(
               horizontal: 20, vertical: 22),
           child: Column(
             children: [
               GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
-                return ImgUploadBtn(
-                  color: otcontroller.imgFile == null ? null : kSuccessColor,
-                  onTap: () async {
-                    otcontroller.imgFile = null;
-                    otcontroller.imgFile =
-                        await MyImagePicker.pickImageAndCrop();
-                    otcontroller.update();
-                  },
-                  text: "Patient Passport",
+                return Column(
+                  children: [
+                    Row(
+                      children: List.generate(
+                          otcontroller.patientPassportList.length,
+                          (index) => Container(
+                            width: 18,
+                            height: 18,
+                            margin: const EdgeInsets.only(right: 8,bottom: 8),
+                                // padding: const EdgeInsets.all(6),
+                                decoration: const BoxDecoration(
+                                  color: kSuccessColor,
+                                  shape: BoxShape.circle
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "${index + 1}",
+                                    style: const TextStyle(
+                                      color: kWhite,
+                                        fontSize: 12, fontWeight: FontWeight.w700),
+                                  ),
+                                ),
+                              )),
+                    ),
+                    ImgUploadBtn(
+                      color: otcontroller.patientPassportList.isEmpty
+                          ? null
+                          : kSuccessColor,
+                      onTap: () async {
+                        otcontroller.openPPFileSelector();
+                        otcontroller.update();
+                      },
+                      text: "Patient Passport",
+                    ),
+                  ],
                 );
               }),
-              16.height,
-              GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
-                return ImgUploadBtn(
-                  color: otcontroller.imgFile2 == null ? null : kSuccessColor,
-                  onTap: () async {
-                    otcontroller.imgFile2 =
-                        await MyImagePicker.pickImageAndCrop();
-                    otcontroller.update();
-                  },
-                  text: "Attendant 1 Passport",
-                );
-              }),
-              16.height,
-              GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
-                return ImgUploadBtn(
-                  color: otcontroller.imgFile3 == null ? null : kSuccessColor,
-                  onTap: () async {
-                    otcontroller.imgFile3 =
-                        await MyImagePicker.pickImageAndCrop();
-                    otcontroller.update();
-                  },
-                  text: "Attendant 2 Passport",
-                );
-              }),
-              16.height,
-              GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
-                return ImgUploadBtn(
-                  color: otcontroller.imgFile4 == null ? null : kSuccessColor,
-                  onTap: () async {
-                    otcontroller.imgFile4 =
-                        await MyImagePicker.pickImageAndCrop();
-                    otcontroller.update();
-                  },
-                  text: "Attendant 3 Passport",
-                );
-              }),
+              // 16.height,
+              // GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
+              //   return ImgUploadBtn(
+              //     color: otcontroller.imgFile2 == null ? null : kSuccessColor,
+              //     onTap: () async {
+              //       otcontroller.imgFile2 =
+              //           await MyImagePicker.pickImageAndCrop();
+              //       otcontroller.update();
+              //     },
+              //     text: "Attendant 1 Passport",
+              //   );
+              // }),
+              // 16.height,
+              // GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
+              //   return ImgUploadBtn(
+              //     color: otcontroller.imgFile3 == null ? null : kSuccessColor,
+              //     onTap: () async {
+              //       otcontroller.imgFile3 =
+              //           await MyImagePicker.pickImageAndCrop();
+              //       otcontroller.update();
+              //     },
+              //     text: "Attendant 2 Passport",
+              //   );
+              // }),
+              // 16.height,
+              // GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
+              //   return ImgUploadBtn(
+              //     color: otcontroller.imgFile4 == null ? null : kSuccessColor,
+              //     onTap: () async {
+              //       otcontroller.imgFile4 =
+              //           await MyImagePicker.pickImageAndCrop();
+              //       otcontroller.update();
+              //     },
+              //     text: "Attendant 3 Passport",
+              //   );
+              // }),
               26.height,
               SizedBox(
                   width: double.infinity,
@@ -103,7 +129,7 @@ class _OverseasTreatmentDocScreenState
       // ! ==== Airport Pickup ====
     } else if (otcontroller.selecetedServiceType == "Airport Pickup") {
       return Scaffold(
-        appBar:CustomAppBar(title: Text(widget.title??"")),
+        appBar: CustomAppBar(title: Text(widget.title ?? "")),
         body: SingleChildScrollView(
           padding: const EdgeInsetsDirectional.symmetric(
               horizontal: 20, vertical: 22),
@@ -162,23 +188,27 @@ class _OverseasTreatmentDocScreenState
                     }
                   }),
               CustomTextField2(
-                controller: otcontroller.timeController,
+                  controller: otcontroller.departureDateController,
+                  keyboardType: TextInputType.text,
+                  readOnly: true,
+                  hintText: 'Departure Date',
+                  onTap: () async {
+                    DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2101));
+                    if (pickedDate != null) {
+                      otcontroller.departureDateController.text =
+                          DateFormat("yyyy-MM-dd").format(pickedDate);
+                      otcontroller.update();
+                    }
+                  }),
+              CustomTextField2(
+                controller: otcontroller.flightDetailsController,
                 keyboardType: TextInputType.text,
-                readOnly: true,
-                hintText: 'Arrival Time',
-                onTap: () async {
-                  TimeOfDay? selectedTime = await showTimePicker(
-                    initialTime: TimeOfDay.now(),
-                    context: context,
-                  );
-                  if (selectedTime != null) {
-                    otcontroller.timeController.text =
-                        "${selectedTime.hour}:${selectedTime.minute}";
-                    //! formet the time
-                    /// MyFunc.formatTimeOfDay(selectedTime);
-                    otcontroller.update();
-                  }
-                },
+                hintText: 'Flight Details',
+                maxLines: 4,
               ),
               26.height,
               SizedBox(
@@ -195,7 +225,7 @@ class _OverseasTreatmentDocScreenState
       // ! ==== Others ====
     } else {
       return Scaffold(
-        appBar: CustomAppBar(title: Text(widget.title??"")),
+        appBar: CustomAppBar(title: Text(widget.title ?? "")),
         body: SingleChildScrollView(
           padding: const EdgeInsetsDirectional.symmetric(
               horizontal: 20, vertical: 22),

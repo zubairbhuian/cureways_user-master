@@ -5,6 +5,7 @@ import 'package:cureways_user/data/network/models/base/base_model.dart';
 import 'package:cureways_user/utils/style.dart';
 import 'package:cureways_user/widgets/popup_dialogs.dart';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide FormData, MultipartFile;
 
@@ -17,7 +18,8 @@ class OverseasTreatmentController extends GetxController {
   String? selecetedServiceType;
 
   final TextEditingController dateController = TextEditingController();
-  final TextEditingController timeController = TextEditingController();
+  final TextEditingController departureDateController = TextEditingController();
+  final TextEditingController flightDetailsController = TextEditingController();
   final TextEditingController totalPassengersController =
       TextEditingController();
   final TextEditingController hospitalNameController = TextEditingController();
@@ -27,6 +29,8 @@ class OverseasTreatmentController extends GetxController {
   File? imgFile3;
   File? imgFile4;
 
+  List<MultipartFile> patientPassportList = [];
+
   List serviceTypeList = [
     'VIL(Visa Invitation Letter)',
     'Doctor Appointment',
@@ -34,8 +38,31 @@ class OverseasTreatmentController extends GetxController {
     'SMO(Second Medical Opinion) ',
     'Telemedicine'
   ];
+
+  void openPPFileSelector() async {
+    patientPassportList = [];
+    FilePickerResult? result =
+        await FilePicker.platform.pickFiles(allowMultiple: true);
+    if (result != null) {
+      List<File> files = result.paths.map((path) => File(path!)).toList();
+      for (var file in files) {
+        // Create MultipartFile from File object
+        patientPassportList.add(
+          await MultipartFile.fromFile(
+            file.path,
+            filename: file.path.split('/').last, // Extract file name from path
+          ),
+        );
+      }
+      update();
+    } else {
+      // User canceled the picker
+    }
+     update();
+  }
+
   makeOverseasTreatmentRequest() async {
-    if (imgFile != null) {
+    if (patientPassportList.isNotEmpty ) {
       try {
         update();
         Map<String, dynamic> data = {
@@ -44,9 +71,7 @@ class OverseasTreatmentController extends GetxController {
           'email': emailController.text,
           'uhid': uhidController.text,
           'type': selecetedServiceType,
-          'passport_copy': await MultipartFile.fromFile(
-            imgFile!.path,
-          ),
+          'passport_copy':patientPassportList,
           // //
           'previous_report': imgFile2 == null
               ? null
@@ -66,7 +91,8 @@ class OverseasTreatmentController extends GetxController {
           'total_passengers': totalPassengersController.text,
           'hostpital_name': hospitalNameController.text,
           'arrival_date': dateController.text,
-          'arrival_time': timeController.text,
+          'departure_date': departureDateController.text,
+          'flight_details': flightDetailsController
         };
         final FormData formData = FormData.fromMap(data);
         update();
@@ -85,7 +111,7 @@ class OverseasTreatmentController extends GetxController {
           uhidController.clear();
           selecetedServiceType = null;
           dateController.clear();
-          timeController.clear();
+          departureDateController.clear();
           totalPassengersController.clear();
           hospitalNameController.clear();
           imgFile = null;

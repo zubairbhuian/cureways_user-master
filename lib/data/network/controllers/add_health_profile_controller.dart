@@ -140,13 +140,16 @@ class AddHealthProfileController extends GetxController {
 
   showHealthProfile() async {
     loader = true;
-    Future.delayed(const Duration(milliseconds: 10), () {
+    Future.delayed(const Duration(milliseconds: 3), () {
       update();
     });
 
     Map body = {'user_id': '${_myBox.get('userId')}'};
     String jsonBody = json.encode(body);
+    // Dio dio = Dio();
 
+    // var res =await dio.get('${Endpoints.server}+$Endpoints.getHealthProfile');
+    // kLogger.e(res.statusCode);
     server
         .postRequestWithToken(
             endPoint: Endpoints.getHealthProfile, body: jsonBody)
