@@ -24,12 +24,11 @@ class OverseasTreatmentController extends GetxController {
       TextEditingController();
   final TextEditingController hospitalNameController = TextEditingController();
 
-  File? imgFile;
-  File? imgFile2;
-  File? imgFile3;
-  File? imgFile4;
 
-  List<MultipartFile> patientPassportList = [];
+  List<MultipartFile> patientPassportFile = [];
+  List<MultipartFile> previousReportFile = [];
+  List<MultipartFile> previousPrescriptionFile = [];
+  List<MultipartFile> ticketUploadFile = [];
 
   List serviceTypeList = [
     'VIL(Visa Invitation Letter)',
@@ -38,16 +37,16 @@ class OverseasTreatmentController extends GetxController {
     'SMO(Second Medical Opinion) ',
     'Telemedicine'
   ];
-
+ // ! patientPassportFile
   void openPPFileSelector() async {
-    patientPassportList = [];
+    patientPassportFile = [];
     FilePickerResult? result =
         await FilePicker.platform.pickFiles(allowMultiple: true);
     if (result != null) {
       List<File> files = result.paths.map((path) => File(path!)).toList();
       for (var file in files) {
         // Create MultipartFile from File object
-        patientPassportList.add(
+        patientPassportFile.add(
           await MultipartFile.fromFile(
             file.path,
             filename: file.path.split('/').last, // Extract file name from path
@@ -60,9 +59,75 @@ class OverseasTreatmentController extends GetxController {
     }
      update();
   }
-
+ // ! previousReportFile
+  void openpreviousReportFileSelector() async {
+    previousReportFile = [];
+    FilePickerResult? result =
+        await FilePicker.platform.pickFiles(allowMultiple: true);
+    if (result != null) {
+      List<File> files = result.paths.map((path) => File(path!)).toList();
+      for (var file in files) {
+        // Create MultipartFile from File object
+        previousReportFile.add(
+          await MultipartFile.fromFile(
+            file.path,
+            filename: file.path.split('/').last, // Extract file name from path
+          ),
+        );
+      }
+      update();
+    } else {
+      // User canceled the picker
+    }
+     update();
+  }
+   // ! previousPrescriptionFile
+  void openPreviousPrescriptionFileSelector() async {
+    previousPrescriptionFile = [];
+    FilePickerResult? result =
+        await FilePicker.platform.pickFiles(allowMultiple: true);
+    if (result != null) {
+      List<File> files = result.paths.map((path) => File(path!)).toList();
+      for (var file in files) {
+        // Create MultipartFile from File object
+        previousPrescriptionFile.add(
+          await MultipartFile.fromFile(
+            file.path,
+            filename: file.path.split('/').last, // Extract file name from path
+          ),
+        );
+      }
+      update();
+    } else {
+      // User canceled the picker
+    }
+     update();
+  }
+   // ! ticketUploadFile
+  void openTicketUploadFileSelector() async {
+    ticketUploadFile = [];
+    FilePickerResult? result =
+        await FilePicker.platform.pickFiles(allowMultiple: true);
+    if (result != null) {
+      List<File> files = result.paths.map((path) => File(path!)).toList();
+      for (var file in files) {
+        // Create MultipartFile from File object
+        ticketUploadFile.add(
+          await MultipartFile.fromFile(
+            file.path,
+            filename: file.path.split('/').last, // Extract file name from path
+          ),
+        );
+      }
+      update();
+    } else {
+      // User canceled the picker
+    }
+     update();
+  }
+  // ! makeOverseasTreatmentRequest
   makeOverseasTreatmentRequest() async {
-    if (patientPassportList.isNotEmpty ) {
+    if (patientPassportFile.isNotEmpty ) {
       try {
         update();
         Map<String, dynamic> data = {
@@ -71,28 +136,15 @@ class OverseasTreatmentController extends GetxController {
           'email': emailController.text,
           'uhid': uhidController.text,
           'type': selecetedServiceType,
-          'passport_copy':patientPassportList,
-          // //
-          'previous_report': imgFile2 == null
-              ? null
-              : await MultipartFile.fromFile(
-                  imgFile2!.path,
-                ),
-          'previous_prescription': imgFile3 == null
-              ? null
-              : await MultipartFile.fromFile(
-                  imgFile3!.path,
-                ),
-          'ticket_upload': imgFile4 == null
-              ? null
-              : await MultipartFile.fromFile(
-                  imgFile4!.path,
-                ),
+          'passport_copy':patientPassportFile,
+          'previous_report':previousReportFile,
+          'previous_prescription':previousPrescriptionFile,
+          'ticket_upload': ticketUploadFile,
           'total_passengers': totalPassengersController.text,
           'hostpital_name': hospitalNameController.text,
           'arrival_date': dateController.text,
           'departure_date': departureDateController.text,
-          'flight_details': flightDetailsController
+          'flight_details': flightDetailsController.text
         };
         final FormData formData = FormData.fromMap(data);
         update();
@@ -114,10 +166,10 @@ class OverseasTreatmentController extends GetxController {
           departureDateController.clear();
           totalPassengersController.clear();
           hospitalNameController.clear();
-          imgFile = null;
-          imgFile2 = null;
-          imgFile3 = null;
-          imgFile4 = null;
+          patientPassportFile = [];
+          previousReportFile = [];
+          previousPrescriptionFile = [];
+          ticketUploadFile = [];
           update();
           PopupDialog.showSuccessDialog("Request Success");
         } else if (res.statusCode == 422) {

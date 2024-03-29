@@ -110,11 +110,13 @@ class _OverseasTreatmentScreenState extends State<OverseasTreatmentScreen> {
                       child: const Text("Next"),
                       onPressed: () {
                         if (otcontroller.otformKey.currentState!.validate()) {
-                          otcontroller.imgFile = null;
-                          otcontroller.imgFile2 = null;
-                          otcontroller.imgFile3 = null;
-                          otcontroller.imgFile4 = null;
-                          Get.to(() =>  OverseasTreatmentDocScreen(title: otcontroller.selecetedServiceType,));
+                          otcontroller.patientPassportFile = [];
+                          otcontroller.previousReportFile = [];
+                          otcontroller.previousPrescriptionFile = [];
+                          otcontroller.ticketUploadFile = [];
+                          Get.to(() => OverseasTreatmentDocScreen(
+                                title: otcontroller.selecetedServiceType,
+                              ));
                         }
                       }))
             ],

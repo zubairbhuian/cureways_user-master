@@ -45,28 +45,29 @@ class _OverseasTreatmentDocScreenState
                   children: [
                     Row(
                       children: List.generate(
-                          otcontroller.patientPassportList.length,
+                          otcontroller.patientPassportFile.length,
                           (index) => Container(
-                            width: 18,
-                            height: 18,
-                            margin: const EdgeInsets.only(right: 8,bottom: 8),
+                                width: 18,
+                                height: 18,
+                                margin:
+                                    const EdgeInsets.only(right: 8, bottom: 8),
                                 // padding: const EdgeInsets.all(6),
                                 decoration: const BoxDecoration(
-                                  color: kSuccessColor,
-                                  shape: BoxShape.circle
-                                ),
+                                    color: kSuccessColor,
+                                    shape: BoxShape.circle),
                                 child: Center(
                                   child: Text(
                                     "${index + 1}",
                                     style: const TextStyle(
-                                      color: kWhite,
-                                        fontSize: 12, fontWeight: FontWeight.w700),
+                                        color: kWhite,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700),
                                   ),
                                 ),
                               )),
                     ),
                     ImgUploadBtn(
-                      color: otcontroller.patientPassportList.isEmpty
+                      color: otcontroller.patientPassportFile.isEmpty
                           ? null
                           : kSuccessColor,
                       onTap: () async {
@@ -78,6 +79,7 @@ class _OverseasTreatmentDocScreenState
                   ],
                 );
               }),
+
               // 16.height,
               // GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
               //   return ImgUploadBtn(
@@ -136,28 +138,81 @@ class _OverseasTreatmentDocScreenState
           child: Column(
             children: [
               GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
-                return ImgUploadBtn(
-                  color: otcontroller.imgFile == null ? null : kSuccessColor,
-                  onTap: () async {
-                    otcontroller.imgFile = null;
-                    otcontroller.imgFile =
-                        await MyImagePicker.pickImageAndCrop();
-                    otcontroller.update();
-                  },
-                  text: "Patient Passport",
+                return Column(
+                  children: [
+                    Row(
+                      children: List.generate(
+                          otcontroller.patientPassportFile.length,
+                          (index) => Container(
+                                width: 18,
+                                height: 18,
+                                margin:
+                                    const EdgeInsets.only(right: 8, bottom: 8),
+                                // padding: const EdgeInsets.all(6),
+                                decoration: const BoxDecoration(
+                                    color: kSuccessColor,
+                                    shape: BoxShape.circle),
+                                child: Center(
+                                  child: Text(
+                                    "${index + 1}",
+                                    style: const TextStyle(
+                                        color: kWhite,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                ),
+                              )),
+                    ),
+                    ImgUploadBtn(
+                      color: otcontroller.patientPassportFile.isEmpty
+                          ? null
+                          : kSuccessColor,
+                      onTap: () async {
+                        otcontroller.openPPFileSelector();
+                        otcontroller.update();
+                      },
+                      text: "Patient Passport",
+                    ),
+                  ],
                 );
               }),
               16.height,
-              GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
-                return ImgUploadBtn(
-                  color: otcontroller.imgFile2 == null ? null : kSuccessColor,
-                  onTap: () async {
-                    otcontroller.imgFile2 = null;
-                    otcontroller.imgFile2 =
-                        await MyImagePicker.pickImageAndCrop();
-                    otcontroller.update();
-                  },
-                  text: "Ticket Upload",
+                            GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
+                var data = otcontroller.ticketUploadFile;
+                return Column(
+                  children: [
+                    Row(
+                      children: List.generate(
+                          data.length,
+                          (index) => Container(
+                                width: 18,
+                                height: 18,
+                                margin:
+                                    const EdgeInsets.only(right: 8, bottom: 8),
+                                // padding: const EdgeInsets.all(6),
+                                decoration: const BoxDecoration(
+                                    color: kSuccessColor,
+                                    shape: BoxShape.circle),
+                                child: Center(
+                                  child: Text(
+                                    "${index + 1}",
+                                    style: const TextStyle(
+                                        color: kWhite,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                ),
+                              )),
+                    ),
+                    ImgUploadBtn(
+                      color: data.isEmpty ? null : kSuccessColor,
+                      onTap: () async {
+                        otcontroller.openTicketUploadFileSelector();
+                        otcontroller.update();
+                      },
+                      text: "Ticket Upload",
+                    ),
+                  ],
                 );
               }),
               16.height,
@@ -232,43 +287,123 @@ class _OverseasTreatmentDocScreenState
           child: Column(
             children: [
               GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
-                return ImgUploadBtn(
-                  color: otcontroller.imgFile == null ? null : kSuccessColor,
-                  onTap: () async {
-                    otcontroller.imgFile = null;
-                    otcontroller.imgFile =
-                        await MyImagePicker.pickImageAndCrop();
-                    otcontroller.update();
-                  },
-                  text: "Passport Copy",
+                return Column(
+                  children: [
+                    Row(
+                      children: List.generate(
+                          otcontroller.patientPassportFile.length,
+                          (index) => Container(
+                                width: 18,
+                                height: 18,
+                                margin:
+                                    const EdgeInsets.only(right: 8, bottom: 8),
+                                // padding: const EdgeInsets.all(6),
+                                decoration: const BoxDecoration(
+                                    color: kSuccessColor,
+                                    shape: BoxShape.circle),
+                                child: Center(
+                                  child: Text(
+                                    "${index + 1}",
+                                    style: const TextStyle(
+                                        color: kWhite,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                ),
+                              )),
+                    ),
+                    ImgUploadBtn(
+                      color: otcontroller.patientPassportFile.isEmpty
+                          ? null
+                          : kSuccessColor,
+                      onTap: () async {
+                        otcontroller.openPPFileSelector();
+                        otcontroller.update();
+                      },
+                      text: "Patient Passport",
+                    ),
+                  ],
                 );
               }),
               16.height,
               GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
-                return ImgUploadBtn(
-                  color: otcontroller.imgFile2 == null ? null : kSuccessColor,
-                  onTap: () async {
-                    otcontroller.imgFile2 = null;
-                    otcontroller.imgFile2 =
-                        await MyImagePicker.pickImageAndCrop();
-                    otcontroller.update();
-                  },
-                  text: "Previous Report",
+                var data = otcontroller.previousReportFile;
+                return Column(
+                  children: [
+                    Row(
+                      children: List.generate(
+                          data.length,
+                          (index) => Container(
+                                width: 18,
+                                height: 18,
+                                margin:
+                                    const EdgeInsets.only(right: 8, bottom: 8),
+                                // padding: const EdgeInsets.all(6),
+                                decoration: const BoxDecoration(
+                                    color: kSuccessColor,
+                                    shape: BoxShape.circle),
+                                child: Center(
+                                  child: Text(
+                                    "${index + 1}",
+                                    style: const TextStyle(
+                                        color: kWhite,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                ),
+                              )),
+                    ),
+                    ImgUploadBtn(
+                      color: data.isEmpty ? null : kSuccessColor,
+                      onTap: () async {
+                        otcontroller.openpreviousReportFileSelector();
+                        otcontroller.update();
+                      },
+                      text: "Previous Report",
+                    ),
+                  ],
                 );
               }),
               16.height,
               GetBuilder<OverseasTreatmentController>(builder: (otcontroller) {
-                return ImgUploadBtn(
-                  color: otcontroller.imgFile3 == null ? null : kSuccessColor,
-                  onTap: () async {
-                    otcontroller.imgFile3 = null;
-                    otcontroller.imgFile3 =
-                        await MyImagePicker.pickImageAndCrop();
-                    otcontroller.update();
-                  },
-                  text: "Previous Prescription",
+                var data = otcontroller.previousPrescriptionFile;
+                return Column(
+                  children: [
+                    Row(
+                      children: List.generate(
+                          data.length,
+                          (index) => Container(
+                                width: 18,
+                                height: 18,
+                                margin:
+                                    const EdgeInsets.only(right: 8, bottom: 8),
+                                // padding: const EdgeInsets.all(6),
+                                decoration: const BoxDecoration(
+                                    color: kSuccessColor,
+                                    shape: BoxShape.circle),
+                                child: Center(
+                                  child: Text(
+                                    "${index + 1}",
+                                    style: const TextStyle(
+                                        color: kWhite,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                ),
+                              )),
+                    ),
+                    ImgUploadBtn(
+                      color: data.isEmpty ? null : kSuccessColor,
+                      onTap: () async {
+                        otcontroller.openPreviousPrescriptionFileSelector();
+                        otcontroller.update();
+                      },
+                      text: "Previous Prescription",
+                    ),
+                  ],
                 );
               }),
+             
               16.height,
               26.height,
               SizedBox(
